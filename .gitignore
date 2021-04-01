@@ -46,4 +46,4 @@ project/.sbtserver
 .sonar/
 
 # Application
-yourgame.log
+malefiz.log
