@@ -12,7 +12,7 @@ val row04 = Array(".",".","O",".",".",".","O",".",".",".","O",".",".",".","O",".
 val row03 = Array("B","O","O","O","B","O","O","O","B","O","O","O","B","O","O","O","B")
 val row02 = Array("S",".",".",".","S",".",".",".","S",".",".",".","S",".",".",".","S")
 val row01 = Array("S","S","S","S","S","S","S","S","S","S","S","S","S","S","S","S","S")
-/*
+/*d
 print(row14.mkString(" "))
 print(row13.mkString(" "))
 print(row12.mkString(" "))
