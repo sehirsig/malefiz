@@ -1,9 +1,9 @@
 class Cell {
-  var cellStatus = ". "
+  var cellStatus = "  "
 
   def setFree(): Unit = cellStatus = "O "
-  def setBlocked(): Unit = cellStatus = "B "
-  def setSecure(): Unit = cellStatus = "S "
+  def setBlocked(): Unit = cellStatus = "X "
+  def setSecure(): Unit = cellStatus = "O "
   def setGoal(): Unit = cellStatus = "G "
 
   override def toString(): String = "" + cellStatus
