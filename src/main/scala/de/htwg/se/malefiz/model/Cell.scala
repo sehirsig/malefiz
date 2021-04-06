@@ -1,5 +1,13 @@
 package de.htwg.se.malefiz.model
 
-object Cell {
+case class Cell(private var cellStatus: String) {
+  this.cellStatus = "  "
+
+  def setFree(): Unit = this.cellStatus = "O "
+  def setBlocked(): Unit = this.cellStatus = "X "
+  def setSecure(): Unit = this.cellStatus = "O "
+  def setGoal(): Unit = this.cellStatus = "G "
+
+  override def toString(): String = cellStatus
 
 }
