@@ -1,7 +1,7 @@
-package de.htwg.se.malefiz.model
+package de.htwg.se.malefiz
 
-import org.scalatest._
 import org.junit.runner.RunWith
+import org.scalatest._
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
