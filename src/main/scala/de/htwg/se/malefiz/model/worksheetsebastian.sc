@@ -1,9 +1,7 @@
-object worksheetsebastian {
-  def test(): Unit = {
-    val x = 2
-    val y = 3
-    println(x + y + "Test" * 2)
-  }
-}
+import de.htwg.se.malefiz.model.Gameboard
 
-val f = worksheetsebastian.test
+1+2 + 3
+
+val spielbrett = new Gameboard
+
+spielbrett.initiate()
