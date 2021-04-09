@@ -27,12 +27,7 @@ case class Gameboard() {
     settings.secureCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setSecure()}
     this.gameboard(settings.goalCell._1)(settings.goalCell._2).setGoal()
 
-    println(gameboard(1)(1))
-    println(gameboard(2)(2))
-    println(gameboard(2)(9))
-    println(gameboard(13)(1))
-    println(gameboard(1)(9))
-    //update()
+    update()
   }
 
   def update():Unit = {
