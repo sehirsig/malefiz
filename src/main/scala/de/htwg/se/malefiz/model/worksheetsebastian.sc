@@ -4,6 +4,8 @@ import de.htwg.se.malefiz.model._
 
 val spielbrett = Gameboard()
 
-spielbrett.initiating()
 
-spielbrett.update()
+
+spielbrett.update()//
+
+//println(spielbrett.gameboard(2)(1))

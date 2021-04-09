@@ -2,10 +2,7 @@ package de.htwg.se.malefiz.model
 
 
 import org.scalatest._
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class GameboardSpec extends WordSpec with Matchers {
   "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when {
     "to be constructed " should {
@@ -17,7 +14,7 @@ class GameboardSpec extends WordSpec with Matchers {
         }
       }
     }
-    "created properly" should {
+    "created properly" should { //Vector anstatt Array
       val freeCells = Array((2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,10),(2,11),(2,12),(2,13),(2,14),(2,15),
         (2,16),(2,17),(3,1),(3,17),(4,1),(4,2),(4,3),(4,4),(4,5),(4,6),(4,7),(4,8),(4,10),(4,11),(4,12),(4,13),(4,14),
         (4,15),(4,16),(4,17),(6,7),(6,8),(6,10),(6,11),(7,7),(7,11),(8,5),(8,6),(8,8),(8,9),(8,10),(8,12),(8,13),(9,5),
@@ -32,7 +29,7 @@ class GameboardSpec extends WordSpec with Matchers {
       val goalCell = (1,9)
 
       val spielbrett = Gameboard()
-      spielbrett.initiating()
+      //spielbrett.initiating()
       val settings = new properties.Settings
       "have the right dimension" in {
         spielbrett.xDim should be(settings.xDim)

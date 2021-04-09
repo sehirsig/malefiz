@@ -9,7 +9,7 @@ object Malefiz {
 
     val spielbrett = Gameboard()
 
-    spielbrett.initiating()
+    //spielbrett.initiating()
 
     spielbrett.update()
   }
