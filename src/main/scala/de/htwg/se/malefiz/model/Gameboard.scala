@@ -4,7 +4,7 @@ import de.htwg.se.malefiz.model.properties.Settings
 
 
 case class Gameboard() {
-  private val settings = new Settings
+  private val settings = Settings()
 
   val gameboard = Array.ofDim[Cell](settings.yDim,settings.xDim)
 
@@ -14,10 +14,10 @@ case class Gameboard() {
 
   def cellToString(x:Int, y:Int): String = gameboard(x)(y).toString()
 
-  def initiate():Unit = {
+  def initiating():Unit = {
 
     for(i<-0 to (yDim - 1); j<- 0 to (xDim - 1)) {
-      val cell = new Cell(" ")
+      val cell = new Cell()
       this.gameboard(i)(j) = cell
     }
 
@@ -26,12 +26,10 @@ case class Gameboard() {
     settings.blockedCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setBlocked()}
     settings.secureCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setSecure()}
     this.gameboard(settings.goalCell._1)(settings.goalCell._2).setGoal()
-
-    update()
   }
 
   def update():Unit = {
-    this.gameboard.foreach { row => row.foreach(print) }
+    this.gameboard.foreach { row => row.foreach(print); println() }
   }
 
 
