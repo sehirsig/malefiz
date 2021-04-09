@@ -1,7 +1,9 @@
-import de.htwg.se.malefiz.model.Gameboard
+import de.htwg.se.malefiz.model._
 
 1+2 + 3
 
-val spielbrett = new Gameboard
+val spielbrett = Gameboard()
 
-spielbrett.initiate()
+spielbrett.initiating()
+
+spielbrett.update()

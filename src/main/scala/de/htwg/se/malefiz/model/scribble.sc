@@ -1,3 +1,5 @@
+import de.htwg.se.malefiz.model.Gameboard
+
 class Cell {
   var cellStatus = "  "
 
@@ -33,7 +35,6 @@ gameBoard(goalCell._1)(goalCell._2).setGoal()
 
 
 gameBoard.foreach { row => row.foreach(print); println() }
-
 
 //val row14 = Array(".",".",".",".",".",".",".",".","G",".",".",".",".",".",".",".",".")
 //val row13 = Array("O","O","O","O","O","O","O","O","B","O","O","O","O","O","O","O","O")
