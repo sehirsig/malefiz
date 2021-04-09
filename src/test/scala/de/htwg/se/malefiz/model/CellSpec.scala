@@ -1,10 +1,6 @@
 package de.htwg.se.malefiz.model
 
 import org.scalatest._
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
-
-@RunWith(classOf[JUnitRunner])
 class CellSpec extends WordSpec with Matchers {
   "A Cell" when { "new" should {
     val cell = Cell()
@@ -15,7 +11,7 @@ class CellSpec extends WordSpec with Matchers {
       cell.setFree()
       cell.toString() should be("O ")
     }
-    "have cellStatus = B when set blocked" in {
+    "have cellStatus = X when set blocked" in {
       cell.setBlocked()
       cell.toString() should be("X ")
     }
