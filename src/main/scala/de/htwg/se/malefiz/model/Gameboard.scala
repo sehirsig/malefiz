@@ -14,7 +14,7 @@ case class Gameboard() {
 
   def cellToString(x:Int, y:Int): String = gameboard(x)(y).toString()
 
-  def initiating():Unit = {
+  //def initiating():Unit = { --> Auskommentiert -> Code Teil des Konstruktors (Wird einfach instanziiert
 
     for(i<-0 to (yDim - 1); j<- 0 to (xDim - 1)) {
       val cell = new Cell()
@@ -26,7 +26,7 @@ case class Gameboard() {
     settings.blockedCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setBlocked()}
     settings.secureCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setSecure()}
     this.gameboard(settings.goalCell._1)(settings.goalCell._2).setGoal()
-  }
+  //}
 
   def update():Unit = {
     this.gameboard.foreach { row => row.foreach(print); println() }
