@@ -8,20 +8,16 @@ class CellSpec extends WordSpec with Matchers {
       cell.toString should be("  ")
     }
     "have cellStatus = O when set free" in {
-      cell.setFree()
-      cell.toString() should be("O ")
+      cell.setFree().toString() should be("O ")
     }
     "have cellStatus = X when set blocked" in {
-      cell.setBlocked()
-      cell.toString() should be("X ")
+      cell.setBlocked().toString() should be("X ")
     }
     "have cellStatus = O when set secure" in {
-      cell.setSecure()
-      cell.toString() should be("O ")
+      cell.setSecure().toString() should be("O ")
     }
     "have cellStatus = G when set to goal" in {
-      cell.setGoal()
-      cell.toString() should be("G ")
+      cell.setGoal().toString() should be("G ")
     }
   }}
 }
