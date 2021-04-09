@@ -1,7 +1,7 @@
 package de.htwg.se.malefiz.model
 
-case class Cell(private var cellStatus: String) {
-  this.cellStatus = "  "
+case class Cell() {
+  private var cellStatus = "  "
 
   def setFree(): Unit = this.cellStatus = "O "
   def setBlocked(): Unit = this.cellStatus = "X "
