@@ -1,6 +1,6 @@
-# Htwg Scala Seed Project 
+# Malefiz Game in Scala 
 =====================================================
-## the easiest way to start a project for the lecture SE
+## Game Project for the lecture SE
 
 
 This is a seed project to create a basic scala project as used in the
