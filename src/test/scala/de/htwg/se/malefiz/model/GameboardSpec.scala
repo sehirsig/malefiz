@@ -32,7 +32,7 @@ class GameboardSpec extends WordSpec with Matchers {
       val goalCell = (1,9)
 
       val spielbrett = Gameboard()
-      spielbrett.initiate()
+      spielbrett.initiating()
       val settings = new properties.Settings
       "have the right dimension" in {
         spielbrett.xDim should be(settings.xDim)
