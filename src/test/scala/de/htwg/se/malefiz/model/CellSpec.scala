@@ -2,22 +2,60 @@ package de.htwg.se.malefiz.model
 
 import org.scalatest._
 class CellSpec extends WordSpec with Matchers {
-  "A Cell" when { "new" should {
+  "A Cell" when { "no parameter" should {
     val cell = Cell()
-    "have a nice String representation" in {
+    "be displayed as \"  \"" in {
       cell.toString should be("  ")
+      cell.cellStatusValidation should be("valid")
+      cell.secureStatus should be(false)
     }
-    "have cellStatus = O when set free" in {
-      cell.setFree().toString() should be("O ")
+  }}
+  "A Cell" when { "empty" should {
+    val cell = Cell("  ")
+    "be displayed as \"  \"" in {
+      cell.toString should be("  ")
+      cell.cellStatusValidation should be("valid")
+      cell.secureStatus should be(false)
     }
-    "have cellStatus = X when set blocked" in {
-      cell.setBlocked().toString() should be("X ")
+  }}
+  "A Cell" when { "free" should {
+    val cell = Cell("O ")
+    "be displayed as \"O \"" in {
+      cell.toString should be("O ")
+      cell.cellStatusValidation should be("valid")
+      cell.secureStatus should be(false)
     }
-    "have cellStatus = O when set secure" in {
-      cell.setSecure().toString() should be("O ")
+  }}
+  "A Cell" when { "secure" should {
+    val cell = Cell("O ", true)
+    "be displayed as \"O \"" in {
+      cell.toString should be("O ")
+      cell.cellStatusValidation should be("valid")
+      cell.secureStatus should be(true)
     }
-    "have cellStatus = G when set to goal" in {
-      cell.setGoal().toString() should be("G ")
+  }}
+  "A Cell" when { "blocked" should {
+    val cell = Cell("X ")
+    "be displayed as \"X \"" in {
+      cell.toString should be("X ")
+      cell.cellStatusValidation should be("valid")
+      cell.secureStatus should be(false)
+    }
+  }}
+  "A Cell" when { "the goal" should {
+    val cell = Cell("G ")
+    "be displayed as \"G \"" in {
+      cell.toString should be("G ")
+      cell.cellStatusValidation should be("valid")
+      cell.secureStatus should be(false)
+    }
+  }}
+  "A Cell" when { "invalid" should {
+    val cell = Cell("abc")
+    "be displayed as \"abc \"" in {
+      cell.toString should be("abc")
+      cell.cellStatusValidation should be("not valid")
+      cell.secureStatus should be(false)
     }
   }}
 }

@@ -22,10 +22,10 @@ case class Gameboard() {
     }
 
 
-    settings.freeCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setFree()}
-    settings.blockedCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setBlocked()}
-    settings.secureCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setSecure()}
-    this.gameboard(settings.goalCell._1)(settings.goalCell._2).setGoal()
+    settings.freeCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2) = new Cell("O ")}
+    settings.blockedCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2) = new Cell("X ")}
+    settings.secureCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2) = new Cell("O ", true)}
+    this.gameboard(settings.goalCell._1)(settings.goalCell._2) = new Cell("G ")
   //}
 
   def update():Unit = {
