@@ -38,12 +38,19 @@ class GameboardSpec extends WordSpec with Matchers {
         spielbrett.xDim should be(settings.xDim)
         spielbrett.yDim should be(settings.yDim)
       }
-      "give access to its Cells" in {
+      "read the Cells with our String method" in {
         spielbrett.cellToString(1,1) should be("  ")
         spielbrett.cellToString(2,2) should be("O ")
         spielbrett.cellToString(2,9) should be("X ")
         spielbrett.cellToString(13,1) should be("O ")
         spielbrett.cellToString(1,9) should be("G ")
+      }
+      "read the Cells with Cells to String method" in {
+        spielbrett.gameboard(1)(1).toString() should be("  ")
+        spielbrett.gameboard(2)(2).toString() should be("O ")
+        spielbrett.gameboard(2)(9).toString() should be("X ")
+        spielbrett.gameboard(13)(1).toString() should be("O ")
+        spielbrett.gameboard(1)(9).toString() should be("G ")
       }
     }
 }
