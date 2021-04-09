@@ -7,7 +7,7 @@ import org.scalatest.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 class CellTest extends WordSpec with Matchers {
   "A Cell" when { "new" should {
-    val cell = Cell("")
+    val cell = Cell()
     "have a nice String representation" in {
       cell.toString should be("  ")
     }
@@ -23,7 +23,7 @@ class CellTest extends WordSpec with Matchers {
       cell.setSecure()
       cell.toString() should be("O ")
     }
-    "have cellStatus = O when set to goal" in {
+    "have cellStatus = G when set to goal" in {
       cell.setGoal()
       cell.toString() should be("G ")
     }
