@@ -21,22 +21,20 @@ a.update()
 
 def availablePaths2(row: Int, col: Int, walkLeft: Int): ArrayBuffer[(Int,Int)] = {
   val a = ArrayBuffer[(Int,Int)]()
-  a += ((3, 9))
-  a += ((4, 7))
 
   var d = walkLeft
   while(d != 0) {
     a.foreach(x => {
-      if(Settings().blockedCells.contains((x._1 + 1, x._2))) {
+      if(Settings().walkableCells.contains((x._1 + 1, x._2)) && !a.contains((x._1 + 1, x._2))) {
         a += ((x._1 + 1, x._2))
       }
-      if(Settings().blockedCells.contains((x._1 ,x._2 + 1))) {
+      if(Settings().walkableCells.contains((x._1 ,x._2 + 1)) && !a.contains((x._1, x._2 + 1))) {
         a += ((x._1, x._2 + 1))
       }
-      if(Settings().blockedCells.contains((x._1 - 1, x._2))) {
+      if(Settings().walkableCells.contains((x._1 - 1, x._2)) && !a.contains((x._1 - 1, x._2))) {
         a += ((x._1 - 1, x._2))
       }
-      if(Settings().blockedCells.contains((x._1, x._2 - 1))) {
+      if(Settings().walkableCells.contains((x._1, x._2 - 1)) && !a.contains((x._1, x._2 - 1))) {
         a += ((x._1, x._2 - 1))
       }
     })
@@ -46,7 +44,7 @@ def availablePaths2(row: Int, col: Int, walkLeft: Int): ArrayBuffer[(Int,Int)] =
 }
 
 
-val e = availablePaths2(3, 2, 2)
+val e = availablePaths2(14, 3, 2)
 
 e.foreach(x => println(x))
 
