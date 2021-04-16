@@ -12,7 +12,7 @@ case class Gameboard() {
 
   val xDim = settings.xDim
 
-  def cellToString(x:Int, y:Int): String = gameboard(x)(y).toString()
+  //  def cellToString(x:Int, y:Int): String = gameboard(x)(y).toString()
 
   //def initiating():Unit = { --> Auskommentiert -> Code Teil des Konstruktors (Wird einfach instanziiert
 
