@@ -1,6 +1,8 @@
 import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.model.{Cell, Gameboard}
 
+import scala.collection.mutable.ArrayBuffer
+
 case class PathFinder(dice:Int,spieler_id:Int, spielbrett:Gameboard[Cell]) {
   def availablePaths(row: Int, col: Int, walkLeft: Int): List[(Int,Int)] = {
     val a = List((row, col))
@@ -17,15 +19,26 @@ val s = Settings();
 val a = new Gameboard[Cell](s.xDim, s.yDim)
 a.update()
 
-def availablePaths(row: Int, col: Int, walkLeft: Int): Array[(Int,Int)] = {
-  val a = Array((row, col))
+def availablePaths2(row: Int, col: Int, walkLeft: Int): ArrayBuffer[(Int,Int)] = {
+  val a = ArrayBuffer[(Int,Int)]()
+  a += ((3, 9))
+  a += ((4, 7))
+
   var d = walkLeft
   while(d != 0) {
     a.foreach(x => {
-      (x._1 + 1, x._2) +: a
-      (x._1 ,x._2 + 1) +: a
-      (x._1 - 1, x._2) +: a
-      (x._1, x._2 - 1) +: a
+      if(Settings().blockedCells.contains((x._1 + 1, x._2))) {
+        a += ((x._1 + 1, x._2))
+      }
+      if(Settings().blockedCells.contains((x._1 ,x._2 + 1))) {
+        a += ((x._1, x._2 + 1))
+      }
+      if(Settings().blockedCells.contains((x._1 - 1, x._2))) {
+        a += ((x._1 - 1, x._2))
+      }
+      if(Settings().blockedCells.contains((x._1, x._2 - 1))) {
+        a += ((x._1, x._2 - 1))
+      }
     })
     d = d - 1
   }
@@ -33,6 +46,8 @@ def availablePaths(row: Int, col: Int, walkLeft: Int): Array[(Int,Int)] = {
 }
 
 
-var e = availablePaths(3, 2, 2)
+val e = availablePaths2(3, 2, 2)
 
 e.foreach(x => println(x))
+
+println(Settings().blockedCells.contains((2, 9)))
