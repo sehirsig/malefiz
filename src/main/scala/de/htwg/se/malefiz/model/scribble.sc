@@ -1,4 +1,3 @@
-import de.htwg.se.malefiz.model.Gameboard
 
 class Cell {
   var cellStatus = "  "

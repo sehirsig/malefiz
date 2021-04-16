@@ -1,4 +1,5 @@
-import de.htwg.se.malefiz.model.{Gamefigure, Player}
+import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.model.{Cell, Gamefigure, Gameboard, Player}
 
 val student1 = Player("Your Name", 1)
 val student2 = Player("Your Name", 2)
@@ -17,3 +18,12 @@ println("Print: " + figures01)
 println("Print: " + figures02)
 println("Print: " + figures03)
 println("Print: " + figures04)
+
+val s = Settings();
+
+val a = new Gameboard(s.xDim, s.yDim)
+val b = new Gameboard(s.xDim, s.yDim)
+
+
+
+a.update()
