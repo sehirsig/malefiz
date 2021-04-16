@@ -12,6 +12,12 @@ class SettingsSpec extends WordSpec with Matchers {
         set.xDim should be(Settings().xDim)
       }
     }
+    "be initialized right" should {
+      val set = Settings()
+      "with the right path" in {
+        set.walkableCells.contains(Settings().freeCells)
+      }
+    }
   }
 }
 

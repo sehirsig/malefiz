@@ -13,15 +13,15 @@ case class Gameboard[T](rows: Vector[Vector[Cell]]) {
         Cell("O ")
       } else if((Settings().goalCell == (row, col))) {
         Cell("G ")
-      } /*else if((Settings().start1 == (row, col))) { //T Wird nicht ausgegeben? ?
+      } else if((Settings().start1.contains(row, col))) {
         Cell("T ")
-      } else if((Settings().start2 == (row, col))) {
+      } else if((Settings().start2.contains(row, col))) {
         Cell("T ")
-      } else if((Settings().start3 == (row, col))) {
+      } else if((Settings().start3.contains(row, col))) {
         Cell("T ")
-      } else if((Settings().start4 == (row, col))) {
+      } else if((Settings().start4.contains(row, col))) {
         Cell("T ")
-      } */ else {
+      }  else {
         Cell()
       }
     }
