@@ -28,6 +28,8 @@ class GameboardSpec extends WordSpec with Matchers {
         spielbrett.cell(2,9) should be(Cell("X "))
         spielbrett.cell(13,1) should be(Cell("O "))
         spielbrett.cell(1,9) should be(Cell("G "))
+        spielbrett.cell(15, 15) should be(Cell("T "))
+
       }
       "read the Cells with Cells to String method" in {
         spielbrett.rows(1)(1).toString() should be("  ")
@@ -35,6 +37,8 @@ class GameboardSpec extends WordSpec with Matchers {
         spielbrett.rows(2)(9).toString() should be("X ")
         spielbrett.rows(13)(1).toString() should be("O ")
         spielbrett.rows(1)(9).toString() should be("G ")
+        spielbrett.rows(15)(15).toString() should be("T ")
+
       }
       "replace a Cell correctly and return a new Board" in {
         val returnedBoard = spielbrett.replaceCell(0,0, Cell("X "))
