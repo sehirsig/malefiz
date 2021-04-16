@@ -4,7 +4,7 @@ package de.htwg.se.malefiz.model
 import org.scalatest._
 
 class GameboardSpec extends WordSpec with Matchers {
-  "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when {
+  "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when {//
 
     }
     "created properly" should {

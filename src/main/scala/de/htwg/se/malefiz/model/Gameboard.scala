@@ -13,7 +13,7 @@ case class Gameboard[T](rows: Vector[Vector[Cell]]) {
         Cell("O ")
       } else if((Settings().goalCell == (row, col))) {
         Cell("G ")
-      } /*else if((Settings().start1 == (row, col))) { //T Wird nicht ausgegeben?
+      } /*else if((Settings().start1 == (row, col))) { //T Wird nicht ausgegeben? ?
         Cell("T ")
       } else if((Settings().start2 == (row, col))) {
         Cell("T ")
