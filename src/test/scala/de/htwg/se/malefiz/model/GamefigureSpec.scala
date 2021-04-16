@@ -9,7 +9,7 @@ class GamefigureSpec extends WordSpec with Matchers {
       Gamefigure.unapply(figur).get should be(0, Player("Your Name", 0))
     }
     "have a nice String representation" in {
-      figur.toString should be(Player("Your Name", 0).getColour + "P" + Console.RESET)
+      figur.toString should be("0")
     }
   }}
 }
