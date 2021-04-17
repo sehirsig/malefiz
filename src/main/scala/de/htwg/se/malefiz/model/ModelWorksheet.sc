@@ -19,33 +19,45 @@ val s = Settings();
 val a = new Gameboard[Cell](s.xDim, s.yDim)
 a.update()
 
-def availablePaths2(row: Int, col: Int, walkLeft: Int): ArrayBuffer[(Int,Int)] = {
+def availablePaths2(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard[Cell]): ArrayBuffer[(Int,Int)] = {
   val a = ArrayBuffer[(Int,Int)]()
-
-  var d = walkLeft
+  val b = ArrayBuffer[(Int,Int)]()
+  a += ((row,col))
+  var d = walksLeft
   while(d != 0) {
     a.foreach(x => {
-      if(Settings().walkableCells.contains((x._1 + 1, x._2)) && !a.contains((x._1 + 1, x._2))) {
+      println("He")
+      if(!(spielbrett.cell(x._1 + 1, x._2) == Cell())) {
         a += ((x._1 + 1, x._2))
+        if (d == 1) {
+          b += ((x._1 + 1, x._2))
+        }
       }
-      if(Settings().walkableCells.contains((x._1 ,x._2 + 1)) && !a.contains((x._1, x._2 + 1))) {
+      if(!(spielbrett.cell(x._1, x._2 + 1) == Cell())) {
         a += ((x._1, x._2 + 1))
+        if (d == 1) {
+          b += ((x._1, x._2 + 1))
+        }
       }
-      if(Settings().walkableCells.contains((x._1 - 1, x._2)) && !a.contains((x._1 - 1, x._2))) {
+      if(!(spielbrett.cell(x._1 - 1, x._2) == Cell())) {
         a += ((x._1 - 1, x._2))
+        if (d == 1) {
+          b += ((x._1 - 1, x._2))
+        }
       }
-      if(Settings().walkableCells.contains((x._1, x._2 - 1)) && !a.contains((x._1, x._2 - 1))) {
+      if(!(spielbrett.cell(x._1, x._2 - 1) == Cell())) {
         a += ((x._1, x._2 - 1))
+        if (d == 1) {
+          b += ((x._1, x._2 - 1))
+        }
       }
     })
     d = d - 1
   }
-  a
+  b.distinct
 }
 
 
-val e = availablePaths2(14, 3, 2)
+val e = availablePaths2(14, 3, 2,a)
 
 e.foreach(x => println(x))
-
-println(Settings().blockedCells.contains((2, 9)))
