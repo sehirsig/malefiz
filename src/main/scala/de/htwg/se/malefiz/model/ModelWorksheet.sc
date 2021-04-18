@@ -23,7 +23,7 @@ a.update()
 // Pro rekursion wird eine list zurückgegeben, die in die liste vom aufrufer gespeichert wird
 
 def availablePathsRecursive(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard[Cell]):List[(Int,Int)] = {
-  if (walksLeft != 0) {
+  if (walksLeft != 0) {//matchers
 
     val listUp = availablePathsRecursive(row, col, walksLeft - 1, spielbrett)
     val listDown = availablePathsRecursive(row, col, walksLeft - 1, spielbrett)
