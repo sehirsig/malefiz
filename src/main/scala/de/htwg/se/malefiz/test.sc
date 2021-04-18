@@ -21,9 +21,8 @@ println("Print: " + figures04)
 
 val s = Settings();
 
-val a = new Gameboard(s.xDim, s.yDim)
-val b = new Gameboard(s.xDim, s.yDim)
+val a = new Gameboard[Cell](s.xDim, s.yDim)
+val b = new Gameboard[Cell](s.xDim, s.yDim)
 
 
-
-a.update()
+a.toString

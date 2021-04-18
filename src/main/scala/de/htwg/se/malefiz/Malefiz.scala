@@ -8,7 +8,7 @@ object Malefiz {
   var spielbrett = new Gameboard[Cell](set.xDim, set.yDim)
   var dice = Dice()
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit = { //Viel Weniger Text, alles in Methoden verpacken
     var input: String = ""
     println(
       """Welcome to Malefiz!
@@ -25,7 +25,7 @@ object Malefiz {
         |""".stripMargin)
     while (readLine() != "Q") {
       println("You have rolled an: " + dice.roll)
-      spielbrett.update()
+      println(spielbrett.toString)
     }
   }
 }
