@@ -41,5 +41,15 @@ class CellSpec extends WordSpec with Matchers {
       cell.toString should be("G ")
     }
   }
+    "if is Walkable" should {
+      val cell = Cell("O ")
+      "should be walkable" in {
+        cell.isWalkable should be(true)
+      }
+      val cellnot = Cell()
+      "should not be walkabe" in {
+        cellnot.isWalkable should be(false)
+      }
+    }
   }
 }
