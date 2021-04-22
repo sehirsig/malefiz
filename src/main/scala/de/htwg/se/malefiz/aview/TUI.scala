@@ -2,12 +2,18 @@ package de.htwg.se.malefiz.aview
 
 import de.htwg.se.malefiz.controller.Controller
 import de.htwg.se.malefiz.model._
+import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.util.Observer
 
-case class TUI[T](gameboard: Gameboard[T]) {
-  def init(): Unit = {
+case class TUI(controller: Controller) extends Observer {
+  controller.add(this)
+  override def update: Unit =  println(controller.boardToString)
+
+//  val set = Settings();
+//  var spielbrett = new Gameboard[Cell](set.xDim, set.yDim)
+  def processing(input: String): Unit = {
     var dice = Dice()
     val figurDraussen = true
-    val controller = new Controller()
 
     println(
       """Welcome to Malefiz!
@@ -24,7 +30,7 @@ case class TUI[T](gameboard: Gameboard[T]) {
     while (scala.io.StdIn.readLine() != "Q") {
       val roll = dice.roll
       println("You have rolled an: " + roll)
-      println(gameboard.toString)
+//      println(spielbrett.toString)
       if(figurDraussen) {
         for (i <- 1 to roll) {
           val move = scala.io.StdIn.readLine()

@@ -1,16 +1,25 @@
 package de.htwg.se.malefiz
 
 import de.htwg.se.malefiz.aview.TUI
+import de.htwg.se.malefiz.controller.Controller
+import de.htwg.se.malefiz.model._
 import de.htwg.se.malefiz.model.properties.Settings
-import de.htwg.se.malefiz.model.{Cell, Dice, Gameboard, Gamefigure, Player}
+
+import scala.io.StdIn.readLine
 
 object Malefiz {
-  val set = Settings();
-  var spielbrett = new Gameboard[Cell](set.xDim, set.yDim)
-  val game = new TUI[Cell](spielbrett)
+  val controller = new Controller()
+  val tui = new TUI(controller)
+  controller.notifyObservers
 
   def main(args: Array[String]): Unit = { //Viel Weniger Text, alles in Methoden verpacken
-    game.init
+    var input: String = ""
+
+    do {
+      input = readLine()
+      tui.processing(input)
+    } while (input != "q")
+//    game.init
 //    var input: String = ""
 //    println(
 //      """Welcome to Malefiz!

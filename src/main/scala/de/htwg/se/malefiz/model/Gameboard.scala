@@ -2,7 +2,7 @@ package de.htwg.se.malefiz.model
 
 import de.htwg.se.malefiz.model.properties.Settings
 
-case class Gameboard[T](rows: Vector[Vector[Cell]]) {
+case class Gameboard(rows: Vector[Vector[Cell]]) {
   def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
     (row, col) => {
       if(Settings().blockedCells.contains(row, col)) {
@@ -33,7 +33,7 @@ case class Gameboard[T](rows: Vector[Vector[Cell]]) {
   //  this.rows.foreach { row => row.foreach(print); println() }
   //}
 
-  def replaceCell(row: Int, col: Int, cell: Cell): Gameboard[Cell] = copy(rows.updated(row, rows(row).updated(col, cell)))
+  def replaceCell(row: Int, col: Int, cell: Cell): Gameboard = copy(rows.updated(row, rows(row).updated(col, cell)))
 
   override def toString: String = {
     val buf = new StringBuilder
