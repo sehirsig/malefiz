@@ -29,7 +29,11 @@ case class TUI[T](gameboard: Gameboard[T]) {
         for (i <- 1 to roll) {
           val move = scala.io.StdIn.readLine()
           move match {
+            case w => controller.moveUp()
             case a => controller.moveUp()
+            case s => controller.moveUp()
+            case d => controller.moveUp()
+            case _ => controller.moveUp()
           }
         }
       }

@@ -9,7 +9,6 @@ object Malefiz {
   var spielbrett = new Gameboard[Cell](set.xDim, set.yDim)
   val game = new TUI[Cell](spielbrett)
 
-
   def main(args: Array[String]): Unit = { //Viel Weniger Text, alles in Methoden verpacken
     game.init
 //    var input: String = ""
