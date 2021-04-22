@@ -2,15 +2,13 @@ package de.htwg.se.malefiz.aview
 
 import de.htwg.se.malefiz.controller.Controller
 import de.htwg.se.malefiz.model._
-import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.Observer
 
 case class TUI(controller: Controller) extends Observer {
   controller.add(this)
   override def update: Unit =  println(controller.boardToString)
 
-//  val set = Settings();
-//  var spielbrett = new Gameboard[Cell](set.xDim, set.yDim)
+
   def processing(input: String): Unit = {
     var dice = Dice()
     val figurDraussen = true
@@ -27,7 +25,7 @@ case class TUI(controller: Controller) extends Observer {
       """
         |Type anything to Start! Type Q to quit
         |""".stripMargin)
-    while (scala.io.StdIn.readLine() != "Q") {
+    while (scala.io.StdIn.readLine() != "Q") { // TODO ich glaub die while muss noch raus
       val roll = dice.roll
       println("You have rolled an: " + roll)
 //      println(spielbrett.toString)
