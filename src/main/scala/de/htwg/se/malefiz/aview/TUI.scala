@@ -29,14 +29,15 @@ case class TUI[T](gameboard: Gameboard[T]) {
         for (i <- 1 to roll) {
           val move = scala.io.StdIn.readLine()
           move match {
-            case w => controller.moveUp()
-            case a => controller.moveUp()
-            case s => controller.moveUp()
-            case d => controller.moveUp()
-            case _ => controller.moveUp()
+            case "w" => controller.moveUp()
+            case "a" => controller.moveLeft()
+            case "s" => controller.moveDown()
+            case "d" => controller.moveRight()
+            case _ => println("invalid input")
           }
         }
       }
+      println("press any key to roll again (Q to exit)")
     }
   }
 }

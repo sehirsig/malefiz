@@ -6,4 +6,13 @@ case class Controller() {
   def moveUp(): Unit = {
     println("moves up")
   }
+  def moveDown(): Unit = {
+    println("moves down")
+  }
+  def moveLeft(): Unit = {
+    println("moves left")
+  }
+  def moveRight(): Unit = {
+    println("moves right")
+  }
 }
