@@ -31,7 +31,7 @@ def availablePathsRecursive(row: Int, col: Int, walksLeft: Int, spielbrett:Gameb
   }
 }*/
 //ArrayBuffer[(Int,Int, Boolean, Int, String)] zum Test
-def availablePaths2(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard): ArrayBuffer[(Int,Int)] = { // (Int,Int) für b als Ausgabe
+def availablePaths2(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard): List[(Int,Int)] = { // (Int,Int) für b als Ausgabe
   val internList = ArrayBuffer[(Int,Int, Boolean, Int, String)]() // (row, col, Touched Barricade, Welcher Schritt, Richtung)
   val outputList = ArrayBuffer[(Int,Int)]()
   internList += ((row,col, false, -1, "Initiate"))
@@ -110,11 +110,14 @@ def availablePaths2(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard): A
     internList -= ((row,col, false, -1, "Initiate")) // Löscht den ersten, damit nicht nach mehreren Würfeln nochmal genommen wird.
     d = d - 1
   }
-  outputList.distinct //b ist endprodukt, a zum debuggen
+  val inFinList = internList.toList.filter(x => x._3 == false).filter(x => x._4 == walksLeft).distinct //b ist endprodukt, a zum debuggen
+  //inFinList
+ val endList = List[(Int,Int)]()
+  for (old <- inFinList) yield (old._1, old._2)
 }
 //DICE 6: If !blockade not touched, delete list with DICE 5 (ALL) Ergebnisse. IF Blockade touched
 
-val e = availablePaths2(15, 3, 6,a)
+val e = availablePaths2(15, 3, 3,a)
 
 e.foreach(x => println(x))
 
