@@ -9,25 +9,11 @@ case class TUI(controller: Controller) extends Observer {
   controller.add(this)
   override def update: Unit =  println(controller.boardToString)
 
-//  val set = Settings();
-//  var spielbrett = new Gameboard[Cell](set.xDim, set.yDim)
   def processing(input: String): Unit = {
     var dice = Dice()
     val figurDraussen = true
 
-    println(
-      """Welcome to Malefiz!
-        |Please Enter your Name:
-        |""".stripMargin)
-    var namee = scala.io.StdIn.readLine()
-
-    val student1 = Player(namee, 1)
-    println("Hello, " + student1.name)
-    println(
-      """
-        |Type anything to Start! Type Q to quit
-        |""".stripMargin)
-    while (scala.io.StdIn.readLine() != "Q") {
+//    while (scala.io.StdIn.readLine() != "Q") {
       val roll = dice.roll
       println("You have rolled an: " + roll)
 //      println(spielbrett.toString)
@@ -42,8 +28,8 @@ case class TUI(controller: Controller) extends Observer {
             case _ => println("invalid input")
           }
         }
-      }
-      println("press any key to roll again (Q to exit)")
+//      }
+//      println("press any key to roll again (Q to exit)")
     }
   }
 }
