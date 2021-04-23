@@ -17,24 +17,23 @@ object Malefiz {
   var namee = readLine()
 
   val student1 = Player(namee, 1)
-  println("Hello, " + student1.name)
-  println(
-    """
-      |Type anything to Start! Type Q to quit
-      |""".stripMargin)
-  input = readLine()
 
   val controller = new Controller()
   val tui = new TUI(controller)
-  controller.notifyObservers
 
   def main(args: Array[String]): Unit = { //Viel Weniger Text, alles in Methoden verpacken
-    var input: String = ""
+    println("Hello, " + student1.name)
+    println(
+      """
+        |Type anything to Start! Type 'Q' to quit
+        |""".stripMargin)
+    input = readLine()
 
-    while (input != "q") {
-      println("waiting...")
-      input = readLine()
+    while (input != "Q") {
+      controller.notifyObservers // TODO remove this here. call from controller at start of tui processing maybe
       tui.processing(input)
+      println("waiting for input...")
+      input = readLine()
     }
 
 //    val game = new TUI[Cell](spielbrett)
