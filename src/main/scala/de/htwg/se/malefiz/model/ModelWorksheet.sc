@@ -117,3 +117,21 @@ def availablePaths2(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard): A
 val e = availablePaths2(15, 3, 6,a)
 
 e.foreach(x => println(x))
+
+/* Wenn Blockade letzter Block
+if (spielbrett.cell(goDown._1, goDown._2) == Cell("X ") && walksLeft == 0) {
+    ...
+}
+ */
+
+/* Wenn Spieler letzter Block
+if (spielbrett.cell(goDown._1, goDown._2).containsPlayer && walksLeft == 0) {
+    ...
+}
+ */
+
+/* Wenn Blockade und nicht letzer Block
+if (spielbrett.cell(goDown._1, goDown._2) == Cell("X ") && walksLeft != 0) {
+    0 P 0 0 X
+}
+ */
