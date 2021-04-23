@@ -8,7 +8,6 @@ import de.htwg.se.malefiz.model.properties.Settings
 import scala.io.StdIn.readLine
 
 object Malefiz {
-  var input: String = ""
   println(
     """Welcome to Malefiz!
       |Please Enter your Name:
@@ -20,6 +19,7 @@ object Malefiz {
 
   val controller = new Controller()
   val tui = new TUI(controller)
+  var input: String = ""
 
   def main(args: Array[String]): Unit = { //Viel Weniger Text, alles in Methoden verpacken
     println("Hello, " + student1.name)

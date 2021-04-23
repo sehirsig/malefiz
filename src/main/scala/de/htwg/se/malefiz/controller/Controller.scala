@@ -9,6 +9,10 @@ case class Controller() extends Observable{
   val gameboard = new Gameboard(set.xDim, set.yDim)
 
   def boardToString(): String = gameboard.toString()
+//  def rollDice(): Int = {
+//    val dice = Dice()
+//    dice.roll
+//  }
   def moveUp(): Unit = {
     println("moves up")
   }

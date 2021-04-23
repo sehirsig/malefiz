@@ -2,7 +2,6 @@ package de.htwg.se.malefiz.aview
 
 import de.htwg.se.malefiz.controller.Controller
 import de.htwg.se.malefiz.model._
-import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.Observer
 
 case class TUI(controller: Controller) extends Observer {
@@ -19,6 +18,7 @@ case class TUI(controller: Controller) extends Observer {
       for (i <- 1 to roll) {
         val move = scala.io.StdIn.readLine()
         move match {
+//          case "r" => controller.rollDice() TODO dice rolling by controller
           case "w" => controller.moveUp()
           case "a" => controller.moveLeft()
           case "s" => controller.moveDown()
