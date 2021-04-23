@@ -3,9 +3,8 @@ organization  := "de.htwg.se"
 version       := "0.0.1"
 scalaVersion  := "2.12.4"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
-
-libraryDependencies += "junit" % "junit" % "4.8" % "test"
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.7"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.7" % "test"
 
 //*******************************************************************************//
 //Libraries that we will use in later lectures compatible with this scala version

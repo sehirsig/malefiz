@@ -1,7 +1,8 @@
 package de.htwg.se.malefiz.model
-import org.scalatest._
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 
-class GamefigureSpec extends WordSpec with Matchers {
+class GamefigureSpec extends AnyWordSpec with Matchers {
   "A Gamefigure" when { "new Player 1" should {
     val player = Player("Your Name", 1)
     val figur = Gamefigure(1, player)

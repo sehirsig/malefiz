@@ -1,8 +1,9 @@
 package de.htwg.se.malefiz.model
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 
-case class DiceSpec() extends WordSpec with Matchers {
+case class DiceSpec() extends AnyWordSpec with Matchers {
   "A Dice" when {
     "used" should {
       val d = Dice()

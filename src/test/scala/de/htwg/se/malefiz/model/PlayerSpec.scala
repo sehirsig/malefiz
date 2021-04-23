@@ -1,11 +1,9 @@
 package de.htwg.se.malefiz.model
 
-import org.scalatest._
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 
-@RunWith(classOf[JUnitRunner])
-class PlayerSpec extends WordSpec with Matchers {
+class PlayerSpec extends AnyWordSpec with Matchers {
   "A Player 0" when { "new" should {
     val player = Player("Your Name", 0)
     "have a name"  in {

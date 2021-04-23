@@ -1,7 +1,9 @@
 package de.htwg.se.malefiz.model
 
-import org.scalatest._
-class CellSpec extends WordSpec with Matchers {
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
+
+class CellSpec extends AnyWordSpec with Matchers {
   "A Cell" when { "no parameter" should {
     val cell = Cell()
     "be displayed as \"  \"" in {

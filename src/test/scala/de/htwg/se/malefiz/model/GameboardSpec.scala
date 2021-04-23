@@ -2,9 +2,10 @@ package de.htwg.se.malefiz.model
 
 
 import de.htwg.se.malefiz.model.properties.Settings
-import org.scalatest._
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 
-class GameboardSpec extends WordSpec with Matchers {
+class GameboardSpec extends AnyWordSpec with Matchers {
   "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when { //
 
     "created properly" should {

@@ -1,9 +1,10 @@
 package de.htwg.se.malefiz.model
 
 import de.htwg.se.malefiz.model.properties.Settings
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 
-class SettingsSpec extends WordSpec with Matchers {
+class SettingsSpec extends AnyWordSpec with Matchers {
   "The Settings should" when {
     "have the right dimension" should {
       val set = Settings()
