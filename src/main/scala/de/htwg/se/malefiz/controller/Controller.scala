@@ -14,15 +14,19 @@ case class Controller() extends Observable{
 //    dice.roll
 //  }
   def moveUp(): Unit = {
-    println("moves up")
+  println("moves up")
+  notifyObservers
   }
   def moveDown(): Unit = {
     println("moves down")
+    notifyObservers
   }
   def moveLeft(): Unit = {
     println("moves left")
+    notifyObservers
   }
   def moveRight(): Unit = {
     println("moves right")
+    notifyObservers
   }
 }

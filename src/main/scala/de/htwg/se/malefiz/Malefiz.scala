@@ -32,7 +32,7 @@ object Malefiz {
     while (input != "Q") {
       controller.notifyObservers // TODO remove this here. call from controller at start of tui processing maybe
       tui.processing(input)
-      println("waiting for input...")
+      println("waiting for input... ('Q' to quit)")
       input = readLine()
     }
 
