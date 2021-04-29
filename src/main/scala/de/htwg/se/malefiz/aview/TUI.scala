@@ -1,7 +1,5 @@
 package de.htwg.se.malefiz.aview
-
 import de.htwg.se.malefiz.controller.Controller
-import de.htwg.se.malefiz.model._
 import de.htwg.se.malefiz.util.Observer
 
 case class TUI(controller: Controller) extends Observer {
@@ -9,10 +7,9 @@ case class TUI(controller: Controller) extends Observer {
   override def update: Unit =  println(controller.boardToString)
 
   def processing(input: String): Unit = {
-    var dice = Dice()
     val figurDraussen = true
 
-    val roll = dice.roll
+    val roll = controller.rollDice()
     println("You have rolled a: " + roll)
     if(figurDraussen) {
       for (i <- 1 to roll) {

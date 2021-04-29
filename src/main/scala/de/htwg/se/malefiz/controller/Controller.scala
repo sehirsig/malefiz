@@ -29,4 +29,8 @@ case class Controller() extends Observable{
     println("moves right")
     notifyObservers
   }
+
+  def rollDice(): Integer = {
+    Dice().roll
+  }
 }
