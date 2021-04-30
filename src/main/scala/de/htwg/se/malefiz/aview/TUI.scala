@@ -15,7 +15,6 @@ case class TUI(controller: Controller) extends Observer {
       for (i <- 1 to roll) {
         val move = scala.io.StdIn.readLine()
         move match {
-//          case "r" => controller.rollDice() TODO dice rolling by controller
           case "w" => controller.moveUp()
           case "a" => controller.moveLeft()
           case "s" => controller.moveDown()
