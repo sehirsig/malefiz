@@ -29,10 +29,6 @@ case class Gameboard(rows: Vector[Vector[Cell]]) {
 
   def cell(row: Int, col: Int): Cell = rows(row)(col)
 
-  //def update():Unit = {
-  //  this.rows.foreach { row => row.foreach(print); println() }
-  //}
-
   def replaceCell(row: Int, col: Int, cell: Cell): Gameboard = copy(rows.updated(row, rows(row).updated(col, cell)))
 
   override def toString: String = {
