@@ -8,6 +8,12 @@ case class Controller(var gb: Gameboard) extends Observable{
   val set = Settings()
   val gameboard = new Gameboard(set.xDim, set.yDim)
 
+  val players = Vector[Player]()// TODO vector mit spieler, potentielle heimat für player, addPlayer fügt neuen spieler ein, checkt auf duplikate, ID ist obsulet
+  def addPlayer(input: String): Unit = {
+    val player = Player(input,1)
+    println(player)
+  }
+
   var player1 = Player("",1) //TODO Vars wegbekommen, Heimat für Player suchen
   var player2 = Player("",2)
   var player3 = Player("",3)

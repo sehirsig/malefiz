@@ -12,14 +12,14 @@ object Malefiz {
   val tui = new TUI(controller)
 
   def main(args: Array[String]): Unit = {
-    var input: String = ""
+    var input: String = "welcomeMessage"
 
-    tui.initiateGame()
+//    tui.initiateGame()
 
     while (input != "Q") {
-      input = readLine()
       tui.processing(input)
-      println("waiting for input... ('Q' to quit)")
+      println("waiting for input...")
+      input = readLine()
     }
   }
 }
