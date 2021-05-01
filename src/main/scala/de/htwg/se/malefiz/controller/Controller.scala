@@ -23,8 +23,6 @@ case class Controller(var gb: Gameboard) extends Observable{
     gameStatus = PLAYING
     playerStatus = PLAYER1
     notifyObservers
-//    println(playerStatus)
-//    println(playerMessage(playerStatus))
   }
 
   def boardToString(): String = gameboard.toString()

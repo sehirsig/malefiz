@@ -17,7 +17,7 @@ object GameStatus extends Enumeration{
     PLAYER2 -> "Player 2 press r to roll dice",
     PLAYER3 -> "Player 3 press r to roll dice",
     PLAYER4 -> "Player 4 press r to roll dice",
-    PLAYER0 -> ""
+    PLAYER0 -> "hier steht grad nix"
   )
 
   def gameMessage(gameStatus: GameStatus) = {
