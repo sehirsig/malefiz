@@ -30,24 +30,22 @@ case class TUI(controller: Controller) extends Observer {
 //    println("Type >anything< to start the game!")
 //  }
 
-  def processing(input: String): Unit = { // Bei Player boolean, has Figur Draussen oder Int, alles über 0
-    val figurDraussen = true
-
+  def processing(input: String): Unit = {
     input match {
       case "welcomeMessage" => println("Welcome to Malefiz!")
       case "p" => controller.addPlayer()
       case "start" => controller.startGame()
       case "r" => controller.rollDice()
-      case "w" => controller.moveUp()
-      case "a" => controller.moveLeft()
-      case "s" => controller.moveDown()
-      case "d" => controller.moveRight()
+      case "w" => controller.move("w")
+      case "a" => controller.move("a")
+      case "s" => controller.move("s")
+      case "d" => controller.move("d")
       case _ => println("invalid input")
     }
   }
 
   override def update: Unit =  {
-    if (controller.gameStatus == GameStatus.PLAYING || controller.gameStatus == GameStatus.TURN) println(controller.boardToString)
+    if (controller.gameStatus == GameStatus.PLAYING || controller.gameStatus == GameStatus.MOVING) println(controller.boardToString)
     println(GameStatus.message(controller.gameStatus))
   }
 }
