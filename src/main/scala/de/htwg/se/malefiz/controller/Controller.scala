@@ -7,6 +7,7 @@ import de.htwg.se.malefiz.util.Observable
 
 case class Controller(var gb: Gameboard) extends Observable{
   var gameStatus: GameStatus = IDLE
+  var playerStatus: PlayerStatus = PLAYER0
   var moveCounter: Int = 0
 
   val set = Settings()
@@ -20,13 +21,17 @@ case class Controller(var gb: Gameboard) extends Observable{
   }
   def startGame(): Unit = {
     gameStatus = PLAYING
+    playerStatus = PLAYER1
     notifyObservers
+//    println(playerStatus)
+//    println(playerMessage(playerStatus))
   }
 
   def boardToString(): String = gameboard.toString()
 
   def rollDice(): Int = {
-    moveCounter = Dice().roll
+//    moveCounter = Dice().roll
+    moveCounter = 2
     gameStatus = MOVING
     notifyObservers
     println("You have rolled a: " + moveCounter)
@@ -40,9 +45,23 @@ case class Controller(var gb: Gameboard) extends Observable{
       case "s" => println("moves left")
       case "d" => println("moves right")
     }
-    if(moveCounter == 1) gameStatus = PLAYING
+    if(moveCounter == 1) {
+      gameStatus = PLAYING
+//      nextPlayer()
+    }
+    println(moveCounter)
     moveCounter -= 1
     notifyObservers
+  }
+
+  def nextPlayer(): Unit = {
+    playerStatus match {
+      case PLAYER1 => gameStatus = PLAYER2
+      case PLAYER2 => gameStatus = PLAYER3
+      case PLAYER3 => gameStatus = PLAYER4
+      case PLAYER4 => gameStatus = PLAYER1
+      case _ => gameStatus = PLAYER1
+    }
   }
 
 //  def moveUp(): Unit = {
