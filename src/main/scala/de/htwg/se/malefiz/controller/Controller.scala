@@ -1,17 +1,25 @@
 package de.htwg.se.malefiz.controller
 
+import de.htwg.se.malefiz.controller.GameStatus._
 import de.htwg.se.malefiz.model._
 import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.Observable
 
 case class Controller(var gb: Gameboard) extends Observable{
+  var gameStatus: GameStatus = IDLE
   val set = Settings()
   val gameboard = new Gameboard(set.xDim, set.yDim)
+  val game = Game()
 
-  val players = Vector[Player]()// TODO vector mit spieler, potentielle heimat für player, addPlayer fügt neuen spieler ein, checkt auf duplikate, ID ist obsulet
-  def addPlayer(input: String): Unit = {
-    val player = Player(input,1)
-    println(player)
+//  val players = Vector[Player]()// TODO vector mit spieler, potentielle heimat für player, addPlayer fügt neuen spieler ein, checkt auf duplikate, ID ist obsulet
+  def addPlayer(): Unit = {
+    game.addPlayer()
+    if(game.getPlayers() > 1) gameStatus = READY
+    notifyObservers
+  }
+  def startGame(): Unit = {
+    gameStatus = PLAYING
+    notifyObservers
   }
 
   var player1 = Player("",1) //TODO Vars wegbekommen, Heimat für Player suchen
@@ -47,12 +55,14 @@ case class Controller(var gb: Gameboard) extends Observable{
 
   def rollDice(): Int = {
     notifyObservers
-    Dice().roll
+    val roll = Dice().roll
+    println("You have rolled a: " + roll)
+    roll
   }
 
   def moveUp(): Unit = {
-  println("moves up")
-  notifyObservers
+    println("moves up")
+    notifyObservers
   }
   def moveDown(): Unit = {
     println("moves down")
