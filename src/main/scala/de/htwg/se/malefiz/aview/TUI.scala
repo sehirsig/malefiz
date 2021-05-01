@@ -36,10 +36,10 @@ case class TUI(controller: Controller) extends Observer {
       case "p" => controller.addPlayer()
       case "start" => controller.startGame()
       case "r" => controller.rollDice()
-      case "w" => controller.move("w")
-      case "a" => controller.move("a")
-      case "s" => controller.move("s")
-      case "d" => controller.move("d")
+      case "w" => controller.move(input)
+      case "a" => controller.move(input)
+      case "s" => controller.move(input)
+      case "d" => controller.move(input)
       case _ => println("invalid input")
     }
   }

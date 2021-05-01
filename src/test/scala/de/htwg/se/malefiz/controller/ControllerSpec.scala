@@ -20,26 +20,26 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       "when rolling dice" in {
         controller.rollDice() should (be(1) or be(2) or be(3) or be(4) or be(5) or be(6))
       }
-      "when moving up" in {
-        controller.moveUp()
-        observer.updated should be(true)
-        observer.updated = false
-      }
-      "when moving down" in {
-        controller.moveDown()
-        observer.updated should be(true)
-        observer.updated = false
-      }
-      "when moving left" in {
-        controller.moveLeft()
-        observer.updated should be(true)
-        observer.updated = false
-      }
-      "when moving right" in {
-        controller.moveRight()
-        observer.updated should be(true)
-        observer.updated = false
-      }
+//      "when moving up" in {
+//        controller.moveUp()
+//        observer.updated should be(true)
+//        observer.updated = false
+//      }
+//      "when moving down" in {
+//        controller.moveDown()
+//        observer.updated should be(true)
+//        observer.updated = false
+//      }
+//      "when moving left" in {
+//        controller.moveLeft()
+//        observer.updated should be(true)
+//        observer.updated = false
+//      }
+//      "when moving right" in {
+//        controller.moveRight()
+//        observer.updated should be(true)
+//        observer.updated = false
+//      }
     }
   }
 }
