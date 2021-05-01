@@ -10,15 +10,14 @@ import scala.io.StdIn.readLine
 object Malefiz {
   val controller = new Controller(new Gameboard(Settings().xDim, Settings().yDim))
   val tui = new TUI(controller)
+  controller.notifyObservers
 
   def main(args: Array[String]): Unit = {
     var input: String = "welcomeMessage"
-
 //    tui.initiateGame()
 
     while (input != "Q") {
       tui.processing(input)
-      println("waiting for input...")
       input = readLine()
     }
   }

@@ -32,7 +32,7 @@ case class TUI(controller: Controller) extends Observer {
 
   def processing(input: String): Unit = {
     input match {
-      case "welcomeMessage" => println("Welcome to Malefiz!")
+      case "welcomeMessage" =>
       case "p" => controller.addPlayer()
       case "start" => controller.startGame()
       case "r" => controller.rollDice()
