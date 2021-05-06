@@ -1,36 +1,15 @@
 import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.model.{Cell, Gameboard}
 
+import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 
 case class PathFinder(dice:Int,spieler_id:Int, spielbrett:Gameboard) {
-  def availablePaths(row: Int, col: Int, walkLeft: Int): List[(Int,Int)] = {
-    val a = List((row, col))
-    while(walkLeft != 0) {
-      a.foreach(x => {
-        (x._1 + 1,x._2) :: (x._1 ,x._2 + 1) :: (x._1 - 1,x._2) :: (x._1,x._2 - 1) :: a
-      })
-    }
-    a
-  }
 }
 val s = Settings();
 
-val a = new Gameboard(s.xDim, s.yDim)//
-//a.update()
+val a = new Gameboard(s.xDim, s.yDim)
 
-// Die untere Funktion mit Rekursion machen!
-// Pro rekursion wird eine list zurückgegeben, die in die liste vom aufrufer gespeichert wird
-/*
-def availablePathsRecursive(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard[Cell]):List[(Int,Int)] = {
-  if (walksLeft != 0) {//matchers
-    val listUp = availablePathsRecursive(row, col, walksLeft - 1, spielbrett)
-    val listDown = availablePathsRecursive(row, col, walksLeft - 1, spielbrett)
-    val listLeft = availablePathsRecursive(row, col, walksLeft - 1, spielbrett)
-    val listRight = availablePathsRecursive(row, col, walksLeft - 1, spielbrett)
-  }
-}*/
-//ArrayBuffer[(Int,Int, Boolean, Int, String)] zum Test
 def availablePaths2(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard): List[(Int,Int)] = { // (Int,Int) für b als Ausgabe
   val internList = ArrayBuffer[(Int,Int, Boolean, Int, String)]() // (row, col, Touched Barricade, Welcher Schritt, Richtung)
   val outputList = ArrayBuffer[(Int,Int)]()
@@ -121,20 +100,34 @@ val e = availablePaths2(15, 3, 3,a)
 
 e.foreach(x => println(x))
 
-/* Wenn Blockade letzter Block
-if (spielbrett.cell(goDown._1, goDown._2) == Cell("X ") && walksLeft == 0) {
-    ...
-}
- */
+def path(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard): List[(Int,Int)] = {
+  val internList = ArrayBuffer[(Int,Int, Boolean, Int, String)]()
 
-/* Wenn Spieler letzter Block
-if (spielbrett.cell(goDown._1, goDown._2).containsPlayer && walksLeft == 0) {
-    ...
-}
- */
+  internList += pathRec(row, col, walksLeft, spielbrett, internList, "Start")
 
-/* Wenn Blockade und nicht letzer Block
-if (spielbrett.cell(goDown._1, goDown._2) == Cell("X ") && walksLeft != 0) {
-    0 P 0 0 X
+  val inFinList = internList.toList.filter(x => x._3 == false).filter(x => x._4 == walksLeft).distinct //b ist endprodukt, a zum debuggen
+  //inFinList
+  val endList = List[(Int,Int)]()
+  for (old <- inFinList) yield (old._1, old._2)
 }
- */
+
+def pathRec(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard, liste:ArrayBuffer[(Int,Int, Boolean, Int, String)], lastDirect:String): ArrayBuffer[(Int,Int, Boolean, Int, String)] = {
+  if(walksLeft == 0) {
+    liste += (row,col, walksLeft, spielbrett, lastDirect)
+  } else if ((spielbrett.cell(row,col) != Cell()) && ((spielbrett.cell(row, col) != Cell("T ")) || lastDirect == "Start")) {
+    if (lastDirect != "Hoch") {
+      liste += pathRec(row + 1, col, walksLeft - 1, spielbrett, liste, "Runter") // Runter
+    }
+    if (lastDirect != "Runter") {
+      liste += pathRec(row - 1, col, walksLeft - 1, spielbrett, liste, "Hoch") // Hoch
+    }
+    if (lastDirect != "Links") {
+      liste += pathRec(row, col + 1, walksLeft - 1, spielbrett, liste, "Rechts") // Rechts
+    }
+    if (lastDirect != "Rechts") {
+      liste += pathRec(row, col - 1, walksLeft - 1, spielbrett, liste, "Links") // Links
+    }
+  }
+
+  liste
+}
