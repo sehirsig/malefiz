@@ -1,7 +1,7 @@
 name          := "malefiz"
 organization  := "de.htwg.se"
 version       := "0.0.1"
-scalaVersion  := "2.12.4"
+scalaVersion  := "2.13.3"
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.7"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.7" % "test"
