@@ -16,7 +16,7 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
 It requires skill.
 The project has
 * cool features
-* *Extravagant* coding.
+* *Extravagant* coding. COOL.
 * *insane* and *extreme* programming
 * .gitignore
 
