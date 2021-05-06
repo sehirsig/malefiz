@@ -1,27 +1,57 @@
 package de.htwg.se.malefiz.model
 
-import org.scalatest._
-class CellSpec extends WordSpec with Matchers {
-  "A Cell" when { "new" should {
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
+
+class CellSpec extends AnyWordSpec with Matchers {
+  "A Cell" when { "no parameter" should {
     val cell = Cell()
-    "have a nice String representation" in {
+    "be displayed as \"  \"" in {
       cell.toString should be("  ")
     }
-    "have cellStatus = O when set free" in {
-      cell.setFree()
-      cell.toString() should be("O ")
+  }
+    "empty" should {
+    val cell = Cell("  ")
+    "be displayed as \"  \"" in {
+      cell.toString should be("  ")
     }
-    "have cellStatus = X when set blocked" in {
-      cell.setBlocked()
-      cell.toString() should be("X ")
+  }
+    "free" should {
+    val cell = Cell("O ")
+    "be displayed as \"O \"" in {
+      cell.toString should be("O ")
     }
-    "have cellStatus = O when set secure" in {
-      cell.setSecure()
-      cell.toString() should be("O ")
+      "walkable" in {
+        cell.isWalkable should be(true)
+      }
+  }
+    "secure" should {
+    val cell = Cell("O ")
+    "be displayed as \"O \"" in {
+      cell.toString should be("O ")
     }
-    "have cellStatus = G when set to goal" in {
-      cell.setGoal()
-      cell.toString() should be("G ")
+  }
+    "blocked" should {
+    val cell = Cell("X ")
+    "be displayed as \"X \"" in {
+      cell.toString should be("X ")
     }
-  }}
+  }
+    "the goal" should {
+    val cell = Cell("G ")
+    "be displayed as \"G \"" in {
+      cell.toString should be("G ")
+    }
+  }
+    "if is Walkable" should {
+      val cell = Cell("O ")
+      "should be walkable" in {
+        cell.isWalkable should be(true)
+      }
+      val cellnot = Cell()
+      "should not be walkabe" in {
+        cellnot.isWalkable should be(false)
+      }
+    }
+  }
 }

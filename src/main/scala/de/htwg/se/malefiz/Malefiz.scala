@@ -1,16 +1,24 @@
 package de.htwg.se.malefiz
 
-import de.htwg.se.malefiz.model.{Gameboard, Player}
+import de.htwg.se.malefiz.aview.TUI
+import de.htwg.se.malefiz.controller.Controller
+import de.htwg.se.malefiz.model._
+import de.htwg.se.malefiz.model.properties.Settings
+
+import scala.io.StdIn.readLine
 
 object Malefiz {
+  val controller = new Controller(new Gameboard(Settings().xDim, Settings().yDim))
+  val tui = new TUI(controller)
+  controller.notifyObservers
+
   def main(args: Array[String]): Unit = {
-    val student = Player("Your Name")
-    println("Hello, " + student.name)
+    var input: String = "welcomeMessage"
+//    tui.initiateGame()
 
-    val spielbrett = Gameboard()
-
-    //spielbrett.initiating()
-
-    spielbrett.update()
+    while (input != "Q") {
+      tui.processing(input)
+      input = readLine()
+    }
   }
 }

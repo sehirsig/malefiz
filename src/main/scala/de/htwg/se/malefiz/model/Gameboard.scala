@@ -2,35 +2,38 @@ package de.htwg.se.malefiz.model
 
 import de.htwg.se.malefiz.model.properties.Settings
 
-
-case class Gameboard() {
-  private val settings = Settings()
-
-  val gameboard = Array.ofDim[Cell](settings.yDim,settings.xDim)
-
-  val yDim = settings.yDim
-
-  val xDim = settings.xDim
-
-  def cellToString(x:Int, y:Int): String = gameboard(x)(y).toString()
-
-  //def initiating():Unit = { --> Auskommentiert -> Code Teil des Konstruktors (Wird einfach instanziiert
-
-    for(i<-0 to (yDim - 1); j<- 0 to (xDim - 1)) {
-      val cell = new Cell()
-      this.gameboard(i)(j) = cell
+case class Gameboard(rows: Vector[Vector[Cell]]) {
+  def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
+    (row, col) => {
+      if(Settings().blockedCells.contains(row, col)) {
+        Cell("X ")
+      } else if (Settings().freeCells.contains(row, col)) {
+        Cell("O ")
+      } else if(Settings().secureCells.contains(row, col)) {
+        Cell("O ")
+      } else if((Settings().goalCell == (row, col))) {
+        Cell("G ")
+      } else if((Settings().start1.contains(row, col))) {
+        Cell("T ")
+      } else if((Settings().start2.contains(row, col))) {
+        Cell("T ")
+      } else if((Settings().start3.contains(row, col))) {
+        Cell("T ")
+      } else if((Settings().start4.contains(row, col))) {
+        Cell("T ")
+      }  else {
+        Cell()
+      }
     }
+  })
 
+  def cell(row: Int, col: Int): Cell = rows(row)(col)
 
-    settings.freeCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setFree()}
-    settings.blockedCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setBlocked()}
-    settings.secureCells.foreach { tuple => this.gameboard(tuple._1)(tuple._2).setSecure()}
-    this.gameboard(settings.goalCell._1)(settings.goalCell._2).setGoal()
-  //}
+  def replaceCell(row: Int, col: Int, cell: Cell): Gameboard = copy(rows.updated(row, rows(row).updated(col, cell)))
 
-  def update():Unit = {
-    this.gameboard.foreach { row => row.foreach(print); println() }
+  override def toString: String = {
+    val buf = new StringBuilder
+    rows.foreach(x => buf ++= x.mkString + "\n")
+    buf.toString
   }
-
-
 }
