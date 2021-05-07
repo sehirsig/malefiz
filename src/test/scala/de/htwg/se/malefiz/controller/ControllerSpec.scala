@@ -44,7 +44,13 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       "when iterating through" in {
         controller.nextPlayer()
-        controller.playerStatus should (be(PLAYER1) or be(PLAYER2) or be(PLAYER3) or be(PLAYER4))
+        controller.playerStatus should be(PLAYER2)
+        controller.nextPlayer()
+        controller.playerStatus should be(PLAYER3)
+        controller.nextPlayer()
+        controller.playerStatus should be(PLAYER4)
+        controller.nextPlayer()
+        controller.playerStatus should be(PLAYER1)
       }
 //      "when moving up" in {
 //        controller.moveUp()
