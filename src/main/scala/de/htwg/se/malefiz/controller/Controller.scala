@@ -10,9 +10,9 @@ case class Controller(var gb: Gameboard) extends Observable{
   var playerStatus: PlayerStatus = PLAYER0
   var moveCounter: Int = 0
 
-  val set = Settings()
+  val set: Settings = Settings()
   val gameboard = new Gameboard(set.xDim, set.yDim)
-  val game = Game()
+  val game: Game = Game()
 
   def addPlayer(): Unit = {
     game.addPlayer()
