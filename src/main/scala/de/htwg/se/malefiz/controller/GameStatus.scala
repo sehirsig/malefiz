@@ -24,8 +24,7 @@ object GameStatus extends Enumeration{
     gameMap(gameStatus)
   }
 
-  def playerMessage(playerStatus: PlayerStatus) = {
-    playerMap(playerStatus)
-  }
-
+//  def playerMessage(playerStatus: PlayerStatus) = {
+//    playerMap(playerStatus)
+//  }
 }

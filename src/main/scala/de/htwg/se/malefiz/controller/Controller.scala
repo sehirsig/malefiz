@@ -5,14 +5,14 @@ import de.htwg.se.malefiz.model._
 import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.Observable
 
-case class Controller(var gb: Gameboard) extends Observable{
+case class Controller(var gameboard: Gameboard) extends Observable{
   var gameStatus: GameStatus = IDLE
   var playerStatus: PlayerStatus = PLAYER0
   var moveCounter: Int = 0
 
-  val set = Settings()
-  val gameboard = new Gameboard(set.xDim, set.yDim)
-  val game = Game()
+//  val set: Settings = Settings()
+//  val gameboard = new Gameboard(set.xDim, set.yDim)
+  val game: Game = Game()
 
   def addPlayer(): Unit = {
     game.addPlayer()
@@ -36,12 +36,13 @@ case class Controller(var gb: Gameboard) extends Observable{
     moveCounter
   }
 
+  val replaceCell = Cell("RR")
   def move(input: String): Unit = {
     input match {
-      case "w" => println("moves up")
-      case "a" => println("moves down")
-      case "s" => println("moves left")
-      case "d" => println("moves right")
+      case "w" => gameboard = gameboard.replaceCell(1,1,replaceCell) // TODO find coordinates, replace cell with current player
+      case "a" => gameboard = gameboard.replaceCell(2,2,replaceCell)
+      case "s" => gameboard = gameboard.replaceCell(3,3,replaceCell)
+      case "d" => gameboard = gameboard.replaceCell(4,4,replaceCell)
     }
     if(moveCounter == 1) {
       gameStatus = PLAYING
@@ -54,11 +55,11 @@ case class Controller(var gb: Gameboard) extends Observable{
 
   def nextPlayer(): Unit = {
     playerStatus match {
-      case PLAYER1 => gameStatus = PLAYER2
-      case PLAYER2 => gameStatus = PLAYER3
-      case PLAYER3 => gameStatus = PLAYER4
-      case PLAYER4 => gameStatus = PLAYER1
-      case _ => gameStatus = PLAYER1
+      case PLAYER1 => playerStatus = PLAYER2
+      case PLAYER2 => playerStatus = PLAYER3
+      case PLAYER3 => playerStatus = PLAYER4
+      case PLAYER4 => playerStatus = PLAYER1
+      case _ => playerStatus = PLAYER1
     }
   }
 
