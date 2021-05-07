@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=development)](https://travis-ci.org/franzgajewski/malefiz)
+[![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=master)](https://travis-ci.org/franzgajewski/malefiz)
 
-[![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=development)](https://coveralls.io/github/franzgajewski/malefiz?branch=development)
+[![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=master)](https://coveralls.io/github/franzgajewski/malefiz?branch=master)
 
 # Malefiz Game in Scala 
 =====================================================
