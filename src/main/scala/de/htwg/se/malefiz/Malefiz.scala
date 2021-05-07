@@ -13,12 +13,12 @@ object Malefiz {
   controller.notifyObservers
 
   def main(args: Array[String]): Unit = {
-    var input: String = "welcomeMessage"
+    var input: String = ""
 //    tui.initiateGame()
 
     while (input != "Q") {
-      tui.processing(input)
       input = readLine()
+      tui.processing(input)
     }
   }
 }
