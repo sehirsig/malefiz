@@ -15,7 +15,8 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       val controller = Controller(gameboard)
       val observer = new Observer {
         var updated: Boolean = false
-        override def update: Unit = updated = true
+        def isUpdated: Boolean = updated
+        override def update: Boolean = {updated = true; updated}
       }
       controller.add(observer)
       "from the offset" in {
