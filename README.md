@@ -2,7 +2,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=development&kill_cache=1)](https://coveralls.io/github/franzgajewski/malefiz?branch=development&kill_cache=1)
 
-# Malefiz Game in Scala 
+# Malefiz Game in Scala
 =====================================================
 ## Game Project for the lecture SE
 
