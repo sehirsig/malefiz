@@ -42,13 +42,20 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       "when rolling dice" in {
         controller.rollDice() should (be(1) or be(2) or be(3) or be(4) or be(5) or be(6))
       }
+      "when moving" in {
+
+      }
       "when iterating through" in {
+        controller.playerStatus = PLAYER1
         controller.nextPlayer()
         controller.playerStatus should be(PLAYER2)
         controller.nextPlayer()
         controller.playerStatus should be(PLAYER3)
         controller.nextPlayer()
         controller.playerStatus should be(PLAYER4)
+        controller.nextPlayer()
+        controller.playerStatus should be(PLAYER1)
+        controller.playerStatus = PLAYER0
         controller.nextPlayer()
         controller.playerStatus should be(PLAYER1)
       }

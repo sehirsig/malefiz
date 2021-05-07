@@ -59,7 +59,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
       case PLAYER2 => playerStatus = PLAYER3
       case PLAYER3 => playerStatus = PLAYER4
       case PLAYER4 => playerStatus = PLAYER1
-      case _ => gameStatus = PLAYER1
+      case _ => playerStatus = PLAYER1
     }
   }
 
