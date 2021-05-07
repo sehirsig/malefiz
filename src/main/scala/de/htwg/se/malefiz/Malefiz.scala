@@ -12,8 +12,6 @@ object Malefiz {
   val tui = new TUI(controller)
   controller.notifyObservers
 
-  println("test")
-
   def main(args: Array[String]): Unit = {
     var input: String = ""
 //    tui.initiateGame()
