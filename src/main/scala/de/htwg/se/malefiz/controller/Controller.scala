@@ -15,8 +15,9 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   val game: Game = Game()
 
   def addPlayer(): Unit = {
-    game.addPlayer()
-    if(game.getPlayers() > 1) gameStatus = READY
+    if(game.getPlayers() < 4) {game.addPlayer()}
+    if(game.getPlayers() > 1 && game.getPlayers() < 4) {gameStatus = READY1}
+    if(game.getPlayers() == 4) {gameStatus = READY2}
     notifyObservers
   }
   def startGame(): Unit = {
@@ -28,8 +29,8 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   def boardToString(): String = gameboard.toString()
 
   def rollDice(): Int = {
-//    moveCounter = Dice().roll
-    moveCounter = 2
+    moveCounter = Dice.diceRoll
+    //moveCounter = 2
     gameStatus = MOVING
     notifyObservers
     println("You have rolled a: " + moveCounter)
