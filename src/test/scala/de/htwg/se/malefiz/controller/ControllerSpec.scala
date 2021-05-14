@@ -32,7 +32,13 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       "when adding another player" in {
         controller.addPlayer()
         controller.game.getPlayers() should be(2)
-        controller.gameStatus should be(READY)
+        controller.gameStatus should be(READY1)
+      }
+      "when adding 4 players" in {
+        controller.addPlayer()
+        controller.addPlayer()
+        controller.game.getPlayers() should be(4)
+        controller.gameStatus should be(READY2)
       }
       "when starting game" in {
         controller.startGame()
