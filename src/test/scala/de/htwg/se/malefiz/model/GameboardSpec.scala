@@ -27,34 +27,28 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         Gameboard.unapply(spielbrett).get should be(Vector.tabulate(Settings().yDim, Settings().xDim) {
           (row, col) => {
             if(Settings().blockedCells.contains(row, col)) {
-              Cell("X ")
+              BlockedCell
             } else if (Settings().freeCells.contains(row, col)) {
-              Cell("O ")
+              FreeCell
             } else if(Settings().secureCells.contains(row, col)) {
-              Cell("O ")
+              SecureCell
             } else if((Settings().goalCell == (row, col))) {
-              Cell("G ")
-            } else if((Settings().start1.contains(row, col))) {
-              Cell("T ")
-            } else if((Settings().start2.contains(row, col))) {
-              Cell("T ")
-            } else if((Settings().start3.contains(row, col))) {
-              Cell("T ")
-            } else if((Settings().start4.contains(row, col))) {
-              Cell("T ")
-            }  else {
-              Cell()
+              GoalCell
+            } else if((Settings().startCells.contains(row, col))) {
+              StartCell
+            } else {
+              InvalidCell
             }
           }
         })
       }
       "read the Cells with our String method" in {
-        spielbrett.cell(1, 1) should be(Cell("  "))
-        spielbrett.cell(2, 2) should be(Cell("O "))
-        spielbrett.cell(2, 9) should be(Cell("X "))
-        spielbrett.cell(13, 1) should be(Cell("O "))
-        spielbrett.cell(1, 9) should be(Cell("G "))
-        spielbrett.cell(15, 15) should be(Cell("T "))
+        spielbrett.cell(1, 1) should be(InvalidCell)
+        spielbrett.cell(2, 2) should be(FreeCell)
+        spielbrett.cell(2, 9) should be(BlockedCell)
+        spielbrett.cell(13, 1) should be(SecureCell)
+        spielbrett.cell(1, 9) should be(GoalCell)
+        spielbrett.cell(15, 15) should be(StartCell)
 
       }
       "read the Cells with Cells to String method" in {
@@ -67,9 +61,9 @@ class GameboardSpec extends AnyWordSpec with Matchers {
 
       }
       "replace a Cell correctly and return a new Board" in {
-        val returnedBoard = spielbrett.replaceCell(0, 0, Cell("X "))
-        spielbrett.cell(0, 0) should be(Cell())
-        returnedBoard.cell(0, 0) should be(Cell("X "))
+        val returnedBoard = spielbrett.replaceCell(0, 0, BlockedCell)
+        spielbrett.cell(0, 0) should be(InvalidCell)
+        returnedBoard.cell(0, 0) should be(BlockedCell)
       }
       "build the exact String" in {
         spielbrett.toString should be

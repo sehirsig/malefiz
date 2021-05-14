@@ -6,23 +6,23 @@ case class Gameboard(rows: Vector[Vector[Cell]]) {
   def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
     (row, col) => {
       if(Settings().blockedCells.contains(row, col)) {
-        Cell("X ")
+        BlockedCell
       } else if (Settings().freeCells.contains(row, col)) {
-        Cell("O ")
+        FreeCell
       } else if(Settings().secureCells.contains(row, col)) {
-        Cell("O ")
-      } else if((Settings().goalCell == (row, col))) {
-        Cell("G ")
-      } else if((Settings().start1.contains(row, col))) {
-        Cell("T ")
-      } else if((Settings().start2.contains(row, col))) {
-        Cell("T ")
-      } else if((Settings().start3.contains(row, col))) {
-        Cell("T ")
-      } else if((Settings().start4.contains(row, col))) {
-        Cell("T ")
-      }  else {
-        Cell()
+        SecureCell
+      } else if(Settings().goalCell == (row, col)) {
+        GoalCell
+      } else if(Settings().start1.contains(row, col)) {
+        StartCell
+      } else if(Settings().start2.contains(row, col)) {
+        StartCell
+      } else if(Settings().start3.contains(row, col)) {
+        StartCell
+      } else if(Settings().start4.contains(row, col)) {
+        StartCell
+      } else {
+        InvalidCell
       }
     }
   })
