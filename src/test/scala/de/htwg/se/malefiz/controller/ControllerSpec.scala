@@ -21,29 +21,29 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       controller.add(observer)
       "from the offset" in {
         controller.gameStatus should be(IDLE)
-        controller.playerStatus should be(PLAYER0)
+        controller.playerStatus should be(PlayerState1)
         controller.moveCounter should be(0)
       }
       "when adding player" in {
         controller.addPlayer()
         controller.game.getPlayers() should be(1)
-        controller.gameStatus should be(IDLE)
+        //controller.gameStatus should be(IDLE)
       }
       "when adding another player" in {
         controller.addPlayer()
         controller.game.getPlayers() should be(2)
-        controller.gameStatus should be(READY1)
+        //controller.gameStatus should be(READY1)
       }
       "when adding 4 players" in {
         controller.addPlayer()
         controller.addPlayer()
         controller.game.getPlayers() should be(4)
-        controller.gameStatus should be(READY2)
+        //controller.gameStatus should be(READY2)
       }
       "when starting game" in {
         controller.startGame()
         controller.gameStatus should be(PLAYING)
-        controller.playerStatus should be(PLAYER1)
+        controller.playerStatus should be(PlayerState1)
       }
       "when rolling dice" in {
         controller.rollDice() should (be(1) or be(2) or be(3) or be(4) or be(5) or be(6))
@@ -52,18 +52,21 @@ class ControllerSpec extends AnyWordSpec with Matchers {
 
       }
       "when iterating through" in {
-        controller.playerStatus = PLAYER1
-        controller.nextPlayer()
-        controller.playerStatus should be(PLAYER2)
-        controller.nextPlayer()
-        controller.playerStatus should be(PLAYER3)
-        controller.nextPlayer()
-        controller.playerStatus should be(PLAYER4)
-        controller.nextPlayer()
-        controller.playerStatus should be(PLAYER1)
-        controller.playerStatus = PLAYER0
-        controller.nextPlayer()
-        controller.playerStatus should be(PLAYER1)
+        //controller.playerStatus = PlayerState1
+        controller.game.getPlayers() should be(4)
+
+        controller.playerStatus.getCurrentPlayer should be(1)
+        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
+        controller.playerStatus should be(PlayerState2)
+        controller.playerStatus.getCurrentPlayer should be(2)
+        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
+        controller.playerStatus should be(PlayerState3)
+        controller.playerStatus.getCurrentPlayer should be(3)
+        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
+        controller.playerStatus should be(PlayerState4)
+        controller.playerStatus.getCurrentPlayer should be(4)
+        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
+        ////controller.playerStatus.getCurrentPlayer should be(1)
       }
 //      "when moving up" in {
 //        controller.moveUp()

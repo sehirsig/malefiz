@@ -7,21 +7,20 @@ import de.htwg.se.malefiz.util.Observable
 
 case class Controller(var gameboard: Gameboard) extends Observable{
   var gameStatus: GameStatus = IDLE
-  var playerStatus: PlayerStatus = PLAYER0
+  var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
 
 //  val set: Settings = Settings()
 //  val gameboard = new Gameboard(set.xDim, set.yDim)
-  val game: Game = Game()
+  var game: Game = Game(0)
 
   def addPlayer(): Int = {
-    if(game.getPlayers() < 4) {game.addPlayer()}
+    if(game.getPlayers() < 4) {game = game.addPlayer()}
     notifyObservers
     game.getPlayers()
   }
   def startGame(): Unit = {
     gameStatus = PLAYING
-    playerStatus = PLAYER1
     notifyObservers
   }
 
@@ -29,7 +28,6 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   def rollDice(): Int = {
     moveCounter = Dice.diceRoll
-    //moveCounter = 2
     gameStatus = MOVING
     notifyObservers
     println("You have rolled a: " + moveCounter)
@@ -46,21 +44,11 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     }
     if(moveCounter == 1) {
       gameStatus = PLAYING
-//      nextPlayer()
+      playerStatus = playerStatus.nextPlayer(game.getPlayers())
     }
     println(moveCounter)
     moveCounter -= 1
     notifyObservers
-  }
-
-  def nextPlayer(): Unit = {
-    playerStatus match {
-      case PLAYER1 => playerStatus = PLAYER2
-      case PLAYER2 => playerStatus = PLAYER3
-      case PLAYER3 => playerStatus = PLAYER4
-      case PLAYER4 => playerStatus = PLAYER1
-      case _ => playerStatus = PLAYER1
-    }
   }
 
 //  def moveUp(): Unit = {
