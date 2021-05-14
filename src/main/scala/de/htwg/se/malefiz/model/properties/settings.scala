@@ -16,6 +16,7 @@ case class Settings() {
   val start3 = Vector((15, 11),(16, 11),(17, 11),(17, 10),(17, 12))
   val start4 = Vector((15, 15),(16, 15),(17, 15),(17, 14),(17, 16))
 
+  val startCells = start1 :: start2 :: start3 :: start4 :: Nil
   val blockedCells = Vector((2,9),(4,9),(5,9),(6,9),(8,7),(8,11),(12,1),(12,5),(12,9),(12,13),(12,17))
 
   val secureCells = Vector((13,1),(13,5),(13,9),(13,13),(13,17),(14,1),(14,2),(14,3),(14,4),(14,5),(14,6),(14,7),
