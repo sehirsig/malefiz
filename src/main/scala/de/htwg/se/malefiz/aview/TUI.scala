@@ -40,12 +40,13 @@ case class TUI(controller: Controller) extends Observer {
       case "a" => controller.move(input)
       case "s" => controller.move(input)
       case "d" => controller.move(input)
+      case "Q" => println("Good Bye!")
       case _ => println("invalid input")
     }
   }
 
   override def update: Boolean =  {
-    if (controller.gameStatus != GameStatus.IDLE && controller.gameStatus != GameStatus.READY) println(controller.boardToString)
+    if (controller.gameStatus != GameStatus.IDLE && controller.gameStatus != GameStatus.READY1 && controller.gameStatus != GameStatus.READY2) println(controller.boardToString)
     println(GameStatus.gameMessage(controller.gameStatus))
 //    if (controller.gameStatus != GameStatus.IDLE && controller.gameStatus != GameStatus.READY) println(GameStatus.playerMessage(controller.playerStatus))
   true
