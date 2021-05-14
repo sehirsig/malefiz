@@ -5,7 +5,9 @@ import de.htwg.se.malefiz.model._
 import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.Observable
 
-case class Controller(var gameboard: Gameboard) extends Observable{
+import java.util.logging.Handler
+
+case class Controller(var gameboard: Gameboard) extends Observable {
   var gameStatus: GameStatus = IDLE
   var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
@@ -34,7 +36,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     moveCounter
   }
 
-  val replaceCell = Cell("RR")
+  val replaceCell = PlayerCell
   def move(input: String): Unit = {
     input match {
       case "w" => gameboard = gameboard.replaceCell(1,1,replaceCell) // TODO find coordinates, replace cell with current player
