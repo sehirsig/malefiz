@@ -3,12 +3,14 @@ package de.htwg.se.malefiz.controller
 object GameStatus extends Enumeration{
   type GameStatus = Value
   type PlayerStatus = Value
+  //type GameFigureStatus = Value
 
-  val IDLE, READY, PLAYER0, PLAYER1, PLAYER2, PLAYER3, PLAYER4, PLAYING, MOVING = Value
+  val IDLE, READY1, READY2, PLAYER0, PLAYER1, PLAYER2, PLAYER3, PLAYER4, PLAYING, MOVING = Value
 
   val gameMap = Map[GameStatus, String](
     IDLE -> "Press p to add players",
-    READY -> "Type start or press p to add more players",
+    READY1 -> "Type start or press p to add more players",
+    READY2 -> "Type start to play the Game",
     PLAYING -> "Press r to roll dice",
     MOVING -> "Press a,w,s,d to move")
 
@@ -19,6 +21,10 @@ object GameStatus extends Enumeration{
     PLAYER4 -> "Player 4 press r to roll dice",
     PLAYER0 -> "hier steht grad nix"
   )
+
+  //val gamefigureMap = Map[GameFigureStatus, String](
+  //
+  // )
 
   def gameMessage(gameStatus: GameStatus) = {
     gameMap(gameStatus)
