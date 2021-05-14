@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.controller
 
-object GameStatus extends Enumeration{
+object GameStatus extends Enumeration {
   type GameStatus = Value
   type PlayerStatus = Value
   //type GameFigureStatus = Value
