@@ -14,11 +14,13 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 //  val gameboard = new Gameboard(set.xDim, set.yDim)
   val game: Game = Game()
 
-  def addPlayer(): Unit = {
-    if(game.getPlayers() < 4) {game.addPlayer()}
+  def addPlayer(): Boolean = {
+    var bol = false
+    if(game.getPlayers() < 4) {game.addPlayer();bol = true}
     if(game.getPlayers() > 1 && game.getPlayers() < 4) {gameStatus = READY1}
     if(game.getPlayers() == 4) {gameStatus = READY2}
     notifyObservers
+    bol
   }
   def startGame(): Unit = {
     gameStatus = PLAYING
