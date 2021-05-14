@@ -7,5 +7,4 @@ object Dice { //Singleton
     val rnd = new Random()
     rnd.nextInt(6) + 1
   }
-
 }
