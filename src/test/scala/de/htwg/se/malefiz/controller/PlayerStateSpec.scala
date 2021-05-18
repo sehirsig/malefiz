@@ -1,8 +1,8 @@
 package de.htwg.se.malefiz.controller
 
+import de.htwg.se.malefiz.model.{PlayerState, PlayerState1}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.malefiz.controller.PlayerState
 
 class PlayerStateSpec extends AnyWordSpec with Matchers {
   "A PlayerState" when {

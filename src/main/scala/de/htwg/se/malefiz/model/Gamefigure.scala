@@ -1,7 +1,8 @@
 package de.htwg.se.malefiz.model
 
-case class Gamefigure(number: Int, spieler:Player) {
+case class Gamefigure(number: Int, coordx:Int, coordy:Int) {
+  def setCoordinates(newx:Int, newy:Int):Gamefigure = copy(number,newx,newy)
+  def getCoordinates:(Int,Int) = (coordx,coordy)
   def getNumber:Int = number
-  def getPlayer:Player = spieler
-  override def toString:String = spieler.Playerid.toString
+  override def toString:String = number.toString
 }

@@ -1,7 +1,7 @@
 package de.htwg.se.malefiz.controller
 
 import de.htwg.se.malefiz.controller.GameStatus._
-import de.htwg.se.malefiz.model.{Game, Gameboard}
+import de.htwg.se.malefiz.model.{Game, Gameboard, PlayerState1, PlayerState2, PlayerState3, PlayerState4}
 import de.htwg.se.malefiz.model.properties.Settings
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
