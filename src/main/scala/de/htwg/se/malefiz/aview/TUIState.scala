@@ -19,6 +19,7 @@ object IdleTUIState extends TUIState {
           IdleTUIState
         }
       }
+      case "welcomeMessage" => println("Welcome to Malefiz");IdleTUIState
       case _ => println("invalid input");IdleTUIState
     }
   }
