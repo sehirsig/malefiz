@@ -12,7 +12,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
 //  val set: Settings = Settings()
 //  val gameboard = new Gameboard(set.xDim, set.yDim)
-  var game: Game = Game(1)
+  var game: Game = Game(0)
 
   def addPlayer(): Int = {
     if(game.getPlayers() < 4) {game = game.addPlayer()}
