@@ -40,6 +40,10 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.game.getPlayers() should be(4)
         //controller.gameStatus should be(READY2)
       }
+      "when adding more than 4 players" in {
+        controller.addPlayer()
+        controller.game.getPlayers() should be(4)
+      }
       "when starting game" in {
         controller.startGame()
         controller.gameStatus should be(PLAYING)

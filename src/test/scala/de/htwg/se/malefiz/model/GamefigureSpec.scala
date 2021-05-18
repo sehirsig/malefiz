@@ -12,5 +12,12 @@ class GamefigureSpec extends AnyWordSpec with Matchers {
     "have a nice String representation" in {
       figur.toString should be("1")
     }
+    "should return the Player" in {
+      figur.getPlayer should be(player)
+    }
+    "should return the number" in {
+      figur.getNumber should be(1)
+    }
+
   }}
 }
