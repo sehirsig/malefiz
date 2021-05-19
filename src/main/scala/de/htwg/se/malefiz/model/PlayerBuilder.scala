@@ -6,7 +6,7 @@ trait PlayerBuilder {
   def build(): Player
 }
 
-case class PlayerBuilderImp(name: String, id: Int) extends PlayerBuilder {
+case class PlayerBuilderImp(name: String = "", id: Int = 0) extends PlayerBuilder {
   override def setName(name: String): PlayerBuilder = copy(name = name)
   override def setID(id: Int): PlayerBuilder = copy(id = id)
 

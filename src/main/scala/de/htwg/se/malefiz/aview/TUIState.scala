@@ -11,12 +11,22 @@ object IdleTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
       case "p" => {
-        if(controller.addPlayer() > 1) {
-          controller.gameStatus = READY1
-          Ready1TUIState
+        if(controller.game.getPlayers() < 4) {
+          controller.gameStatus = ENTERNAME
+          controller.notifyObservers
+          PlayerNameState
         }
         else {
-          IdleTUIState
+          println("game full");IdleTUIState
+        }
+      }
+      case "s" => {
+        if(controller.game.getPlayers() > 1) {
+          controller.startGame()
+          PlayingTUIState
+        }
+        else {
+          println("not enough players");IdleTUIState
         }
       }
       case "welcomeMessage" => println("Welcome to Malefiz");IdleTUIState
@@ -25,27 +35,23 @@ object IdleTUIState extends TUIState {
   }
 }
 
-object Ready1TUIState extends TUIState {
+object  PlayerNameState extends  TUIState {
   def processing(input: String): TUIState = {
-    input match {case "p" => {
-      if(controller.addPlayer() > 3) {
-        Ready2TUIState
-      }
-      else {
-        Ready1TUIState
-      }
-    }
-      case "s" => controller.startGame();PlayingTUIState
-      case _ => println("invalid input");Ready1TUIState
-    }
+    controller.gameStatus = ENTERCOLOR
+    controller.notifyObservers
+    PlayerColorState
   }
 }
 
-object Ready2TUIState extends TUIState {
+object  PlayerColorState extends  TUIState {
   def processing(input: String): TUIState = {
     input match {
-      case "s" => controller.startGame();IdleTUIState
-      case _ => println("invalid input");Ready2TUIState
+      case "1" => IdleTUIState
+      case "2" => IdleTUIState
+      case "3" => IdleTUIState
+      case "4" => IdleTUIState
+      case _ => println("invalid input");PlayerColorState
+//        controller.gameStatus = READY1
     }
   }
 }

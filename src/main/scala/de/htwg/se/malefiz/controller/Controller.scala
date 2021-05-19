@@ -9,13 +9,14 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   var gameStatus: GameStatus = IDLE
   var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
+  val builder: PlayerBuilder = new PlayerBuilderImp()
 
 //  val set: Settings = Settings()
 //  val gameboard = new Gameboard(set.xDim, set.yDim)
   var game: Game = Game(0)
 
   def addPlayer(): Int = {
-    if(game.getPlayers() < 4) {game = game.addPlayer()}
+    game = game.addPlayer()
     notifyObservers
     game.getPlayers()
   }
