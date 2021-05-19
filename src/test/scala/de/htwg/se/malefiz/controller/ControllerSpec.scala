@@ -24,26 +24,26 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.playerStatus should be(PlayerState1)
         controller.moveCounter should be(0)
       }
-      "when adding player" in {
-        controller.addPlayer()
-        controller.game.getPlayers() should be(1)
-        //controller.gameStatus should be(IDLE)
-      }
-      "when adding another player" in {
-        controller.addPlayer()
-        controller.game.getPlayers() should be(2)
-        //controller.gameStatus should be(READY1)
-      }
-      "when adding 4 players" in {
-        controller.addPlayer()
-        controller.addPlayer()
-        controller.game.getPlayers() should be(4)
-        //controller.gameStatus should be(READY2)
-      }
-      "when adding more than 4 players" in {
-        controller.addPlayer()
-        controller.game.getPlayers() should be(4)
-      }
+//      "when adding player" in {
+//        controller.addPlayer()
+//        controller.game.getPlayers() should be(1)
+//        //controller.gameStatus should be(IDLE)
+//      }
+//      "when adding another player" in {
+//        controller.addPlayer()
+//        controller.game.getPlayers() should be(2)
+//        //controller.gameStatus should be(READY1)
+//      }
+//      "when adding 4 players" in {
+//        controller.addPlayer()
+//        controller.addPlayer()
+//        controller.game.getPlayers() should be(4)
+//        //controller.gameStatus should be(READY2)
+//      }
+//      "when adding more than 4 players" in {
+//        controller.addPlayer()
+//        controller.game.getPlayers() should be(4)
+//      }
       "when starting game" in {
         controller.startGame()
         controller.gameStatus should be(PLAYING)
@@ -55,23 +55,23 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       "when moving" in {
 
       }
-      "when iterating through" in {
-        //controller.playerStatus = PlayerState1
-        controller.game.getPlayers() should be(4)
-
-        controller.playerStatus.getCurrentPlayer should be(1)
-        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
-        controller.playerStatus should be(PlayerState2)
-        controller.playerStatus.getCurrentPlayer should be(2)
-        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
-        controller.playerStatus should be(PlayerState3)
-        controller.playerStatus.getCurrentPlayer should be(3)
-        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
-        controller.playerStatus should be(PlayerState4)
-        controller.playerStatus.getCurrentPlayer should be(4)
-        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
-        ////controller.playerStatus.getCurrentPlayer should be(1)
-      }
+//      "when iterating through" in {
+//        //controller.playerStatus = PlayerState1
+//        controller.game.getPlayers() should be(4)
+//
+//        controller.playerStatus.getCurrentPlayer should be(1)
+//        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
+//        controller.playerStatus should be(PlayerState2)
+//        controller.playerStatus.getCurrentPlayer should be(2)
+//        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
+//        controller.playerStatus should be(PlayerState3)
+//        controller.playerStatus.getCurrentPlayer should be(3)
+//        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
+//        controller.playerStatus should be(PlayerState4)
+//        controller.playerStatus.getCurrentPlayer should be(4)
+//        controller.playerStatus = controller.playerStatus.nextPlayer(controller.game.getPlayers())
+//        ////controller.playerStatus.getCurrentPlayer should be(1)
+//      }
 //      "when moving up" in {
 //        controller.moveUp()
 //        observer.updated should be(true)
