@@ -13,12 +13,32 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
 //  val set: Settings = Settings()
 //  val gameboard = new Gameboard(set.xDim, set.yDim)
-  var game: Game = Game(0)
+  val emptyV = Vector[Player]()
+  var game: Game = Game(emptyV)
 
-  def addPlayer(): Int = {
-    game = game.addPlayer()
+  def addPlayer(): Unit = {
+    gameStatus = ENTERNAME
     notifyObservers
-    game.getPlayers()
+  }
+  def addPlayerName(name: String): Unit = {
+    builder.setName(name)
+    gameStatus = ENTERCOLOR
+    notifyObservers
+  }
+  def addPlayerColor(color: Int): Unit = {
+    builder.setID(color)
+    val player = builder.build()
+    game = game.addPlayer(player)
+    if(game.getPlayers() > 3) {
+      gameStatus = READY2
+    }
+    else if (game.getPlayers() < 2) {
+      gameStatus = IDLE
+    }
+    else {
+      gameStatus = READY1
+    }
+    notifyObservers
   }
   def startGame(): Unit = {
     gameStatus = PLAYING

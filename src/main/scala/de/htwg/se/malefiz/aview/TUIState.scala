@@ -12,8 +12,7 @@ object IdleTUIState extends TUIState {
     input match {
       case "p" => {
         if(controller.game.getPlayers() < 4) {
-          controller.gameStatus = ENTERNAME
-          controller.notifyObservers
+          controller.addPlayer()
           PlayerNameState
         }
         else {
@@ -37,8 +36,7 @@ object IdleTUIState extends TUIState {
 
 object  PlayerNameState extends  TUIState {
   def processing(input: String): TUIState = {
-    controller.gameStatus = ENTERCOLOR
-    controller.notifyObservers
+    controller.addPlayerName(input)
     PlayerColorState
   }
 }
@@ -46,12 +44,11 @@ object  PlayerNameState extends  TUIState {
 object  PlayerColorState extends  TUIState {
   def processing(input: String): TUIState = {
     input match {
-      case "1" => IdleTUIState
-      case "2" => IdleTUIState
-      case "3" => IdleTUIState
-      case "4" => IdleTUIState
+      case "1" => controller.addPlayerColor(input.toInt);IdleTUIState
+      case "2" => controller.addPlayerColor(input.toInt);IdleTUIState
+      case "3" => controller.addPlayerColor(input.toInt);IdleTUIState
+      case "4" => controller.addPlayerColor(input.toInt);IdleTUIState
       case _ => println("invalid input");PlayerColorState
-//        controller.gameStatus = READY1
     }
   }
 }

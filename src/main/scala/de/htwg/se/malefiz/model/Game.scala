@@ -1,6 +1,9 @@
 package de.htwg.se.malefiz.model
 
-case class Game(players:Int) {
-  def addPlayer(): Game = copy(players + 1)
-  def getPlayers(): Int = players
+case class Game(players: Vector[Player]) {
+  def addPlayer(player: Player): Game = {
+    val newPlayer = Vector(player)
+    copy(players ++ newPlayer)
+  }
+  def getPlayers(): Int = players.size
 }
