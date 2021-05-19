@@ -1,7 +1,7 @@
 package de.htwg.se.malefiz.model
 
-case class Gamefigure(number: Int, spieler:Player) {
+case class Gamefigure(number: Int, player: Player) {
   def getNumber:Int = number
-  def getPlayer:Player = spieler
-  override def toString:String = spieler.Playerid.toString
+  def getPlayer:Player = player
+  override def toString:String = player.Playerid.toString
 }
