@@ -6,5 +6,5 @@ case class Gamefigure(number: Int, player: Player, pos: (Int, Int)) {
   def updatePos(posNew: (Int, Int)): Gamefigure = {
     copy(pos = posNew)
   }
-  override def toString:String = player.Playerid.toString
+  override def toString:String = player.Playerid.toString + " "
 }

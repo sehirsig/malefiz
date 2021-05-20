@@ -31,6 +31,11 @@ case class Gameboard(rows: Vector[Vector[Cell]]) {
 
   def replaceCell(row: Int, col: Int, cell: Cell): Gameboard = copy(rows.updated(row, rows(row).updated(col, cell)))
 
+  def movePlayer(coord:(Int,Int), cell: Cell): Gameboard = {
+    copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))
+  }
+
+
   override def toString: String = {
     val buf = new StringBuilder
     rows.foreach(x => buf ++= x.mkString + "\n")

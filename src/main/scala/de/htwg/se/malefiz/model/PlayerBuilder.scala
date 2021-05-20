@@ -7,9 +7,21 @@ trait PlayerBuilder {
   def build(): Player
 }
 
-case class PlayerBuilderImp(name: String = "", id: Int = 0, pos:(Int, Int) = (0,0)) extends PlayerBuilder {
-  override def setName(name: String): PlayerBuilder = copy(name = name)
-  override def setID(id: Int): PlayerBuilder = copy(id = id)
-  override def setStartingPos(pos: (Int, Int)): PlayerBuilder = copy(pos = pos)
+case class PlayerBuilderImp() extends PlayerBuilder {
+  var name: String = ""
+  var id: Int = 0
+  var pos:(Int, Int) = (0,0)
+  override def setName(nameNew: String): PlayerBuilder = {
+    this.name = nameNew
+    this
+  }
+  override def setID(idNew: Int): PlayerBuilder = {
+    this.id = idNew
+    this
+  }
+  override def setStartingPos(posNew: (Int, Int)): PlayerBuilder = {
+    this.pos = posNew
+    this
+  }
   override def build(): Player = Player(name, id, pos)
 }

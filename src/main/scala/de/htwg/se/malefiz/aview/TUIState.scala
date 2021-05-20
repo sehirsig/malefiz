@@ -64,12 +64,16 @@ object PlayingTUIState extends TUIState {
 
 object MovingTUIState extends TUIState {
   def processing(input: String): TUIState = {
-    input match {
-      case "w" => controller.move(input);MovingTUIState
-      case "a" => controller.move(input);MovingTUIState
-      case "s" => controller.move(input);MovingTUIState
-      case "d" => controller.move(input);MovingTUIState
-      case _ => println("invalid input");MovingTUIState
+    if (controller.moveCounter == 0) {
+      PlayingTUIState
+    } else {
+      input match {
+        case "w" => controller.move(input, 0); MovingTUIState //TODO: Select Gamefigures, instead of 1
+        case "a" => controller.move(input, 0); MovingTUIState
+        case "s" => controller.move(input, 0); MovingTUIState
+        case "d" => controller.move(input, 0); MovingTUIState
+        case _ => println("invalid input"); MovingTUIState
+      }
     }
   }
 }
