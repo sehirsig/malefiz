@@ -10,7 +10,8 @@ class MoveCommand(direction:String, controllerH: Controller) extends Command {
 
   override def doStep: Unit = {
     saved = controllerH.gameboard
-    var sucInp:Boolean = false;
+    var sucInp:Boolean = false
+
     direction match {
       case "w" => controllerH.gameboard = controllerH.gameboard.replaceCell(1,1,controllerH.replaceCell);sucInp = true
       case "a" => controllerH.gameboard = controllerH.gameboard.replaceCell(2,2,controllerH.replaceCell);sucInp = true
@@ -40,6 +41,9 @@ class MoveCommand(direction:String, controllerH: Controller) extends Command {
   }
 
   override def redoStep: Unit = {
-    doStep
+    val newsaved = controllerH.gameboard
+    controllerH.gameboard = saved
+    saved = newsaved
+    controllerH.notifyObservers
   }
 }
