@@ -62,7 +62,10 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("a")
       currentState = currentState.processing("s")
       currentState = currentState.processing("d")
-      currentState should be(MovingTUIState)
+      currentState = currentState.processing("d")
+      currentState = currentState.processing("d")
+      currentState = currentState.processing("d")
+      currentState should be(PlayingTUIState)
     }
   }
 }
