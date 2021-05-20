@@ -13,8 +13,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
 //  val set: Settings = Settings()
 //  val gameboard = new Gameboard(set.xDim, set.yDim)
-  val emptyV = Vector[Player]()
-  var game: Game = Game(emptyV)
+  var game: Game = Game(Vector[Player]())
 
   def addPlayer(): Unit = {
     gameStatus = ENTERNAME
@@ -35,10 +34,10 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     }
     val player = builder.build()
     game = game.addPlayer(player)
-    if(game.getPlayers() > 3) {
+    if(game.getPlayerNumber() > 3) {
       gameStatus = READY2
     }
-    else if (game.getPlayers() < 2) {
+    else if (game.getPlayerNumber() < 2) {
       gameStatus = IDLE
     }
     else {
@@ -62,16 +61,19 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   }
 
   val replaceCell = Cell("RR")
+
   def move(input: String): Unit = {
+    val player = game.players(0)
+    player.addFigure()
     input match {
-      case "w" => gameboard = gameboard.replaceCell(1,1,replaceCell) // TODO find coordinates, replace cell with current player
+      case "w" => gameboard = gameboard.replaceCell(player.figures(0).pos._1,player.figures(0).pos._2,player.cell) // TODO find coordinates, replace cell with current player
       case "a" => gameboard = gameboard.replaceCell(2,2,replaceCell)
       case "s" => gameboard = gameboard.replaceCell(3,3,replaceCell)
       case "d" => gameboard = gameboard.replaceCell(4,4,replaceCell)
     }
     if(moveCounter == 1) {
       gameStatus = PLAYING
-      playerStatus = playerStatus.nextPlayer(game.getPlayers())
+      playerStatus = playerStatus.nextPlayer(game.getPlayerNumber())
     }
     println(moveCounter)
     moveCounter -= 1

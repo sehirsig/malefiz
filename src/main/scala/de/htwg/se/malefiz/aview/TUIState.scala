@@ -11,7 +11,7 @@ object IdleTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
       case "p" => {
-        if(controller.game.getPlayers() < 4) {
+        if(controller.game.getPlayerNumber() < 4) {
           controller.addPlayer()
           PlayerNameState
         }
@@ -20,7 +20,7 @@ object IdleTUIState extends TUIState {
         }
       }
       case "s" => {
-        if(controller.game.getPlayers() > 1) {
+        if(controller.game.getPlayerNumber() > 1) {
           controller.startGame()
           PlayingTUIState
         }

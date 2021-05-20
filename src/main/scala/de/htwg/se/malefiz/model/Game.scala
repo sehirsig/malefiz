@@ -5,5 +5,5 @@ case class Game(players: Vector[Player]) {
     val newPlayer = Vector(player)
     copy(players ++ newPlayer)
   }
-  def getPlayers(): Int = players.size
+  def getPlayerNumber(): Int = players.size
 }
