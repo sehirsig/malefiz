@@ -14,5 +14,10 @@ class GameSpec extends AnyWordSpec with Matchers {
     "have players" in {
       game.players(0).name should be("alice")
     }
+    "add player" in {
+      val player3 = Player("charly", 3, (14,11))
+      val game2 = game.addPlayer(player3)
+      game2.getPlayerNumber() should be(3)
+    }
   }}
 }
