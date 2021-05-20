@@ -10,7 +10,7 @@ class GamefigureSpec extends AnyWordSpec with Matchers {
       Gamefigure.unapply(figur).get should be(1, Player("Your Name", 1, (1,1)), player.startingPos)
     }
     "have a nice String representation" in {
-      figur.toString should be("1")
+      figur.toString should be("1 ")
     }
     "should return the Player" in {
       figur.getPlayer should be(player)

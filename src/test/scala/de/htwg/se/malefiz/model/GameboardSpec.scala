@@ -71,6 +71,12 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         spielbrett.cell(0, 0) should be(Cell())
         returnedBoard.cell(0, 0) should be(Cell("X "))
       }
+      "replace a Cell correctly with Tuple Coordinatesand return a new Board" in {
+        val returnedBoard = spielbrett.movePlayer((0,0), Cell("X "))
+        spielbrett.cell(0, 0) should be(Cell())
+        returnedBoard.cell(0, 0) should be(Cell("X "))
+      }
+
       "build the exact String" in {
         spielbrett.toString should be
         ("""
