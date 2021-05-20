@@ -63,10 +63,10 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   val replaceCell = Cell("RR")
 
   def move(input: String): Unit = {
-    val player = game.players(0)
+    var player = game.players(0)
     player.addFigure()
     input match {
-      case "w" => gameboard = gameboard.replaceCell(player.figures(0).pos._1,player.figures(0).pos._2,player.cell) // TODO find coordinates, replace cell with current player
+      case "w" => gameboard = gameboard.replaceCell(player.figures(1).pos._1,player.figures(1).pos._2,player.cell) // TODO find coordinates, replace cell with current player
       case "a" => gameboard = gameboard.replaceCell(2,2,replaceCell)
       case "s" => gameboard = gameboard.replaceCell(3,3,replaceCell)
       case "d" => gameboard = gameboard.replaceCell(4,4,replaceCell)
