@@ -27,6 +27,12 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   }
   def addPlayerColor(color: Int): Unit = {
     builder.setID(color)
+    color match {
+      case 1 => builder.setStartingPos(14,3)
+      case 2 => builder.setStartingPos(14,7)
+      case 3 => builder.setStartingPos(14,11)
+      case 4 => builder.setStartingPos(14,15)
+    }
     val player = builder.build()
     game = game.addPlayer(player)
     if(game.getPlayers() > 3) {
