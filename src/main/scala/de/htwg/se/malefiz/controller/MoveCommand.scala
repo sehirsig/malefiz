@@ -30,20 +30,17 @@ class MoveCommand(direction:String, controllerH: Controller) extends Command {
     } else {
       println("Wrong Input")
     }
-    controllerH.notifyObservers
   }
 
   override def undoStep: Unit = {
     val newsaved = controllerH.gameboard
     controllerH.gameboard = saved
     saved = newsaved
-    controllerH.notifyObservers
   }
 
   override def redoStep: Unit = {
     val newsaved = controllerH.gameboard
     controllerH.gameboard = saved
     saved = newsaved
-    controllerH.notifyObservers
   }
 }

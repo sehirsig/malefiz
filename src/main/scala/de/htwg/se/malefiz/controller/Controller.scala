@@ -66,6 +66,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   val replaceCell = Cell("RR")
   def move(input: String): Unit = {
     undoManager.doStep(new MoveCommand(input, this));
+    notifyObservers
   }
 
   def undo: Unit = {
