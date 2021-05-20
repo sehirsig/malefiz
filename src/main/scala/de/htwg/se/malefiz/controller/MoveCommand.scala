@@ -21,7 +21,7 @@ class MoveCommand(direction:String, controllerH: Controller) extends Command {
     }
     if(controllerH.moveCounter == 1) {
       controllerH.gameStatus = PLAYING
-      controllerH.playerStatus = controllerH.playerStatus.nextPlayer(controllerH.game.getPlayers())
+      controllerH.playerStatus = controllerH.playerStatus.nextPlayer(controllerH.game.getPlayerNumber())
     }
     println(controllerH.moveCounter)
     if(sucInp) {
