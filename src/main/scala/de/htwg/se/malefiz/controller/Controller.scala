@@ -2,14 +2,15 @@ package de.htwg.se.malefiz.controller
 
 import de.htwg.se.malefiz.controller.GameStatus._
 import de.htwg.se.malefiz.model._
-import de.htwg.se.malefiz.model.properties.Settings
-import de.htwg.se.malefiz.util.Observable
+import de.htwg.se.malefiz.util.{Observable, UndoManager}
 
 case class Controller(var gameboard: Gameboard) extends Observable{
   var gameStatus: GameStatus = IDLE
   var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
   val builder: PlayerBuilder = new PlayerBuilderImp()
+
+  private val undoManager = new UndoManager
 
 //  val set: Settings = Settings()
 //  val gameboard = new Gameboard(set.xDim, set.yDim)
@@ -46,6 +47,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     }
     notifyObservers
   }
+
   def startGame(): Unit = {
     gameStatus = PLAYING
     notifyObservers
@@ -63,18 +65,16 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   val replaceCell = Cell("RR")
   def move(input: String): Unit = {
-    input match {
-      case "w" => gameboard = gameboard.replaceCell(1,1,replaceCell) // TODO find coordinates, replace cell with current player
-      case "a" => gameboard = gameboard.replaceCell(2,2,replaceCell)
-      case "s" => gameboard = gameboard.replaceCell(3,3,replaceCell)
-      case "d" => gameboard = gameboard.replaceCell(4,4,replaceCell)
-    }
-    if(moveCounter == 1) {
-      gameStatus = PLAYING
-      playerStatus = playerStatus.nextPlayer(game.getPlayers())
-    }
-    println(moveCounter)
-    moveCounter -= 1
+    undoManager.doStep(new MoveCommand(input, this));
+  }
+
+  def undo: Unit = {
+    undoManager.undoStep
+    notifyObservers
+  }
+
+  def redo: Unit = {
+    undoManager.redoStep
     notifyObservers
   }
 
