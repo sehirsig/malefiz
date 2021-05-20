@@ -5,7 +5,7 @@ case class Player(name: String, Playerid: Int, startingPos: (Int, Int)) {
    var figures = Array[Gamefigure]()
    def addFigure(): Unit = {
       val figure = Gamefigure(1, Player.this, startingPos)
-      figures :+ figure
+      figures = figures :+ figure
    }
    override def toString: String = Playerid + " " + name
 }

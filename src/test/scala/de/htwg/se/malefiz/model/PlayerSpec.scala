@@ -24,9 +24,12 @@ class PlayerSpec extends AnyWordSpec with Matchers {
     }
     "have a figure" in {
       player.addFigure()
-      player.figures.length should be(0)
-//      player.figures should be()
-//      player.figures(0).pos should be((14,7))
+      player.figures.length should be(1)
+      player.figures(0).pos should be((14,7))
+    }
+    "should update figure position" in {
+      player.figures(0) = player.figures(0).updatePos(15,7)
+      player.figures(0).pos should be((15,7))
     }
   }}
 }
