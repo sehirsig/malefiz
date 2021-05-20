@@ -18,5 +18,15 @@ class PlayerSpec extends AnyWordSpec with Matchers {
     "have a starting position" in {
       player.startingPos should be((14,7))
     }
+    "have no figure" in {
+      player.figures should be(Array[Gamefigure]())
+      player.figures.length should be(0)
+    }
+    "have a figure" in {
+      player.addFigure()
+      player.figures.length should be(0)
+//      player.figures should be()
+//      player.figures(0).pos should be((14,7))
+    }
   }}
 }
