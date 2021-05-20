@@ -14,7 +14,7 @@ case class TUI(controller: Controller) extends Observer {
   }
 
   override def update: Boolean =  {
-    if (controller.gameStatus == GameStatus.PLAYING) println(controller.boardToString)
+    if (controller.gameStatus == GameStatus.PLAYING || controller.gameStatus == GameStatus.MOVING) println(controller.boardToString)
     println(GameStatus.gameMessage(controller.gameStatus))
 //    if (controller.gameStatus != GameStatus.IDLE && controller.gameStatus != GameStatus.READY) println(GameStatus.playerMessage(controller.playerStatus))
   true

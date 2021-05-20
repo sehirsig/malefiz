@@ -14,8 +14,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
 //  val set: Settings = Settings()
 //  val gameboard = new Gameboard(set.xDim, set.yDim)
-  val emptyV = Vector[Player]()
-  var game: Game = Game(emptyV)
+  var game: Game = Game(Vector[Player]())
 
   def addPlayer(): Unit = {
     gameStatus = ENTERNAME
@@ -36,10 +35,10 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     }
     val player = builder.build()
     game = game.addPlayer(player)
-    if(game.getPlayers() > 3) {
+    if(game.getPlayerNumber() > 3) {
       gameStatus = READY2
     }
-    else if (game.getPlayers() < 2) {
+    else if (game.getPlayerNumber() < 2) {
       gameStatus = IDLE
     }
     else {
@@ -64,6 +63,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   }
 
   val replaceCell = Cell("RR")
+
   def move(input: String): Unit = {
     undoManager.doStep(new MoveCommand(input, this));
     notifyObservers
