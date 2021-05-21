@@ -21,42 +21,26 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
 
     val currentfigure = currentplayer.figures(figurenum)
     val fig_coord = (currentfigure.pos._1, currentfigure.pos._2)
-    val currentCell = Cell("XX")
+
+    var cmd = "g"
     var savetuple = (sucInp, controllerH.gameboard)
     direction match {
       case "w" =>  {
-        savetuple = checkCell.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum)
+        savetuple = checkCell.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum, controllerH.moveCounter)
         sucInp = savetuple._1
-        controllerH.gameboard = savetuple._2
-        /*controllerH.gameboard = controllerH.gameboard.movePlayer(goUp(fig_coord),Cell(currentplayer.Playerid.toString+ " "))
-        controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord,currentCell) //TODO Duplicate entfernen
-        currentplayer.figures(figurenum) = currentfigure.updatePos(goUp(fig_coord)._1,goUp(fig_coord)._2)
-        sucInp = true*/ }
+        controllerH.gameboard = savetuple._2}
       case "a" => {
-        savetuple = checkCell.walkLeft(controllerH.gameboard, currentplayer, fig_coord, figurenum)
+        savetuple = checkCell.walkLeft(controllerH.gameboard, currentplayer, fig_coord, figurenum, controllerH.moveCounter)
         sucInp = savetuple._1
-        controllerH.gameboard = savetuple._2
-        /*
-        controllerH.gameboard = controllerH.gameboard.movePlayer(goLeft(fig_coord),Cell(currentplayer.Playerid.toString+ " "))
-        controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord,currentCell)
-        currentplayer.figures(figurenum) = currentfigure.updatePos(goLeft(fig_coord)._1,goLeft(fig_coord)._2)
-        sucInp = true */}
+        controllerH.gameboard = savetuple._2}
       case "s" => {
-        savetuple = checkCell.walkDown(controllerH.gameboard, currentplayer, fig_coord, figurenum)
+        savetuple = checkCell.walkDown(controllerH.gameboard, currentplayer, fig_coord, figurenum, controllerH.moveCounter)
         sucInp = savetuple._1
-        controllerH.gameboard = savetuple._2
-        /*controllerH.gameboard = controllerH.gameboard.movePlayer(goDown(fig_coord),Cell(currentplayer.Playerid.toString+ " "))
-        controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord,currentCell)
-        currentplayer.figures(figurenum) = currentfigure.updatePos(goDown(fig_coord)._1,goDown(fig_coord)._2)
-        sucInp = true */}
+        controllerH.gameboard = savetuple._2}
       case "d" => {
-        savetuple = checkCell.walkRight(controllerH.gameboard, currentplayer, fig_coord, figurenum)
+        savetuple = checkCell.walkRight(controllerH.gameboard, currentplayer, fig_coord, figurenum, controllerH.moveCounter)
         sucInp = savetuple._1
-        controllerH.gameboard = savetuple._2
-        /*controllerH.gameboard = controllerH.gameboard.movePlayer(goRight(fig_coord),Cell(currentplayer.Playerid.toString+ " "))
-        controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord,currentCell)
-        currentplayer.figures(figurenum) = currentfigure.updatePos(goRight(fig_coord)._1,goRight(fig_coord)._2)
-        sucInp = true */}
+        controllerH.gameboard = savetuple._2}
       case _ =>
     }
     println(controllerH.moveCounter - 1) // TODO Raus damit

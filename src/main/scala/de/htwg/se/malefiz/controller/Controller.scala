@@ -28,10 +28,10 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   def addPlayerColor(color: Int): Unit = {
     builder.setID(color)
     color match {
-      case 1 => builder.setStartingPos(14,3)
-      case 2 => builder.setStartingPos(14,7)
-      case 3 => builder.setStartingPos(14,11)
-      case 4 => builder.setStartingPos(14,15)
+      case 1 => builder.setStartingPos(15,3)
+      case 2 => builder.setStartingPos(15,7)
+      case 3 => builder.setStartingPos(15,11)
+      case 4 => builder.setStartingPos(15,15)
     }
     val player = builder.build()
     game = game.addPlayer(player)
@@ -80,7 +80,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
     notifyObservers
   }
-
+/*
   def undo: Unit = {
     undoManager.undoStep
     notifyObservers
@@ -89,7 +89,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   def redo: Unit = {
     undoManager.redoStep
     notifyObservers
-  }
+  }*/
 
 //  def moveUp(): Unit = {
 //    println("moves up")
