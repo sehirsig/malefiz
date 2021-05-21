@@ -28,6 +28,8 @@ object IdleTUIState extends TUIState {
           println("not enough players");IdleTUIState
         }
       }
+      case "remove" => controller.setBlockStrategy(input);IdleTUIState
+      case "replace" => controller.setBlockStrategy(input);IdleTUIState
       case "welcomeMessage" => println("Welcome to Malefiz");IdleTUIState
       case _ => println("invalid input");IdleTUIState
     }

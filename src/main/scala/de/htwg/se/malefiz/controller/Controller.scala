@@ -64,6 +64,13 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   val replaceCell = Cell("RR")
 
+  def setBlockStrategy(blockStrategy: String): Unit = {
+    blockStrategy match {
+      case "replace" => gameboard.setBlockStrategy(BlockReplaceStrategy())
+      case "remove" => gameboard.setBlockStrategy(BlockRemoveStrategy())
+    }
+  }
+
   def move(input: String, figurenum: Int): Unit = {
     input match {
       case "undo" => undoManager.undoStep

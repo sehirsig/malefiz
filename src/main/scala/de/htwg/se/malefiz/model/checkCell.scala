@@ -1,6 +1,7 @@
 package de.htwg.se.malefiz.model
 
 import de.htwg.se.malefiz.model.moveTypes._
+import de.htwg.se.malefiz.util.BlockStrategy
 
 object checkCell {
   def walkUp(spielbrett:Gameboard, player:Player, currentCoord:(Int,Int), figurenum:Int):(Boolean,Gameboard) = {
@@ -9,8 +10,9 @@ object checkCell {
         val currentfigure = player.figures(figurenum)
         val spielbrett2 = spielbrett.movePlayer(goUp(currentCoord),Cell(player.Playerid.toString + " "))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
+        val spielbrett4 = replaceBlock(spielbrett3)
         player.figures(figurenum) = currentfigure.updatePos(goUp(currentCoord)._1,goUp(currentCoord)._2)
-        (true,spielbrett3)
+        (true,spielbrett4)
       }
       case _ => (false,spielbrett)
     }
@@ -21,8 +23,9 @@ object checkCell {
         val currentfigure = player.figures(figurenum)
         val spielbrett2 = spielbrett.movePlayer(goDown(currentCoord),Cell(player.Playerid.toString + " "))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
+        val spielbrett4 = replaceBlock(spielbrett3)
         player.figures(figurenum) = currentfigure.updatePos(goDown(currentCoord)._1,goDown(currentCoord)._2)
-        (true,spielbrett3)
+        (true,spielbrett4)
       }
       case _ => (false,spielbrett)
     }
@@ -33,8 +36,9 @@ object checkCell {
         val currentfigure = player.figures(figurenum)
         val spielbrett2 = spielbrett.movePlayer(goLeft(currentCoord),Cell(player.Playerid.toString + " "))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
+        val spielbrett4 = replaceBlock(spielbrett3)
         player.figures(figurenum) = currentfigure.updatePos(goLeft(currentCoord)._1,goLeft(currentCoord)._2)
-        (true,spielbrett3)
+        (true,spielbrett4)
       }
       case _ => (false,spielbrett)
     }
@@ -45,8 +49,9 @@ object checkCell {
         val currentfigure = player.figures(figurenum)
         val spielbrett2 = spielbrett.movePlayer(goRight(currentCoord),Cell(player.Playerid.toString + " "))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
+        val spielbrett4 = replaceBlock(spielbrett3)
         player.figures(figurenum) = currentfigure.updatePos(goRight(currentCoord)._1,goRight(currentCoord)._2)
-        (true,spielbrett3)
+        (true,spielbrett4)
       }
       case _ => (false,spielbrett)
     }
@@ -70,6 +75,7 @@ object checkCell {
     }
   }
 
+
   def wasStartBlock(x:Gameboard, currentCoord:(Int,Int)):Cell = {
     getCell(x, currentCoord) match {
       case Cell("T ") => Cell("T ")
@@ -82,6 +88,6 @@ object checkCell {
   }
 
   def replaceBlock(x:Gameboard) : Gameboard = {
-    x
+    x.blockStrategy.replaceBlock(x)
   }
 }
