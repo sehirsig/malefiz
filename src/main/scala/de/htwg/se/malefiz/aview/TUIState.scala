@@ -72,6 +72,8 @@ object MovingTUIState extends TUIState {
         case "a" => controller.move(input, 0); MovingTUIState
         case "s" => controller.move(input, 0); MovingTUIState
         case "d" => controller.move(input, 0); MovingTUIState
+        case "undo" => controller.move(input, 0); MovingTUIState
+        case "redo" => controller.move(input, 0); MovingTUIState
         case _ => println("invalid input"); MovingTUIState
       }
     }

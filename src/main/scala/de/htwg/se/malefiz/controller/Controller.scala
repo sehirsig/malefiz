@@ -65,7 +65,12 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   val replaceCell = Cell("RR")
 
   def move(input: String, figurenum: Int): Unit = {
-    undoManager.doStep(new MoveCommand(input, figurenum, this));
+    input match {
+      case "undo" => undoManager.undoStep
+      case "redo" => undoManager.redoStep
+      case _ => undoManager.doStep(new MoveCommand(input, figurenum, this));
+    }
+
     notifyObservers
   }
 
