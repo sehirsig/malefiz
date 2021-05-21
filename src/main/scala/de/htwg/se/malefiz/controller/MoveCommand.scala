@@ -5,13 +5,17 @@ import de.htwg.se.malefiz.controller.GameStatus._
 import de.htwg.se.malefiz.model.Cell
 import de.htwg.se.malefiz.util.Command
 import de.htwg.se.malefiz.model.moveTypes._
+import de.htwg.se.malefiz.model.checkCell
 
 class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) extends Command {
-  var saved = controllerH.gameboard
-
+  var savedG = controllerH.gameboard
+  var savedMC = controllerH.moveCounter
+  var savedF = controllerH.game
+  var savedSt = controllerH.gameStatus
 
   override def doStep: Unit = {
-    saved = controllerH.gameboard
+    savedG = controllerH.gameboard
+
     var sucInp:Boolean = false
     val currentplayer = controllerH.game.players(controllerH.playerStatus.getCurrentPlayer - 1)
     currentplayer.addFigure()
@@ -21,6 +25,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     val currentCell = Cell("XX")
     direction match {
       case "w" =>  {
+        //checkCell.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum)
         controllerH.gameboard = controllerH.gameboard.movePlayer(goUp(fig_coord),Cell(currentplayer.Playerid.toString+ " "))
         controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord,currentCell) //TODO Duplicate entfernen
         currentplayer.figures(figurenum) = currentfigure.updatePos(goUp(fig_coord)._1,goUp(fig_coord)._2)
@@ -42,11 +47,11 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
         sucInp = true }
       case _ =>
     }
-    println(controllerH.moveCounter - 1)
+    println(controllerH.moveCounter - 1) // TODO Raus damit
     if(sucInp) {
       controllerH.moveCounter -= 1
     } else {
-      println("Wrong Input")
+      println("Wrong Input") // TODO raus damit
     }
     if(controllerH.moveCounter < 1) {
       controllerH.gameStatus = PLAYING
@@ -55,14 +60,32 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
   }
 
   override def undoStep: Unit = {
-    val newsaved = controllerH.gameboard
-    controllerH.gameboard = saved
-    saved = newsaved
+    val newsavedG = controllerH.gameboard
+    val newsavedMC = controllerH.moveCounter
+    val newsavedF = controllerH.game
+    val newsavedSt = controllerH.gameStatus
+    controllerH.gameboard = savedG
+    controllerH.moveCounter = savedMC
+    controllerH.game = savedF
+    controllerH.gameStatus = savedSt
+    savedF = newsavedF
+    savedG = newsavedG
+    savedMC = newsavedMC
+    savedSt = newsavedSt
   }
 
   override def redoStep: Unit = {
-    val newsaved = controllerH.gameboard
-    controllerH.gameboard = saved
-    saved = newsaved
+    val newsavedG = controllerH.gameboard
+    val newsavedMC = controllerH.moveCounter
+    val newsavedF = controllerH.game
+    val newsavedSt = controllerH.gameStatus
+    controllerH.gameboard = savedG
+    controllerH.moveCounter = savedMC
+    controllerH.game = savedF
+    controllerH.gameStatus = savedSt
+    savedF = newsavedF
+    savedG = newsavedG
+    savedMC = newsavedMC
+    savedSt = newsavedSt
   }
 }
