@@ -67,7 +67,7 @@ object PlayingTUIState extends TUIState {
 object MovingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     if (controller.moveCounter == 0) {
-      PlayingTUIState
+      PlayingTUIState.processing(input)
     } else {
       input match {
         case "w" => controller.move(input, 0); MovingTUIState //TODO: Select Gamefigures, instead of 1

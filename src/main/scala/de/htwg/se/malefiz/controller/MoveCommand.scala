@@ -41,7 +41,6 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
         savetuple = checkCell.walkRight(controllerH.gameboard, currentplayer, fig_coord, figurenum, controllerH.moveCounter)
         sucInp = savetuple._1
         controllerH.gameboard = savetuple._2}
-      case _ =>
     }
     println(controllerH.moveCounter - 1) // TODO Raus damit
     if(sucInp) {

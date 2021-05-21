@@ -77,7 +77,6 @@ case class Controller(var gameboard: Gameboard) extends Observable{
       case "redo" => undoManager.redoStep
       case _ => undoManager.doStep(new MoveCommand(input, figurenum, this));
     }
-
     notifyObservers
   }
 /*
