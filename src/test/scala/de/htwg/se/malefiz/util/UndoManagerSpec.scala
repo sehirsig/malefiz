@@ -59,7 +59,7 @@ class UndoManagerSpec  extends AnyWordSpec with Matchers {
       undoManager.redoStep
       undoManager.redoStep
       undoManager.redoStep
-      cmd.saved should be(4)
+      cmd.saved should be(6)
     }
   }
 }
