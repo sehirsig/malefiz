@@ -62,7 +62,7 @@ object checkCell {
       case Cell("O ") => true
       case Cell("P ") => walksleft == 1
       case Cell("X ") => walksleft == 1
-      case Cell("G ") => walksleft == 1
+      case Cell("G ") => walksleft == 1 //TODO Hier Gewinner auslösen
       case _ => false
     }
   }
