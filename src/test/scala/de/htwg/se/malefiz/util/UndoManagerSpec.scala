@@ -40,6 +40,21 @@ class UndoManagerSpec  extends AnyWordSpec with Matchers {
       undoManager.undoStep
       undoManager.undoStep
       undoManager.undoStep
+      undoManager.undoStep
+      undoManager.undoStep
+      undoManager.undoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
+      undoManager.redoStep
       undoManager.redoStep
       undoManager.redoStep
       undoManager.redoStep

@@ -59,13 +59,21 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     "move the Gamefigure" in {
       currentState = currentState.processing("invalid")
       currentState = currentState.processing("w")
-      currentState = currentState.processing("a")
-      currentState = currentState.processing("s")
+      currentState = currentState.processing("d")
       currentState = currentState.processing("d")
       currentState = currentState.processing("d")
       currentState = currentState.processing("d")
       currentState = currentState.processing("d")
       currentState should be(PlayingTUIState)
+    }
+    "undo the Gamefigure" in {
+      currentState = currentState.processing("r")
+      currentState = currentState.processing("r")
+      currentState = currentState.processing("d")
+      currentState = currentState.processing("undo")
+    }
+    "redo the Gamefigure" in {
+      currentState = currentState.processing("redo")
     }
   }
 }
