@@ -62,7 +62,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     moveCounter
   }
 
-  val replaceCell = Cell("RR")
+  //val replaceCell = Cell("RR")
 
   def setBlockStrategy(blockStrategy: String): Unit = {
     blockStrategy match {

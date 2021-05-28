@@ -4,54 +4,32 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 
 class CellSpec extends AnyWordSpec with Matchers {
-  "A Cell" when { "no parameter" should {
-    val cell = Cell()
+  "A Cell" when {
+    "Free" should {
     "be displayed as \"  \"" in {
-      cell.toString should be("  ")
+      FreeCell.toString should be("O ")
     }
   }
     "empty" should {
-    val cell = Cell("  ")
     "be displayed as \"  \"" in {
-      cell.toString should be("  ")
+      InvalidCell.toString should be("  ")
     }
   }
-    "free" should {
-    val cell = Cell("O ")
+    "Secure" should {
     "be displayed as \"O \"" in {
-      cell.toString should be("O ")
-    }
-      "walkable" in {
-        cell.isWalkable should be(true)
-      }
-  }
-    "secure" should {
-    val cell = Cell("O ")
-    "be displayed as \"O \"" in {
-      cell.toString should be("O ")
+      SecureCell.toString should be("O ")
     }
   }
     "blocked" should {
-    val cell = Cell("X ")
     "be displayed as \"X \"" in {
-      cell.toString should be("X ")
+      BlockedCell.toString should be("X ")
     }
   }
     "the goal" should {
-    val cell = Cell("G ")
     "be displayed as \"G \"" in {
-      cell.toString should be("G ")
+      GoalCell.toString should be("G ")
     }
   }
-    "if is Walkable" should {
-      val cell = Cell("O ")
-      "should be walkable" in {
-        cell.isWalkable should be(true)
-      }
-      val cellnot = Cell()
-      "should not be walkabe" in {
-        cellnot.isWalkable should be(false)
-      }
-    }
+
   }
 }

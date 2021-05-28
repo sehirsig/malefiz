@@ -5,11 +5,11 @@ import scala.util.Random
 
 case class BlockReplaceStrategy() extends BlockStrategy {
   override def replaceBlock(spielbrett: Gameboard): Gameboard = {
-    val b = searchVectors(Cell("O "), spielbrett.rows)
+    val b = searchVectors(FreeCell, spielbrett.rows)
     val rnd = new Random()
     val randomNumber = rnd.nextInt(b.size - 1)
     val replace = b(randomNumber)
-    spielbrett.movePlayer(replace, Cell("X "))
+    spielbrett.movePlayer(replace, BlockedCell)
   }
 
   private def searchVectors(x: Cell, vec: Vector[Vector[Cell]]) =

@@ -1,16 +1,17 @@
 package de.htwg.se.malefiz.model
 
 import de.htwg.se.malefiz.model.moveTypes._
+import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.BlockStrategy
 
 object checkCell {
   def walkUp(spielbrett:Gameboard, player:Player, currentCoord:(Int,Int), figurenum:Int, walksLeft:Int):(Boolean,Gameboard) = {
-    isWalkable(spielbrett, goUp(currentCoord), walksLeft) match {
+    isWalkable(spielbrett, goUp(currentCoord), walksLeft, player.Playerid) match {
       case true => {
         val currentfigure = player.figures(figurenum)
-        val spielbrett2 = spielbrett.movePlayer(goUp(currentCoord),Cell(player.Playerid.toString + " "))
+        val spielbrett2 = spielbrett.movePlayer(goUp(currentCoord),PlayerCell(player.Playerid))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
-        val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft)
+        val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft, player.Playerid)
         player.figures(figurenum) = currentfigure.updatePos(goUp(currentCoord)._1,goUp(currentCoord)._2)
         (true,spielbrett4)
       }
@@ -18,12 +19,12 @@ object checkCell {
     }
   }
   def walkDown(spielbrett:Gameboard, player:Player, currentCoord:(Int,Int), figurenum:Int, walksLeft:Int):(Boolean,Gameboard) = {
-    isWalkable(spielbrett, goDown(currentCoord), walksLeft) match {
+    isWalkable(spielbrett, goDown(currentCoord), walksLeft, player.Playerid) match {
       case true => {
         val currentfigure = player.figures(figurenum)
-        val spielbrett2 = spielbrett.movePlayer(goDown(currentCoord),Cell(player.Playerid.toString + " "))
+        val spielbrett2 = spielbrett.movePlayer(goDown(currentCoord),PlayerCell(player.Playerid))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
-        val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft)
+        val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft, player.Playerid)
         player.figures(figurenum) = currentfigure.updatePos(goDown(currentCoord)._1,goDown(currentCoord)._2)
         (true,spielbrett4)
       }
@@ -31,12 +32,12 @@ object checkCell {
     }
   }
   def walkLeft(spielbrett:Gameboard, player:Player, currentCoord:(Int,Int), figurenum:Int, walksLeft:Int):(Boolean,Gameboard) = {
-    isWalkable(spielbrett, goLeft(currentCoord), walksLeft) match {
+    isWalkable(spielbrett, goLeft(currentCoord), walksLeft, player.Playerid) match {
       case true => {
         val currentfigure = player.figures(figurenum)
-        val spielbrett2 = spielbrett.movePlayer(goLeft(currentCoord),Cell(player.Playerid.toString + " "))
+        val spielbrett2 = spielbrett.movePlayer(goLeft(currentCoord),PlayerCell(player.Playerid))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
-        val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft)
+        val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft, player.Playerid)
         player.figures(figurenum) = currentfigure.updatePos(goLeft(currentCoord)._1,goLeft(currentCoord)._2)
         (true,spielbrett4)
       }
@@ -44,12 +45,12 @@ object checkCell {
     }
   }
   def walkRight(spielbrett:Gameboard, player:Player, currentCoord:(Int,Int), figurenum:Int, walksLeft:Int):(Boolean,Gameboard) = {
-    isWalkable(spielbrett, goRight(currentCoord), walksLeft) match {
+    isWalkable(spielbrett, goRight(currentCoord), walksLeft, player.Playerid) match {
       case true => {
         val currentfigure = player.figures(figurenum)
-        val spielbrett2 = spielbrett.movePlayer(goRight(currentCoord),Cell(player.Playerid.toString + " "))
+        val spielbrett2 = spielbrett.movePlayer(goRight(currentCoord),PlayerCell(player.Playerid))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
-        val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft)
+        val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft, player.Playerid)
         player.figures(figurenum) = currentfigure.updatePos(goRight(currentCoord)._1,goRight(currentCoord)._2)
         (true,spielbrett4)
       }
@@ -57,12 +58,17 @@ object checkCell {
     }
   }
 
-  def isWalkable(x:Gameboard, currentCoord:(Int,Int), walksleft:Int):Boolean = {
+  def isWalkable(x:Gameboard, currentCoord:(Int,Int), walksleft:Int, Playerid:Int):Boolean = {
     getCell(x, currentCoord) match {
-      case Cell("O ") => true
-      case Cell("P ") => walksleft == 1
-      case Cell("X ") => walksleft == 1
-      case Cell("G ") => walksleft == 1 //TODO Hier Gewinner auslösen
+      case FreeCell => true
+      case SecureCell => true
+      case PlayerCell(Playerid) => false
+      case PlayerCell(1) => walksleft == 1
+      case PlayerCell(2) => walksleft == 1
+      case PlayerCell(3) => walksleft == 1
+      case PlayerCell(4) => walksleft == 1
+      case BlockedCell => walksleft == 1
+      case GoalCell => walksleft == 1 //TODO Hier Gewinner auslösen
       case _ => false
     }
   }
@@ -73,18 +79,29 @@ object checkCell {
 
 
 
-  def getNextCell(old:Gameboard, next:Gameboard, currentCoord:(Int,Int), walksleft:Int): Gameboard = {
+  def getNextCell(old:Gameboard, next:Gameboard, currentCoord:(Int,Int), walksleft:Int, playerID:Int): Gameboard = {
     getCell(old, currentCoord) match {
-      case Cell("P ") => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
-      case Cell("X ") => {if(walksleft == 1 ) {replaceBlock(next)} else {next}}
+      case PlayerCell(playerID) => next
+      case PlayerCell(1) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
+      case PlayerCell(2) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
+      case PlayerCell(3) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
+      case PlayerCell(4) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
+      case BlockedCell => {if(walksleft == 1 ) {replaceBlock(next)} else {next}}
       case _ => next
     }
   }
 
   def wasStartBlock(x:Gameboard, currentCoord:(Int,Int)):Cell = {
     getCell(x, currentCoord) match {
-      case Cell("T ") => Cell("T ")
-      case _ => Cell("O ")
+      case StartCell => StartCell
+      case _ => secureORfreeCell(currentCoord)
+    }
+  }
+
+  def secureORfreeCell(currentCoord:(Int,Int)):Cell = {
+    Settings().secureCells.contains(currentCoord) match {
+      case true => SecureCell
+      case false => FreeCell
     }
   }
 
