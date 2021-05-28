@@ -24,6 +24,12 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.playerStatus should be(PlayerState1)
         controller.moveCounter should be(0)
       }
+      "change blockStrategy to replace" in {
+        controller.setBlockStrategy("replace")
+      }
+      "change blockStrategy to remove" in {
+        controller.setBlockStrategy("remove")
+      }
 //      "when adding player" in {
 //        controller.addPlayer()
 //        controller.game.getPlayers() should be(1)
