@@ -63,12 +63,12 @@ object checkCell {
       case FreeCell => true
       case SecureCell => true
       case PlayerCell(Playerid) => false
-      case PlayerCell(1) => walksleft == 1
-      case PlayerCell(2) => walksleft == 1
-      case PlayerCell(3) => walksleft == 1
-      case PlayerCell(4) => walksleft == 1
+      case PlayerCell(1) => true//walksleft == 1
+      case PlayerCell(2) => true//walksleft == 1
+      case PlayerCell(3) => true//walksleft == 1
+      case PlayerCell(4) => true//walksleft == 1
       case BlockedCell => walksleft == 1
-      case GoalCell => walksleft == 1 //TODO Hier Gewinner auslösen
+      case GoalCell => walksleft == 1
       case _ => false
     }
   }
@@ -76,8 +76,6 @@ object checkCell {
   def getCell(x:Gameboard, currentCoord:(Int,Int)):Cell = {
     x.cell(currentCoord._1, currentCoord._2)
   }
-
-
 
   def getNextCell(old:Gameboard, next:Gameboard, currentCoord:(Int,Int), walksleft:Int, playerID:Int): Gameboard = {
     getCell(old, currentCoord) match {
@@ -87,6 +85,7 @@ object checkCell {
       case PlayerCell(3) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
       case PlayerCell(4) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
       case BlockedCell => {if(walksleft == 1 ) {replaceBlock(next)} else {next}}
+      case GoalCell => next//TODO GameWon in Gameboard zurückgeben
       case _ => next
     }
   }

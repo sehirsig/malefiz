@@ -27,4 +27,15 @@ class UndoManager {
       }
     }
   }
+  def emptyStacks = {
+    undoStack = Nil
+    redoStack = Nil
+  }
+
+  def undoAll = {
+    while(undoStack != Nil) {
+      undoStep
+    }
+  }
+
 }

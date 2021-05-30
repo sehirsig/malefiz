@@ -12,8 +12,8 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   private val undoManager = new UndoManager
 
-//  val set: Settings = Settings()
-//  val gameboard = new Gameboard(set.xDim, set.yDim)
+  var savedGame:lastSave = lastSave(0, "", InvalidCell)
+
   var game: Game = Game(Vector[Player]())
 
   def addPlayer(): Unit = {
@@ -59,10 +59,10 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     gameStatus = MOVING
     notifyObservers
     println("You have rolled a: " + moveCounter)
+    savedGame = savedGame.updateLastFullDice(moveCounter)
     moveCounter
   }
 
-  //val replaceCell = Cell("RR")
 
   def setBlockStrategy(blockStrategy: String): Unit = {
     blockStrategy match {
@@ -73,10 +73,21 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   def move(input: String, figurenum: Int): Unit = {
     input match {
+      case "skip" => moveCounter = 1; undoManager.doStep(new MoveCommand(input, figurenum, this))
       case "undo" => undoManager.undoStep
       case "redo" => undoManager.redoStep
-      case _ => undoManager.doStep(new MoveCommand(input, figurenum, this));
+      case _ => if(input != savedGame.lastDirectionOpposite) undoManager.doStep(new MoveCommand(input, figurenum, this));
     }
+    notifyObservers
+  }
+
+  def emptyMan: Unit = {
+    undoManager.emptyStacks
+    notifyObservers
+  }
+
+  def undoAll: Unit = {
+    undoManager.undoAll
     notifyObservers
   }
 /*
@@ -90,61 +101,4 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     notifyObservers
   }*/
 
-//  def moveUp(): Unit = {
-//    println("moves up")
-//    if(moveCounter == 1) gameStatus = PLAYING
-//    moveCounter -= 1
-//    notifyObservers
-//    println(moveCounter)
-//  }
-//  def moveDown(): Unit = {
-//    println("moves down")
-//    if(moveCounter == 1) gameStatus = PLAYING
-//    moveCounter -= 1
-//    notifyObservers
-//    println(moveCounter)
-//  }
-//  def moveLeft(): Unit = {
-//    println("moves left")
-//    if(moveCounter == 1) gameStatus = PLAYING
-//    moveCounter -= 1
-//    notifyObservers
-//    println(moveCounter)
-//  }
-//  def moveRight(): Unit = {
-//    println("moves right")
-//    if(moveCounter == 1) gameStatus = PLAYING
-//    moveCounter -= 1
-//    notifyObservers
-//    println(moveCounter)
-//  }
-
-  //  var player1 = Player("",1) //TODO Vars wegbekommen, Heimat für Player suchen
-  //  var player2 = Player("",2)
-  //  var player3 = Player("",3)
-  //  var player4 = Player("",4)
-  //  var playerNumber = 2;
-  //  var currentPlayer = 1;
-  // GameFigures for each player ? Gamefigure Array / -> 4 new vars, oder Game Figures im Spieler
-
-  //  def setPlayerNumber(number:Int): Unit = {
-  //      playerNumber = number
-  //  }
-  //
-  //  def createPlayer(name:String, nID:Int): Unit = {
-  //      nID match {
-  //        case 1 => player1 = Player(name, nID)
-  //        case 2 => player2 = Player(name, nID)
-  //        case 3 => player3 = Player(name, nID)
-  //        case 4 => player4 = Player(name, nID)
-  //      }
-  //  }
-
-  //  def nextPlayer(): Unit = {
-  //    if (currentPlayer < playerNumber) {
-  //      currentPlayer = currentPlayer + 1
-  //    } else {
-  //      currentPlayer = 1
-  //    }
-  //  }
 }
