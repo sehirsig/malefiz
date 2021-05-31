@@ -71,6 +71,15 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     moveCounter
   }
 
+  def checkWin():Boolean = {
+    if (gameboard.cell(1,9).isInstanceOf[PlayerCell]) {
+      gameStatus = GAMEWINNER
+      print("We Have a Winner: " + gameboard.cell(1,9).toString())
+      true
+    } else {
+      false
+    }
+  }
 
   def setBlockStrategy(blockStrategy: String): Unit = {
     blockStrategy match {

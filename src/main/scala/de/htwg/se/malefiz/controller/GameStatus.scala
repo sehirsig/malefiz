@@ -5,9 +5,10 @@ object GameStatus extends Enumeration {
   type PlayerStatus = Value
   //type GameFigureStatus = Value
 
-  val CHOOSEFIG, IDLE, READY1, READY2, PLAYER0, PLAYER1, PLAYER2, PLAYER3, PLAYER4, PLAYING, MOVING, ENTERNAME, ENTERCOLOR = Value
+  val GAMEWINNER, CHOOSEFIG, IDLE, READY1, READY2, PLAYER0, PLAYER1, PLAYER2, PLAYER3, PLAYER4, PLAYING, MOVING, ENTERNAME, ENTERCOLOR = Value
 
   val gameMap = Map[GameStatus, String](
+    GAMEWINNER -> "We have a Winner!",
     CHOOSEFIG -> "Choose a Figure (1-5)",
     IDLE -> "Press p to add players",
     READY1 -> "Type start or press p to add more players",
