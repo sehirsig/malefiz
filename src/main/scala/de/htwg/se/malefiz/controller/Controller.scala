@@ -12,6 +12,8 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   private val undoManager = new UndoManager
 
+  var win:Boolean = false;
+
   var savedGame:lastSave = lastSave(0, "", InvalidCell)
 
   var selectedFigNum:Int = 0;
@@ -72,9 +74,10 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   }
 
   def checkWin():Boolean = {
-    if (gameboard.cell(1,9).isInstanceOf[PlayerCell]) {
+    if (gameboard.cell(1,9).isInstanceOf[PlayerCell] || win) {
       gameStatus = GAMEWINNER
       print("We Have a Winner: " + gameboard.cell(1,9).toString())
+      win = true;
       true
     } else {
       false
