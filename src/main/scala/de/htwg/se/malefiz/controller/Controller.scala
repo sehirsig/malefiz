@@ -64,9 +64,9 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   def rollDice(): Int = {
     moveCounter = Dice.diceRoll
+    println("You have rolled a: " + moveCounter)
     gameStatus = CHOOSEFIG
     notifyObservers
-    println("You have rolled a: " + moveCounter)
     savedGame = savedGame.updateLastFullDice(moveCounter)
     moveCounter
   }

@@ -7,7 +7,7 @@ class GamefigureSpec extends AnyWordSpec with Matchers {
     val player = Player("Your Name", 1, (1,1))
     val figur = Gamefigure(1, 1, player, player.startingPos)
     "should unapply" in {
-      Gamefigure.unapply(figur).get should be(1, Player("Your Name", 1, (1,1)), player.startingPos)
+      Gamefigure.unapply(figur).get should be(1, 1, Player("Your Name", 1, (1,1)), player.startingPos)
     }
     "have a nice String representation" in {
       figur.toString should be("1 ")
