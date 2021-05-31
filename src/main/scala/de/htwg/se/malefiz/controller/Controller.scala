@@ -78,6 +78,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
       gameStatus = GAMEWINNER
       print("We Have a Winner: " + gameboard.cell(1,9).toString())
       win = true;
+      game = Game(Vector[Player]())
       true
     } else {
       false

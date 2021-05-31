@@ -81,6 +81,10 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     "redo the Gamefigure" in {
       currentState = currentState.processing("redo")
     }
+    "skip the turn" in {
+      currentState = currentState.processing("skip")
+      currentState should be(IdleTUIState)
+    }
     "switch to Winner if won" in {
       currentState = WinnerTUIState
       currentState should be(WinnerTUIState)
