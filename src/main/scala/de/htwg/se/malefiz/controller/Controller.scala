@@ -27,6 +27,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   var game: Game = Game(Vector[Player]())
 
   def addPlayer(): Unit = {
+    win = false
     gameStatus = ENTERNAME
     notifyObservers
   }
