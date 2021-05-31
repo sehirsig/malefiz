@@ -14,6 +14,14 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   var savedGame:lastSave = lastSave(0, "", InvalidCell)
 
+  var selectedFigNum:Int = 0;
+
+  def selectFigure(x:Int):Unit = {
+    selectedFigNum = x
+    gameStatus = MOVING
+    notifyObservers
+  }
+
   var game: Game = Game(Vector[Player]())
 
   def addPlayer(): Unit = {
@@ -56,7 +64,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   def rollDice(): Int = {
     moveCounter = Dice.diceRoll
-    gameStatus = MOVING
+    gameStatus = CHOOSEFIG
     notifyObservers
     println("You have rolled a: " + moveCounter)
     savedGame = savedGame.updateLastFullDice(moveCounter)

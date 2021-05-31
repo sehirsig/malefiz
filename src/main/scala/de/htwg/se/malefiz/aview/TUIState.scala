@@ -58,8 +58,17 @@ object  PlayerColorState extends  TUIState {
 object PlayingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
-      case "r" => controller.rollDice();MovingTUIState
+      case "r" => controller.rollDice();ChooseGameFigTUIState
       case _ => println("invalid input");PlayingTUIState
+    }
+  }
+}
+
+object ChooseGameFigTUIState extends TUIState {
+  def processing(input: String): TUIState = {
+    input match {
+      case "1" | "2" | "3" | "4" | "5" => controller.selectFigure(input.toInt);MovingTUIState
+      case _ => println("invalid input");ChooseGameFigTUIState
     }
   }
 }
@@ -70,13 +79,13 @@ object MovingTUIState extends TUIState {
       PlayingTUIState.processing(input)
     } else {
       input match {
-        case "w" => controller.move(input, 0); MovingTUIState //TODO: Select Gamefigures, instead of 1
-        case "a" => controller.move(input, 0); MovingTUIState
-        case "s" => controller.move(input, 0); MovingTUIState
-        case "d" => controller.move(input, 0); MovingTUIState
-        case "undo" => controller.move(input, 0); MovingTUIState
-        case "redo" => controller.move(input, 0); MovingTUIState
-        case "skip" => controller.move(input, 0); MovingTUIState
+        case "w" => controller.move(input, controller.selectedFigNum); MovingTUIState //TODO: Select Gamefigures, instead of 1
+        case "a" => controller.move(input, controller.selectedFigNum); MovingTUIState
+        case "s" => controller.move(input, controller.selectedFigNum); MovingTUIState
+        case "d" => controller.move(input, controller.selectedFigNum); MovingTUIState
+        case "undo" => controller.move(input, controller.selectedFigNum); MovingTUIState
+        case "redo" => controller.move(input, controller.selectedFigNum); MovingTUIState
+        case "skip" => controller.move(input, controller.selectedFigNum); MovingTUIState
         case _ => println("invalid input"); MovingTUIState
       }
     }

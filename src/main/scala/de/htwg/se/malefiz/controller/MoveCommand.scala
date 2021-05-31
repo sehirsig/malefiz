@@ -17,9 +17,10 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     savedG = controllerH.gameboard
 
     var sucInp:Boolean = false
-    var sucDir:String = ""
+
     val currentplayer = controllerH.game.players(controllerH.playerStatus.getCurrentPlayer - 1)
-    currentplayer.addFigure()
+
+    (1 to 5).map(x => currentplayer.addFigure(x))
 
     val currentfigure = currentplayer.figures(figurenum)
     val fig_coord = (currentfigure.pos._1, currentfigure.pos._2)

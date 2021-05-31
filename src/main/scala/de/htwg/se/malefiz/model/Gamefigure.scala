@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.model
 
-case class Gamefigure(number: Int, player: Player, pos: (Int, Int)) {
+case class Gamefigure(number: Int, id:Int, player: Player, pos: (Int, Int)) {
   def getNumber:Int = number
   def getPlayer:Player = player
   def updatePos(posNew: (Int, Int)): Gamefigure = {

@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 class GamefigureSpec extends AnyWordSpec with Matchers {
   "A Gamefigure" when { "new Player 1" should {
     val player = Player("Your Name", 1, (1,1))
-    val figur = Gamefigure(1, player, player.startingPos)
+    val figur = Gamefigure(1, 1, player, player.startingPos)
     "should unapply" in {
       Gamefigure.unapply(figur).get should be(1, Player("Your Name", 1, (1,1)), player.startingPos)
     }
