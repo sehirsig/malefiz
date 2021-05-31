@@ -75,7 +75,6 @@ object ChooseGameFigTUIState extends TUIState {
 
 object WinnerTUIState extends TUIState {
   def processing(input: String): TUIState = {
-    controller.game = Nil
     input match {
       case _ => IdleTUIState
     }
