@@ -31,6 +31,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     gameStatus = ENTERNAME
     notifyObservers
   }
+
   def addPlayerName(name: String): Unit = {
     builder.setName(name)
     val newplayernum = game.players.length + 1
@@ -42,6 +43,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
       case 4 => builder.setStartingPos(15,15)
     }
     val player = builder.build()
+    (1 to 5).map(x => player.addFigure(x))
     game = game.addPlayer(player)
     if(game.getPlayerNumber() > 3) {
       gameStatus = READY2
@@ -75,7 +77,15 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     if (gameboard.cell(1,9).isInstanceOf[PlayerCell]) {
       gameWon = true
       gameStatus = GAMEWINNER
-      print("We Have a Winner: " + game.players(playerStatus.getCurrentPlayer).name)
+      val winner = {
+        if ((playerStatus.getCurrentPlayer - 1) == 0){
+          game.players.length - 1
+        } else {
+          playerStatus.getCurrentPlayer - 2
+        }
+      }
+      println("We Have a Winner: " + game.players(winner).name + "\n")
+      println("Press p to add new Players for a new game!")
       game = Game(Vector[Player]())
       true
     } else {
@@ -102,22 +112,10 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   def emptyMan: Unit = {
     undoManager.emptyStacks
-    //notifyObservers
   }
 
   def undoAll: Unit = {
     undoManager.undoAll
-    //notifyObservers
   }
-/*
-  def undo: Unit = {
-    undoManager.undoStep
-    notifyObservers
-  }
-
-  def redo: Unit = {
-    undoManager.redoStep
-    notifyObservers
-  }*/
 
 }
