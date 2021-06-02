@@ -65,7 +65,7 @@ object checkCell {
       case FreeCell => true
       case SecureCell => true
       //case PlayerCell(_) => true
-      case PlayerCell(Playerid) => true
+      case PlayerCell(Playerid) => if (walksleft == 1 ) {false} else {true}
       case PlayerCell(1) => true//walksleft == 1
       case PlayerCell(2) => true//walksleft == 1
       case PlayerCell(3) => true//walksleft == 1
@@ -80,9 +80,9 @@ object checkCell {
     x.cell(currentCoord._1, currentCoord._2)
   }
 
-  def getNextCell(old:Gameboard, next:Gameboard, currentCoord:(Int,Int), walksleft:Int, playerID:Int): Gameboard = {
+  def getNextCell(old:Gameboard, next:Gameboard, currentCoord:(Int,Int), walksleft:Int, PlayeriD:Int): Gameboard = {
     getCell(old, currentCoord) match {
-      case PlayerCell(playerID) => next
+      case PlayerCell(PlayeriD) => next
       case PlayerCell(1) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
       case PlayerCell(2) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
       case PlayerCell(3) => {if(walksleft == 1 ) {kickFigure(next)} else {next}}
