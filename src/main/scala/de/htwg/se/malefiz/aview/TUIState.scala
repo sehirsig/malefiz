@@ -39,19 +39,7 @@ object IdleTUIState extends TUIState {
 object  PlayerNameState extends  TUIState {
   def processing(input: String): TUIState = {
     controller.addPlayerName(input)
-    PlayerColorState
-  }
-}
-
-object  PlayerColorState extends  TUIState {
-  def processing(input: String): TUIState = {
-    input match {
-      case "1" => controller.addPlayerColor(input.toInt);IdleTUIState
-      case "2" => controller.addPlayerColor(input.toInt);IdleTUIState
-      case "3" => controller.addPlayerColor(input.toInt);IdleTUIState
-      case "4" => controller.addPlayerColor(input.toInt);IdleTUIState
-      case _ => println("invalid input");PlayerColorState
-    }
+    IdleTUIState
   }
 }
 
@@ -85,13 +73,13 @@ object MovingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     if (controller.moveCounter == 0) {
       if (controller.checkWin()) {
-        WinnerTUIState
+        WinnerTUIState.processing(input)
       } else {
         PlayingTUIState.processing(input)
       }
     } else {
       input match {
-        case "w" => controller.move(input, controller.selectedFigNum); MovingTUIState //TODO: Select Gamefigures, instead of 1
+        case "w" => controller.move(input, controller.selectedFigNum); MovingTUIState
         case "a" => controller.move(input, controller.selectedFigNum); MovingTUIState
         case "s" => controller.move(input, controller.selectedFigNum); MovingTUIState
         case "d" => controller.move(input, controller.selectedFigNum); MovingTUIState

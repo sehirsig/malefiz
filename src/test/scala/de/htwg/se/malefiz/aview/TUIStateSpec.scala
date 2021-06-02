@@ -16,10 +16,6 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("p")
       currentState should be(PlayerNameState)
     }
-    "switch to PlayerColourState" in {
-      currentState = currentState.processing("Player1")
-      currentState should be(PlayerColorState)
-    }
     "switch back to IdleTUIState " in {
       currentState = currentState.processing("invalid")
       currentState = currentState.processing("1")

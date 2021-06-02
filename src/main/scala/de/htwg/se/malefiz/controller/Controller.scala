@@ -12,7 +12,7 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   private val undoManager = new UndoManager
 
-  var win:Boolean = false;
+  var gameWon:Boolean = false
 
   var savedGame:lastSave = lastSave(0, "", InvalidCell)
 
@@ -27,18 +27,15 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   var game: Game = Game(Vector[Player]())
 
   def addPlayer(): Unit = {
-    win = false
+    gameWon = false
     gameStatus = ENTERNAME
     notifyObservers
   }
   def addPlayerName(name: String): Unit = {
     builder.setName(name)
-    gameStatus = ENTERCOLOR
-    notifyObservers
-  }
-  def addPlayerColor(color: Int): Unit = {
-    builder.setID(color)
-    color match {
+    val newplayernum = game.players.length + 1
+    builder.setID(newplayernum)
+    newplayernum match {
       case 1 => builder.setStartingPos(15,3)
       case 2 => builder.setStartingPos(15,7)
       case 3 => builder.setStartingPos(15,11)
@@ -75,10 +72,10 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   }
 
   def checkWin():Boolean = {
-    if (gameboard.cell(1,9).isInstanceOf[PlayerCell] || win) {
+    if (gameboard.cell(1,9).isInstanceOf[PlayerCell]) {
+      gameWon = true
       gameStatus = GAMEWINNER
-      print("We Have a Winner: " + gameboard.cell(1,9).toString())
-      win = true;
+      print("We Have a Winner: " + game.players(playerStatus.getCurrentPlayer).name)
       game = Game(Vector[Player]())
       true
     } else {
@@ -105,12 +102,12 @@ case class Controller(var gameboard: Gameboard) extends Observable{
 
   def emptyMan: Unit = {
     undoManager.emptyStacks
-    notifyObservers
+    //notifyObservers
   }
 
   def undoAll: Unit = {
     undoManager.undoAll
-    notifyObservers
+    //notifyObservers
   }
 /*
   def undo: Unit = {

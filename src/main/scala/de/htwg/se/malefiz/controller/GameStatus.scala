@@ -5,7 +5,7 @@ object GameStatus extends Enumeration {
   type PlayerStatus = Value
   //type GameFigureStatus = Value
 
-  val GAMEWINNER, CHOOSEFIG, IDLE, READY1, READY2, PLAYER0, PLAYER1, PLAYER2, PLAYER3, PLAYER4, PLAYING, MOVING, ENTERNAME, ENTERCOLOR = Value
+  val GAMEWINNER, CHOOSEFIG, IDLE, READY1, READY2, PLAYER0, PLAYER1, PLAYER2, PLAYER3, PLAYER4, PLAYING, MOVING, ENTERNAME = Value
 
   val gameMap = Map[GameStatus, String](
     GAMEWINNER -> "We have a Winner!",
@@ -15,8 +15,7 @@ object GameStatus extends Enumeration {
     READY2 -> "Type start to play the Game",
     PLAYING -> "Press r to roll dice",
     MOVING -> "Press a,w,s,d to move",
-    ENTERNAME -> "Please enter your name",
-    ENTERCOLOR -> "Please choose a color (1 = red, 2 = green, 3 = yellow, 4 = blue"
+    ENTERNAME -> "Please enter your name"
   )
 
   val playerMap = Map[PlayerStatus, String](
