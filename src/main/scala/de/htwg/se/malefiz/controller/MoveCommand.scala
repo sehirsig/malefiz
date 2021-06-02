@@ -92,20 +92,20 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
       case _ =>
     }
 
+    if ((controllerH.moveCounter - 1) == 0) { // If 0, Kick Spieler
+      controllerH.game.players.map(b => b.figures.map(k => {
+        if (((k.pos._1, k.pos._2) == newpos) && (k.player != currentplayer)) {
+          k.player.figures(k.getNumber) = k.player.figures(k.getNumber).updatePos(k.player.startingPos)
+          controllerH.gameboard = controllerH.gameboard.movePlayer(k.player.startingPos, k.player.cell)
+        }
+      }))
+    }
     sucInp = savetuple._1
     controllerH.gameboard = savetuple._2
 
     println(controllerH.moveCounter - 1) // TODO Raus damit
     if(sucInp) {
       controllerH.moveCounter -= 1
-      if (controllerH.moveCounter == 0) { // If 0, Kick Spieler
-        controllerH.game.players.map(b => b.figures.map(k => {
-          if (((k.pos._1, k.pos._2) == newpos) && (k.player != currentplayer)) {
-            k.player.figures(k.getNumber) = k.player.figures(k.getNumber).updatePos(k.player.startingPos)
-            controllerH.gameboard = controllerH.gameboard.movePlayer(k.player.startingPos, k.player.cell)
-          }
-        }))
-      }
       direction match { // Sperre die andere Richtung, damit man nicht einfach links - rechts / oben - unten laufen kann
         case "w" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("s")
         case "s" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("w")
