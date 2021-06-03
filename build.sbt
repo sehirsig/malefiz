@@ -5,6 +5,7 @@ scalaVersion  := "2.13.3"
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.7"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.7" % "test"
+libraryDependencies += "org.scala-lang.modules" %% "scala-swing" % "3.0.0"
 
 //*******************************************************************************//
 //Libraries that we will use in later lectures compatible with this scala version

@@ -7,7 +7,7 @@ case class Gameboard(rows: Vector[Vector[Cell]]) {
   var blockStrategy: BlockStrategy = BlockReplaceStrategy()
 
   def setBlockStrategy(blockstrategy: BlockStrategy): Unit = {
-    this.blockStrategy = blockstrategy
+    blockStrategy = blockstrategy
   }
 
   def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {

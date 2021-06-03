@@ -18,7 +18,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         def isUpdated: Boolean = updated
         override def update: Boolean = {updated = true; updated}
       }
-      controller.add(observer)
+      //controller.add(observer)
       "from the offset" in {
         controller.gameStatus should be(IDLE)
         controller.playerStatus should be(PlayerState1)

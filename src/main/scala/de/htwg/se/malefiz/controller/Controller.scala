@@ -4,7 +4,9 @@ import de.htwg.se.malefiz.controller.GameStatus._
 import de.htwg.se.malefiz.model._
 import de.htwg.se.malefiz.util.{Observable, UndoManager}
 
-case class Controller(var gameboard: Gameboard) extends Observable{
+import scala.swing.Publisher
+
+case class Controller(var gameboard: Gameboard) extends Publisher{
   var gameStatus: GameStatus = IDLE
   var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
@@ -21,7 +23,8 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   def selectFigure(x:Int):Unit = {
     selectedFigNum = x
     gameStatus = MOVING
-    notifyObservers
+    publish(new SettingUp)
+    //notifyObservers
   }
 
   var game: Game = Game(Vector[Player]())
@@ -29,7 +32,8 @@ case class Controller(var gameboard: Gameboard) extends Observable{
   def addPlayer(): Unit = {
     gameWon = false
     gameStatus = ENTERNAME
-    notifyObservers
+    publish(new SettingUp)
+    //notifyObservers
   }
 
   def addPlayerName(name: String): Unit = {
@@ -54,12 +58,14 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     else {
       gameStatus = READY1
     }
-    notifyObservers
+    publish(new SettingUp)
+    //notifyObservers
   }
 
   def startGame(): Unit = {
     gameStatus = PLAYING
-    notifyObservers
+    publish(new CellChanged)
+    //notifyObservers
   }
 
   def boardToString(): String = gameboard.toString()
@@ -68,7 +74,8 @@ case class Controller(var gameboard: Gameboard) extends Observable{
     moveCounter = Dice.diceRoll
     println("You have rolled a: " + moveCounter)
     gameStatus = CHOOSEFIG
-    notifyObservers
+    publish(new SettingUp)
+    //notifyObservers
     savedGame = savedGame.updateLastFullDice(moveCounter)
     moveCounter
   }
@@ -107,7 +114,8 @@ case class Controller(var gameboard: Gameboard) extends Observable{
       case "redo" => undoManager.redoStep
       case _ => if(input != savedGame.lastDirectionOpposite) undoManager.doStep(new MoveCommand(input, figurenum, this));
     }
-    notifyObservers
+    publish(new CellChanged)
+    //notifyObservers
   }
 
   def emptyMan: Unit = {
