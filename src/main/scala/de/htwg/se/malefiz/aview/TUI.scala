@@ -6,6 +6,7 @@ import de.htwg.se.malefiz.util.Observer
 import scala.io.StdIn.readLine
 import scala.swing.Reactor
 
+
 case class TUI(controller: Controller) extends Reactor {
   listenTo(controller)
   //controller.add(this)

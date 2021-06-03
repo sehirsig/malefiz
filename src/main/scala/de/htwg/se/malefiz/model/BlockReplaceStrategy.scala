@@ -18,5 +18,4 @@ case class BlockReplaceStrategy() extends BlockStrategy {
       j <- 0 until vec(i).size
       if vec(i)(j) == x
     } yield (i, j)
-
 }
