@@ -74,9 +74,9 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     var newpos = fig_coord
     direction match {
       case "w" =>  {
-        savetuple = checkCell.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
-        lastCell = savedG.cell(goUp(fig_coord)._1, goUp(fig_coord)._2)
-        newpos = goUp(fig_coord)
+        savetuple = checkCell.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)} // returns TRUE, if walking worked and Saves Gameboard
+        lastCell = savedG.cell(goUp(fig_coord)._1, goUp(fig_coord)._2) // Saves LastCell to Replace it afterwards
+        newpos = goUp(fig_coord) // Saves newposition to look for Player Kick
       case "a" => {
         savetuple = checkCell.walkLeft(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
         lastCell = savedG.cell(goLeft(fig_coord)._1, goLeft(fig_coord)._2)
@@ -112,12 +112,12 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
         case "a" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("d")
         case "d" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("a")
       }
-      if (controllerH.savedGame.lastCell.isInstanceOf[PlayerCell]) {
+      if (controllerH.savedGame.lastCell.isInstanceOf[PlayerCell]) { //Wenn man über eine Person drüber läuft, , diese wieder hinschreiben.
         controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord, controllerH.savedGame.lastCell)
       }
       controllerH.savedGame = controllerH.savedGame.updatelastCell(lastCell)
     } else {
-      controllerH.undoAll
+      controllerH.undoAll //Wenn Laufen nicht gekappt, hat (in Illeagle Richtung) Kompletter zug zurücksetzen.
       println("Wrong Input") // TODO raus damit
       direction match {
         case "skip" => controllerH.moveCounter = 0
@@ -127,7 +127,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     if(controllerH.moveCounter < 1) {
       controllerH.gameStatus = PLAYING
       controllerH.playerStatus = controllerH.playerStatus.nextPlayer(controllerH.game.getPlayerNumber())
-      controllerH.emptyMan
+      controllerH.emptyMan //Empty the Undomanager to be able to completetly reset it when in falsche richtung geloffen
       controllerH.savedGame = controllerH.savedGame.updateLastDirection("")
       controllerH.savedGame = controllerH.savedGame.updatelastCell(InvalidCell)
     }
