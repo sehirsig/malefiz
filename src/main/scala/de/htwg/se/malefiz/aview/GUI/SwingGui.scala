@@ -42,8 +42,7 @@ class SwingGui(controller: Controller) extends Frame {
       contents += statusline
     }
     new BorderPanel {
-      //add(gridPanel, BorderPanel.Position.Center)
-      meinbild.visible = true
+      add(gridPanel, BorderPanel.Position.Center)
     }
   }
 
@@ -85,7 +84,6 @@ class SwingGui(controller: Controller) extends Frame {
     icon = new ImageIcon("/resources/blockade/cool.png")
   }
 
-  val devCardIcon:Image = new Image
 
 
   def gridPanel = new GridPanel(Settings().xDim,Settings().yDim) {
@@ -98,7 +96,7 @@ class SwingGui(controller: Controller) extends Frame {
       //contents += new Button(count.toString())
       count = count + 1
       contents += new Label(controller.gameboard.rows.flatMap(_.toList)(count - 1) match {
-        case BlockedCell => "d"
+        case BlockedCell => "X"
         case FreeCell => "d"
         case SecureCell => "d"
         case StartCell => "d"
