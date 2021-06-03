@@ -28,63 +28,51 @@ class SwingGui(controller: Controller) extends Frame {
 //IdleGUIState, PlayerNameState, PlayingGUIState, ChooseGameFigGUIState, WinnerGUIState, MovingGUIState
 
 
+  val namebox = new TextField("Name", 10)
+  val namebutton = new Button {
+    text = "Test"
+    listenTo(mouse.clicks)
+    reactions += {
+      case _: MouseClicked => controller.startGame()
+    }
+  }
 
-  val nameinput = new FlowPanel {
-    contents += new TextField("Person", 10)
-    contents += new Button("Enter Name")
-    contents += new TextField(GameStatus.gameMessage(controller.gameStatus), 20)
-    border = Swing.EmptyBorder(15)
+  val nameinputPanel = new FlowPanel {
+    contents += namebox
+    contents += namebutton
+    border = Swing.EmptyBorder(105)
+  }
+
+  val welcomeMessage = new Label {
+    text = "Welcome to Malefiz the Game!"
+  }
+
+  val welcomePanel = new BoxPanel(Orientation.Vertical) {
+    //contents += gridPanel
+    contents += welcomeMessage
+    contents += nameinputPanel
+    contents += statusline
+    //contents += BlockIcon
+    border = Swing.EmptyBorder(20,20,20,20)
+    contents(0).preferredSize = new Dimension(780,1500)
+    contents(1).preferredSize = new Dimension(780,50)
+    contents(2).preferredSize = new Dimension(780,30)
   }
 
   contents = {
-    new FlowPanel {
-      contents += nameinput
+    new BoxPanel(Orientation.Vertical) {
+      //contents += gridPanel
+      contents += welcomeMessage
+      contents += nameinputPanel
       contents += statusline
-    }
-    new BorderPanel {
-      add(gridPanel, BorderPanel.Position.Center)
+      border = Swing.EmptyBorder(20,20,20,20)
+      contents(0).preferredSize = new Dimension(780,1500)
+      contents(1).preferredSize = new Dimension(780,50)
+      contents(2).preferredSize = new Dimension(780,30)
     }
   }
 
   var count = 0
-  controller.gameboard.rows.flatten
-
-  val BlockIcon = new Label {
-    new ImageIcon("path to the image file")
-  }
-  val FreeIcon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-  val SecureIcon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-  val StartIcon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-  val GoalIcon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-  val Player1Icon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-  val Player2Icon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-  val Player3Icon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-  val Player4Icon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-  val InvalidIcon = new Label {
-    icon = new ImageIcon("path to the image file")
-  }
-
-  val meinbild = new Label {
-    icon = new ImageIcon("/resources/blockade/cool.png")
-  }
-
-
 
   def gridPanel = new GridPanel(Settings().xDim,Settings().yDim) {
     border = LineBorder(Color.BLACK, 2)
@@ -96,11 +84,11 @@ class SwingGui(controller: Controller) extends Frame {
       //contents += new Button(count.toString())
       count = count + 1
       contents += new Label(controller.gameboard.rows.flatMap(_.toList)(count - 1) match {
-        case BlockedCell => "X"
-        case FreeCell => "d"
-        case SecureCell => "d"
-        case StartCell => "d"
-        case GoalCell => "d"
+        case BlockedCell => "⌧"
+        case FreeCell => "▓"
+        case SecureCell => "▓"
+        case StartCell => "█"
+        case GoalCell => "©"
         case PlayerCell(num) => num match {
           case 1 => "P1"
           case 2 => "P2"
@@ -111,6 +99,7 @@ class SwingGui(controller: Controller) extends Frame {
         case InvalidCell => ""
         case _ => ""
       })//controller.gameboard.rows.flatMap(_.toList)(count).toString()
+      if (count == 342) count = 0
     }
   }
 
@@ -119,12 +108,26 @@ class SwingGui(controller: Controller) extends Frame {
     case event: SettingUp => reinfo
   }
 
+
+
   def reinfo:Unit = {
     statusline.text = GameStatus.gameMessage(controller.gameStatus)
     repaint
   }
 
   def redraw:Unit = {
+    contents = {
+      new BoxPanel(Orientation.Vertical) {
+        contents += gridPanel
+        //contents += welcomeMessage
+        contents += nameinputPanel
+        contents += statusline
+        border = Swing.EmptyBorder(20,20,20,20)
+        contents(0).preferredSize = new Dimension(780,1500)
+        contents(1).preferredSize = new Dimension(780,50)
+        contents(2).preferredSize = new Dimension(780,30)
+      }
+    }
     statusline.text = GameStatus.gameMessage(controller.gameStatus)
     repaint
   }
