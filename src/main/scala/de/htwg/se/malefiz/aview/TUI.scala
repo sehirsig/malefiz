@@ -1,6 +1,5 @@
 package de.htwg.se.malefiz.aview
 import de.htwg.se.malefiz.controller.{ChooseFig, Controller, GameReset, GameStatus, Moving, RollDice, SettingUp, StartGame, StartUp, WonGame}
-import de.htwg.se.malefiz.util.Observer
 
 import scala.io.StdIn.readLine
 import scala.swing.Reactor
@@ -8,7 +7,6 @@ import scala.swing.Reactor
 
 case class TUI(controller: Controller) extends Reactor {
   listenTo(controller)
-  //controller.add(this)
 
   var currentState:TUIState = IdleTUIState
 
