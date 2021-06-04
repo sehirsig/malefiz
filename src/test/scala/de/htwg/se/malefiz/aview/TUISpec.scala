@@ -57,5 +57,5 @@ class TUISpec extends AnyWordSpec with Matchers {
 //    "do nothing on invalid inputs" in {
 //      tui.processing("krgr")
 //    }
-//  }
+  }
 }
