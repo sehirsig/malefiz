@@ -14,17 +14,17 @@ class TUISpec extends AnyWordSpec with Matchers {
     "should be initialy idle" in {
       tui.currentState should be(IdleTUIState)
     }
-    "should process an input" in {
-      tui.processing("p")
-      tui.currentState should be(PlayerNameState)
-      tui.processing("xy")
-      tui.currentState should be(IdleTUIState)
-    }
-    "should react to events" in {
-      controller.selectFigure(1)
-      tui.currentState should be(MovingTUIState)
-    }
-  }
+//    "should process an input" in {
+//      tui.processing("p")
+//      tui.currentState should be(PlayerNameState)
+//      tui.processing("xy")
+//      tui.currentState should be(IdleTUIState)
+//    }
+//    "should react to events" in {
+//      controller.selectFigure(1)
+//      tui.currentState should be(MovingTUIState)
+//    }
+//  }
 //    "do nothing on input 'welcomeMessage'" in {
 //      tui.processing("welcomeMessage")
 //    }
