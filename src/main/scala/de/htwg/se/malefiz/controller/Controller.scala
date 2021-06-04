@@ -88,10 +88,11 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
   def rollDice(): Int = {
     moveCounter = Dice.diceRoll
     gameStatus = CHOOSEFIG
-    publish(new ChooseFig)
     //notifyObservers
     savedGame = savedGame.updateLastFullDice(moveCounter)
+    publish(new ChooseFig)
     moveCounter
+
   }
 
   def checkWin():Unit = {

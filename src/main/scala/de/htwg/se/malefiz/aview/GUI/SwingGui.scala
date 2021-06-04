@@ -188,7 +188,7 @@ class SwingGui(controller: Controller) extends Frame {
 
   def gridPanel = new GridPanel(Settings().xDim,Settings().yDim) {
     border = LineBorder(Color.BLACK, 2)
-    background = Color.ORANGE
+    background = new Color(204,144,5)
     for {
       outerRow <- 0 until Settings().xDim
       outerColumn <- 0 until Settings().yDim
@@ -196,20 +196,20 @@ class SwingGui(controller: Controller) extends Frame {
       count = count + 1
       contents += new Label {
         icon = controller.gameboard.rows.flatMap(_.toList)(count - 1) match {
-          case BlockedCell => new ImageIcon("src\\main\\resources\\blocked.png")
-          case FreeCell => new ImageIcon("src\\main\\resources\\free.png")
-          case SecureCell => new ImageIcon("src\\main\\resources\\free.png")
-          case Start1Cell => new ImageIcon("src\\main\\resources\\start1.png")
-          case Start2Cell => new ImageIcon("src\\main\\resources\\start2.png")
-          case Start3Cell => new ImageIcon("src\\main\\resources\\start3.png")
-          case Start4Cell => new ImageIcon("src\\main\\resources\\start4.png")
-          case GoalCell => new ImageIcon("src\\main\\resources\\goal.png")
+          case BlockedCell => new ImageIcon(this.getClass().getResource("/blocked.png"))
+          case FreeCell => new ImageIcon(this.getClass().getResource("/free.png"))
+          case SecureCell => new ImageIcon(this.getClass().getResource("/free.png"))
+          case Start1Cell => new ImageIcon(this.getClass().getResource("/start1.png"))
+          case Start2Cell => new ImageIcon(this.getClass().getResource("/start2.png"))
+          case Start3Cell => new ImageIcon(this.getClass().getResource("/start3.png"))
+          case Start4Cell => new ImageIcon(this.getClass().getResource("/start4.png"))
+          case GoalCell => new ImageIcon(this.getClass().getResource("/goal.png"))
           case PlayerCell(num) => num match {
-            case 1 => new ImageIcon("src\\main\\resources\\player1.png")
-            case 2 => new ImageIcon("src\\main\\resources\\player2.png")
-            case 3 => new ImageIcon("src\\main\\resources\\player3.png")
-            case 4 => new ImageIcon("src\\main\\resources\\player4.png")
-            case _ => new ImageIcon("src\\main\\resources\\player0.png")
+            case 1 => new ImageIcon(this.getClass().getResource("/player1.png"))
+            case 2 => new ImageIcon(this.getClass().getResource("/player2.png"))
+            case 3 => new ImageIcon(this.getClass().getResource("/player3.png"))
+            case 4 => new ImageIcon(this.getClass().getResource("/player4.png"))
+            case _ => new ImageIcon(this.getClass().getResource("/player0.png"))
           }
           case InvalidCell => new ImageIcon()
           case _ => new ImageIcon()

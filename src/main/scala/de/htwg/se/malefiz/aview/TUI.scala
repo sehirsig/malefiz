@@ -19,7 +19,7 @@ case class TUI(controller: Controller) extends Reactor {
   reactions += {
     case event: RollDice => printTui
     case event: Moving => printTui;currentState = MovingTUIState
-    case event: ChooseFig => printStatus
+    case event: ChooseFig => printStatus;currentState = ChooseGameFigTUIState
     case event: SettingUp => printStatus
     case event: StartUp => printStatus
     case event: StartGame => printStatus; currentState = PlayingTUIState
