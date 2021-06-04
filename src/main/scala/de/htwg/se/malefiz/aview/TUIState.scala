@@ -75,25 +75,26 @@ object MovingTUIState extends TUIState {
       println("We Have a Winner: " + controller.gameWon._2 + "\n")
       WinnerTUIState.processing(input); WinnerTUIState
     }
+
+    input match {
+      case "w" => controller.move(input, controller.selectedFigNum); MovingTUIState
+      case "a" => controller.move(input, controller.selectedFigNum); MovingTUIState
+      case "s" => controller.move(input, controller.selectedFigNum); MovingTUIState
+      case "d" => controller.move(input, controller.selectedFigNum); MovingTUIState
+      case "undo" => controller.move(input, controller.selectedFigNum); MovingTUIState
+      case "redo" => controller.move(input, controller.selectedFigNum); MovingTUIState
+      case "skip" => controller.move(input, controller.selectedFigNum); MovingTUIState
+      case _ => println("invalid input"); MovingTUIState
+    }
     if (controller.moveCounter == 0) {
-        PlayingTUIState.processing(input); PlayingTUIState
-    } else {
-      input match {
-        case "w" => controller.move(input, controller.selectedFigNum); MovingTUIState
-        case "a" => controller.move(input, controller.selectedFigNum); MovingTUIState
-        case "s" => controller.move(input, controller.selectedFigNum); MovingTUIState
-        case "d" => controller.move(input, controller.selectedFigNum); MovingTUIState
-        case "undo" => controller.move(input, controller.selectedFigNum); MovingTUIState
-        case "redo" => controller.move(input, controller.selectedFigNum); MovingTUIState
-        case "skip" => controller.move(input, controller.selectedFigNum); MovingTUIState
-        case _ => println("invalid input"); MovingTUIState
-      }
       if (controller.gameWon._1) {
         MovingTUIState
       } else {
-        println("Moves remaining:" + controller.moveCounter)
-        MovingTUIState
+        PlayingTUIState //PlayingTUIState.processing(input); PlayingTUIState
       }
+    } else {
+      println("Moves remaining:" + controller.moveCounter)
+      MovingTUIState
     }
   }
 }

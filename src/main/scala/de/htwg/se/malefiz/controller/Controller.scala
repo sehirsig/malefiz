@@ -92,7 +92,6 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
     savedGame = savedGame.updateLastFullDice(moveCounter)
     publish(new ChooseFig)
     moveCounter
-
   }
 
   def checkWin():Unit = {
