@@ -88,7 +88,10 @@ object checkCell {
 
   def wasStartBlock(x:Gameboard, currentCoord:(Int,Int)):Cell = {
     getCell(x, currentCoord) match {
-      case StartCell => StartCell
+      case Start1Cell => Start1Cell
+      case Start2Cell => Start2Cell
+      case Start3Cell => Start3Cell
+      case Start4Cell => Start4Cell
       case _ => secureORfreeCell(currentCoord)
     }
   }

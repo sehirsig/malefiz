@@ -21,7 +21,7 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("1")
       currentState should be(IdleTUIState)
     }
-    "not start ghte Game" in {
+    "not start the Game" in {
       currentState = currentState.processing("s")
       currentState should be(IdleTUIState)
     }
@@ -67,19 +67,17 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("d")
       currentState should be(PlayingTUIState)
     }
+    "skip the turn" in {
+      currentState = currentState.processing("skip")
+    }
     "undo the Gamefigure" in {
       currentState = currentState.processing("r")
       currentState = currentState.processing("r")
       currentState = currentState.processing("1")
-      currentState = currentState.processing("d")
       currentState = currentState.processing("undo")
     }
     "redo the Gamefigure" in {
       currentState = currentState.processing("redo")
-    }
-    "skip the turn" in {
-      currentState = currentState.processing("skip")
-      currentState should (be(IdleTUIState) or be(MovingTUIState))
     }
     "switch to Winner if won" in {
       currentState = WinnerTUIState

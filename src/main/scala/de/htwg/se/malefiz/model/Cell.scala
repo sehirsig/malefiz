@@ -14,7 +14,19 @@ object BlockedCell extends Cell {
   override val cellStatus = "X "
 }
 
-object StartCell extends Cell {
+object Start1Cell extends Cell {
+  override val cellStatus = "T "
+}
+
+object Start2Cell extends Cell {
+  override val cellStatus = "T "
+}
+
+object Start3Cell extends Cell {
+  override val cellStatus = "T "
+}
+
+object Start4Cell extends Cell {
   override val cellStatus = "T "
 }
 

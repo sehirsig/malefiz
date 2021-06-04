@@ -8,7 +8,7 @@ object GameStatus extends Enumeration {
   val GAMEWINNER, CHOOSEFIG, IDLE, READY1, READY2, PLAYER0, PLAYER1, PLAYER2, PLAYER3, PLAYER4, PLAYING, MOVING, ENTERNAME = Value
 
   val gameMap = Map[GameStatus, String](
-    GAMEWINNER -> "We have a Winner!",
+    GAMEWINNER -> "Press r to Reset and Play Again!",
     CHOOSEFIG -> "Choose a Figure (1-5)",
     IDLE -> "Press p to add players",
     READY1 -> "Type start or press p to add more players",

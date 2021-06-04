@@ -13,7 +13,7 @@ case class Gameboard(rows: Vector[Vector[Cell]]) {
   def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
     (row, col) => {
       if(Settings().blockedCells.contains(row, col)) {
-        BlockedCell
+        FreeCell//BlockedCell
       } else if (Settings().freeCells.contains(row, col)) {
         FreeCell
       } else if(Settings().secureCells.contains(row, col)) {
@@ -21,13 +21,13 @@ case class Gameboard(rows: Vector[Vector[Cell]]) {
       } else if(Settings().goalCell == (row, col)) {
         GoalCell
       } else if(Settings().start1.contains(row, col)) {
-        StartCell
+        Start1Cell
       } else if(Settings().start2.contains(row, col)) {
-        StartCell
+        Start2Cell
       } else if(Settings().start3.contains(row, col)) {
-        StartCell
+        Start3Cell
       } else if(Settings().start4.contains(row, col)) {
-        StartCell
+        Start4Cell
       }  else {
         InvalidCell
       }

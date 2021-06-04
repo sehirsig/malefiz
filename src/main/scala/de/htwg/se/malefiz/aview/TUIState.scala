@@ -36,7 +36,7 @@ object IdleTUIState extends TUIState {
   }
 }
 
-object  PlayerNameState extends  TUIState {
+object PlayerNameState extends  TUIState {
   def processing(input: String): TUIState = {
     controller.addPlayerName(input)
     IdleTUIState
@@ -46,7 +46,7 @@ object  PlayerNameState extends  TUIState {
 object PlayingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
-      case "r" => controller.rollDice();ChooseGameFigTUIState
+      case "r" => controller.rollDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState
       case _ => println("invalid input");PlayingTUIState
     }
   }
@@ -64,19 +64,19 @@ object ChooseGameFigTUIState extends TUIState {
 object WinnerTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
-      case _ => IdleTUIState
+      case _ => controller.resetGame();IdleTUIState
     }
   }
 }
 
 object MovingTUIState extends TUIState {
   def processing(input: String): TUIState = {
+    if (controller.gameWon._1) {
+      println("We Have a Winner: " + controller.gameWon._2 + "\n")
+      WinnerTUIState.processing(input); WinnerTUIState
+    }
     if (controller.moveCounter == 0) {
-      if (controller.checkWin()) {
-        WinnerTUIState.processing(input)
-      } else {
-        PlayingTUIState.processing(input)
-      }
+        PlayingTUIState.processing(input); PlayingTUIState
     } else {
       input match {
         case "w" => controller.move(input, controller.selectedFigNum); MovingTUIState
@@ -87,6 +87,12 @@ object MovingTUIState extends TUIState {
         case "redo" => controller.move(input, controller.selectedFigNum); MovingTUIState
         case "skip" => controller.move(input, controller.selectedFigNum); MovingTUIState
         case _ => println("invalid input"); MovingTUIState
+      }
+      if (controller.gameWon._1) {
+        MovingTUIState
+      } else {
+        println("Moves remaining:" + controller.moveCounter)
+        MovingTUIState
       }
     }
   }

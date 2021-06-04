@@ -2,7 +2,7 @@ package de.htwg.se.malefiz
 
 import de.htwg.se.malefiz.aview.GUI.SwingGui
 import de.htwg.se.malefiz.aview.TUI
-import de.htwg.se.malefiz.controller.{Controller, SettingUp}
+import de.htwg.se.malefiz.controller.{Controller, SettingUp, StartUp}
 import de.htwg.se.malefiz.model._
 import de.htwg.se.malefiz.model.properties.Settings
 
@@ -13,7 +13,7 @@ object Malefiz {
   val tui = new TUI(controller)
   val gui = new SwingGui(controller)
   //controller.notifyObservers
-  controller.publish(new SettingUp)
+  controller.publish(new StartUp)
 
   def main(args: Array[String]): Unit = {
     var input: String = ""

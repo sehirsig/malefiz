@@ -103,7 +103,6 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     sucInp = savetuple._1
     controllerH.gameboard = savetuple._2
 
-    println(controllerH.moveCounter - 1) // TODO Raus damit
     if(sucInp) {
       controllerH.moveCounter -= 1
       direction match { // Sperre die andere Richtung, damit man nicht einfach links - rechts / oben - unten laufen kann
@@ -118,18 +117,16 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
       controllerH.savedGame = controllerH.savedGame.updatelastCell(lastCell)
     } else {
       controllerH.undoAll //Wenn Laufen nicht gekappt, hat (in Illeagle Richtung) Kompletter zug zurücksetzen.
-      println("Wrong Input") // TODO raus damit
       direction match {
         case "skip" => controllerH.moveCounter = 0
         case _ =>
       }
     }
     if(controllerH.moveCounter < 1) {
-      controllerH.gameStatus = PLAYING
-      controllerH.playerStatus = controllerH.playerStatus.nextPlayer(controllerH.game.getPlayerNumber())
-      controllerH.emptyMan //Empty the Undomanager to be able to completetly reset it when in falsche richtung geloffen
-      controllerH.savedGame = controllerH.savedGame.updateLastDirection("")
-      controllerH.savedGame = controllerH.savedGame.updatelastCell(InvalidCell)
+        controllerH.playerStatus = controllerH.playerStatus.nextPlayer(controllerH.game.getPlayerNumber())
+        controllerH.emptyMan //Empty the Undomanager to be able to completetly reset it when in falsche richtung geloffen
+        controllerH.savedGame = controllerH.savedGame.updateLastDirection("")
+        controllerH.savedGame = controllerH.savedGame.updatelastCell(InvalidCell)
     }
   }
 

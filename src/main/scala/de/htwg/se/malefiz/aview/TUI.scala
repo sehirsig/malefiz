@@ -1,6 +1,5 @@
 package de.htwg.se.malefiz.aview
-import de.htwg.se.malefiz.controller.{CellChanged, Controller, GameStatus, SettingUp}
-
+import de.htwg.se.malefiz.controller.{ChooseFig, Controller, GameReset, GameStatus, Moving, RollDice, SettingUp, StartGame, StartUp, WonGame}
 import de.htwg.se.malefiz.util.Observer
 
 import scala.io.StdIn.readLine
@@ -18,9 +17,14 @@ case class TUI(controller: Controller) extends Reactor {
   }
 
   reactions += {
-    case event: CellChanged => printTui
+    case event: RollDice => printTui
+    case event: Moving => printTui;currentState = MovingTUIState
+    case event: ChooseFig => printStatus
     case event: SettingUp => printStatus
-
+    case event: StartUp => printStatus
+    case event: StartGame => printStatus; currentState = PlayingTUIState
+    case event: WonGame => printStatus; currentState = WinnerTUIState
+    case event: GameReset => printStatus; currentState = IdleTUIState
   }
 
   def printTui: Unit = {

@@ -2,6 +2,7 @@ package de.htwg.se.malefiz.controller
 
 import de.htwg.se.malefiz.controller.GameStatus._
 import de.htwg.se.malefiz.model._
+import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.{Observable, UndoManager}
 
 import scala.swing.Publisher
@@ -12,25 +13,38 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
   var moveCounter: Int = 0
   val builder: PlayerBuilder = new PlayerBuilderImp()
 
+  var game: Game = Game(Vector[Player]())
   private val undoManager = new UndoManager
 
-  var gameWon:Boolean = false
+  var gameWon:(Boolean,String) = (false,"")
 
   var savedGame:lastSave = lastSave(0, "", InvalidCell)
 
   var selectedFigNum:Int = 0;
 
+  def resetGame():Unit = {
+    gameStatus = IDLE
+    game = Game(Vector[Player]())
+    emptyMan
+    savedGame = lastSave(0, "", InvalidCell)
+    playerStatus = PlayerState1
+    moveCounter = 0
+    gameWon = (false,"")
+    selectedFigNum = 0;
+    this.gameboard = new Gameboard(Settings().xDim, Settings().yDim)
+    publish(new GameReset)
+  }
+
   def selectFigure(x:Int):Unit = {
     selectedFigNum = x
     gameStatus = MOVING
-    publish(new SettingUp)
+    publish(new Moving)
     //notifyObservers
   }
 
-  var game: Game = Game(Vector[Player]())
 
   def addPlayer(): Unit = {
-    gameWon = false
+    gameWon = (false,"")
     gameStatus = ENTERNAME
     publish(new SettingUp)
     //notifyObservers
@@ -41,10 +55,10 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
     val newplayernum = game.players.length + 1
     builder.setID(newplayernum)
     newplayernum match {
-      case 1 => builder.setStartingPos(15,3)
-      case 2 => builder.setStartingPos(15,7)
-      case 3 => builder.setStartingPos(15,11)
-      case 4 => builder.setStartingPos(15,15)
+      case 1 => builder.setStartingPos(2, 9)//15,3
+      case 2 => builder.setStartingPos(15, 7)
+      case 3 => builder.setStartingPos(15, 11)
+      case 4 => builder.setStartingPos(15, 15)
     }
     val player = builder.build()
     (1 to 5).map(x => player.addFigure(x))
@@ -58,31 +72,29 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
     else {
       gameStatus = READY1
     }
-    publish(new SettingUp)
+    publish(new StartUp)
     //notifyObservers
   }
 
   def startGame(): Unit = {
     gameStatus = PLAYING
-    publish(new CellChanged)
+    publish(new StartGame)
     //notifyObservers
   }
 
   def boardToString(): String = gameboard.toString()
 
   def rollDice(): Int = {
-    moveCounter = Dice.diceRoll
-    println("You have rolled a: " + moveCounter)
+    moveCounter = 1 //Dice.diceRoll
     gameStatus = CHOOSEFIG
-    publish(new SettingUp)
+    publish(new ChooseFig)
     //notifyObservers
     savedGame = savedGame.updateLastFullDice(moveCounter)
     moveCounter
   }
 
-  def checkWin():Boolean = {
+  def checkWin():Unit = {
     if (gameboard.cell(1,9).isInstanceOf[PlayerCell]) {
-      gameWon = true
       gameStatus = GAMEWINNER
       val winner = {
         if ((playerStatus.getCurrentPlayer - 1) == 0){
@@ -91,9 +103,8 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
           playerStatus.getCurrentPlayer - 2
         }
       }
-      println("We Have a Winner: " + game.players(winner).name + "\n")
-      println("Press p to add new Players for a new game!")
-      game = Game(Vector[Player]())
+      gameWon = (true,game.players(winner).name.replace("Some", ""))
+      publish(new WonGame)
       true
     } else {
       false
@@ -114,7 +125,15 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
       case "redo" => undoManager.redoStep
       case _ => if(input != savedGame.lastDirectionOpposite) undoManager.doStep(new MoveCommand(input, figurenum, this));
     }
-    publish(new CellChanged)
+    if (moveCounter == 0) {
+      checkWin()
+      if (!gameWon._1) {
+        gameStatus = PLAYING
+        publish(new RollDice)
+      }
+    } else {
+      publish(new Moving)
+    }
     //notifyObservers
   }
 

@@ -35,13 +35,13 @@ class GameboardSpec extends AnyWordSpec with Matchers {
             } else if((Settings().goalCell == (row, col))) {
               GoalCell
             } else if((Settings().start1.contains(row, col))) {
-              StartCell
+              Start1Cell
             } else if((Settings().start2.contains(row, col))) {
-              StartCell
+              Start2Cell
             } else if((Settings().start3.contains(row, col))) {
-              StartCell
+              Start3Cell
             } else if((Settings().start4.contains(row, col))) {
-              StartCell
+              Start4Cell
             }  else {
               InvalidCell
             }
@@ -54,8 +54,10 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         spielbrett.cell(2, 9) should be(BlockedCell)
         spielbrett.cell(13, 1) should be(SecureCell)
         spielbrett.cell(1, 9) should be(GoalCell)
-        spielbrett.cell(15, 15) should be(StartCell)
-
+        spielbrett.cell(15, 15) should be(Start4Cell)
+        spielbrett.cell(15, 11) should be(Start3Cell)
+        spielbrett.cell(15, 7) should be(Start2Cell)
+        spielbrett.cell(15, 3) should be(Start1Cell)
       }
       "read the Cells with Cells to String method" in {
         spielbrett.rows(1)(1).toString() should be("  ")
