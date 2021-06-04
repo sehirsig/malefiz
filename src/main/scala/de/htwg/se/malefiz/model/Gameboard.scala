@@ -3,6 +3,8 @@ package de.htwg.se.malefiz.model
 import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.BlockStrategy
 
+import scala.util.{Failure, Success, Try}
+
 case class Gameboard(rows: Vector[Vector[Cell]]) {
   var blockStrategy: BlockStrategy = BlockReplaceStrategy()
 
@@ -36,7 +38,13 @@ case class Gameboard(rows: Vector[Vector[Cell]]) {
 
   def cell(row: Int, col: Int): Cell = rows(row)(col)
 
-  def replaceCell(row: Int, col: Int, cell: Cell): Gameboard = copy(rows.updated(row, rows(row).updated(col, cell)))
+  def replaceCell(row: Int, col: Int, cell: Cell): Try[Gameboard] = {
+    val tmp = Try(copy(rows.updated(row, rows(row).updated(col, cell))))
+    tmp match {
+      case Success(v) => Success(v)
+      case Failure(e) => Failure(e)
+    }
+  }
 
   def movePlayer(coord:(Int,Int), cell: Cell): Gameboard = {
     copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))

@@ -6,6 +6,7 @@ import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.{Observable, UndoManager}
 
 import scala.swing.Publisher
+import scala.util.{Failure, Success, Try}
 
 case class Controller(var gameboard: Gameboard) extends Publisher{
   var gameStatus: GameStatus = IDLE

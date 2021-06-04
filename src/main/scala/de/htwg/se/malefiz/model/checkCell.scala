@@ -4,6 +4,8 @@ import de.htwg.se.malefiz.model.moveTypes._
 import de.htwg.se.malefiz.model.properties.Settings
 import de.htwg.se.malefiz.util.BlockStrategy
 
+import scala.util.{Failure, Success}
+
 object checkCell {
   def walkUp(spielbrett:Gameboard, player:Player, currentCoord:(Int,Int), figurenum:Int, walksLeft:Int):(Boolean,Gameboard) = {
     isWalkable(spielbrett, goUp(currentCoord), walksLeft, player.Playerid) match { //Test if the Next Cell in this direction is even Walkable
@@ -101,6 +103,16 @@ object checkCell {
       case true => SecureCell
       case false => FreeCell
     }
+  }
+
+  def replaceIt(x:Gameboard) : Gameboard = {
+    var newboard = x
+    val returnedBoard = x.replaceCell(0, 0, BlockedCell)
+    returnedBoard match {
+      case Success(v) => newboard = v
+      case Failure(f) => newboard
+    }
+    newboard
   }
 
   def replaceBlock(x:Gameboard) : Gameboard = {

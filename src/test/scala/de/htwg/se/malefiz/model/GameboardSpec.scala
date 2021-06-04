@@ -5,6 +5,8 @@ import de.htwg.se.malefiz.model.properties.Settings
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 
+import scala.util.{Success,Failure}
+
 class GameboardSpec extends AnyWordSpec with Matchers {
   "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when { //
 
@@ -69,9 +71,14 @@ class GameboardSpec extends AnyWordSpec with Matchers {
 
       }
       "replace a Cell correctly and return a new Board" in {
+        var newboard = spielbrett
         val returnedBoard = spielbrett.replaceCell(0, 0, BlockedCell)
+        returnedBoard match {
+          case Success(v) => newboard = v
+          case Failure(f) => newboard
+        }
         spielbrett.cell(0, 0) should be(InvalidCell)
-        returnedBoard.cell(0, 0) should be(BlockedCell)
+        newboard.cell(0, 0) should be(BlockedCell)
       }
       "replace a Cell correctly with Tuple Coordinatesand return a new Board" in {
         val returnedBoard = spielbrett.movePlayer((0,0), BlockedCell)
