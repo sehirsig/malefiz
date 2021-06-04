@@ -55,7 +55,7 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
     val newplayernum = game.players.length + 1
     builder.setID(newplayernum)
     newplayernum match {
-      case 1 => builder.setStartingPos(2, 9)//15,3
+      case 1 => builder.setStartingPos(15, 3)
       case 2 => builder.setStartingPos(15, 7)
       case 3 => builder.setStartingPos(15, 11)
       case 4 => builder.setStartingPos(15, 15)
@@ -85,7 +85,7 @@ case class Controller(var gameboard: Gameboard) extends Publisher{
   def boardToString(): String = gameboard.toString()
 
   def rollDice(): Int = {
-    moveCounter = 1 //Dice.diceRoll
+    moveCounter = Dice.diceRoll
     gameStatus = CHOOSEFIG
     publish(new ChooseFig)
     //notifyObservers

@@ -2,7 +2,12 @@ language: scala
 scala:
 - 2.13.3
 
+dist: xenial
+services:
+  - xvfb
+
 script:
+- xvfb-run --server-args="-screen 0 1024x768x24" make test
 - sbt clean coverage test coverageReport
 
 after_success:
