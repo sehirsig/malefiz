@@ -16,7 +16,6 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
   val builder: PlayerBuilder = new PlayerBuilderImp()
-
   var game: Game = Game(Vector[Player]())
   private val undoManager = new UndoManager
   var gameWon: (Boolean, String) = (false, "")
@@ -43,6 +42,9 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
     //notifyObservers
   }
 
+  def getpureCell(name: String): Cell = {
+    gameboard.getCell(name)
+  }
 
   def addPlayer(): Unit = {
     gameWon = (false, "")

@@ -1,8 +1,21 @@
 package de.htwg.se.malefiz.controller.controllerComponent
 
+import de.htwg.se.malefiz.controller.controllerComponent.GameStatus.GameStatus
+import de.htwg.se.malefiz.model.gameComponent.Game
+import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface
+import de.htwg.se.malefiz.model.playerComponent.PlayerBuilder
+
 import scala.swing.Publisher
 
 trait ControllerInterface extends Publisher {
+  var gameStatus: GameStatus
+  var playerStatus: PlayerState
+  var moveCounter: Int
+  val builder: PlayerBuilder
+  var game: Game
+  var gameWon: (Boolean, String)
+  var savedGame: lastSaveInterface
+  var selectedFigNum: Int
   def resetGame(): Unit
   def selectFigure(x: Int): Unit
   def addPlayer(): Unit

@@ -1,7 +1,6 @@
 package de.htwg.se.malefiz.aview
 
 import de.htwg.se.malefiz.Malefiz.controller
-import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 
 trait TUIState {
   def processing(input: String): TUIState
