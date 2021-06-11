@@ -1,13 +1,15 @@
 package de.htwg.se.malefiz.controller.controllerComponent
 
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus.GameStatus
+import de.htwg.se.malefiz.model.cellComponent.Cell
 import de.htwg.se.malefiz.model.gameComponent.Game
-import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface
+import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}
 import de.htwg.se.malefiz.model.playerComponent._
 
 import scala.swing.Publisher
 
 trait ControllerInterface extends Publisher {
+  var gameboard: GameboardInterface
   var gameStatus: GameStatus
   var playerStatus: PlayerState
   var moveCounter: Int
@@ -16,11 +18,13 @@ trait ControllerInterface extends Publisher {
   var gameWon: (Boolean, String)
   var savedGame: lastSaveInterface
   var selectedFigNum: Int
+  def getpureCell(name: String): Cell
   def resetGame(): Unit
   def selectFigure(x: Int): Unit
   def addPlayer(): Unit
   def addPlayerName(name: String): Unit
   def startGame(): Unit
+  def SetupGame(): Unit
   def boardToString(): String
   def rollDice(): Int
   def checkWin(): Unit

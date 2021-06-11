@@ -7,6 +7,7 @@ import scala.util.Try
 
 trait GameboardInterface {
   val rows:Vector[Vector[Cell]]
+
   def setBlockStrategy(blockstrategy: String): Unit
   def movePlayer(coord: (Int, Int), cell: Cell): GameboardInterface
   def replaceCell(row: Int, col: Int, cell: Cell): Try[GameboardInterface]

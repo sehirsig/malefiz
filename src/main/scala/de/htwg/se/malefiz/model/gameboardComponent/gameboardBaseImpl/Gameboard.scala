@@ -1,5 +1,6 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
+import com.google.inject.Inject
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.model.playerComponent.Player
@@ -7,28 +8,7 @@ import de.htwg.se.malefiz.util.BlockStrategy
 
 import scala.util.{Failure, Random, Success, Try}
 
-case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
-  var blockStrategy: BlockStrategy = BlockReplaceStrategy()
-
-  def setBlockStrategy(blockstrategy: String): Unit = {
-    blockstrategy match {
-      case "remove" => this.blockStrategy = BlockRemoveStrategy()
-      case "replace" => this.blockStrategy = BlockReplaceStrategy()
-    }
-  }
-
-  def replaceBlocks(spielbrett: GameboardInterface): GameboardInterface = {
-    blockStrategy.replaceBlock(spielbrett)
-  }
-
-
-  def newGBStandardSize: Gameboard = {
-    new Gameboard(Settings().xDim, Settings().yDim)
-  }
-
-  def getStandardXYsize: (Int,Int) = {
-    (Settings().xDim, Settings().yDim)
-  }
+case class Gameboard@Inject()(rows: Vector[Vector[Cell]]) extends GameboardInterface {
 
   def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
     (row, col) => {
@@ -53,6 +33,29 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
       }
     }
   })
+
+
+  var blockStrategy: BlockStrategy = BlockReplaceStrategy()
+
+  def setBlockStrategy(blockstrategy: String): Unit = {
+    blockstrategy match {
+      case "remove" => this.blockStrategy = BlockRemoveStrategy()
+      case "replace" => this.blockStrategy = BlockReplaceStrategy()
+    }
+  }
+
+  def replaceBlocks(spielbrett: GameboardInterface): GameboardInterface = {
+    blockStrategy.replaceBlock(spielbrett)
+  }
+
+
+  def newGBStandardSize: Gameboard = {
+    new Gameboard(Settings().xDim, Settings().yDim)
+  }
+
+  def getStandardXYsize: (Int,Int) = {
+    (Settings().xDim, Settings().yDim)
+  }
 
   def getStringOfCell(cell:Cell): String = {
     cell match {

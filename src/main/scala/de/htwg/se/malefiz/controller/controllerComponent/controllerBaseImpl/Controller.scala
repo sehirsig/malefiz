@@ -1,5 +1,6 @@
 package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
+import com.google.inject.Inject
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.controller.controllerComponent._
 import de.htwg.se.malefiz.model.cellComponent._
@@ -11,7 +12,7 @@ import de.htwg.se.malefiz.util.UndoManager
 
 import scala.swing.Publisher
 
-case class Controller(var gameboard: GameboardInterface) extends ControllerInterface with Publisher {
+case class Controller @Inject() (var gameboard: GameboardInterface) extends ControllerInterface with Publisher {
   var gameStatus: GameStatus = IDLE
   var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
@@ -21,6 +22,8 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   var gameWon: (Boolean, String) = (false, "")
   var savedGame: lastSaveInterface = lastSave(0, "", InvalidCell)
   var selectedFigNum: Int = 0;
+
+  publish(new StartUp)
 
   def resetGame(): Unit = {
     gameStatus = IDLE
@@ -82,6 +85,11 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   def startGame(): Unit = {
     gameStatus = PLAYING
     publish(new StartGame)
+    //notifyObservers
+  }
+
+  def SetupGame(): Unit = {
+    publish(new SettingUp)
     //notifyObservers
   }
 

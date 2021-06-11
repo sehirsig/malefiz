@@ -12,6 +12,7 @@ import scala.swing.Publisher //Mock -> Stub
 
 case class Controller(var gameboard: GameboardInterface) extends ControllerInterface with Publisher{
   var gameStatus: GameStatus = IDLE
+  def createNewGameboard: Unit = {}
   var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
   val builder: PlayerBuilder = PlayerBuilderImp()
@@ -19,11 +20,13 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   var gameWon: (Boolean, String) = (false, "")
   var savedGame: lastSaveInterface = lastSave(0, "", InvalidCell)
   var selectedFigNum: Int = 0;
+  override def getpureCell(name: String): Cell = InvalidCell
   override def resetGame(): Unit = {}
   override def selectFigure(x: Int): Unit = {}
   override def addPlayer(): Unit = {}
   override def addPlayerName(name: String): Unit = {}
   override def startGame(): Unit = {}
+  override def SetupGame(): Unit = {}
   override def boardToString(): String = ""
   override def rollDice(): Int = 0
   override def checkWin(): Unit = {}

@@ -9,7 +9,7 @@ import de.htwg.se.malefiz.controller.controllerComponent._
 import java.awt.Color
 import javax.swing.ImageIcon
 
-class SwingGui(controller: Controller) extends Frame {
+class SwingGui(controller: ControllerInterface) extends Frame {
   listenTo(controller)
 
   this.visible = true
