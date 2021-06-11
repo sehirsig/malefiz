@@ -1,9 +1,9 @@
 package de.htwg.se.malefiz.controller.controllerComponent
 
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus.GameStatus
+import de.htwg.se.malefiz.model.PlayerBuilder
 import de.htwg.se.malefiz.model.gameComponent.Game
 import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface
-import de.htwg.se.malefiz.model.playerComponent.PlayerBuilder
 
 import scala.swing.Publisher
 
