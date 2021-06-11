@@ -1,9 +1,7 @@
-package de.htwg.se.malefiz.model
+package de.htwg.se.malefiz.model.cellComponent
 
-
-import de.htwg.se.malefiz.model.cellComponent.{BlockedCell, FreeCell, GoalCell, InvalidCell, PlayerCell, SecureCell}
-import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
 class CellSpec extends AnyWordSpec with Matchers {
   "A Cell" when {

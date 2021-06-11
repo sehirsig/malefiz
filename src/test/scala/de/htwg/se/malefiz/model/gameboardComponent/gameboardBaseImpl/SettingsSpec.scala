@@ -1,8 +1,7 @@
-package de.htwg.se.malefiz.model
+package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.Settings
-import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
 class SettingsSpec extends AnyWordSpec with Matchers {
   "The Settings should" when {

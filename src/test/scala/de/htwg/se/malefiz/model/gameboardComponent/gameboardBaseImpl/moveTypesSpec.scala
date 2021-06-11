@@ -1,6 +1,5 @@
-package de.htwg.se.malefiz.model
+package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.moveTypes
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

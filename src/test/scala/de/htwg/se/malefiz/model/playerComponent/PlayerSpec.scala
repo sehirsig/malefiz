@@ -1,9 +1,8 @@
-package de.htwg.se.malefiz.model
+package de.htwg.se.malefiz.model.playerComponent
 
 import de.htwg.se.malefiz.model.gamefigureComponent.Gamefigure
-import de.htwg.se.malefiz.model.playerComponent.Player
-import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
 class PlayerSpec extends AnyWordSpec with Matchers {
   "A Player 1" when { "new" should {

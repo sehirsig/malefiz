@@ -1,6 +1,5 @@
-package de.htwg.se.malefiz.controller
+package de.htwg.se.malefiz.controller.controllerComponent
 
-import de.htwg.se.malefiz.controller.controllerComponent.{PlayerState, PlayerState1}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

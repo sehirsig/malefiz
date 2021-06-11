@@ -1,16 +1,16 @@
-package de.htwg.se.malefiz.model
+package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
-
-import de.htwg.se.malefiz.model.cellComponent.{BlockedCell, FreeCell, GoalCell, InvalidCell, SecureCell, Start1Cell, Start2Cell, Start3Cell, Start4Cell}
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
-import org.scalatest.wordspec.AnyWordSpec
+import de.htwg.se.malefiz.model.cellComponent._
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
 import scala.util.{Failure, Success}
 
 class GameboardSpec extends AnyWordSpec with Matchers {
   "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when { //
 
+    val settings = new Settings
+    val spielbrett = new Gameboard(settings.yDim, settings.xDim)
     "created properly" should {
       val freeCells = Vector((2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 10), (2, 11), (2, 12), (2, 13), (2, 14), (2, 15),
         (2, 16), (2, 17), (3, 1), (3, 17), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7), (4, 8), (4, 10), (4, 11), (4, 12), (4, 13), (4, 14),
@@ -24,8 +24,6 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         (14, 8), (14, 9), (14, 10), (14, 11), (14, 12), (14, 13), (14, 14), (14, 15), (14, 16), (14, 17))
 
       val goalCell = (1, 9)
-      val settings = new Settings
-      val spielbrett = new Gameboard(settings.yDim, settings.xDim)
       "should unapply" in {
         Gameboard.unapply(spielbrett).get should be(Vector.tabulate(Settings().yDim, Settings().xDim) {
           (row, col) => {
@@ -110,6 +108,63 @@ class GameboardSpec extends AnyWordSpec with Matchers {
            |
            |""".stripMargin)
       }
+    }
+    "used in getStringOfCell Function" should {
+      "return FreeCell" in {
+        spielbrett.getStringOfCell(FreeCell) should be ("FreeCell")
+      }
+      "return BlockedCell" in {
+        spielbrett.getStringOfCell(BlockedCell) should be ("BlockedCell")
+      }
+      "return Start1Cell" in {
+        spielbrett.getStringOfCell(Start1Cell) should be ("Start1Cell")
+      }
+      "return Start2Cell" in {
+        spielbrett.getStringOfCell(Start2Cell) should be ("Start2Cell")
+      }
+      "return Start3Cell" in {
+        spielbrett.getStringOfCell(Start3Cell) should be ("Start3Cell")
+      }
+      "return Start4Cell" in {
+        spielbrett.getStringOfCell(Start4Cell) should be ("Start4Cell")
+      }
+      "return SecureCell" in {
+        spielbrett.getStringOfCell(SecureCell) should be ("SecureCell")
+      }
+      "return GoalCell" in {
+        spielbrett.getStringOfCell(GoalCell) should be ("GoalCell")
+      }
+      "return InvalidCell" in {
+        spielbrett.getStringOfCell(InvalidCell) should be ("InvalidCell")
+      }
+      "return PlayerCell1" in {
+        spielbrett.getStringOfCell(PlayerCell(1)) should be ("PlayerCell1")
+      }
+      "return PlayerCell2" in {
+        spielbrett.getStringOfCell(PlayerCell(2)) should be ("PlayerCell2")
+      }
+      "return PlayerCell3" in {
+        spielbrett.getStringOfCell(PlayerCell(3)) should be ("PlayerCell3")
+      }
+      "return PlayerCell4" in {
+        spielbrett.getStringOfCell(PlayerCell(4)) should be ("PlayerCell4")
+      }
+      "return Broke InvalidCell" in {
+        spielbrett.getStringOfCell(PlayerCell(5)) should be ("InvalidCell")
+      }
+    }
+
+    "used in other Functions" should {
+      "cellString()" in {
+        spielbrett.cellString(0,0) should be ("InvalidCell")
+      }
+      "replaceCell()" in {
+        spielbrett.replaceCell(43,44, InvalidCell) should not be (spielbrett)
+      }
+      "moveCell()" in {
+        spielbrett.moveCell((0,0), InvalidCell) should be (spielbrett)
+      }
+
     }
   }
 }

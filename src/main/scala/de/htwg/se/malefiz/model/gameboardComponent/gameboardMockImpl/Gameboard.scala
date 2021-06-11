@@ -2,13 +2,17 @@ package de.htwg.se.malefiz.model.gameboardComponent.gameboardMockImpl
 
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{BlockReplaceStrategy, Gameboard}
 import de.htwg.se.malefiz.model.playerComponent.Player
 
 import scala.util.{Failure, Success, Try}
 
 case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
-  override def setBlockStrategy(blockstrategy: String): Unit = BlockReplaceStrategy()
+  def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
+    (row, col) => {
+      FreeCell
+    }
+  })
+  override def setBlockStrategy(blockstrategy: String): Unit = {}
   override def movePlayer(coord: (Int, Int), cell: Cell): GameboardInterface = this
   override def cell(row: Int, col: Int): Cell = InvalidCell
   override def newGBStandardSize: GameboardInterface = this
@@ -26,5 +30,11 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
   override def getCell(name:String): Cell = InvalidCell
   override def checkPlayerOnGoal: Boolean = false
   override def cellString(row: Int, col: Int): String = ""
-  override def replaceCell(row: Int, col: Int, cell: Cell): Try[GameboardInterface] = ???
+  def replaceCell(row: Int, col: Int, cell: Cell): Try[Gameboard] = {
+    val tmp = Try(copy(rows.updated(row, rows(row).updated(col, cell))))
+    tmp match {
+      case Success(v) => Success(v)
+      case Failure(e) => Failure(e)
+    }
+  }
 }
