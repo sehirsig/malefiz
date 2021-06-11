@@ -1,4 +1,4 @@
-package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
+package de.htwg.se.malefiz.model.cellComponent
 
 trait Cell {
   val cellStatus:String

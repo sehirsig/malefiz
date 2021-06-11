@@ -1,5 +1,6 @@
+import de.htwg.se.malefiz.model.cellComponent.InvalidCell
 import de.htwg.se.malefiz.model.gameboardComponent.Settings
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, InvalidCell, Settings}
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer

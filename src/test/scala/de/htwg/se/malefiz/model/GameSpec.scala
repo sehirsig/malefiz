@@ -1,6 +1,7 @@
 package de.htwg.se.malefiz.model
 
-import de.htwg.se.malefiz.model.playerComponent.{Game, Player}
+import de.htwg.se.malefiz.model.gameComponent.Game
+import de.htwg.se.malefiz.model.playerComponent.Player
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 

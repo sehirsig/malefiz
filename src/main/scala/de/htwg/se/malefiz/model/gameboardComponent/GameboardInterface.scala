@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.model.gameboardComponent
 
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Cell, Gameboard}
+import de.htwg.se.malefiz.model.cellComponent.Cell
 import de.htwg.se.malefiz.model.playerComponent.Player
 
 import scala.util.Try
@@ -8,8 +8,8 @@ import scala.util.Try
 trait GameboardInterface {
   val rows:Vector[Vector[Cell]]
   def setBlockStrategy(blockstrategy: String): Unit
-  def movePlayer(coord: (Int, Int), cell: String): GameboardInterface
-  def replaceCell(row: Int, col: Int, cell: String): Try[GameboardInterface]
+  def movePlayer(coord: (Int, Int), cell: Cell): GameboardInterface
+  def replaceCell(row: Int, col: Int, cell: Cell): Try[GameboardInterface]
   def cell(row: Int, col: Int): Cell
 
   def newGBStandardSize: GameboardInterface
@@ -37,8 +37,8 @@ trait GameboardInterface {
 trait lastSaveInterface {
   val lastFullDice: Int
   val lastDirectionOpposite: String
-  val lastCell: String
+  val lastCell: Cell
   def updateLastFullDice(newNum: Int): lastSaveInterface
   def updateLastDirection(newDic: String): lastSaveInterface
-  def updatelastCell(newCel: String): lastSaveInterface
+  def updatelastCell(newCel: Cell): lastSaveInterface
 }

@@ -1,7 +1,6 @@
 package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
-import de.htwg.se.malefiz.model.gameboardComponent._
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.PlayerCell
+import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.util.Command
 
 class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) extends Command {
@@ -65,25 +64,25 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
 
     val currentfigure = currentplayer.figures(figurenum-1)
     val fig_coord = (currentfigure.pos._1, currentfigure.pos._2)
-    var lastCell:String = "InvalidCell"
+    var lastCell:Cell = InvalidCell
     var savetuple = (sucInp, controllerH.gameboard)
     var newpos = fig_coord
     direction match {
       case "w" =>  {
         savetuple = savedG.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)} // returns TRUE, if walking worked and Saves Gameboard
-        lastCell = savedG.cellString(savedG.goUp(fig_coord)._1, savedG.goUp(fig_coord)._2) // Saves LastCell to Replace it afterwards
+        lastCell = savedG.cell(savedG.goUp(fig_coord)._1, savedG.goUp(fig_coord)._2) // Saves LastCell to Replace it afterwards
         newpos = savedG.goUp(fig_coord) // Saves newposition to look for Player Kick
       case "a" => {
         savetuple = savedG.walkLeft(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
-        lastCell = savedG.cellString(savedG.goLeft(fig_coord)._1, savedG.goLeft(fig_coord)._2)
+        lastCell = savedG.cell(savedG.goLeft(fig_coord)._1, savedG.goLeft(fig_coord)._2)
         newpos = savedG.goLeft(fig_coord)
       case "s" => {
         savetuple = savedG.walkDown(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
-        lastCell = savedG.cellString(savedG.goDown(fig_coord)._1, savedG.goDown(fig_coord)._2)
+        lastCell = savedG.cell(savedG.goDown(fig_coord)._1, savedG.goDown(fig_coord)._2)
         newpos = savedG.goDown(fig_coord)
       case "d" => {
         savetuple = savedG.walkRight(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
-        lastCell = savedG.cellString(savedG.goRight(fig_coord)._1, savedG.goRight(fig_coord)._2)
+        lastCell = savedG.cell(savedG.goRight(fig_coord)._1, savedG.goRight(fig_coord)._2)
         newpos = savedG.goRight(fig_coord)
       case _ =>
     }
@@ -92,7 +91,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
       controllerH.game.players.map(b => b.figures.map(k => {
         if (((k.pos._1, k.pos._2) == newpos) && (k.player != currentplayer)) {
           k.player.figures(k.getNumber) = k.player.figures(k.getNumber).updatePos(k.player.startingPos)
-          controllerH.gameboard = controllerH.gameboard.movePlayer(k.player.startingPos, "PlayerCell" + k.player.Playerid)
+          controllerH.gameboard = controllerH.gameboard.movePlayer(k.player.startingPos, k.player.cell)
         }
       }))
     }
@@ -107,7 +106,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
         case "a" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("d")
         case "d" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("a")
       }
-      if (controllerH.savedGame.lastCell.contains("Player")) { //Wenn man über eine Person drüber läuft, , diese wieder hinschreiben.
+      if (controllerH.savedGame.lastCell.isInstanceOf[PlayerCell]) { //Wenn man über eine Person drüber läuft, , diese wieder hinschreiben.
         controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord, controllerH.savedGame.lastCell)
       }
       controllerH.savedGame = controllerH.savedGame.updatelastCell(lastCell)
@@ -121,8 +120,8 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     if(controllerH.moveCounter < 1) {
         controllerH.playerStatus = controllerH.playerStatus.nextPlayer(controllerH.game.getPlayerNumber())
         controllerH.emptyMan //Empty the Undomanager to be able to completetly reset it when in falsche richtung geloffen
-        controllerH.savedGame = controllerH.savedGame.updateLastDirection(lastCell)
-        controllerH.savedGame = controllerH.savedGame.updatelastCell("InvalidCell")
+        controllerH.savedGame = controllerH.savedGame.updateLastDirection("")
+        controllerH.savedGame = controllerH.savedGame.updatelastCell(InvalidCell)
     }
   }
 

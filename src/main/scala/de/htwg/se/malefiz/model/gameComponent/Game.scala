@@ -1,4 +1,6 @@
-package de.htwg.se.malefiz.model.playerComponent
+package de.htwg.se.malefiz.model.gameComponent
+
+import de.htwg.se.malefiz.model.playerComponent.Player
 
 case class Game(var players: Vector[Player]) {
   def addPlayer(player: Player): Game = {

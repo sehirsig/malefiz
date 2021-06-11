@@ -1,6 +1,7 @@
 package de.htwg.se.malefiz.model.playerComponent
 
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.PlayerCell
+import de.htwg.se.malefiz.model.cellComponent.PlayerCell
+import de.htwg.se.malefiz.model.gamefigureComponent.Gamefigure
 import de.htwg.se.malefiz.model.{gameboardComponent, playerComponent}
 
 case class Player(name: String, Playerid: Int, startingPos: (Int, Int)) {
@@ -8,7 +9,7 @@ case class Player(name: String, Playerid: Int, startingPos: (Int, Int)) {
   var figures = Array[Gamefigure]()
 
   def addFigure(id: Int): Unit = {
-    val figure = playerComponent.Gamefigure(figures.length, id, Player.this, startingPos)
+    val figure = Gamefigure(figures.length, id, Player.this, startingPos)
     figures = figures :+ figure
   }
 

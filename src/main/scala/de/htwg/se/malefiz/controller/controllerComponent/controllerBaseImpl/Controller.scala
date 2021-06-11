@@ -2,6 +2,8 @@ package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.controller.controllerComponent._
+import de.htwg.se.malefiz.model.cellComponent._
+import de.htwg.se.malefiz.model.gameComponent.Game
 import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.lastSave
 import de.htwg.se.malefiz.model.playerComponent._
@@ -18,14 +20,14 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   var game: Game = Game(Vector[Player]())
   private val undoManager = new UndoManager
   var gameWon: (Boolean, String) = (false, "")
-  var savedGame: lastSaveInterface = lastSave(0, "", "InvalidCell")
+  var savedGame: lastSaveInterface = lastSave(0, "", InvalidCell)
   var selectedFigNum: Int = 0;
 
   def resetGame(): Unit = {
     gameStatus = IDLE
     game = Game(Vector[Player]())
     emptyMan
-    savedGame = lastSave(0, "", "InvalidCell")
+    savedGame = lastSave(0, "", InvalidCell)
     playerStatus = PlayerState1
     moveCounter = 0
     gameWon = (false, "")

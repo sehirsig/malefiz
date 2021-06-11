@@ -1,7 +1,8 @@
 package de.htwg.se.malefiz.model
 
 
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{BlockedCell, FreeCell, Gameboard, GoalCell, InvalidCell, SecureCell, Settings, Start1Cell, Start2Cell, Start3Cell, Start4Cell}
+import de.htwg.se.malefiz.model.cellComponent.{BlockedCell, FreeCell, GoalCell, InvalidCell, SecureCell, Start1Cell, Start2Cell, Start3Cell, Start4Cell}
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -72,7 +73,7 @@ class GameboardSpec extends AnyWordSpec with Matchers {
       }
       "replace a Cell correctly and return a new Board" in {
         var newboard = spielbrett
-        val returnedBoard = spielbrett.replaceCell(0, 0, "BlockedCell")
+        val returnedBoard = spielbrett.replaceCell(0, 0, BlockedCell)
         returnedBoard match {
           case Success(v) => newboard = v
           case Failure(f) => newboard
@@ -81,7 +82,7 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         newboard.cell(0, 0) should be(BlockedCell)
       }
       "replace a Cell correctly with Tuple Coordinatesand return a new Board" in {
-        val returnedBoard = spielbrett.movePlayer((0,0), "BlockedCell")
+        val returnedBoard = spielbrett.movePlayer((0,0), BlockedCell)
         spielbrett.cell(0, 0) should be(InvalidCell)
         returnedBoard.cell(0, 0) should be(BlockedCell)
       }

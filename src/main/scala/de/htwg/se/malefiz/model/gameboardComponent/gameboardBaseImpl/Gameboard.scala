@@ -1,5 +1,6 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
+import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.model.playerComponent.Player
 import de.htwg.se.malefiz.util.BlockStrategy
@@ -76,16 +77,16 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
 
   def cellString(row: Int, col: Int): String = getStringOfCell(rows(row)(col))
 
-  def replaceCell(row: Int, col: Int, cell: String): Try[Gameboard] = {
-    val tmp = Try(copy(rows.updated(row, rows(row).updated(col, getCell(cell)))))
+  def replaceCell(row: Int, col: Int, cell: Cell): Try[Gameboard] = {
+    val tmp = Try(copy(rows.updated(row, rows(row).updated(col, cell))))
     tmp match {
       case Success(v) => Success(v)
       case Failure(e) => Failure(e)
     }
   }
 
-  def movePlayer(coord: (Int, Int), cell: String): Gameboard = {
-    copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, getCell(cell))))
+  def movePlayer(coord: (Int, Int), cell: Cell): Gameboard = {
+    copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))
   }
 
   def moveCell(coord: (Int, Int), cell: Cell): Gameboard = {

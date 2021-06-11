@@ -3,7 +3,6 @@ package de.htwg.se.malefiz.controller.controllerComponent
 object GameStatus extends Enumeration {
   type GameStatus = Value
   type PlayerStatus = Value
-  //type GameFigureStatus = Value
 
   val GAMEWINNER, CHOOSEFIG, IDLE, READY1, READY2, PLAYER0, PLAYER1, PLAYER2, PLAYER3, PLAYER4, PLAYING, MOVING, ENTERNAME = Value
 
@@ -26,15 +25,7 @@ object GameStatus extends Enumeration {
     PLAYER0 -> "hier steht grad nix"
   )
 
-  //val gamefigureMap = Map[GameFigureStatus, String](
-  //
-  // )
-
   def gameMessage(gameStatus: GameStatus) = {
     gameMap(gameStatus)
   }
-
-  //  def playerMessage(playerStatus: PlayerStatus) = {
-  //    playerMap(playerStatus)
-  //  }
 }

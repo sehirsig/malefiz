@@ -1,5 +1,6 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
+import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.moveTypes._
 import de.htwg.se.malefiz.model.playerComponent.Player
@@ -11,7 +12,7 @@ object checkCell {
     isWalkable(spielbrett, goUp(currentCoord), walksLeft, player.Playerid) match { //Test if the Next Cell in this direction is even Walkable
       case true => {
         val currentfigure = player.figures(figurenum) // Choose the current figure of the chosen Player
-        val spielbrett2 = spielbrett.movePlayer(goUp(currentCoord), "PlayerCell" + player.Playerid) //Move the Players Gamefigure to the next position
+        val spielbrett2 = spielbrett.movePlayer(goUp(currentCoord), PlayerCell(player.Playerid)) //Move the Players Gamefigure to the next position
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord)) // Reset the Previous block to what it was (when Player walked over it)
         val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft, player.Playerid) // Check the cell you're walking on for more options
         player.figures(figurenum) = currentfigure.updatePos(goUp(currentCoord)._1, goUp(currentCoord)._2) // Update the internal coordinates of the game figure.
@@ -25,7 +26,7 @@ object checkCell {
     isWalkable(spielbrett, goDown(currentCoord), walksLeft, player.Playerid) match {
       case true => {
         val currentfigure = player.figures(figurenum)
-        val spielbrett2 = spielbrett.movePlayer(goDown(currentCoord), "PlayerCell" + player.Playerid)
+        val spielbrett2 = spielbrett.movePlayer(goDown(currentCoord), PlayerCell(player.Playerid))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
         val spielbrett4 = getNextCell(spielbrett, spielbrett3, goDown(currentCoord), walksLeft, player.Playerid)
         player.figures(figurenum) = currentfigure.updatePos(goDown(currentCoord)._1, goDown(currentCoord)._2)
@@ -39,7 +40,7 @@ object checkCell {
     isWalkable(spielbrett, goLeft(currentCoord), walksLeft, player.Playerid) match {
       case true => {
         val currentfigure = player.figures(figurenum)
-        val spielbrett2 = spielbrett.movePlayer(goLeft(currentCoord), "PlayerCell" + player.Playerid)
+        val spielbrett2 = spielbrett.movePlayer(goLeft(currentCoord), PlayerCell(player.Playerid))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
         val spielbrett4 = getNextCell(spielbrett, spielbrett3, goLeft(currentCoord), walksLeft, player.Playerid)
         player.figures(figurenum) = currentfigure.updatePos(goLeft(currentCoord)._1, goLeft(currentCoord)._2)
@@ -53,7 +54,7 @@ object checkCell {
     isWalkable(spielbrett, goRight(currentCoord), walksLeft, player.Playerid) match {
       case true => {
         val currentfigure = player.figures(figurenum)
-        val spielbrett2 = spielbrett.movePlayer(goRight(currentCoord), "PlayerCell" + player.Playerid)
+        val spielbrett2 = spielbrett.movePlayer(goRight(currentCoord), PlayerCell(player.Playerid))
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
         val spielbrett4 = getNextCell(spielbrett, spielbrett3, goRight(currentCoord), walksLeft, player.Playerid)
         player.figures(figurenum) = currentfigure.updatePos(goRight(currentCoord)._1, goRight(currentCoord)._2)
@@ -99,26 +100,26 @@ object checkCell {
     }
   }
 
-  def wasStartBlock(x: GameboardInterface, currentCoord: (Int, Int)): String = {
+  def wasStartBlock(x: GameboardInterface, currentCoord: (Int, Int)): Cell = {
     getCell(x, currentCoord) match {
-      case Start1Cell => "Start1Cell"
-      case Start2Cell => "Start2Cell"
-      case Start3Cell => "Start3Cell"
-      case Start4Cell => "Start4Cell"
+      case Start1Cell => Start1Cell
+      case Start2Cell => Start2Cell
+      case Start3Cell => Start3Cell
+      case Start4Cell => Start4Cell
       case _ => secureORfreeCell(currentCoord)
     }
   }
 
-  def secureORfreeCell(currentCoord: (Int, Int)): String = {
+  def secureORfreeCell(currentCoord: (Int, Int)): Cell = {
     Settings().secureCells.contains(currentCoord) match {
-      case true => "SecureCell"
-      case false => "FreeCell"
+      case true => SecureCell
+      case false => FreeCell
     }
   }
 
   def replaceIt(x: Gameboard): GameboardInterface = {
     var newboard = x
-    val returnedBoard = x.replaceCell(0, 0, "BlockedCell")
+    val returnedBoard = x.replaceCell(0, 0, BlockedCell)
     returnedBoard match {
       case Success(v) => newboard = v
       case Failure(f) => newboard

@@ -1,5 +1,6 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
+import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.util.BlockStrategy
 
@@ -11,7 +12,7 @@ case class BlockReplaceStrategy() extends BlockStrategy {
     val rnd = new Random()
     val randomNumber = rnd.nextInt(b.size - 1)
     val replace = b(randomNumber)
-    spielbrett.movePlayer(replace, "BlockedCell")
+    spielbrett.movePlayer(replace, BlockedCell)
   }
 
   private def searchVectors(x: Cell, vec: Vector[Vector[Cell]]) =

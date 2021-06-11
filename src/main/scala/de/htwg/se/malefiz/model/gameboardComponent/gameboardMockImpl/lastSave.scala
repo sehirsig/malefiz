@@ -1,4 +1,4 @@
-package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
+package de.htwg.se.malefiz.model.gameboardComponent.gameboardMockImpl
 
 import de.htwg.se.malefiz.model.cellComponent.Cell
 import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface

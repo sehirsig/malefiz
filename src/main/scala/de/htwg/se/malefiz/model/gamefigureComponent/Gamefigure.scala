@@ -1,4 +1,6 @@
-package de.htwg.se.malefiz.model.playerComponent
+package de.htwg.se.malefiz.model.gamefigureComponent
+
+import de.htwg.se.malefiz.model.playerComponent.Player
 
 case class Gamefigure(number: Int, id: Int, player: Player, pos: (Int, Int)) {
   def getNumber: Int = number
