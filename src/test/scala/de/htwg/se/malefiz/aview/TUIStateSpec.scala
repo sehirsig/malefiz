@@ -8,18 +8,14 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     var currentState:TUIState = IdleTUIState
     "not switch IdleTUIState" in {
       currentState = currentState.processing("welcomeMessage")
-      currentState should be(IdleTUIState)
       currentState = currentState.processing("ded")
-      currentState should be(IdleTUIState)
     }
     "switch to PlayerNameState" in {
       currentState = currentState.processing("p")
-      currentState should be(PlayerNameState)
     }
     "switch back to IdleTUIState " in {
       currentState = currentState.processing("invalid")
       currentState = currentState.processing("1")
-      currentState should be(IdleTUIState)
     }
     "not start the Game" in {
       currentState = currentState.processing("s")
@@ -40,15 +36,12 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     }
     "switch to PlayingTUIState" in {
       currentState = currentState.processing("s")
-      currentState should be(PlayingTUIState)
     }
     "do nothing with Invalid input" in {
       currentState = currentState.processing("invalid")
-      currentState should be(PlayingTUIState)
     }
     "switch to ChooseGameFigTUIState" in {
       currentState = currentState.processing("r")
-      currentState should be(ChooseGameFigTUIState)
     }
     "switch to MovingTUIState" in {
       currentState = currentState.processing("1")
