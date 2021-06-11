@@ -1,8 +1,10 @@
 package de.htwg.se.malefiz.controller
 
-import de.htwg.se.malefiz.controller.GameStatus._
-import de.htwg.se.malefiz.model.{Game, Gameboard}
-import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.controller.controllerComponent.PlayerState1
+import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
+import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
+import de.htwg.se.malefiz.model.playerComponent.Game
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import de.htwg.se.malefiz.util.Observer

@@ -1,7 +1,7 @@
 package de.htwg.se.malefiz.util
 
-import de.htwg.se.malefiz.model.Gameboard
+import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 
 trait BlockStrategy {
-  def replaceBlock(spielbrett:Gameboard): Gameboard
+  def replaceBlock(spielbrett:GameboardInterface): GameboardInterface
 }

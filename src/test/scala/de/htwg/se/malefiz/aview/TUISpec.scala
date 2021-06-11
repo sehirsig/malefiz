@@ -1,15 +1,16 @@
 package de.htwg.se.malefiz.aview
 
+import de.htwg.se.malefiz.controller.controllerComponent
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import de.htwg.se.malefiz.controller.Controller
-import de.htwg.se.malefiz.controller.GameStatus._
-import de.htwg.se.malefiz.model.Gameboard
-import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
+import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
+import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 
 class TUISpec extends AnyWordSpec with Matchers {
   "A Malefiz Tui" should {
-    val controller =  Controller(new Gameboard(Settings().xDim, Settings().yDim))
+    val controller =  controllerBaseImpl.Controller(new Gameboard(Settings().xDim, Settings().yDim))
     val tui =  TUI(controller)
     "should be initialy idle" in {
       tui.currentState should be(IdleTUIState)

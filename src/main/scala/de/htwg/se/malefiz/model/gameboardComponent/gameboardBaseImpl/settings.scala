@@ -1,4 +1,4 @@
-package de.htwg.se.malefiz.model.properties
+package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
 case class Settings() {
   val xDim = 18

@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.model
 
-import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.Settings
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 

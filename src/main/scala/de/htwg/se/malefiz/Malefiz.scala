@@ -2,9 +2,9 @@ package de.htwg.se.malefiz
 
 import de.htwg.se.malefiz.aview.GUI.SwingGui
 import de.htwg.se.malefiz.aview.TUI
-import de.htwg.se.malefiz.controller.{Controller, SettingUp, StartUp}
-import de.htwg.se.malefiz.model._
-import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.controller.controllerComponent.StartUp
+import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 
 import scala.io.StdIn.readLine
 

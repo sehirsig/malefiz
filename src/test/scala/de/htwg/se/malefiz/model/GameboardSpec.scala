@@ -1,11 +1,11 @@
 package de.htwg.se.malefiz.model
 
 
-import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{BlockedCell, FreeCell, Gameboard, GoalCell, InvalidCell, SecureCell, Settings, Start1Cell, Start2Cell, Start3Cell, Start4Cell}
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 
-import scala.util.{Success,Failure}
+import scala.util.{Failure, Success}
 
 class GameboardSpec extends AnyWordSpec with Matchers {
   "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when { //
@@ -23,7 +23,7 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         (14, 8), (14, 9), (14, 10), (14, 11), (14, 12), (14, 13), (14, 14), (14, 15), (14, 16), (14, 17))
 
       val goalCell = (1, 9)
-      val settings = new properties.Settings
+      val settings = new Settings
       val spielbrett = new Gameboard(settings.yDim, settings.xDim)
       "should unapply" in {
         Gameboard.unapply(spielbrett).get should be(Vector.tabulate(Settings().yDim, Settings().xDim) {
@@ -72,7 +72,7 @@ class GameboardSpec extends AnyWordSpec with Matchers {
       }
       "replace a Cell correctly and return a new Board" in {
         var newboard = spielbrett
-        val returnedBoard = spielbrett.replaceCell(0, 0, BlockedCell)
+        val returnedBoard = spielbrett.replaceCell(0, 0, "BlockedCell")
         returnedBoard match {
           case Success(v) => newboard = v
           case Failure(f) => newboard
@@ -81,7 +81,7 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         newboard.cell(0, 0) should be(BlockedCell)
       }
       "replace a Cell correctly with Tuple Coordinatesand return a new Board" in {
-        val returnedBoard = spielbrett.movePlayer((0,0), BlockedCell)
+        val returnedBoard = spielbrett.movePlayer((0,0), "BlockedCell")
         spielbrett.cell(0, 0) should be(InvalidCell)
         returnedBoard.cell(0, 0) should be(BlockedCell)
       }

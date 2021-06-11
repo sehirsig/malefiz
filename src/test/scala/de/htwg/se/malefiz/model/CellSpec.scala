@@ -1,5 +1,7 @@
 package de.htwg.se.malefiz.model
 
+
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{BlockedCell, FreeCell, GoalCell, InvalidCell, PlayerCell, SecureCell}
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 

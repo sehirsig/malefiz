@@ -1,8 +1,8 @@
 package de.htwg.se.malefiz.model
 
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.moveTypes
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.malefiz.model.moveTypes
 
 class moveTypesSpec extends AnyWordSpec with Matchers {
   "moveTypes Functions" when {

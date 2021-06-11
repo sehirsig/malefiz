@@ -1,4 +1,5 @@
 package de.htwg.se.malefiz.model
+import de.htwg.se.malefiz.model.playerComponent.{Gamefigure, Player}
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 

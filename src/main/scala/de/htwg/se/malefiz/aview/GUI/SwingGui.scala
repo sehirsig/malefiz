@@ -3,12 +3,8 @@ package de.htwg.se.malefiz.aview.GUI
 import scala.swing._
 import scala.swing.Swing.LineBorder
 import scala.swing.event._
-import de.htwg.se.malefiz.controller._
-import de.htwg.se.malefiz.util.Observer
-
-import scala.io.Source._
-import de.htwg.se.malefiz.model._
-import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.malefiz.controller.controllerComponent._
 
 import java.awt.Color
 import javax.swing.ImageIcon
@@ -186,33 +182,58 @@ class SwingGui(controller: Controller) extends Frame {
     }
   }
 
-  def gridPanel = new GridPanel(Settings().xDim,Settings().yDim) {
+  val BC = controller.gameboard.getCell("BlockedCell")
+  val BCImage = new ImageIcon(this.getClass().getResource("/blocked.png"))
+  val FC = controller.gameboard.getCell("FreeCell")
+  val FCImage = new ImageIcon(this.getClass().getResource("/free.png"))
+  val SC = controller.gameboard.getCell("SecureCell")
+  val SCImage = new ImageIcon(this.getClass().getResource("/free.png"))
+  val SC1 = controller.gameboard.getCell("Start1Cell")
+  val SC1Image = new ImageIcon(this.getClass().getResource("/start1.png"))
+  val SC2 = controller.gameboard.getCell("Start2Cell")
+  val SC2Image = new ImageIcon(this.getClass().getResource("/start2.png"))
+  val SC3 = controller.gameboard.getCell("Start3Cell")
+  val SC3Image = new ImageIcon(this.getClass().getResource("/start3.png"))
+  val SC4 = controller.gameboard.getCell("Start4Cell")
+  val SC4Image = new ImageIcon(this.getClass().getResource("/start4.png"))
+  val GC = controller.gameboard.getCell("GoalCell")
+  val GCImage = new ImageIcon(this.getClass().getResource("/goal.png"))
+  val PC1 = controller.gameboard.getCell("PlayerCell1")
+  val PC1Image = new ImageIcon(this.getClass().getResource("/player1.png"))
+  val PC2 = controller.gameboard.getCell("PlayerCell2")
+  val PC2Image = new ImageIcon(this.getClass().getResource("/player2.png"))
+  val PC3 = controller.gameboard.getCell("PlayerCell3")
+  val PC3Image = new ImageIcon(this.getClass().getResource("/player3.png"))
+  val PC4 = controller.gameboard.getCell("PlayerCell4")
+  val PC4Image = new ImageIcon(this.getClass().getResource("/player4.png"))
+  val IC = controller.gameboard.getCell("InvalidCell")
+  val ICImage = new ImageIcon()
+
+
+  def gridPanel = new GridPanel(controller.gameboard.getStandardXYsize._1,controller.gameboard.getStandardXYsize._2) {
     border = LineBorder(Color.BLACK, 2)
     background = new Color(204,144,5)
     for {
-      outerRow <- 0 until Settings().xDim
-      outerColumn <- 0 until Settings().yDim
+      outerRow <- 0 until controller.gameboard.getStandardXYsize._1
+      outerColumn <- 0 until controller.gameboard.getStandardXYsize._2
     } {
       count = count + 1
       contents += new Label {
         icon = controller.gameboard.rows.flatMap(_.toList)(count - 1) match {
-          case BlockedCell => new ImageIcon(this.getClass().getResource("/blocked.png"))
-          case FreeCell => new ImageIcon(this.getClass().getResource("/free.png"))
-          case SecureCell => new ImageIcon(this.getClass().getResource("/free.png"))
-          case Start1Cell => new ImageIcon(this.getClass().getResource("/start1.png"))
-          case Start2Cell => new ImageIcon(this.getClass().getResource("/start2.png"))
-          case Start3Cell => new ImageIcon(this.getClass().getResource("/start3.png"))
-          case Start4Cell => new ImageIcon(this.getClass().getResource("/start4.png"))
-          case GoalCell => new ImageIcon(this.getClass().getResource("/goal.png"))
-          case PlayerCell(num) => num match {
-            case 1 => new ImageIcon(this.getClass().getResource("/player1.png"))
-            case 2 => new ImageIcon(this.getClass().getResource("/player2.png"))
-            case 3 => new ImageIcon(this.getClass().getResource("/player3.png"))
-            case 4 => new ImageIcon(this.getClass().getResource("/player4.png"))
-            case _ => new ImageIcon(this.getClass().getResource("/player0.png"))
-          }
-          case InvalidCell => new ImageIcon()
-          case _ => new ImageIcon()
+          case BC => BCImage
+          case FC => FCImage
+          case SC => SCImage
+          case SC1 => SC1Image
+          case SC2 => SC2Image
+          case SC3 => SC3Image
+          case SC4 => SC4Image
+          case GC => GCImage
+          case PC1 => PC1Image
+          case PC2 => PC2Image
+          case PC3 => PC3Image
+          case PC4 => PC4Image
+          case IC => ICImage
+          case _ => ICImage
         }}
       if (count == 342) count = 0
     }

@@ -1,5 +1,6 @@
 package de.htwg.se.malefiz.aview
-import de.htwg.se.malefiz.controller.{ChooseFig, Controller, GameReset, GameStatus, Moving, RollDice, SettingUp, StartGame, StartUp, WonGame}
+import de.htwg.se.malefiz.controller.controllerComponent._
+import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl.Controller
 
 import scala.io.StdIn.readLine
 import scala.swing.Reactor

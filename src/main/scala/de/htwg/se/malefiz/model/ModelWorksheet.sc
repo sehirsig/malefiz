@@ -1,5 +1,5 @@
-import de.htwg.se.malefiz.model.properties.Settings
-import de.htwg.se.malefiz.model.{Cell, Gameboard}
+import de.htwg.se.malefiz.model.gameboardComponent.Settings
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, InvalidCell, Settings}
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
@@ -16,7 +16,7 @@ def availablePaths2(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard): L
   internList += ((row,col, false, -1, "Initiate"))
   var d = walksLeft
   println(spielbrett.cell(14,3))
-  println(spielbrett.cell(13,3) == Cell())
+  println(spielbrett.cell(13,3) == InvalidCell)
 
   while(d != 0) { // Rekursiv machen? Was machen bei Barikade, wenn nicht direkt drauf?
     internList.foreach(x => {
@@ -27,7 +27,7 @@ def availablePaths2(row: Int, col: Int, walksLeft: Int, spielbrett:Gameboard): L
 
       if (x._4 == walksLeft - d || x._5 == "Initiate") {
 
-        if (!(spielbrett.cell(goRight._1, goRight._2) == Cell() || spielbrett.cell(goRight._1, goRight._2) == Cell("T ") || x._5 == "Left")) {
+        if (!(spielbrett.cell(goRight._1, goRight._2) == InvalidCell || spielbrett.cell(goRight._1, goRight._2) == Cell("T ") || x._5 == "Left")) {
           if (spielbrett.cell(goRight._1, goRight._2) == Cell("X ")) {
             internList += ((goRight._1, goRight._2, true, walksLeft - d + 1, "Right"))
           } else {

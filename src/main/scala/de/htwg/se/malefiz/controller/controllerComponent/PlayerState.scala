@@ -1,4 +1,4 @@
-package de.htwg.se.malefiz.controller
+package de.htwg.se.malefiz.controller.controllerComponent
 
 trait PlayerState {
   def nextPlayer(playerCount:Int): PlayerState

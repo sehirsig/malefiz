@@ -1,9 +1,9 @@
 package de.htwg.se.malefiz.model
 
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings, checkCell}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.malefiz.model.checkCell
-import de.htwg.se.malefiz.model.properties.Settings
+import de.htwg.se.malefiz.model.playerComponent.Player
 
 class checkCellSpec extends AnyWordSpec with Matchers {
   "checkShell" when {

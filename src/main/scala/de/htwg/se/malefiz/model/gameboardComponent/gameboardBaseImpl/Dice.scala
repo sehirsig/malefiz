@@ -1,8 +1,9 @@
-package de.htwg.se.malefiz.model
+package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
+
 
 import scala.util.Random
 
-object Dice { //Singleton
+object Dice {
   def diceRoll: Int = {
     val rnd: Option[Random] = Some(new Random())
     rnd match {
