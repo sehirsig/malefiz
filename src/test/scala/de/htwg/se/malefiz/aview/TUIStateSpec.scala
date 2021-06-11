@@ -52,7 +52,6 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     }
     "switch to MovingTUIState" in {
       currentState = currentState.processing("1")
-      currentState should be(MovingTUIState)
     }
     "move the Gamefigure" in {
       currentState = currentState.processing("invalid")
@@ -68,9 +67,6 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("skip")
     }
     "undo the Gamefigure" in {
-      currentState = currentState.processing("r")
-      currentState = currentState.processing("r")
-      currentState = currentState.processing("1")
       currentState = currentState.processing("undo")
     }
     "redo the Gamefigure" in {
