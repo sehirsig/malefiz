@@ -2,14 +2,13 @@ package de.htwg.se.malefiz.controller.controllerComponent.controllerMockImpl
 
 import de.htwg.se.malefiz.controller.controllerComponent._
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
-import de.htwg.se.malefiz.model.{PlayerBuilder, PlayerBuilderImp}
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.lastSave
 import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}
 import de.htwg.se.malefiz.model.playerComponent._
 
-import scala.swing.Publisher
+import scala.swing.Publisher //Mock -> Stub
 
 case class Controller(var gameboard: GameboardInterface) extends ControllerInterface with Publisher{
   var gameStatus: GameStatus = IDLE

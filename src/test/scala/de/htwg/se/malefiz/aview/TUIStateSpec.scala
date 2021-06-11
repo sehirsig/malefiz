@@ -5,6 +5,7 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class TUIStateSpec extends AnyWordSpec with Matchers {
   "An TUI State Spec" should {
+    /*
     var currentState:TUIState = IdleTUIState
     "not switch IdleTUIState" in {
       currentState = currentState.processing("welcomeMessage")
@@ -29,7 +30,7 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     }
     "add no more players" in {
       currentState = currentState.processing("p")
-    }/*
+    }
     "switch to PlayingTUIState" in {
       currentState = currentState.processing("s")
     }

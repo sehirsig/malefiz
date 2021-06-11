@@ -2,7 +2,6 @@ package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.controller.controllerComponent._
-import de.htwg.se.malefiz.model.{PlayerBuilder, PlayerBuilderImp}
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameComponent.Game
 import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}

@@ -1,6 +1,4 @@
-package de.htwg.se.malefiz.model
-
-import de.htwg.se.malefiz.model.playerComponent.Player
+package de.htwg.se.malefiz.model.playerComponent
 
 trait PlayerBuilder {
   def setName(name: String): PlayerBuilder
