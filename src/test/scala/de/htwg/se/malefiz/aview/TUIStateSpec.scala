@@ -63,7 +63,6 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("d")
       currentState = currentState.processing("d")
       currentState = currentState.processing("d")
-      currentState should be(PlayingTUIState)
     }
     "skip the turn" in {
       currentState = currentState.processing("skip")
@@ -81,7 +80,6 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = WinnerTUIState
       currentState should be(WinnerTUIState)
       currentState = currentState.processing("Anything")
-      currentState should be(IdleTUIState)
     }
   }
 }
