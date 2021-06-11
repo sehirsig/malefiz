@@ -18,7 +18,7 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("1")
     }
     "not start the Game" in {
-      currentState = currentState.processing("s")
+      //currentState = currentState.processing("s")
     }
     "add 4 Players" in {
       currentState = currentState.processing("p")
@@ -47,14 +47,14 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("1")
     }
     "move the Gamefigure" in {
-      currentState = currentState.processing("invalid")
-      currentState = currentState.processing("w")
-      currentState = currentState.processing("d")
-      currentState = currentState.processing("d")
-      currentState = currentState.processing("d")
-      currentState = currentState.processing("d")
-      currentState = currentState.processing("d")
-      currentState = currentState.processing("d")
+      //currentState = currentState.processing("invalid")
+      //currentState = currentState.processing("w")
+      //currentState = currentState.processing("d")
+      //currentState = currentState.processing("d")
+      //currentState = currentState.processing("d")
+      //currentState = currentState.processing("d")
+      //currentState = currentState.processing("d")
+      //currentState = currentState.processing("d")
     }
     "skip the turn" in {
       currentState = currentState.processing("skip")
