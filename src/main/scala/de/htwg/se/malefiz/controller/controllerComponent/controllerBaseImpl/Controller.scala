@@ -146,11 +146,11 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   }
 
   def undo: Unit = {
-    undoManager.undoAll
+    undoManager.undoStep
   }
 
   def redo: Unit = {
-    undoManager.undoAll
+    undoManager.redoStep
   }
 
 }

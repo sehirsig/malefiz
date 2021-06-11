@@ -22,6 +22,8 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         spielbrett.goDown(0,0)
         spielbrett.goUp(0,0)
         spielbrett.goRight(0,0)
+        spielbrett.getCell("")
+        spielbrett.cellString(0,0)
         spielbrett.goLeft(0,0)
         spielbrett.checkPlayerOnGoal
         spielbrett.cell(0,0)
