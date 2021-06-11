@@ -32,6 +32,8 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.processing("xy")
       tui.processing("p")
       tui.processing("yz")
+      tui.processing("p")
+      tui.processing("yz")
       tui.currentState should be(IdleTUIState)
     }
     "start the game on input 'start'" in {

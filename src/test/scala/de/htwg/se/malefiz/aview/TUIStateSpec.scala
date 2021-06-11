@@ -14,7 +14,6 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       currentState = currentState.processing("p")
     }
     "switch back to IdleTUIState " in {
-      currentState = currentState.processing("invalid")
       currentState = currentState.processing("1")
     }
     "not start the Game" in {
@@ -23,13 +22,10 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     "add 4 Players" in {
       currentState = currentState.processing("p")
       currentState = currentState.processing("Player2")
-      currentState = currentState.processing("2")
       currentState = currentState.processing("p")
       currentState = currentState.processing("Player3")
-      currentState = currentState.processing("3")
       currentState = currentState.processing("p")
       currentState = currentState.processing("Player4")
-      currentState = currentState.processing("4")
     }
     "add no more players" in {
       currentState = currentState.processing("p")
