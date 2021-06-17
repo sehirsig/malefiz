@@ -13,6 +13,8 @@ libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.0-RC2"
 
 coverageExcludedPackages := "de.htwg.se.malefiz.aview.GUI"
 coverageExcludedPackages := "de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.Dice"
+coverageExcludedPackages := "de.htwg.se.malefiz.model.fileIoComponent"
+
 
 //*******************************************************************************//
 //Libraries that we will use in later lectures compatible with this scala version
