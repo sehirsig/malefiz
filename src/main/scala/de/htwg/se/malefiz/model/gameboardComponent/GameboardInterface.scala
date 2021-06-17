@@ -33,6 +33,8 @@ trait GameboardInterface {
   def getCell(name:String): Cell
   def checkPlayerOnGoal: Boolean
   def cellString(row: Int, col: Int): String
+
+  def getStringOfCell(cell:Cell): String
 }
 
 trait lastSaveInterface {

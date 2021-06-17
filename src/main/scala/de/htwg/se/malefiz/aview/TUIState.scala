@@ -45,6 +45,8 @@ object PlayerNameState extends  TUIState {
 object PlayingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
+      case "s" => controller.save;PlayingTUIState
+      case "l" => controller.load;PlayingTUIState
       case "r" => controller.rollDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState
       case _ => println("invalid input");PlayingTUIState
     }

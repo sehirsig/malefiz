@@ -36,4 +36,6 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   override def undoAll: Unit = {}
   override def undo: Unit = {}
   override def redo: Unit = {}
+  override def save: Unit = {}
+  override def load: Unit = {}
 }

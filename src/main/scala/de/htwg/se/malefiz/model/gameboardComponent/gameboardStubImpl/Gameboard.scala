@@ -37,4 +37,5 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
       case Failure(e) => Failure(e)
     }
   }
+  override def getStringOfCell(cell:Cell): String = ""
 }

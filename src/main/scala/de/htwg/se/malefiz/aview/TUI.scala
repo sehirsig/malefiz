@@ -22,6 +22,8 @@ case class TUI(controller: ControllerInterface) extends Reactor {
     case event: StartGame => printStatus; currentState = PlayingTUIState
     case event: WonGame => printStatus; currentState = WinnerTUIState
     case event: GameReset => printStatus; currentState = IdleTUIState
+    case event: GameSaved => printStatus;
+    case event: GameLoaded => printStatus
   }
 
   def printTui: Unit = {

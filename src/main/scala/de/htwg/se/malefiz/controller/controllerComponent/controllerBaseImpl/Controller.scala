@@ -166,13 +166,15 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
   }
 
   def save: Unit = {
-    fileIo.save(gameboard, game)
+    fileIo.save(gameboard)
     gameStatus = SAVED
     publish(new RollDice)
   }
 
   def load: Unit = {
-    gameboard = fileIo.load
+    val temp = fileIo.load(game)
+    gameboard = temp._1
+    game = temp._2
     gameStatus = LOADED
     publish(new RollDice)
   }

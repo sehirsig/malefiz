@@ -1,9 +1,9 @@
 package de.htwg.se.malefiz.model.fileIoComponent
 
-import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.model.gameComponent.Game
+import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 
 trait FileIOInterface {
-  def load: GameboardInterface
-  def save(grid: GameboardInterface, game:Game): Unit
+  def load(game:Game): (GameboardInterface,Game)
+  def save(gameboard: GameboardInterface): Unit
 }

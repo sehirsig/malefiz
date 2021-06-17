@@ -34,6 +34,8 @@ trait ControllerInterface extends Publisher {
   def undoAll: Unit
   def undo: Unit
   def redo: Unit
+  def save: Unit
+  def load: Unit
 }
 
 import scala.swing.event.Event
@@ -46,3 +48,5 @@ class StartUp extends Event
 class StartGame extends Event
 class WonGame extends Event
 class GameReset extends Event
+class GameSaved extends Event
+class GameLoaded extends Event

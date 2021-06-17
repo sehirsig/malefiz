@@ -248,6 +248,8 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     case event: ChooseFig => redrawChooseFig
     case event: WonGame => reGameWon
     case event: GameReset => reGameNew
+    case event: GameSaved => redrawRoll
+    case event: GameLoaded => redrawRoll
   }
 
 
