@@ -1,4 +1,4 @@
-package de.htwg.se.malefiz.model.gameboardComponent.gameboardMockImpl
+package de.htwg.se.malefiz.model.gameboardComponent.gameboardStubImpl
 
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface

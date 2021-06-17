@@ -1,18 +1,25 @@
 package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
-import com.google.inject.Inject
+import com.google.inject.{Guice, Inject}
+import de.htwg.se.malefiz.MalefizModule
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.controller.controllerComponent._
 import de.htwg.se.malefiz.model.cellComponent._
+import de.htwg.se.malefiz.model.fileIoComponent.FileIOInterface
 import de.htwg.se.malefiz.model.gameComponent.Game
+import de.htwg.se.malefiz.model.gameboardComponent
 import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.lastSave
 import de.htwg.se.malefiz.model.playerComponent._
 import de.htwg.se.malefiz.util.UndoManager
+import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
 
 import scala.swing.Publisher
 
 case class Controller @Inject() (var gameboard: GameboardInterface) extends ControllerInterface with Publisher {
+
+  val injector = Guice.createInjector(new MalefizModule)
+  val fileIo = injector.instance[FileIOInterface]
+
   var gameStatus: GameStatus = IDLE
   var playerStatus: PlayerState = PlayerState1
   var moveCounter: Int = 0
@@ -20,7 +27,7 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
   var game: Game = Game(Vector[Player]())
   private val undoManager = new UndoManager
   var gameWon: (Boolean, String) = (false, "")
-  var savedGame: lastSaveInterface = lastSave(0, "", InvalidCell)
+  var savedGame: lastSaveInterface = gameboardComponent.lastSave(0, "", InvalidCell)
   var selectedFigNum: Int = 0;
 
   publish(new StartUp)
@@ -29,7 +36,7 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     gameStatus = IDLE
     game = Game(Vector[Player]())
     emptyMan
-    savedGame = lastSave(0, "", InvalidCell)
+    savedGame = gameboardComponent.lastSave(0, "", InvalidCell)
     playerStatus = PlayerState1
     moveCounter = 0
     gameWon = (false, "")
@@ -156,6 +163,18 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
 
   def redo: Unit = {
     undoManager.redoStep
+  }
+
+  def save: Unit = {
+    fileIo.save(gameboard, game)
+    gameStatus = SAVED
+    publish(new RollDice)
+  }
+
+  def load: Unit = {
+    gameboard = fileIo.load
+    gameStatus = LOADED
+    publish(new RollDice)
   }
 
 }

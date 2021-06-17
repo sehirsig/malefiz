@@ -1,11 +1,11 @@
-package de.htwg.se.malefiz.controller.controllerComponent.controllerMockImpl
+package de.htwg.se.malefiz.controller.controllerComponent.controllerStubImpl
 
 import de.htwg.se.malefiz.controller.controllerComponent._
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameComponent._
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.lastSave
-import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}
+import de.htwg.se.malefiz.model.gameboardComponent
+import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSave, lastSaveInterface}
 import de.htwg.se.malefiz.model.playerComponent._
 
 import scala.swing.Publisher //Mock -> Stub
@@ -18,7 +18,7 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   val builder: PlayerBuilder = PlayerBuilderImp()
   var game: Game = Game(Vector[Player]())
   var gameWon: (Boolean, String) = (false, "")
-  var savedGame: lastSaveInterface = lastSave(0, "", InvalidCell)
+  var savedGame: lastSaveInterface = gameboardComponent.lastSave(0, "", InvalidCell)
   var selectedFigNum: Int = 0;
   override def getpureCell(name: String): Cell = InvalidCell
   override def resetGame(): Unit = {}

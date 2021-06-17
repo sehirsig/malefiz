@@ -1,6 +1,6 @@
-package de.htwg.se.malefiz.controller.controllerComponent.controllerMockImpl
+package de.htwg.se.malefiz.controller.controllerComponent.controllerStubImpl
 
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardMockImpl.Gameboard
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardStubImpl.Gameboard
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
