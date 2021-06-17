@@ -1,6 +1,7 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
 import de.htwg.se.malefiz.model.cellComponent._
+import de.htwg.se.malefiz.model.gameComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.moveTypes._
 import de.htwg.se.malefiz.model.playerComponent.Player
@@ -122,7 +123,7 @@ object checkCell {
     val returnedBoard = x.replaceCell(0, 0, BlockedCell)
     returnedBoard match {
       case Success(v) => newboard = v
-      case Failure(f) => newboard
+      case Failure(_) => newboard
     }
     newboard
   }
@@ -130,4 +131,30 @@ object checkCell {
   def replaceBlock(x: GameboardInterface): GameboardInterface = {
     x.replaceBlocks(x)
   }
+  //function(movecounter, savedgame, gameboard, playerstatus, game
+/*
+  def banLastDirection(direction:String, seg:lastSave): Unit = {
+    direction match { // Sperre die andere Richtung, damit man nicht einfach links - rechts / oben - unten laufen kann
+      case "w" => seg.updateLastDirection("s")
+      case "s" => seg.updateLastDirection("w")
+      case "a" => seg.updateLastDirection("d")
+      case "d" => seg.updateLastDirection("a")
+    }
+  }
+
+  def rewritePlayer(sg:lastSave, spielbrett:GameboardInterface, fig_coord:(Int,Int)):Unit = {
+    if (sg.lastCell.isInstanceOf[PlayerCell]) {
+      spielbrett.movePlayer(fig_coord, sg.lastCell)
+    }
+  }
+
+
+  def bearbeiteNewMove(mc:Int, direction:String , sg:lastSave, spielbrett:GameboardInterface, fig_coord:(Int,Int), game:Game, lastCell:Cell):Unit = {
+    mc -= 1
+    banLastDirection(direction,sg)
+    rewritePlayer(sg, spielbrett, fig_coord)
+    sg.updatelastCell(lastCell)
+    sg.updatelastCell(lastCell)
+  }
+  */
 }

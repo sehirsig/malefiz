@@ -71,11 +71,9 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     game = game.addPlayer(player)
     if (game.getPlayerNumber() > 3) {
       gameStatus = READY2
-    }
-    else if (game.getPlayerNumber() < 2) {
+    } else if (game.getPlayerNumber() < 2) {
       gameStatus = IDLE
-    }
-    else {
+    } else {
       gameStatus = READY1
     }
     publish(new StartUp)
@@ -88,9 +86,8 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     //notifyObservers
   }
 
-  def SetupGame(): Unit = {
+  def setupGame(): Unit = {
     publish(new SettingUp)
-    //notifyObservers
   }
 
   def boardToString(): String = gameboard.toString()

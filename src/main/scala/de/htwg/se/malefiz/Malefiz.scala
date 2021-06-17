@@ -12,7 +12,7 @@ object Malefiz {
   val controller = injector.getInstance(classOf[ControllerInterface])//new Controller(new Gameboard(Settings().xDim, Settings().yDim))
   val tui = new TUI(controller)
   val gui = new SwingGui(controller)
-  controller.SetupGame()
+  controller.setupGame()
 
   def main(args: Array[String]): Unit = {
     var input: String = ""

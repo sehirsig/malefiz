@@ -26,7 +26,7 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   override def addPlayer(): Unit = {}
   override def addPlayerName(name: String): Unit = {}
   override def startGame(): Unit = {}
-  override def SetupGame(): Unit = {}
+  override def setupGame(): Unit = {}
   override def boardToString(): String = ""
   override def rollDice(): Int = 0
   override def checkWin(): Unit = {}
