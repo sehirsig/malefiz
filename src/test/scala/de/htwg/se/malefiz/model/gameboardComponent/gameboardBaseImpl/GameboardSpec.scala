@@ -165,7 +165,7 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         spielbrett.moveCell((0,0), InvalidCell) should be (spielbrett)
       }
       "newGBStandardSize()" in {
-        spielbrett.newGBStandardSize should be (spielbrett)
+        spielbrett.newGBStandardSize should be (new Gameboard(18,19))
       }
     }
   }
