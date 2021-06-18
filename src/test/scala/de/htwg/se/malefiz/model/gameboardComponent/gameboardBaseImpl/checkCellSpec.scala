@@ -1,5 +1,6 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
+import de.htwg.se.malefiz.model.cellComponent.PlayerCell
 import de.htwg.se.malefiz.model.playerComponent.Player
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -59,11 +60,22 @@ class checkCellSpec extends AnyWordSpec with Matchers {
         checkCell.isWalkable(gb, (14,5), 1, 1) should be (true)
         checkCell.isWalkable(gb, (14,6), 1, 1) should be (true)
         checkCell.isWalkable(gb, (14,7), 1, 1) should be (true)
-        checkCell.isWalkable(gb, (2,9), 1, 1) should be (true)
-        checkCell.isWalkable(gb, (1,9), 1, 1) should be (true)
+        checkCell.isWalkable(gb, (2,9), 1, 1) should be (true) //auf Blocked Cell laufen (mit 1 Move Left)
+        checkCell.isWalkable(gb, (1,9), 1, 1) should be (true) //Ins Ziel laufen (mit 1 Move Left)
+
+        gb = gb.moveCell((14,3), PlayerCell(2))
+        checkCell.isWalkable(gb, (14,3), 2, 1) should be (true) //Spieler 1 läuft über Spieler 2 seine Figur
+        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true) //Spieler 2 läuft über seine Figur
+        gb = gb.moveCell((14,3), PlayerCell(3))
+        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true) //Spieler 3 läuft über seine Figur
+        gb = gb.moveCell((14,3), PlayerCell(4))
+        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true) //Spieler 4 läuft über seine Figur
       }
       "be false " in {
-        checkCell.isWalkable(gb, (15,3), 1, 1) should be (false)
+        checkCell.isWalkable(gb, (15,3), 1, 1) should be (false) // In Basis reinlaufen
+
+        gb = gb.moveCell((14,3), PlayerCell(1)) // Nurnoch 1 zug und du würdest auf deiner eigenen Figur landen
+        checkCell.isWalkable(gb, (14,3), 1, 1) should be (false)
       }
     }
     "is getnextcell" should {
@@ -74,6 +86,11 @@ class checkCellSpec extends AnyWordSpec with Matchers {
         checkCell.getNextCell(gb, gb, (14,6), 2, 1) should be (gb)
         checkCell.getNextCell(gb, gb, (14,7), 2, 1) should be (gb)
         checkCell.getNextCell(gb, gb, (2,9), 2, 1) should be (gb)
+      }
+    }
+    "replace the gameboard" should {
+      "replace it" in {
+        checkCell.replaceIt(gb) should not be (gb)
       }
     }
   }

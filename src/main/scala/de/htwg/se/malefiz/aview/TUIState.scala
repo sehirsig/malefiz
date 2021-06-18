@@ -74,7 +74,8 @@ object MovingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     if (controller.gameWon._1) {
       println("We Have a Winner: " + controller.gameWon._2 + "\n")
-      WinnerTUIState.processing(input); WinnerTUIState
+      WinnerTUIState.processing(input);
+      return WinnerTUIState
     }
 
     input match {

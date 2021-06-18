@@ -7,27 +7,66 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 class GameboardSpec extends AnyWordSpec with Matchers {
-  "A Mock Gameboard is the playingfield of Malefiz. A Mock Gamebeoard" when { //
+  "A Mock Gameboard is the playingfield of Malefiz. A Mock Gameboard" when { //
     val spielbrett = new Gameboard(2, 2)
-    "all functions used properly" should {
-      "do nothing" in {
-        spielbrett.walkUp(spielbrett, Player.apply("Te",1,(0,0)),(0,0), 1,2)
-        spielbrett.walkDown(spielbrett, Player.apply("Te",1,(0,0)),(0,0), 1,2)
-        spielbrett.walkLeft(spielbrett, Player.apply("Te",1,(0,0)),(0,0), 1,2)
-        spielbrett.walkRight(spielbrett, Player.apply("Te",1,(0,0)),(0,0), 1,2)
-        spielbrett.setBlockStrategy("Invalid")
-        spielbrett.cell(1,1)
-        spielbrett.getStandardXYsize
-        spielbrett.diceRoll
-        spielbrett.goDown(0,0)
-        spielbrett.goUp(0,0)
-        spielbrett.goRight(0,0)
-        spielbrett.getCell("")
-        spielbrett.cellString(0,0)
-        spielbrett.goLeft(0,0)
-        spielbrett.checkPlayerOnGoal
-        spielbrett.cell(0,0)
-        spielbrett.replaceCell(0,0,InvalidCell)
+    val player = Player.apply("Te", 1, (0, 0))
+    "all functions do nothing" should {
+      "in walkUp" in {
+        spielbrett.walkUp(spielbrett, player, (0,1), 1, 2)
+      }
+      "in walkDown" in {
+        spielbrett.walkDown(spielbrett, player,(0,0), 1,2)
+      }
+      "in walkLeft" in {
+      spielbrett.walkLeft(spielbrett, player,(0,0), 1,2)
+      }
+      "in walkRight" in {
+      spielbrett.walkRight(spielbrett, player,(0,0), 1,2)
+      }
+      "in setBlockStrategy" in {
+      spielbrett.setBlockStrategy("Invalid")
+      }
+      "in getStandardXYsize" in {
+      spielbrett.getStandardXYsize
+      }
+      "in diceRoll" in {
+      spielbrett.diceRoll
+      }
+      "in goDown" in {
+      spielbrett.goDown(0,0)
+      }
+      "in goUp" in {
+      spielbrett.goUp(0,0)
+      }
+      "in goRight" in {
+      spielbrett.goRight(0,0)
+      }
+      "in getCell" in {
+      spielbrett.getCell("")
+      }
+      "in cellString" in {
+      spielbrett.cellString(0,0)
+      }
+      "in goLeft" in {
+      spielbrett.goLeft(0,0)
+      }
+      "in checkPlayerOnGoal" in {
+      spielbrett.checkPlayerOnGoal
+      }
+      "in cell" in {
+      spielbrett.cell(0,0)
+      }
+      "in replaceCell" in {
+      spielbrett.replaceCell(0,0,InvalidCell)
+      }
+      "newGBStandardSize()" in {
+        spielbrett.newGBStandardSize should be (spielbrett)
+      }
+      "in replaceCell Fail" in {
+        spielbrett.replaceCell(0,-1,InvalidCell)
+      }
+      "in getStringOfCell" in {
+        spielbrett.getStringOfCell(InvalidCell) should be ("")
       }
     }
   }

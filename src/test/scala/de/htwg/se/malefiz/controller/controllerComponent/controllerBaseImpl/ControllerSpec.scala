@@ -1,10 +1,14 @@
 package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
+import com.google.inject.Guice
+import de.htwg.se.malefiz.MalefizModule
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.controller.controllerComponent.PlayerState1
 import de.htwg.se.malefiz.model.cellComponent.PlayerCell
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
+import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface
 import de.htwg.se.malefiz.util.Observer
+import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -331,17 +335,16 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       "when as Player 1" in {
         controller.selectFigure(1)
-        controller.moveCounter = 5
+        controller.moveCounter = 4
         controller.move("w", 1)
         controller.move("w", 1)
         controller.move("w", 1)
-        controller.move("d", 1)
+        controller.move("a", 1)
         controller.move("undo", 1)
         controller.move("redo", 1)
         controller.move("undo", 1)
-        controller.move("a", 1)
-        controller.move("a", 1)
-        controller.move("w", 1)
+        controller.move("d", 1)
+        controller.move("d", 1)
         controller.move("w", 1)
       }
       "when as Player 2" in {
@@ -358,18 +361,17 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("w", 1)
         controller.move("w", 1)
       }
-      "when as Player 1 2nd Move" in {
+      "when as Player 1 2nd Move kick" in {
         controller.rollDice()
         controller.selectFigure(1)
-        controller.moveCounter = 5
-        controller.move("s", 1)
-        controller.move("skip", 1)
+        controller.moveCounter = 1
+        controller.move("w", 1)
       }
       "when as Player 2 2nd Move" in {
         controller.rollDice()
         controller.selectFigure(1)
         controller.moveCounter = 5
-        controller.move("s", 1)
+        controller.move("w", 1)
         controller.move("skip", 1)
       }
       "when as Player 1 3rd Move" in {
@@ -377,18 +379,44 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.selectFigure(1)
         controller.moveCounter = 6
         controller.move("s", 1)
+        controller.move("s", 1)
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
-        controller.move("w", 1)
       }
       "when as Player 2 3rd Move" in {
         controller.rollDice()
         controller.selectFigure(1)
         controller.moveCounter = 6
-        controller.gameboard.movePlayer((2,9), PlayerCell(1))
+        controller.gameboard = controller.gameboard.movePlayer((2,9), PlayerCell(1))
         controller.move("w", 1)
+      }
+      "when Player 2 Wins" in {
+        controller.gameboard = controller.gameboard.movePlayer((1,9), PlayerCell(2))
+        controller.checkWin()
+        controller.gameWon should be (true,"Zwei")
+      }
+      "when Player 2 Fin but not Won" in {
+        controller.gameWon = (false, "")
+        controller.moveCounter = 0
+        controller.move("p", 1)
+      }
+      "save a gameboard" in {
+        controller.save
+      }
+      "load a gameboard" in {
+        controller.load
+      }
+      "reset a game" in {
+        val injector = Guice.createInjector(new MalefizModule)
+        val saGe = injector.instance[lastSaveInterface]
+        controller.resetGame()
+        controller.gameStatus should be (IDLE)
+        controller.savedGame should be (saGe)
+        controller.gameWon should be (false,"")
+        controller.selectedFigNum should be (0)
+        controller.playerStatus should be (PlayerState1)
       }
     }
   }

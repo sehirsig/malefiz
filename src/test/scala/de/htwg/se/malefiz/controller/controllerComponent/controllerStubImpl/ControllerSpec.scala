@@ -1,5 +1,6 @@
 package de.htwg.se.malefiz.controller.controllerComponent.controllerStubImpl
 
+import de.htwg.se.malefiz.model.cellComponent.InvalidCell
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardStubImpl.Gameboard
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -13,6 +14,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         con.playerStatus = con.playerStatus
         con.moveCounter = 1
         con.builder
+        con.createNewGameboard
         con.game = con.game
         con.gameWon = (true,"")
         con.savedGame = con.savedGame
@@ -31,6 +33,10 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         con.undo
         con.redo
         con.move("",0)
+        con.getpureCell("") should be (InvalidCell)
+        con.setupGame()
+        con.save
+        con.load
       }
     }
   }
