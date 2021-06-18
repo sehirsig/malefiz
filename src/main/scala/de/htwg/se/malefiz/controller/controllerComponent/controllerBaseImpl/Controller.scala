@@ -18,7 +18,7 @@ import scala.swing.Publisher
 case class Controller @Inject() (var gameboard: GameboardInterface) extends ControllerInterface with Publisher {
 
   val injector = Guice.createInjector(new MalefizModule)
-  val fileIo = injector.instance[FileIOInterface]
+  val fileIo = injector.instance[FileIOInterface] //Docker Test
 
   var gameStatus: GameStatus = IDLE
   var playerStatus: PlayerState = PlayerState1
