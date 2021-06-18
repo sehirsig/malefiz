@@ -1,10 +1,14 @@
 package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
+import com.google.inject.Guice
+import de.htwg.se.malefiz.MalefizModule
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.controller.controllerComponent.PlayerState1
 import de.htwg.se.malefiz.model.cellComponent.PlayerCell
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
+import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface
 import de.htwg.se.malefiz.util.Observer
+import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -385,10 +389,35 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.rollDice()
         controller.selectFigure(1)
         controller.moveCounter = 6
-        controller.gameboard.movePlayer((2,9), PlayerCell(1))
+        controller.gameboard = controller.gameboard.movePlayer((2,9), PlayerCell(1))
         controller.move("w", 1)
       }
-
+      "when Player 2 Wins" in {
+        controller.gameboard = controller.gameboard.movePlayer((1,9), PlayerCell(2))
+        controller.checkWin()
+        controller.gameWon should be (true,"Zwei")
+      }
+      "when Player 2 Fin but not Won" in {
+        controller.gameWon = (false, "")
+        controller.moveCounter = 0
+        controller.move("p", 1)
+      }
+      "save a gameboard" in {
+        controller.save
+      }
+      "load a gameboard" in {
+        controller.load
+      }
+      "reset a game" in {
+        val injector = Guice.createInjector(new MalefizModule)
+        val saGe = injector.instance[lastSaveInterface]
+        controller.resetGame()
+        controller.gameStatus should be (IDLE)
+        controller.savedGame should be (saGe)
+        controller.gameWon should be (false,"")
+        controller.selectedFigNum should be (0)
+        controller.playerStatus should be (PlayerState1)
+      }
     }
   }
 }

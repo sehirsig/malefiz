@@ -121,5 +121,29 @@ class TUISpec extends AnyWordSpec with Matchers {
     "do nothing on invalid inputs" in {
       tui.processing("krgr")
     }
+    "save the game" in {
+      tui.currentState = PlayingTUIState
+      tui.processing("s")
+      tui.currentState should be (PlayingTUIState)
+    }
+    "load the game" in {
+      tui.processing("l")
+      tui.currentState should be (PlayingTUIState)
+    }
+    "do nothing with the game" in {
+      tui.processing("invalid")
+      tui.currentState should be (PlayingTUIState)
+    }
+    "do win with the game" in {
+      controller.moveCounter = 0
+      tui.currentState = MovingTUIState
+      controller.gameWon = (true, "Eins")
+      tui.processing("")
+      tui.currentState = WinnerTUIState
+      tui.processing("")
+      tui.currentState should be (IdleTUIState)
+
+    }
+
   }
 }

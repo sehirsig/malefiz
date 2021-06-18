@@ -36,7 +36,7 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     gameStatus = IDLE
     game = Game(Vector[Player]())
     emptyMan
-    savedGame = gameboardComponent.lastSave(0, "", InvalidCell)
+    savedGame = injector.instance[lastSaveInterface]
     playerStatus = PlayerState1
     moveCounter = 0
     gameWon = (false, "")
@@ -111,13 +111,8 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
   def checkWin(): Unit = {
     if (gameboard.checkPlayerOnGoal) {
       gameStatus = GAMEWINNER
-      val winner = {
-        if ((playerStatus.getCurrentPlayer - 1) == 0) {
-          game.players.length - 1
-        } else {
-          playerStatus.getCurrentPlayer - 2
-        }
-      }
+     // val winne3r = gameboard.cell(1,9).toString().toInt - 1
+      val winner = gameboard.cell(1,9).toString().replace(" ", "").toInt - 1
       gameWon = (true, game.players(winner).name.replace("Some", ""))
       publish(new WonGame)
     }
