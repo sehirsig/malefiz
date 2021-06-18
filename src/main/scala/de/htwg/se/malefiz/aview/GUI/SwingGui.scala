@@ -6,7 +6,7 @@ import scala.swing.event._
 import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.malefiz.controller.controllerComponent._
 
-import java.awt.Color
+import java.awt.{Color, Font}
 import javax.swing.ImageIcon
 
 class SwingGui(controller: ControllerInterface) extends Frame {
@@ -25,24 +25,38 @@ class SwingGui(controller: ControllerInterface) extends Frame {
 //IdleGUIState, PlayerNameState, PlayingGUIState, ChooseGameFigGUIState, WinnerGUIState, MovingGUIState
 
 
-
-  //val namebox = new TextField("Name", 10)
-  val namebutton = new Button {
+/*
+  val startbutton = new Button {
     text = "Start the Game!"
     listenTo(mouse.clicks)
     reactions += {
       case _: MouseClicked => if (controller.game.players.length > 0) controller.startGame()
     }
-  }
+  }*/
+
   val nameinputPanel = new FlowPanel {
     //contents += namebox
-    contents += namebutton
-    border = Swing.EmptyBorder(105)
+    contents += new Button {
+      text = "Start the Game!"
+      listenTo(mouse.clicks)
+      reactions += {
+        case _: MouseClicked => if (controller.game.players.length > 0) controller.startGame()
+      }
+      contents += new Button {
+        text = "Add a Player!"
+        visible = true
+        listenTo(mouse.clicks)
+        reactions += {
+          case _: MouseClicked => playChoose
+        }
+      }
+    }
+    //border = Swing.EmptyBorder(105)
   }
   val welcomeMessage = new Label {
     text = "Welcome to Malefiz the Game!"
   }
-
+/*
   val welcomeAddPlayerButton = new Button {
     text = "Add a Player!"
     visible = true
@@ -50,19 +64,19 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     reactions += {
       case _: MouseClicked => playChoose
     }
-  }
+  }*/
 
 
   val welcomePanel = new BoxPanel(Orientation.Vertical) {
     contents += welcomeMessage
     contents += nameinputPanel
-    contents += welcomeAddPlayerButton
     contents += statusline
     border = Swing.EmptyBorder(20,20,20,20)
-    contents(0).preferredSize = new Dimension(780,1500)
-    contents(1).preferredSize = new Dimension(780,50)
-    contents(2).preferredSize = new Dimension(780,50)
-    contents(3).preferredSize = new Dimension(780,30)
+    contents(0).preferredSize = new Dimension(600,400)
+    contents(0).xLayoutAlignment = 1
+    contents(0).font = new Font("Bookman Old Style", Font.ITALIC, 28)
+    contents(1).preferredSize = new Dimension(600,50)
+    contents(2).preferredSize = new Dimension(600,30)
   }
 
   val currentplayer = new TextField{
@@ -136,6 +150,30 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   }*/
 
 
+  val diceLoadSavePanel = new FlowPanel() {
+    contents += new Button{
+      text = "Roll the Dice!"
+      listenTo(mouse.clicks)
+      reactions += {
+        case _: MouseClicked => controller.rollDice()
+      }
+    }
+    contents += new Button{
+      text = "Load Game!"
+      listenTo(mouse.clicks)
+      reactions += {
+        case _: MouseClicked =>  controller.load
+      }
+    }
+    contents += new Button{
+      text = "Save Game!"
+      listenTo(mouse.clicks)
+      reactions += {
+        case _: MouseClicked =>  controller.save
+      }
+    }
+  }
+/*
   val diceButton = new Button{
     text = "Roll the Dice!"
     listenTo(mouse.clicks)
@@ -144,6 +182,22 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     }
   }
 
+  val loadButton = new Button{
+    text = "Load Game!"
+    listenTo(mouse.clicks)
+    reactions += {
+      case _: MouseClicked => controller.load
+    }
+  }
+
+  val saveButton = new Button{
+    text = "Save Game!"
+    listenTo(mouse.clicks)
+    reactions += {
+      case _: MouseClicked => controller.save
+    }
+  }
+*/
   val choosePanel = new FlowPanel {
     contents += new Button{
       text = "Figure 1"
@@ -292,6 +346,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     repaint
   }
 
+
   def redrawPlay:Unit = {
     contents = {
       new BoxPanel(Orientation.Vertical) {
@@ -302,10 +357,10 @@ class SwingGui(controller: ControllerInterface) extends Frame {
         contents += statusline
         border = Swing.EmptyBorder(20,20,20,20)
         contents(0).preferredSize = new Dimension(400,600)
-        contents(2).preferredSize = new Dimension(780,50)
-        contents(2).preferredSize = new Dimension(780,5)
-        contents(3).preferredSize = new Dimension(780,5)
-        contents(4).preferredSize = new Dimension(780,5)
+        contents(2).preferredSize = new Dimension(400,50)
+        contents(2).preferredSize = new Dimension(400,5)
+        contents(3).preferredSize = new Dimension(400,5)
+        contents(4).preferredSize = new Dimension(400,5)
       }
     }
     statusline.text = GameStatus.gameMessage(controller.gameStatus)
@@ -314,18 +369,19 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     repaint
   }
 
+
   def redrawRoll:Unit = {
     contents = {
       new BoxPanel(Orientation.Vertical) {
         contents += gridPanel
-        contents += diceButton
+        contents += diceLoadSavePanel
         contents += currentplayer
         contents += statusline
         border = Swing.EmptyBorder(20,20,20,20)
         contents(0).preferredSize = new Dimension(400,600)
-        contents(1).preferredSize = new Dimension(780,50)
-        contents(2).preferredSize = new Dimension(780,5)
-        contents(3).preferredSize = new Dimension(780,5)
+        contents(1).preferredSize = new Dimension(600,50)
+        contents(2).preferredSize = new Dimension(600,5)
+        contents(3).preferredSize = new Dimension(600,5)
       }
     }
     statusline.text = GameStatus.gameMessage(controller.gameStatus)

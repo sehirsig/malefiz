@@ -13,7 +13,7 @@ libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.0-RC2"
 
 coverageExcludedPackages := "de.htwg.se.malefiz.aview.GUI;" +
   "de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.Dice;" +
-  "de.htwg.se.malefiz.model.fileIoComponent;"
+  "de.htwg.se.malefiz.model.fileIoComponent.*;"
 
 
 
