@@ -118,6 +118,21 @@ class TUISpec extends AnyWordSpec with Matchers {
     "move right on input 'd'" in {
       tui.processing("d")
     }
+    "do use a on MovingTUI" in {
+      tui.currentState = MovingTUIState
+      tui.processing("a")
+      tui.currentState should be (MovingTUIState)
+    }
+    "do use undo on MovingTUI" in {
+      tui.currentState = MovingTUIState
+      tui.processing("undo")
+      tui.currentState should be (MovingTUIState)
+    }
+    "do use redo on MovingTUI" in {
+      tui.currentState = MovingTUIState
+      tui.processing("redo")
+      tui.currentState should be (MovingTUIState)
+    }
     "do nothing on invalid inputs" in {
       tui.processing("krgr")
     }
@@ -142,7 +157,11 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.currentState = WinnerTUIState
       tui.processing("")
       tui.currentState should be (IdleTUIState)
-
+    }
+    "do nothing with Idle Invalid input" in {
+      tui.currentState = IdleTUIState
+      tui.processing("invalidinput")
+      tui.currentState should be (IdleTUIState)
     }
 
   }
