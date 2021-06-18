@@ -3,7 +3,7 @@ package de.htwg.se.malefiz.aview
 import de.htwg.se.malefiz.controller.controllerComponent
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
+import de.htwg.se.malefiz.controller.controllerComponent._
 import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
@@ -23,7 +23,29 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.processing("xy")
       tui.currentState should be(IdleTUIState)
     }
+    "react on events" in {
+      controller.publish(new RollDice)
+      tui.currentState should be (PlayingTUIState)
+      controller.publish(new Moving)
+      tui.currentState should be (MovingTUIState)
+      controller.publish(new ChooseFig)
+      tui.currentState should be (ChooseGameFigTUIState)
+      controller.publish(new SettingUp)
+      tui.currentState should be (ChooseGameFigTUIState)
+      controller.publish(new StartUp)
+      tui.currentState should be (ChooseGameFigTUIState)
+      controller.publish(new StartGame)
+      tui.currentState should be (PlayingTUIState)
+      controller.publish(new WonGame)
+      tui.currentState should be (WinnerTUIState)
+      controller.publish(new GameReset)
+      tui.currentState should be (IdleTUIState)
+      controller.publish(new GameSaved)
+      tui.currentState should be (IdleTUIState)
+      controller.publish(new GameLoaded)
+      tui.currentState should be (IdleTUIState)
 
+    }
     "do nothing on input 'welcomeMessage'" in {
       tui.processing("welcomeMessage")
     }
