@@ -8,8 +8,8 @@ import de.htwg.se.malefiz.util.BlockStrategy
 
 import scala.util.{Failure, Random, Success, Try}
 
-case class Gameboard@Inject()(rows: Vector[Vector[Cell]]) extends GameboardInterface {
-
+case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
+  @Inject
   def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
     (row, col) => {
       if (Settings().blockedCells.contains(row, col)) {

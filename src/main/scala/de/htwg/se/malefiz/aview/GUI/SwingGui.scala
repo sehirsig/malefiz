@@ -3,7 +3,6 @@ package de.htwg.se.malefiz.aview.GUI
 import scala.swing._
 import scala.swing.Swing.LineBorder
 import scala.swing.event._
-import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.malefiz.controller.controllerComponent._
 
 import java.awt.{Color, Font}
