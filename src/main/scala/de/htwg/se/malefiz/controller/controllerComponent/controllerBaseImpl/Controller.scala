@@ -31,7 +31,7 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
   var selectedFigNum: Int = 0;
 
   publish(new StartUp)
-
+//docker test
   def resetGame(): Unit = {
     gameStatus = IDLE
     game = Game(Vector[Player]())
