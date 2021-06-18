@@ -64,6 +64,7 @@ class checkCellSpec extends AnyWordSpec with Matchers {
         checkCell.isWalkable(gb, (1,9), 1, 1) should be (true) //Ins Ziel laufen (mit 1 Move Left)
 
         gb = gb.moveCell((14,3), PlayerCell(2))
+        checkCell.isWalkable(gb, (14,3), 2, 1) should be (true) //Spieler 1 läuft über Spieler 2 seine Figur
         checkCell.isWalkable(gb, (14,3), 2, 2) should be (true) //Spieler 2 läuft über seine Figur
         gb = gb.moveCell((14,3), PlayerCell(3))
         checkCell.isWalkable(gb, (14,3), 2, 2) should be (true) //Spieler 3 läuft über seine Figur
@@ -85,6 +86,11 @@ class checkCellSpec extends AnyWordSpec with Matchers {
         checkCell.getNextCell(gb, gb, (14,6), 2, 1) should be (gb)
         checkCell.getNextCell(gb, gb, (14,7), 2, 1) should be (gb)
         checkCell.getNextCell(gb, gb, (2,9), 2, 1) should be (gb)
+      }
+    }
+    "replace the gameboard" should {
+      "replace it" in {
+        checkCell.replaceIt(gb) should not be (gb)
       }
     }
   }

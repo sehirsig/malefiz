@@ -331,17 +331,16 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       "when as Player 1" in {
         controller.selectFigure(1)
-        controller.moveCounter = 5
+        controller.moveCounter = 4
         controller.move("w", 1)
         controller.move("w", 1)
         controller.move("w", 1)
-        controller.move("d", 1)
+        controller.move("a", 1)
         controller.move("undo", 1)
         controller.move("redo", 1)
         controller.move("undo", 1)
-        controller.move("a", 1)
-        controller.move("a", 1)
-        controller.move("w", 1)
+        controller.move("d", 1)
+        controller.move("d", 1)
         controller.move("w", 1)
       }
       "when as Player 2" in {
@@ -358,18 +357,17 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("w", 1)
         controller.move("w", 1)
       }
-      "when as Player 1 2nd Move" in {
+      "when as Player 1 2nd Move kick" in {
         controller.rollDice()
         controller.selectFigure(1)
-        controller.moveCounter = 5
-        controller.move("s", 1)
-        controller.move("skip", 1)
+        controller.moveCounter = 1
+        controller.move("w", 1)
       }
       "when as Player 2 2nd Move" in {
         controller.rollDice()
         controller.selectFigure(1)
         controller.moveCounter = 5
-        controller.move("s", 1)
+        controller.move("w", 1)
         controller.move("skip", 1)
       }
       "when as Player 1 3rd Move" in {
@@ -377,11 +375,11 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.selectFigure(1)
         controller.moveCounter = 6
         controller.move("s", 1)
+        controller.move("s", 1)
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
-        controller.move("w", 1)
       }
       "when as Player 2 3rd Move" in {
         controller.rollDice()
@@ -390,6 +388,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.gameboard.movePlayer((2,9), PlayerCell(1))
         controller.move("w", 1)
       }
+
     }
   }
 }
