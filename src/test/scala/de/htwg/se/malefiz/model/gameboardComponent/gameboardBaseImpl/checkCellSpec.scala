@@ -80,17 +80,17 @@ class checkCellSpec extends AnyWordSpec with Matchers {
     }
     "is getnextcell" should {
       "return the old gameboard" in {
-        checkCell.getNextCell(gb, gb, (15,3), 1, 1) should be (gb)
-        checkCell.getNextCell(gb, gb, (15,3), 1, 2) should be (gb)
-        checkCell.getNextCell(gb, gb, (14,5), 2, 1) should be (gb)
-        checkCell.getNextCell(gb, gb, (14,6), 2, 1) should be (gb)
-        checkCell.getNextCell(gb, gb, (14,7), 2, 1) should be (gb)
-        checkCell.getNextCell(gb, gb, (2,9), 2, 1) should be (gb)
+        checkCell.getNextCell(gb, gb, (15,3), 1) should be (gb)
+        checkCell.getNextCell(gb, gb, (15,3), 1) should be (gb)
+        checkCell.getNextCell(gb, gb, (14,5), 2) should be (gb)
+        checkCell.getNextCell(gb, gb, (14,6), 2) should be (gb)
+        checkCell.getNextCell(gb, gb, (14,7), 2) should be (gb)
+        checkCell.getNextCell(gb, gb, (2,9), 2) should be (gb)
       }
     }
     "replace the gameboard" should {
       "replace it" in {
-        checkCell.replaceIt(gb) should not be (gb)
+        checkCell.replaceIt(gb,1,1) should not be (gb)
       }
     }
   }
