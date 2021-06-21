@@ -1,3 +1,11 @@
+/*
+Class: GameStatus.scala
+
+Beschreibung:
+Die Status Ausgabe unseres Spiels.
+
+ */
+
 package de.htwg.se.malefiz.controller.controllerComponent
 
 object GameStatus extends Enumeration {

@@ -1,3 +1,11 @@
+/*
+Class: Cell.scala
+
+Beschreibung:
+Alle Zellen unseres Malefiz-Spiels, die es gibt.
+
+ */
+
 package de.htwg.se.malefiz.model.cellComponent
 
 trait Cell {
@@ -42,7 +50,7 @@ object InvalidCell extends Cell {
   override val cellStatus = "  "
 }
 
-case class PlayerCell(num:Int) extends Cell {
+case class PlayerCell(num:Int) extends Cell { //Zelle für jeden einzelnen Spieler, indem der Parameter gesetzt wird.
   def getPlayer:Int = num
   override val cellStatus = num.toString + " "
 }

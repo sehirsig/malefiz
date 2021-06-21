@@ -1,3 +1,11 @@
+/*
+Class: gameboardBaseImpl/moveTypes.scala
+
+Beschreibung:
+Klasse um die Koordinaten schnell auf den der nächsten Zelle zu ändern.
+
+ */
+
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
 object moveTypes {

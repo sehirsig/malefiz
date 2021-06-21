@@ -1,3 +1,11 @@
+/*
+Class: Game.scala
+
+Beschreibung:
+Spiel-speicherung. Hier werden die Spieler gespeichert.
+
+ */
+
 package de.htwg.se.malefiz.model.gameComponent
 
 import de.htwg.se.malefiz.model.playerComponent.Player

@@ -1,3 +1,11 @@
+/*
+Class: controllerBaseImpl/Controller.scala
+
+Beschreibung:
+Der Controller unseres Malefiz Spiel in der BaseImplementation.
+
+ */
+
 package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
 import com.google.inject.{Guice, Inject}
@@ -17,22 +25,22 @@ import scala.swing.Publisher
 
 case class Controller @Inject() (var gameboard: GameboardInterface) extends ControllerInterface with Publisher {
 
-  val injector = Guice.createInjector(new MalefizModule)
-  val fileIo = injector.instance[FileIOInterface] //Docker Test
+  val injector = Guice.createInjector(new MalefizModule) //Injector für Dependency Injection
+  val fileIo = injector.instance[FileIOInterface] //Dependency Injection für FileIO
 
-  var gameStatus: GameStatus = IDLE
-  var playerStatus: PlayerState = PlayerState1
-  var moveCounter: Int = 0
-  val builder: PlayerBuilder = new PlayerBuilderImp()
-  var game: Game = Game(Vector[Player]())
-  private val undoManager = new UndoManager
-  var gameWon: (Boolean, String) = (false, "")
-  var savedGame = injector.instance[lastSaveInterface]
+  var gameStatus: GameStatus = IDLE //Initialiersung des Spiel Status
+  var playerStatus: PlayerState = PlayerState1 //Initialiersung des Spieler-Status (Nächste-Spieler bestimmung)
+  var moveCounter: Int = 0 // Gibt die verbleibenden Spielfigur-Züge an
+  val builder: PlayerBuilder = new PlayerBuilderImp() //Builder-Pattern für unsere Spieler
+  var game: Game = Game(Vector[Player]()) //Speicherung unserer Spieler und Spielfiguren
+  private val undoManager = new UndoManager //Initialiersung unseres UndoManagers
+  var gameWon: (Boolean, String) = (false, "") //Boolean, ob es einen Gewinner gibt, und wenn, wer.
+  var savedGame = injector.instance[lastSaveInterface] //Dependency Injection der Speicherung des letzten Zuges.
   var selectedFigNum: Int = 0;
 
   publish(new StartUp)
-//docker test
-  def resetGame(): Unit = {
+
+  def resetGame(): Unit = { //Komplett Reset des Spiels, für nach dem Spiel-Gewinn.
     gameStatus = IDLE
     game = Game(Vector[Player]())
     emptyMan
@@ -45,25 +53,23 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     publish(new GameReset)
   }
 
-  def selectFigure(x: Int): Unit = {
+  def selectFigure(x: Int): Unit = { //Auswahl der Spielfigur.
     selectedFigNum = x
     gameStatus = MOVING
     publish(new Moving)
-    //notifyObservers
   }
 
-  def getpureCell(name: String): Cell = {
+  def getpureCell(name: String): Cell = { //Bekomme die Cell aus dem String-Namen.
     gameboard.getCell(name)
   }
 
-  def addPlayer(): Unit = {
+  def addPlayer(): Unit = { //Füge einen Spieler hinzu.
     gameWon = (false, "")
     gameStatus = ENTERNAME
     publish(new SettingUp)
-    //notifyObservers
   }
 
-  def addPlayerName(name: String): Unit = {
+  def addPlayerName(name: String): Unit = { //Füge den Namen dem Spieler hinzu und die 5 Spielfiguren.
     builder.setName(name)
     val newplayernum = game.players.length + 1
     builder.setID(newplayernum)
@@ -84,48 +90,44 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
       gameStatus = READY1
     }
     publish(new StartUp)
-    //notifyObservers
   }
 
-  def startGame(): Unit = {
+  def startGame(): Unit = { //Spiel starten.
     gameStatus = PLAYING
     publish(new StartGame)
-    //notifyObservers
   }
 
-  def setupGame(): Unit = {
+  def setupGame(): Unit = { //Das Spiel einrichten, bei start der Applikation.
     publish(new SettingUp)
   }
 
-  def boardToString(): String = gameboard.toString()
+  def boardToString(): String = gameboard.toString() //Stringdarstellung des Spielbrettes.
 
-  def rollDice(): Int = {
+  def rollDice(): Int = { //Würfeln.
     moveCounter = gameboard.diceRoll
     gameStatus = CHOOSEFIG
-    //notifyObservers
     savedGame = savedGame.updateLastFullDice(moveCounter)
     publish(new ChooseFig)
     moveCounter
   }
 
-  def checkWin(): Unit = {
+  def checkWin(): Unit = { //Überprüfen, ob es einen Gewinner gibt.
     if (gameboard.checkPlayerOnGoal) {
       gameStatus = GAMEWINNER
-     // val winne3r = gameboard.cell(1,9).toString().toInt - 1
       val winner = gameboard.cell(1,9).toString().replace(" ", "").toInt - 1
       gameWon = (true, game.players(winner).name.replace("Some", ""))
       publish(new WonGame)
     }
   }
 
-  def setBlockStrategy(blockStrategy: String): Unit = {
+  def setBlockStrategy(blockStrategy: String): Unit = { //Die BlockStrategy auswählen.
     blockStrategy match {
       case "replace" => gameboard.setBlockStrategy(blockStrategy)
       case "remove" => gameboard.setBlockStrategy(blockStrategy)
     }
   }
 
-  def move(input: String, figurenum: Int): Unit = {
+  def move(input: String, figurenum: Int): Unit = { //Spielzug.
     input match {
       case "skip" => moveCounter = 1; undoManager.doStep(new MoveCommand(input, figurenum, this))
       case "undo" => undo
@@ -133,45 +135,43 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
       case _ => if (input != savedGame.lastDirectionOpposite) undoManager.doStep(new MoveCommand(input, figurenum, this));
     }
     if (moveCounter == 0) {
-      checkWin()
-      if (!gameWon._1) {
+      checkWin() // Überprüfen, ob jemand auf der GoalCell steht, wenn Ja, geht es in CheckWin() weiter.
+      if (!gameWon._1) { // Wenn NEIN, dann normal weiter.
         gameStatus = PLAYING
         publish(new RollDice)
       }
     } else {
       publish(new Moving)
     }
-    //notifyObservers
   }
 
-  def emptyMan: Unit = {
+  def emptyMan: Unit = { //Leerung des Undomanagers, um einen Leeren Stack für den nächsten Spieler zu haben.
     undoManager.emptyStacks
   }
 
-  def undoAll: Unit = {
+  def undoAll: Unit = { //Alle Undos auf dem Stack auf einmal ausführen.
     undoManager.undoAll
   }
 
-  def undo: Unit = {
+  def undo: Unit = { //Undo.
     undoManager.undoStep
   }
 
-  def redo: Unit = {
+  def redo: Unit = { //Redo.
     undoManager.redoStep
   }
 
-  def save: Unit = {
+  def save: Unit = { //Spielstand in Datei speichern.
     fileIo.save(gameboard)
     gameStatus = SAVED
     publish(new RollDice)
   }
 
-  def load: Unit = {
-    val temp = fileIo.load(game)
+  def load: Unit = { //Spielstand aus Datei laden.
+    val temp = fileIo.load(game) //"Game" Übergabe, damit die Spielfiguren richtig verwaltet werden können.
     gameboard = temp._1
     game = temp._2
     gameStatus = LOADED
     publish(new RollDice)
   }
-
 }

@@ -1,3 +1,11 @@
+/*
+Class: controllerStubImpl/Controller.scala
+
+Beschreibung:
+Eine Stub Implementation unseres Controllers.
+
+ */
+
 package de.htwg.se.malefiz.controller.controllerComponent.controllerStubImpl
 
 import de.htwg.se.malefiz.controller.controllerComponent._

@@ -1,3 +1,12 @@
+/*
+Class: ControllerInterface.scala
+
+Beschreibung:
+Das Interface für unsere Controller Komponenten.
+Beschreibungen der Funktionen in der Base-Implementierung.
+
+ */
+
 package de.htwg.se.malefiz.controller.controllerComponent
 
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus.GameStatus
@@ -38,6 +47,8 @@ trait ControllerInterface extends Publisher {
   def load: Unit
 }
 
+
+//Unsere Events, die beim Controller aufgeruft werden, um den Listenern bescheid zu geben.
 import scala.swing.event.Event
 
 class RollDice extends Event

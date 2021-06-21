@@ -1,3 +1,11 @@
+/*
+Class: lastSave.scala
+
+Beschreibung:
+Hier werden informationen des letzten Zuges gespeichert.
+
+ */
+
 package de.htwg.se.malefiz.model.gameboardComponent
 
 import com.google.inject.Inject

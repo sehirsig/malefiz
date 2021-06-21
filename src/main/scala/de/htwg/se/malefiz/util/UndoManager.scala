@@ -1,3 +1,11 @@
+/*
+Class: UndoManager.scala
+
+Beschreibung:
+Klasse für unseren UndoManager.
+
+ */
+
 package de.htwg.se.malefiz.util
 
 class UndoManager {

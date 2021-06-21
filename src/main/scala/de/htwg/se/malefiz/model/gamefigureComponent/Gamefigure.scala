@@ -1,3 +1,11 @@
+/*
+Class: Gamefigure.scala
+
+Beschreibung:
+Hier werden die Spielfiguren in unserem Spiel deklariert.
+
+ */
+
 package de.htwg.se.malefiz.model.gamefigureComponent
 
 import de.htwg.se.malefiz.model.playerComponent.Player

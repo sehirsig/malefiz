@@ -1,3 +1,11 @@
+/*
+Class: gameboardBaseImpl/BlockReplaceStrategy.scala
+
+Beschreibung:
+Blocked Cell Replace Strategy unseres Strategy-Patterns.
+Verschiebe die Blocked Zellen in auf eine andere Position. (Nicht auf Secure-Cells, nur Free-Cells!)
+ */
+
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
 import de.htwg.se.malefiz.model.cellComponent._

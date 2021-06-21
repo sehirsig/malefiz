@@ -1,3 +1,11 @@
+/*
+Class: gameboardBaseImpl/settings.scala
+
+Beschreibung:
+Settings Klasse Base Implementierung. Hier werden viele Default-Settings gespeichert.
+
+ */
+
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
 case class Settings() {

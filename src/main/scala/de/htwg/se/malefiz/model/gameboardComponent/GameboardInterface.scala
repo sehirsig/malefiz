@@ -1,3 +1,13 @@
+/*
+Class: GameboardInterface.scala
+
+Beschreibung:
+Interface für unsere Spielbrett Implementierungen.
+
+Nähere Kommentare in der Base-Implementierung.
+
+ */
+
 package de.htwg.se.malefiz.model.gameboardComponent
 
 import de.htwg.se.malefiz.model.cellComponent.Cell

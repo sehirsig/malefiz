@@ -1,3 +1,12 @@
+/*
+Class: TUI.scala
+
+Beschreibung:
+Malefiz als "Text-User-Interface". Spielausgabe in der Konsole
+
+ */
+
+
 package de.htwg.se.malefiz.aview
 import de.htwg.se.malefiz.controller.controllerComponent._
 
@@ -5,9 +14,9 @@ import scala.swing.Reactor
 
 
 case class TUI(controller: ControllerInterface) extends Reactor {
-  listenTo(controller)
+  listenTo(controller) //Auf den Controller hören, um auf Events zu reagieren.
 
-  var currentState:TUIState = IdleTUIState
+  var currentState:TUIState = IdleTUIState //Initialisierung des momentanen State.
 
   def processing(input: String): Unit = {
     currentState = currentState.processing(input: String)
@@ -26,20 +35,17 @@ case class TUI(controller: ControllerInterface) extends Reactor {
     case event: GameLoaded => printStatus
   }
 
-  def printTui: Unit = {
+
+  def printTui: Unit = { //Printet das Spielfeld.
     println(controller.boardToString())
     println(GameStatus.gameMessage(controller.gameStatus))
   }
 
-  def printStatus: Unit = {
+  /** Prints the Status.
+   *
+   */
+  def printStatus: Unit = { //Printet den Spielstatus.
     println(GameStatus.gameMessage(controller.gameStatus))
   }
 
-
-  /*override def update: Boolean =  {
-      if (controller.gameStatus == GameStatus.PLAYING || controller.gameStatus == GameStatus.MOVING) println(controller.boardToString)
-        println(GameStatus.gameMessage(controller.gameStatus))
-      //    if (controller.gameStatus != GameStatus.IDLE && controller.gameStatus != GameStatus.READY) println(GameStatus.playerMessage(controller.playerStatus))
-    true
-  }*/
 }

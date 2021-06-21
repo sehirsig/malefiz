@@ -1,3 +1,11 @@
+/*
+Class: PlayerState.scala
+
+Beschreibung:
+State-Pattern für die Verwaltung des nächsten Spielers.
+
+ */
+
 package de.htwg.se.malefiz.controller.controllerComponent
 
 trait PlayerState {

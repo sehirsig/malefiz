@@ -1,3 +1,11 @@
+/*
+Class: Malefiz.scala
+
+Beschreibung:
+Hauptfile des Malefiz Spiels.
+
+ */
+
 package de.htwg.se.malefiz
 
 import com.google.inject.Guice

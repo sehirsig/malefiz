@@ -1,3 +1,11 @@
+/*
+Class: gameboardBaseImpl/Gameboard.scala
+
+Beschreibung:
+Base Implementierung unseres Spielbretts.
+
+ */
+
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
 import com.google.inject.Inject
@@ -10,7 +18,7 @@ import scala.util.{Failure, Random, Success, Try}
 
 case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
   @Inject
-  def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
+  def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) { //Ersetzen aller Zellen, je nachdem was in Settings angegeben wurde.
     (row, col) => {
       if (Settings().blockedCells.contains(row, col)) {
         BlockedCell
@@ -34,30 +42,29 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   })
 
+  var blockStrategy: BlockStrategy = BlockReplaceStrategy() //Initialisierung der Block-Strategy.
 
-  var blockStrategy: BlockStrategy = BlockReplaceStrategy()
-
-  def setBlockStrategy(blockstrategy: String): Unit = {
+  def setBlockStrategy(blockstrategy: String): Unit = { //Block-Strategy ändern.
     blockstrategy match {
       case "remove" => this.blockStrategy = BlockRemoveStrategy()
       case "replace" => this.blockStrategy = BlockReplaceStrategy()
     }
   }
 
-  def replaceBlocks(spielbrett: GameboardInterface): GameboardInterface = {
+  def replaceBlocks(spielbrett: GameboardInterface): GameboardInterface = { //Block-Strategy Funktion.
     blockStrategy.replaceBlock(spielbrett)
   }
 
 
-  def newGBStandardSize: Gameboard = {
+  def newGBStandardSize: Gameboard = { //Neues Spielbrett ausgeben, mit der Settings-Standard Größe
     new Gameboard(Settings().xDim, Settings().yDim)
   }
 
-  def getStandardXYsize: (Int,Int) = {
+  def getStandardXYsize: (Int,Int) = { //Die Standardgröße aus Settings bekommen.
     (Settings().xDim, Settings().yDim)
   }
 
-  def getStringOfCell(cell:Cell): String = {
+  def getStringOfCell(cell:Cell): String = { //Eine StringVariante aus der Zelle bekommen (z.B. für XML / JSON)
     cell match {
       case FreeCell => "FreeCell"
       case BlockedCell => "BlockedCell"
@@ -76,11 +83,11 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   }
 
-  def cell(row: Int, col: Int): Cell = rows(row)(col)
+  def cell(row: Int, col: Int): Cell = rows(row)(col) //Bekomme eine Zelle aus Koordinaten.
 
-  def cellString(row: Int, col: Int): String = getStringOfCell(rows(row)(col))
+  def cellString(row: Int, col: Int): String = getStringOfCell(rows(row)(col)) //Bekomme die Stringdarstellung aus den Koordinaten.
 
-  def replaceCell(row: Int, col: Int, cell: Cell): Try[Gameboard] = {
+  def replaceCell(row: Int, col: Int, cell: Cell): Try[Gameboard] = { //Eine Zelle ersetzen mit Fehlerbehandlung. Try-Monade. Für Falsche Indexierung.
     val tmp = Try(copy(rows.updated(row, rows(row).updated(col, cell))))
     tmp match {
       case Success(v) => Success(v)
@@ -88,14 +95,15 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   }
 
-  def movePlayer(coord: (Int, Int), cell: Cell): Gameboard = {
+  def movePlayer(coord: (Int, Int), cell: Cell): Gameboard = { //Einen Spieler auf dem Spielbrett bewegen.
     copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))
   }
 
-  def moveCell(coord: (Int, Int), cell: Cell): Gameboard = {
+  def moveCell(coord: (Int, Int), cell: Cell): Gameboard = { //Eine Zelle auf dem Spielbrett bewegen.
     copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))
   }
 
+  //Implementierungen, damit der Controller auf diese Funktionen indirekt zugreifen kann.
   def walkUp(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     checkCell.walkUp(spielbrett, player, currentCoord, figurenum, walksLeft)
   }
@@ -128,7 +136,7 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
   }
 
 
-  def getCell(name: String): Cell = {
+  def getCell(name: String): Cell = { //Eine Zelle aus der StringVariante bekommen (z.B. für XML / JSON)
     name match {
       case "FreeCell" => FreeCell
       case "BlockedCell" => BlockedCell
@@ -146,11 +154,11 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   }
 
-  def checkPlayerOnGoal: Boolean = {
+  def checkPlayerOnGoal: Boolean = { //Überprüfen, ob ein Spieler im Ziel ist.
     cell(1, 9).isInstanceOf[PlayerCell]
   }
 
-  override def toString: String = {
+  override def toString: String = { //Spielbrett als String ausgeben.
     val buf = new StringBuilder
     rows.foreach(x => buf ++= x.mkString + "\n")
     buf.toString

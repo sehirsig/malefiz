@@ -1,3 +1,11 @@
+/*
+Class:  MalefizModule.scala
+
+Beschreibung:
+Hier wird die Dependency Injection für unsere Components verwaltet.
+
+ */
+
 package de.htwg.se.malefiz
 
 import com.google.inject.AbstractModule

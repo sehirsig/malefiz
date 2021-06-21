@@ -1,3 +1,12 @@
+/*
+Class: fileIoXmlImpl/FileIO.scala
+
+Beschreibung:
+XML Implementierung unserer FileIO, um den momentanen Spielstand zu speichern und später wieder aufzurufen.
+Gespeichert wird die Dimension X und Y, sowie alle Positionen der Zellen und dessen Inhalt.
+Der Inhalt wird als String gespeichert und später wieder durch Gameboard Funktionen wiederhergestellt.
+ */
+
 package de.htwg.se.malefiz.model.fileIoComponent.fileIoXmlImpl
 
 import com.google.inject.Guice

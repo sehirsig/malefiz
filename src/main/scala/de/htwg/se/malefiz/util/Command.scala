@@ -1,3 +1,11 @@
+/*
+Class: Command.scala
+
+Beschreibung:
+Interface unseres Command-Patterns.
+
+ */
+
 package de.htwg.se.malefiz.util
 
 trait Command {

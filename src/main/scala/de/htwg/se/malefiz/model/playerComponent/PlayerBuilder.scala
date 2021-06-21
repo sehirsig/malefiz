@@ -1,3 +1,11 @@
+/*
+Class: PlayerBuilder.scala
+
+Beschreibung:
+Builder-Pattern für unsere Spieler-Klasse.
+
+ */
+
 package de.htwg.se.malefiz.model.playerComponent
 
 trait PlayerBuilder {

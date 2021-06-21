@@ -1,3 +1,10 @@
+/*
+Class: gameboardStubImpl/Gameboard.scala
+
+Beschreibung:
+Stub-Implementierung des Spielbrettes.
+
+ */
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardStubImpl
 
 import de.htwg.se.malefiz.model.cellComponent._
