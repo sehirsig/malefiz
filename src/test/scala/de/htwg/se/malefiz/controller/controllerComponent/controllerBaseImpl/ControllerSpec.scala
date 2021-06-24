@@ -430,6 +430,10 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       "create Debug Player 4" in {
         controller.addPlayerDEBUGWINTEST("Vier")
       }
+      "Use the debugDice" in {
+        controller.debugDice()
+        controller.moveCounter should be (1)
+      }
     }
   }
 }
