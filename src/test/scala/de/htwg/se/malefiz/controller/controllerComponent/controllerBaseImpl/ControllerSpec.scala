@@ -418,6 +418,18 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.selectedFigNum should be (0)
         controller.playerStatus should be (PlayerState1)
       }
+      "create Debug Player 1" in {
+        controller.addPlayerDEBUGWINTEST("Eins")
+      }
+      "create Debug Player 2" in {
+        controller.addPlayerDEBUGWINTEST("Zwei")
+      }
+      "create Debug Player 3" in {
+        controller.addPlayerDEBUGWINTEST("Drei")
+      }
+      "create Debug Player 4" in {
+        controller.addPlayerDEBUGWINTEST("Vier")
+      }
     }
   }
 }

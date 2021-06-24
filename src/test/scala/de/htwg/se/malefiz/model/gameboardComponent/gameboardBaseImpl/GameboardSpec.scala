@@ -167,6 +167,21 @@ class GameboardSpec extends AnyWordSpec with Matchers {
       "newGBStandardSize()" in {
         spielbrett.newGBStandardSize should be (new Gameboard(18,19))
       }
+      "in getP1Base" in {
+        spielbrett.getP1Base should be (Settings().start1.head)
+      }
+      "in getP2Base" in {
+        spielbrett.getP2Base should be (Settings().start2.head)
+      }
+      "in getP3Base" in {
+        spielbrett.getP3Base should be (Settings().start3.head)
+      }
+      "in getP4Base" in {
+        spielbrett.getP4Base should be (Settings().start4.head)
+      }
+      "in getGoalBase" in {
+        spielbrett.getGoalBase should be (Settings().goalCell)
+      }
     }
   }
 }

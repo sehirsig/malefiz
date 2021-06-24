@@ -68,6 +68,21 @@ class GameboardSpec extends AnyWordSpec with Matchers {
       "in getStringOfCell" in {
         spielbrett.getStringOfCell(InvalidCell) should be ("")
       }
+      "in getP1Base" in {
+        spielbrett.getP1Base should be ((0,0))
+      }
+      "in getP2Base" in {
+        spielbrett.getP2Base should be ((0,0))
+      }
+      "in getP3Base" in {
+        spielbrett.getP3Base should be ((0,0))
+      }
+      "in getP4Base" in {
+        spielbrett.getP4Base should be ((0,0))
+      }
+      "in getGoalBase" in {
+        spielbrett.getGoalBase should be ((0,0))
+      }
     }
   }
 }

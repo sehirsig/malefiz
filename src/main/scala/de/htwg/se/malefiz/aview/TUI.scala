@@ -18,8 +18,9 @@ case class TUI(controller: ControllerInterface) extends Reactor {
 
   var currentState:TUIState = IdleTUIState //Initialisierung des momentanen State.
 
-  def processing(input: String): Unit = {
+  def processing(input: String): TUIState = {
     currentState = currentState.processing(input: String)
+    currentState
   }
 
   reactions += {
