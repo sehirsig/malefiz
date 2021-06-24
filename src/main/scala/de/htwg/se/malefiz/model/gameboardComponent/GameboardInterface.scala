@@ -46,11 +46,11 @@ trait GameboardInterface {
 
   def getStringOfCell(cell:Cell): String
 
-  def getP1Base: (Int,Int) = (0,0)
-  def getP2Base: (Int,Int) = (0,0)
-  def getP3Base: (Int,Int) = (0,0)
-  def getP4Base: (Int,Int) = (0,0)
-  def getGoalBase: (Int,Int) = (0,0)
+  def getP1Base: (Int,Int)
+  def getP2Base: (Int,Int)
+  def getP3Base: (Int,Int)
+  def getP4Base: (Int,Int)
+  def getGoalBase: (Int,Int)
 }
 
 trait lastSaveInterface {

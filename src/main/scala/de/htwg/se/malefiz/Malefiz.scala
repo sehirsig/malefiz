@@ -17,7 +17,7 @@ import scala.io.StdIn.readLine
 
 object Malefiz {
   val injector = Guice.createInjector(new MalefizModule)
-  val controller = injector.getInstance(classOf[ControllerInterface])//new Controller(new Gameboard(Settings().xDim, Settings().yDim))
+  val controller = injector.getInstance(classOf[ControllerInterface])
   val tui = new TUI(controller)
   val gui = new SwingGui(controller)
   controller.setupGame()
@@ -31,4 +31,3 @@ object Malefiz {
     }
   }
 }
-// docker test
