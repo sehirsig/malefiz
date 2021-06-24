@@ -158,5 +158,15 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.processing("invalidinput")
       tui.currentState should be (IdleTUIState)
     }
+    "do nothing on Reset Invalid input" in {
+      tui.currentState = GameResetTUIState
+      tui.processing("invalidinput")
+      tui.currentState should be (GameResetTUIState)
+    }
+    "do correct on a Reset " in {
+      tui.currentState = GameResetTUIState
+      tui.processing("reset")
+      tui.currentState should be (IdleTUIState)
+    }
   }
 }
