@@ -6,6 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 class TUIStateSpec extends AnyWordSpec with Matchers {
+  /*
   "A TUI State" should {
     val set = Settings()
     val gameboard = new Gameboard(set.xDim, set.yDim)
@@ -29,4 +30,6 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       tui.currentState should be (GameResetTUIState)
     }
   }
+
+   */
 }
