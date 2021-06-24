@@ -28,20 +28,20 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
   val injector = Guice.createInjector(new MalefizModule) //Injector für Dependency Injection
   val fileIo = injector.instance[FileIOInterface] //Dependency Injection für FileIO
 
-  var gameStatus: GameStatus = IDLE //Initialiersung des Spiel Status
-  var playerStatus: PlayerState = PlayerState1 //Initialiersung des Spieler-Status (Nächste-Spieler bestimmung)
-  var moveCounter: Int = 0 // Gibt die verbleibenden Spielfigur-Züge an
-  val builder: PlayerBuilder = new PlayerBuilderImp() //Builder-Pattern für unsere Spieler
-  var game: Game = Game(Vector[Player]()) //Speicherung unserer Spieler und Spielfiguren
+  override var gameStatus: GameStatus = WELCOME //Initialiersung des Spiel Status
+  override var playerStatus: PlayerState = PlayerState1 //Initialiersung des Spieler-Status (Nächste-Spieler bestimmung)
+  override var moveCounter: Int = 0 // Gibt die verbleibenden Spielfigur-Züge an
+  override val builder: PlayerBuilder = new PlayerBuilderImp() //Builder-Pattern für unsere Spieler
+  override var game: Game = Game(Vector[Player]()) //Speicherung unserer Spieler und Spielfiguren
   private val undoManager = new UndoManager //Initialiersung unseres UndoManagers
-  var gameWon: (Boolean, String) = (false, "") //Boolean, ob es einen Gewinner gibt, und wenn, wer.
-  var savedGame = injector.instance[lastSaveInterface] //Dependency Injection der Speicherung des letzten Zuges.
-  var selectedFigNum: Int = 0;
+  override var gameWon: (Boolean, String) = (false, "") //Boolean, ob es einen Gewinner gibt, und wenn, wer.
+  override var savedGame = injector.instance[lastSaveInterface] //Dependency Injection der Speicherung des letzten Zuges.
+  override var selectedFigNum: Int = 0;
 
   publish(new StartUp)
 
-  def resetGame(): Unit = { //Komplett Reset des Spiels, für nach dem Spiel-Gewinn.
-    gameStatus = IDLE
+  override def resetGame(): Unit = { //Komplett Reset des Spiels, für nach dem Spiel-Gewinn.
+    gameStatus = WELCOME
     game = Game(Vector[Player]())
     emptyMan
     savedGame = injector.instance[lastSaveInterface]
@@ -53,31 +53,31 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     publish(new GameReset)
   }
 
-  def selectFigure(x: Int): Unit = { //Auswahl der Spielfigur.
+  override def selectFigure(x: Int): Unit = { //Auswahl der Spielfigur.
     selectedFigNum = x
     gameStatus = MOVING
     publish(new Moving)
   }
 
-  def getpureCell(name: String): Cell = { //Bekomme die Cell aus dem String-Namen.
+  override def getpureCell(name: String): Cell = { //Bekomme die Cell aus dem String-Namen.
     gameboard.getCell(name)
   }
 
-  def addPlayer(): Unit = { //Füge einen Spieler hinzu.
+  override def addPlayer(): Unit = { //Füge einen Spieler hinzu.
     gameWon = (false, "")
     gameStatus = ENTERNAME
     publish(new SettingUp)
   }
 
-  def addPlayerName(name: String): Unit = { //Füge den Namen dem Spieler hinzu und die 5 Spielfiguren.
+  override def addPlayerName(name: String): Unit = { //Füge den Namen dem Spieler hinzu und die 5 Spielfiguren.
     builder.setName(name)
     val newplayernum = game.players.length + 1
     builder.setID(newplayernum)
     newplayernum match {
-      case 1 => builder.setStartingPos(15, 3)
-      case 2 => builder.setStartingPos(15, 7)
-      case 3 => builder.setStartingPos(15, 11)
-      case 4 => builder.setStartingPos(15, 15)
+      case 1 => builder.setStartingPos(gameboard.getP1Base._1, gameboard.getP1Base._2)
+      case 2 => builder.setStartingPos(gameboard.getP2Base._1, gameboard.getP2Base._2)
+      case 3 => builder.setStartingPos(gameboard.getP3Base._1, gameboard.getP3Base._2)
+      case 4 => builder.setStartingPos(gameboard.getP4Base._1, gameboard.getP4Base._2)
     }
     val player = builder.build()
     (1 to 5).map(x => player.addFigure(x))
@@ -92,18 +92,18 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     publish(new StartUp)
   }
 
-  def startGame(): Unit = { //Spiel starten.
+  override def startGame(): Unit = { //Spiel starten.
     gameStatus = PLAYING
     publish(new StartGame)
   }
 
-  def setupGame(): Unit = { //Das Spiel einrichten, bei start der Applikation.
+  override def setupGame(): Unit = { //Das Spiel einrichten, bei start der Applikation.
     publish(new SettingUp)
   }
 
-  def boardToString(): String = gameboard.toString() //Stringdarstellung des Spielbrettes.
+  override def boardToString(): String = gameboard.toString() //Stringdarstellung des Spielbrettes.
 
-  def rollDice(): Int = { //Würfeln.
+  override def rollDice(): Int = { //Würfeln.
     moveCounter = gameboard.diceRoll
     gameStatus = CHOOSEFIG
     savedGame = savedGame.updateLastFullDice(moveCounter)
@@ -111,23 +111,23 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     moveCounter
   }
 
-  def checkWin(): Unit = { //Überprüfen, ob es einen Gewinner gibt.
+  override def checkWin(): Unit = { //Überprüfen, ob es einen Gewinner gibt.
     if (gameboard.checkPlayerOnGoal) {
       gameStatus = GAMEWINNER
-      val winner = gameboard.cell(1,9).toString().replace(" ", "").toInt - 1
+      val winner = gameboard.cell(gameboard.getGoalBase._1, gameboard.getGoalBase._2).toString().replace(" ", "").toInt - 1
       gameWon = (true, game.players(winner).name.replace("Some", ""))
       publish(new WonGame)
     }
   }
 
-  def setBlockStrategy(blockStrategy: String): Unit = { //Die BlockStrategy auswählen.
+  override def setBlockStrategy(blockStrategy: String): Unit = { //Die BlockStrategy auswählen.
     blockStrategy match {
       case "replace" => gameboard.setBlockStrategy(blockStrategy)
       case "remove" => gameboard.setBlockStrategy(blockStrategy)
     }
   }
 
-  def move(input: String, figurenum: Int): Unit = { //Spielzug.
+  override def move(input: String, figurenum: Int): Unit = { //Spielzug.
     input match {
       case "skip" => moveCounter = 1; undoManager.doStep(new MoveCommand(input, figurenum, this))
       case "undo" => undo
@@ -145,33 +145,67 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     }
   }
 
-  def emptyMan: Unit = { //Leerung des Undomanagers, um einen Leeren Stack für den nächsten Spieler zu haben.
+  override def emptyMan: Unit = { //Leerung des Undomanagers, um einen Leeren Stack für den nächsten Spieler zu haben.
     undoManager.emptyStacks
   }
 
-  def undoAll: Unit = { //Alle Undos auf dem Stack auf einmal ausführen.
+  override def undoAll: Unit = { //Alle Undos auf dem Stack auf einmal ausführen.
     undoManager.undoAll
   }
 
-  def undo: Unit = { //Undo.
+  override def undo: Unit = { //Undo.
     undoManager.undoStep
   }
 
-  def redo: Unit = { //Redo.
+  override def redo: Unit = { //Redo.
     undoManager.redoStep
   }
 
-  def save: Unit = { //Spielstand in Datei speichern.
+  override def save: Unit = { //Spielstand in Datei speichern.
     fileIo.save(gameboard)
     gameStatus = SAVED
     publish(new RollDice)
   }
 
-  def load: Unit = { //Spielstand aus Datei laden.
+  override def load: Unit = { //Spielstand aus Datei laden.
     val temp = fileIo.load(game) //"Game" Übergabe, damit die Spielfiguren richtig verwaltet werden können.
     gameboard = temp._1
     game = temp._2
     gameStatus = LOADED
     publish(new RollDice)
+  }
+
+
+  // Debug Für Tests. Hier werden die Startposition, eins vor dem Ziel platziert.
+  // Mit MoveCounter auf 1 kann somit sofort gewonnen werden.
+  override def addPlayerDEBUGWINTEST(name: String): Unit = {//Füge den Namen dem Spieler hinzu und die 5 Spielfiguren.
+    builder.setName(name)
+    val newplayernum = game.players.length + 1
+    builder.setID(newplayernum)
+    newplayernum match {
+      case 1 => builder.setStartingPos(gameboard.getGoalBase._1 + 1, gameboard.getGoalBase._2)
+      case 2 => builder.setStartingPos(gameboard.getGoalBase._1 + 1, gameboard.getGoalBase._2)
+      case 3 => builder.setStartingPos(gameboard.getGoalBase._1 + 1, gameboard.getGoalBase._2)
+      case 4 => builder.setStartingPos(gameboard.getGoalBase._1 + 1, gameboard.getGoalBase._2)
+    }
+    val player = builder.build()
+    (1 to 5).map(x => player.addFigure(x))
+    game = game.addPlayer(player)
+    if (game.getPlayerNumber() > 3) {
+      gameStatus = READY2
+    } else if (game.getPlayerNumber() < 2) {
+      gameStatus = IDLE
+    } else {
+      gameStatus = READY1
+    }
+    publish(new StartUp)
+  }
+
+  override def debugDice(): Unit = {
+    moveCounter = 1
+    gameStatus = CHOOSEFIG
+    savedGame = savedGame.updateLastFullDice(moveCounter)
+    publish(new ChooseFig)
+    1
   }
 }

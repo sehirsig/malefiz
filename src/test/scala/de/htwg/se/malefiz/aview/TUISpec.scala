@@ -150,19 +150,24 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.currentState should be (PlayingTUIState)
     }
     "do win with the game" in {
-      controller.moveCounter = 0
-      tui.currentState = MovingTUIState
-      controller.gameWon = (true, "Eins")
-      tui.processing("")
-      tui.currentState = WinnerTUIState
-      tui.processing("")
-      tui.currentState should be (IdleTUIState)
+      val controller2 = controllerBaseImpl.Controller(new Gameboard(Settings().xDim, Settings().yDim))
+      val tui2 = TUI(controller2)
+      tui2.currentState = IdleTUIState
+
+      tui2.currentState = tui2.currentState.processing("pDEBUG")
+      tui2.currentState = tui2.currentState.processing("p")
+      tui2.currentState = tui2.currentState.processing("Seb")
+      tui2.currentState = tui2.currentState.processing("s")
+      tui2.currentState = tui2.currentState.processing("rDEBUG")
+      tui2.currentState = tui2.currentState.processing("1")
+      controller2.moveCounter = 1
+      tui2.currentState = tui2.currentState.processing("w")
+      tui2.currentState should be (GameResetTUIState)
     }
     "do nothing with Idle Invalid input" in {
       tui.currentState = IdleTUIState
       tui.processing("invalidinput")
       tui.currentState should be (IdleTUIState)
     }
-
   }
 }

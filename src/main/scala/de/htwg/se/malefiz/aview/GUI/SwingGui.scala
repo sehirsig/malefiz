@@ -371,7 +371,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
       }
     }
     statusline.text = {
-      "We Have a Winner: " + controller.gameWon._2 + "\n" + statusline.text
+       GameStatus.gameMessage(controller.gameStatus)+ "\n" + "Winner: " + controller.gameWon._2
     }
       currentplayer.text = ""
       diceRolled.text = ""

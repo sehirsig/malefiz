@@ -19,15 +19,14 @@ import de.htwg.se.malefiz.model.playerComponent._
 import scala.swing.Publisher //Mock -> Stub
 
 case class Controller(var gameboard: GameboardInterface) extends ControllerInterface with Publisher{
-  var gameStatus: GameStatus = IDLE
-  def createNewGameboard: Unit = {}
-  var playerStatus: PlayerState = PlayerState1
-  var moveCounter: Int = 0
-  val builder: PlayerBuilder = PlayerBuilderImp()
-  var game: Game = Game(Vector[Player]())
-  var gameWon: (Boolean, String) = (false, "")
-  var savedGame: lastSaveInterface = gameboardComponent.lastSave(0, "", InvalidCell)
-  var selectedFigNum: Int = 0;
+  override var gameStatus: GameStatus = IDLE
+  override var playerStatus: PlayerState = PlayerState1
+  override var moveCounter: Int = 0
+  override val builder: PlayerBuilder = PlayerBuilderImp()
+  override var game: Game = Game(Vector[Player]())
+  override var gameWon: (Boolean, String) = (false, "")
+  override var savedGame: lastSaveInterface = gameboardComponent.lastSave(0, "", InvalidCell)
+  override var selectedFigNum: Int = 0;
   override def getpureCell(name: String): Cell = InvalidCell
   override def resetGame(): Unit = {}
   override def selectFigure(x: Int): Unit = {}
@@ -46,4 +45,6 @@ case class Controller(var gameboard: GameboardInterface) extends ControllerInter
   override def redo: Unit = {}
   override def save: Unit = {}
   override def load: Unit = {}
+  override def addPlayerDEBUGWINTEST(name: String): Unit = {}
+  override def debugDice(): Unit = {}
 }

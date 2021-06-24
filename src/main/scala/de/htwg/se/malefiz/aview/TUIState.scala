@@ -34,6 +34,15 @@ object IdleTUIState extends TUIState { //State während Anfang des Spiels, um Sp
           println("not enough players");IdleTUIState
         }
       }
+      case "pDEBUG" => { //Debug, der einen Spieler vor dem Ziel platziert.
+        if(controller.game.getPlayerNumber() < 4) {
+          controller.addPlayerDEBUGWINTEST("debug")
+          IdleTUIState
+        }
+        else {
+          println("game full");IdleTUIState
+        }
+      }
       case "remove" => controller.setBlockStrategy(input);IdleTUIState
       case "replace" => controller.setBlockStrategy(input);IdleTUIState
       case "welcomeMessage" => println("Welcome to Malefiz");IdleTUIState
@@ -55,6 +64,7 @@ object PlayingTUIState extends TUIState { //State fürs Spielen.
       case "s" => controller.save;PlayingTUIState //In eine File den Spielstand speichern.
       case "l" => controller.load;PlayingTUIState //Aus einer File den Spielstand laden.
       case "r" => controller.rollDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState //Würfeln.
+      case "rDEBUG" => controller.debugDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState //Würfeln.
       case _ => println("invalid input");PlayingTUIState
     }
   }
@@ -72,18 +82,22 @@ object ChooseGameFigTUIState extends TUIState { //State für die Spielfigur-Ausw
 object WinnerTUIState extends TUIState { //State für den Spiel-Gewinn.
   def processing(input: String): TUIState = {
     input match {
-      case _ => controller.resetGame();IdleTUIState
+      case _ => println("Winner: " + controller.gameWon._2 + "\n");GameResetTUIState
+    }
+  }
+}
+
+object GameResetTUIState extends TUIState { //State für den Spiel-Reset nach Gewinn.
+  def processing(input: String): TUIState = {
+    input match {
+      case "reset" => controller.resetGame();IdleTUIState
+      case _ => println("Invalid Input! Enter 'reset' to start a new Game!");GameResetTUIState
     }
   }
 }
 
 object MovingTUIState extends TUIState { //State für das bewegen der Spielfigur.
   def processing(input: String): TUIState = {
-    if (controller.gameWon._1) { //Check, ob es schon einen Gewinner gibt.
-      println("We Have a Winner: " + controller.gameWon._2 + "\n")
-      WinnerTUIState.processing(input);
-      return WinnerTUIState
-    }
 
     input match {
       case "w" => controller.move(input, controller.selectedFigNum); MovingTUIState
@@ -96,8 +110,8 @@ object MovingTUIState extends TUIState { //State für das bewegen der Spielfigur
       case _ => println("invalid input"); MovingTUIState
     }
     if (controller.moveCounter == 0) {
-      if (controller.gameWon._1) {
-        MovingTUIState
+      if (controller.gameWon._1){
+        GameResetTUIState
       } else {
         PlayingTUIState
       }

@@ -45,6 +45,8 @@ trait ControllerInterface extends Publisher {
   def redo: Unit
   def save: Unit
   def load: Unit
+  def addPlayerDEBUGWINTEST(name: String): Unit
+  def debugDice(): Unit
 }
 
 

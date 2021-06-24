@@ -14,7 +14,6 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         con.playerStatus = con.playerStatus
         con.moveCounter = 1
         con.builder
-        con.createNewGameboard
         con.game = con.game
         con.gameWon = (true,"")
         con.savedGame = con.savedGame
@@ -37,6 +36,8 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         con.setupGame()
         con.save
         con.load
+        con.addPlayerDEBUGWINTEST("")
+        con.debugDice
       }
     }
   }

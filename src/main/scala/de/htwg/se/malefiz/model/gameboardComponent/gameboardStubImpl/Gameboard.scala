@@ -37,6 +37,12 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
   override def getCell(name:String): Cell = InvalidCell
   override def checkPlayerOnGoal: Boolean = false
   override def cellString(row: Int, col: Int): String = ""
+  override def getP1Base: (Int,Int) = (0,0)
+  override def getP2Base: (Int,Int) = (0,0)
+  override def getP3Base: (Int,Int) = (0,0)
+  override def getP4Base: (Int,Int) = (0,0)
+  override def getGoalBase: (Int,Int) = (0,0)
+
   def replaceCell(row: Int, col: Int, cell: Cell): Try[Gameboard] = {
     val tmp = Try(copy(rows.updated(row, rows(row).updated(col, cell))))
     tmp match {

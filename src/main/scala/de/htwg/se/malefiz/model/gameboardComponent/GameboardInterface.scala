@@ -45,6 +45,12 @@ trait GameboardInterface {
   def cellString(row: Int, col: Int): String
 
   def getStringOfCell(cell:Cell): String
+
+  def getP1Base: (Int,Int) = (0,0)
+  def getP2Base: (Int,Int) = (0,0)
+  def getP3Base: (Int,Int) = (0,0)
+  def getP4Base: (Int,Int) = (0,0)
+  def getGoalBase: (Int,Int) = (0,0)
 }
 
 trait lastSaveInterface {

@@ -29,7 +29,7 @@ case class TUI(controller: ControllerInterface) extends Reactor {
     case event: SettingUp => printStatus
     case event: StartUp => printStatus
     case event: StartGame => printStatus; currentState = PlayingTUIState
-    case event: WonGame => printStatus; currentState = WinnerTUIState
+    case event: WonGame => printTui; currentState = WinnerTUIState; currentState.processing("")
     case event: GameReset => printStatus; currentState = IdleTUIState
     case event: GameSaved => printStatus;
     case event: GameLoaded => printStatus
