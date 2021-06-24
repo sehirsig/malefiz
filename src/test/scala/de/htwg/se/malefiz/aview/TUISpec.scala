@@ -55,12 +55,14 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.currentState should be(IdleTUIState)
     }
     "add players on input 'p'" in {
-      tui.processing("pDEBUG")
-      //tui.processing("xy")
+      //tui.processing("pDEBUG")
+      tui.processing("p")
+      tui.processing("xy")
       tui.processing("p")
       tui.processing("yz")
-      tui.processing("p")
-      tui.processing("kz")
+      tui.processing("pDEBUG")
+      //tui.processing("p")
+      //tui.processing("kz")
       tui.processing("p")
       tui.processing("pDEBUG")
       tui.currentState should be(IdleTUIState)
