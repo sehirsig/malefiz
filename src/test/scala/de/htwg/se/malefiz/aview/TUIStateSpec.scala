@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 class TUIStateSpec extends AnyWordSpec with Matchers {
-  /*
+  /* Disabled because of TRAVIS
   "A Text-UI State" when {
     "A TUI State" should {
       val set = Settings()
