@@ -19,9 +19,9 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.processing("remove")
       tui.processing("replace")
       tui.processing("p")
-      //tui.currentState should be(IdleTUIState)
+      tui.currentState should be(IdleTUIState)
       tui.processing("xy")
-      //tui.currentState should be(IdleTUIState)
+      tui.currentState should be(IdleTUIState)
     }
     "react on events" in {
       controller.publish(new RollDice)
@@ -62,6 +62,7 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.processing("p")
       tui.processing("kz")
       tui.processing("p")
+      tui.processing("pDEBUG")
       tui.currentState should be(IdleTUIState)
     }
     "start the game on input 'start'" in {
@@ -142,7 +143,7 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.currentState should be (PlayingTUIState)
     }
     "load the game" in {
-      //tui.processing("l") Travis Wirft Fehler
+      tui.processing("l") //Travis Wirft Fehler
       tui.currentState should be (PlayingTUIState)
     }
     "do nothing with the game" in {
