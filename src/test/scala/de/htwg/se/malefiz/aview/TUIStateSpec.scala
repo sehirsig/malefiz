@@ -18,10 +18,11 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       tui.currentState = tui.processing("pDEBUG")
       tui.currentState = tui.processing("pDEBUG")
       tui.currentState = tui.processing("pDEBUG")
+      tui.currentState should be (IdleTUIState)
     }
     "Not Reset the game" in {
       tui.currentState = GameResetTUIState
-
+      tui.currentState should be (GameResetTUIState)
     }
   }
 }
