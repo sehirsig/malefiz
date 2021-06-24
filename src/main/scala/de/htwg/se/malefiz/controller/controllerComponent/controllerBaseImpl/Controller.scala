@@ -42,7 +42,7 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
 
   override def resetGame(): Unit = { //Komplett Reset des Spiels, für nach dem Spiel-Gewinn.
     gameStatus = WELCOME
-    game = Game(Vector[Player]())
+    game = new Game(Vector[Player]())
     emptyMan
     savedGame = injector.instance[lastSaveInterface]
     playerStatus = PlayerState1

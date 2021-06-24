@@ -25,7 +25,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       //controller.add(observer)
       "from the offset" in {
-        controller.gameStatus should be(IDLE)
+        controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
         controller.moveCounter should be(0)
       }
@@ -178,7 +178,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       //controller.add(observer)
       "from the offset" in {
-        controller.gameStatus should be(IDLE)
+        controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
         controller.moveCounter should be(0)
       }
@@ -305,7 +305,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       //controller.add(observer)
       "from the offset" in {
-        controller.gameStatus should be(IDLE)
+        controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
         controller.moveCounter should be(0)
       }
@@ -412,7 +412,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         val injector = Guice.createInjector(new MalefizModule)
         val saGe = injector.instance[lastSaveInterface]
         controller.resetGame()
-        controller.gameStatus should be (IDLE)
+        controller.gameStatus should be (WELCOME)
         controller.savedGame should be (saGe)
         controller.gameWon should be (false,"")
         controller.selectedFigNum should be (0)

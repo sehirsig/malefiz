@@ -55,8 +55,8 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.currentState should be(IdleTUIState)
     }
     "add players on input 'p'" in {
-      tui.processing("p")
-      tui.processing("xy")
+      tui.processing("pDEBUG")
+      //tui.processing("xy")
       tui.processing("p")
       tui.processing("yz")
       tui.processing("p")
@@ -99,7 +99,7 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.processing("a")
       tui.processing("w")
       tui.processing("w")
-      tui.processing("r") //Player 2 Rolls and chooses Gamefigure
+      tui.processing("rDEBUG") //Player 2 Rolls and chooses Gamefigure in Debug Mode
       tui.processing("1")
     }
 
@@ -149,20 +149,9 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.processing("invalid")
       tui.currentState should be (PlayingTUIState)
     }
-    "do win with the game" in {
-      val controller2 = controllerBaseImpl.Controller(new Gameboard(Settings().xDim, Settings().yDim))
-      val tui2 = TUI(controller2)
-      tui2.currentState = IdleTUIState
-
-      tui2.currentState = tui2.currentState.processing("pDEBUG")
-      tui2.currentState = tui2.currentState.processing("p")
-      tui2.currentState = tui2.currentState.processing("Seb")
-      tui2.currentState = tui2.currentState.processing("s")
-      tui2.currentState = tui2.currentState.processing("rDEBUG")
-      tui2.currentState = tui2.currentState.processing("1")
-      controller2.moveCounter = 1
-      tui2.currentState = tui2.currentState.processing("w")
-      tui2.currentState should be (GameResetTUIState)
+    "do correct on a win" in {
+      tui.currentState = WinnerTUIState
+      tui.currentState = WinnerTUIState.processing("")
     }
     "do nothing with Idle Invalid input" in {
       tui.currentState = IdleTUIState

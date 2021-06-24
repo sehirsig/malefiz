@@ -7,5 +7,4 @@ WORKDIR /malefiz
 ADD . /malefiz
 
 #RUN sbt compile
-
 CMD sbt run
