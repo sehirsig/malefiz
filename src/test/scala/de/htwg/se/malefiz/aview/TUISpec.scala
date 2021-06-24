@@ -142,7 +142,7 @@ class TUISpec extends AnyWordSpec with Matchers {
       tui.currentState should be (PlayingTUIState)
     }
     "load the game" in {
-      tui.processing("l")
+      //tui.processing("l")
       tui.currentState should be (PlayingTUIState)
     }
     "do nothing with the game" in {

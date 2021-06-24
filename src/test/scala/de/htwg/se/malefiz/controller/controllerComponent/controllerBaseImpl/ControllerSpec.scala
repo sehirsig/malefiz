@@ -406,7 +406,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.save
       }
       "load a gameboard" in {
-        controller.load
+        //controller.load
       }
       "reset a game" in {
         val injector = Guice.createInjector(new MalefizModule)
