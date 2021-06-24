@@ -201,6 +201,7 @@ case class Controller @Inject() (var gameboard: GameboardInterface) extends Cont
     publish(new StartUp)
   }
 
+  //Debug für Tests, hiermit wird immer eine 1 gewürfelt, somit kann man direkt ins Ziel.
   override def debugDice(): Unit = {
     moveCounter = 1
     gameStatus = CHOOSEFIG

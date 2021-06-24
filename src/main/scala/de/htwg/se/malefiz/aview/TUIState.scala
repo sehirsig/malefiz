@@ -64,7 +64,7 @@ object PlayingTUIState extends TUIState { //State fürs Spielen.
       case "s" => controller.save;PlayingTUIState //In eine File den Spielstand speichern.
       case "l" => controller.load;PlayingTUIState //Aus einer File den Spielstand laden.
       case "r" => controller.rollDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState //Würfeln.
-      case "rDEBUG" => controller.debugDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState //Würfeln.
+      case "rDEBUG" => controller.debugDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState //Debug Würfeln.
       case _ => println("invalid input");PlayingTUIState
     }
   }
