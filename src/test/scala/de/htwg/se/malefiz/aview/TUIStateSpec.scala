@@ -6,6 +6,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 class TUIStateSpec extends AnyWordSpec with Matchers {
+  /*
   "A Text-UI State" when {
     "A TUI State" should {
       val set = Settings()
@@ -54,4 +55,5 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
       }
     }
   }
+  */
 }
