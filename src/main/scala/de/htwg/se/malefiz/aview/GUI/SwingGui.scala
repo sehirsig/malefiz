@@ -46,6 +46,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
       }
     }
   }
+
   val welcomeMessage = new Label {
     text = "Welcome to Malefiz the Game!"
   }
@@ -57,7 +58,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     border = Swing.EmptyBorder(20,20,20,20)
     contents(0).preferredSize = new Dimension(600,400)
     contents(0).xLayoutAlignment = 1
-    contents(0).font = new Font("Bookman Old Style", Font.ITALIC, 28)
+    contents(0).font = new Font("Bookman Old Style", Font.ITALIC, 24)
     contents(1).preferredSize = new Dimension(600,50)
     contents(2).preferredSize = new Dimension(600,30)
   }
@@ -362,12 +363,12 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     contents = {
       new BoxPanel(Orientation.Vertical) {
         contents += gridPanel
-        contents += statusline
         contents += gameWonButton
+        contents += statusline
         border = Swing.EmptyBorder(20,20,20,20)
-        contents(0).preferredSize = new Dimension(400,400)
-        contents(1).preferredSize = new Dimension(780,100)
-        contents(2).preferredSize = new Dimension(780,200)
+        contents(0).preferredSize = new Dimension(400,600)
+        contents(1).preferredSize = new Dimension(780,50)
+        contents(2).preferredSize = new Dimension(780,5)
       }
     }
     statusline.text = {
