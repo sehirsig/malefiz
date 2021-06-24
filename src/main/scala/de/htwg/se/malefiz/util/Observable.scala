@@ -1,13 +1,9 @@
-/*
-Class: Observable.scala
-
-Beschreibung:
-Klasse für unseren Observer.
-
- */
-
 package de.htwg.se.malefiz.util
 
+/** Klasse für unseren Observer.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 trait Observer {
   def update: Boolean
 }

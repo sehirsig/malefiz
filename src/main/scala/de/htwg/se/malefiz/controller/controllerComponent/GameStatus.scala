@@ -1,19 +1,9 @@
-/*
-Class: GameStatus.scala
-
-Beschreibung:
-Die Status Ausgabe unseres Spiels.
-
- */
-
 package de.htwg.se.malefiz.controller.controllerComponent
 
-import com.google.inject.Guice
-import de.htwg.se.malefiz.MalefizModule
-import de.htwg.se.malefiz.controller.controllerComponent.ControllerInterface
-import de.htwg.se.malefiz.model.fileIoComponent.FileIOInterface
-import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
-
+/** Die Status Ausgabe unseres Spiels.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 object GameStatus extends Enumeration {
   type GameStatus = Value
   type PlayerStatus = Value

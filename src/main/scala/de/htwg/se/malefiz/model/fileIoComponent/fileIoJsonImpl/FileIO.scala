@@ -1,12 +1,3 @@
-/*
-Class: fileIoJsonImpl/FileIO.scala
-
-Beschreibung:
-JSON Implementierung unserer FileIO, um den momentanen Spielstand zu speichern und später wieder aufzurufen.
-Gespeichert wird die Dimension X und Y, sowie alle Positionen der Zellen und dessen Inhalt.
-Der Inhalt wird als String gespeichert und später wieder durch Gameboard Funktionen wiederhergestellt.
- */
-
 package de.htwg.se.malefiz.model.fileIoComponent.fileIoJsonImpl
 
 import com.google.inject.Guice
@@ -23,6 +14,13 @@ import de.htwg.se.malefiz.model.playerComponent.Player
 
 import scala.io.Source
 
+/** Alle Zellen unseres Malefiz-Spiels, die es gibt.
+ *  JSON Implementierung unserer FileIO, um den momentanen Spielstand zu speichern und später wieder aufzurufen.
+ *  Gespeichert wird die Dimension X und Y, sowie alle Positionen der Zellen und dessen Inhalt.
+ *  Der Inhalt wird als String gespeichert und später wieder durch Gameboard Funktionen wiederhergestellt.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class FileIO extends FileIOInterface {
 
   override def load(game:Game): (GameboardInterface,Game) = {
@@ -35,7 +33,7 @@ class FileIO extends FileIOInterface {
     val sizex = (json \ "gameboard" \ "sizeX").get.toString.toInt
     val sizey = (json \ "gameboard" \ "sizeY").get.toString.toInt
 
-    // Spielfiguren Counter
+    /** Spielfiguren Counter */
     var player1Fig = 0
     var player2Fig = 0
     var player3Fig = 0

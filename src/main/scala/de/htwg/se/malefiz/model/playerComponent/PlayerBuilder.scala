@@ -1,13 +1,9 @@
-/*
-Class: PlayerBuilder.scala
-
-Beschreibung:
-Builder-Pattern für unsere Spieler-Klasse.
-
- */
-
 package de.htwg.se.malefiz.model.playerComponent
 
+/** Builder-Pattern für unsere Spieler-Klasse.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 trait PlayerBuilder {
   def setName(name: String): PlayerBuilder
   def setID(id: Int): PlayerBuilder

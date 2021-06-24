@@ -1,13 +1,9 @@
-/*
-Class: PlayerState.scala
-
-Beschreibung:
-State-Pattern für die Verwaltung des nächsten Spielers.
-
- */
-
 package de.htwg.se.malefiz.controller.controllerComponent
 
+/** State-Pattern für die Verwaltung des nächsten Spielers.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 trait PlayerState {
   def nextPlayer(playerCount:Int): PlayerState
   def getCurrentPlayer: Int

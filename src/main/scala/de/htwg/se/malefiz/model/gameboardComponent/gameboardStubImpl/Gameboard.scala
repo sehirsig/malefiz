@@ -1,10 +1,3 @@
-/*
-Class: gameboardStubImpl/Gameboard.scala
-
-Beschreibung:
-Stub-Implementierung des Spielbrettes.
-
- */
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardStubImpl
 
 import de.htwg.se.malefiz.model.cellComponent._
@@ -13,6 +6,10 @@ import de.htwg.se.malefiz.model.playerComponent.Player
 
 import scala.util.{Failure, Success, Try}
 
+/** Stub-Implementierung des Spielbrettes.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
   def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
     (row, col) => {

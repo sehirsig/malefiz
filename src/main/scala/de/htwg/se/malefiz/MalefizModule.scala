@@ -1,11 +1,3 @@
-/*
-Class:  MalefizModule.scala
-
-Beschreibung:
-Hier wird die Dependency Injection für unsere Components verwaltet.
-
- */
-
 package de.htwg.se.malefiz
 
 import com.google.inject.AbstractModule
@@ -18,16 +10,18 @@ import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSave
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.Gameboard
 import de.htwg.se.malefiz.model.fileIoComponent._
 
+/** Hier wird die Dependency Injection für unsere Components verwaltet.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class MalefizModule extends AbstractModule with ScalaModule {
 
   val defaultSizeX:Int = 18
   val defaultSizeY:Int = 19
 
-   //gameboardComponent.lastSave(0, "", InvalidCell)
   val defaultLastDice = 0
   val defaultLastWay = ""
   val defaultCell = InvalidCell
-
 
   override def configure():Unit = {
     bindConstant().annotatedWith(Names.named("DefaultSizeX")).to(defaultSizeX)

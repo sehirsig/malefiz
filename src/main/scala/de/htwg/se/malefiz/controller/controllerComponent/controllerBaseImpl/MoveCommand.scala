@@ -1,23 +1,29 @@
-/*
-Class: controllerBaseImpl/MoveCommand.scala
-
-Beschreibung:
-Hier wird jeder einzelne Zug verwaltet, mit dem Command-Pattern können Züge zurückgenommen oder mit "redo" wiedergespielt werden.
-
- */
-
 package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.util.Command
 
+/** Hier wird jeder einzelne Zug verwaltet, mit dem Command-Pattern können mit "undo" Züge zurückgenommen oder mit "redo" wiedergespielt werden.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) extends Command {
-  //Speicherung unserer Variablen für diesen Step.
-  var savedG = controllerH.gameboard //Spielbrett wird gespeichert.
-  var savedMC = controllerH.moveCounter //Zähler der verbleibende Züge.
-  var savedSt = controllerH.gameStatus //Spielstatus.
-  var savedSG = controllerH.savedGame //Informationen des letzten Zuges.
-  var savedGM = controllerH.game //"Game" speichert die Spieler.
+  /**Speicherung unserer Variablen für diesen Step.*/
+
+  /** Spielbrett wird gespeichert. */
+  var savedG = controllerH.gameboard
+
+  /** Zähler der verbleibende Züge. */
+  var savedMC = controllerH.moveCounter
+
+  /** Spielstatus. */
+  var savedSt = controllerH.gameStatus
+
+  /** Informationen des letzten Zuges. */
+  var savedSG = controllerH.savedGame
+
+  /** "Game" speichert die Spieler. */
+  var savedGM = controllerH.game
 
   //Hier schliessbar, Speicherung der Spielfiguren.
   //<editor-fold desc="Gamefigure Saves">
@@ -67,20 +73,34 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
   //</editor-fold>
 
   override def doStep: Unit = {
-    var sucInp:Boolean = false //Boolean, ob der Move geklappt hat und rechtens war.
+    /** Boolean, ob der Move geklappt hat und rechtens war. */
+    var sucInp:Boolean = false
 
-    val currentplayer = controllerH.game.players(controllerH.playerStatus.getCurrentPlayer - 1) //Bekomme jetzigen Spieler.
+    /** Bekomme jetzigen Spieler. */
+    val currentplayer = controllerH.game.players(controllerH.playerStatus.getCurrentPlayer - 1)
 
-    val currentfigure = currentplayer.figures(figurenum-1) //Wähle momentane Spielfigur aus.
-    val fig_coord = (currentfigure.pos._1, currentfigure.pos._2) //Koordinaten der momentanen Figur.
-    var lastCell:Cell = InvalidCell //Initialisierung der letzten Zelle (Wird im nächsten Schritt ersetzt)
-    var savetuple = (sucInp, controllerH.gameboard) //Tupel für den Boolean und das neue Spielbrett
-    var newpos = fig_coord //Neue Position der Spielfigur( Wird ersetzt)
+    /** Wähle momentane Spielfigur aus. */
+    val currentfigure = currentplayer.figures(figurenum-1)
+
+    /** Koordinaten der momentanen Figur. */
+    val fig_coord = (currentfigure.pos._1, currentfigure.pos._2)
+
+    /** Initialisierung der letzten Zelle (Wird im nächsten Schritt ersetzt) */
+    var lastCell:Cell = InvalidCell
+
+    /** Tupel für den Boolean und das neue Spielbrett */
+    var savetuple = (sucInp, controllerH.gameboard)
+
+    /** Neue Position der Spielfigur( Wird ersetzt) */
+    var newpos = fig_coord
     direction match {
       case "w" =>  {
-        savetuple = savedG.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)} // returns TRUE, if walking worked and Saves Gameboard
-        lastCell = savedG.cell(savedG.goUp(fig_coord)._1, savedG.goUp(fig_coord)._2) // Saves LastCell to Replace it afterwards
-        newpos = savedG.goUp(fig_coord) // Saves newposition to look for Player Kick
+        /** returns TRUE, if walking worked and Saves Gameboard */
+        savetuple = savedG.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
+        /** Saves LastCell to Replace it afterwards */
+        lastCell = savedG.cell(savedG.goUp(fig_coord)._1, savedG.goUp(fig_coord)._2)
+        /** Saves newposition to look for Player Kick */
+        newpos = savedG.goUp(fig_coord)
       case "a" => {
         savetuple = savedG.walkLeft(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
         lastCell = savedG.cell(savedG.goLeft(fig_coord)._1, savedG.goLeft(fig_coord)._2)
@@ -96,39 +116,50 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
       case _ =>
     }
 
-    if ((controllerH.moveCounter - 1) == 0) { // If 0, Kick Spieler
+    /** If 0, Kick Spieler */
+    if ((controllerH.moveCounter - 1) == 0) {
       controllerH.game.players.map(b => b.figures.map(k => {
-        if (((k.pos._1, k.pos._2) == newpos) && (k.player != currentplayer)) { //Position der Spielfigur des Gekickten auf seine Basis zurücksetzen.
+        /** Position der Spielfigur des Gekickten auf seine Basis zurücksetzen. */
+        if (((k.pos._1, k.pos._2) == newpos) && (k.player != currentplayer)) {
           k.player.figures(k.getNumber) = k.player.figures(k.getNumber).updatePos(k.player.startingPos)
           controllerH.gameboard = controllerH.gameboard.movePlayer(k.player.startingPos, k.player.cell)
         }
       }))
     }
-    sucInp = savetuple._1 //Boolean wird hier gesetzt.
-    controllerH.gameboard = savetuple._2 //Neues Spielbrett wird hier gesetzt.
+
+    /** Boolean wird hier gesetzt, ob der Zug geklappt hat. */
+    sucInp = savetuple._1
+
+    /** Neues Spielbrett wird hier gesetzt. */
+    controllerH.gameboard = savetuple._2
 
     if(sucInp) {
       controllerH.moveCounter -= 1
-      direction match { // Sperre die andere Richtung, damit man nicht einfach links - rechts / oben - unten laufen kann
+      /** Sperre die andere Richtung, damit man nicht einfach links - rechts / oben - unten laufen kann */
+      direction match {
         case "w" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("s")
         case "s" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("w")
         case "a" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("d")
         case "d" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("a")
       }
-      if (controllerH.savedGame.lastCell.isInstanceOf[PlayerCell]) { //Wenn man über eine Person drüber läuft, , diese wieder hinschreiben.
+      /** Wenn man über eine Person drüber läuft, , diese wieder hinschreiben. */
+      if (controllerH.savedGame.lastCell.isInstanceOf[PlayerCell]) {
         controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord, controllerH.savedGame.lastCell)
       }
       controllerH.savedGame = controllerH.savedGame.updatelastCell(lastCell)
     } else {
-      controllerH.undoAll //Wenn Laufen nicht geklappt, hat (in Illeagle Richtung) Kompletter zug zurücksetzen.
+      /** Wenn Laufen nicht geklappt, hat (in Illeagle Richtung) Kompletter zug zurücksetzen. */
+      controllerH.undoAll
       direction match {
         case "skip" => controllerH.moveCounter = 0
         case _ =>
       }
     }
-    if(controllerH.moveCounter < 1) { // Wenn dies der letzte Zug war, Zug des nächsten Spielers einleiten.
+    /** Wenn dies der letzte Zug war, Zug des nächsten Spielers einleiten. */
+    if(controllerH.moveCounter < 1) {
         controllerH.playerStatus = controllerH.playerStatus.nextPlayer(controllerH.game.getPlayerNumber())
-        controllerH.emptyMan //Empty the Undomanager to be able to completetly reset it when in falsche richtung geloffen
+      /** Empty the Undomanager to be able to completetly reset it when in falsche richtung geloffen */
+        controllerH.emptyMan
         controllerH.savedGame = controllerH.savedGame.updateLastDirection("")
         controllerH.savedGame = controllerH.savedGame.updatelastCell(InvalidCell)
     }
@@ -417,6 +448,5 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
       }
     }
     //</editor-fold>
-
   }
 }

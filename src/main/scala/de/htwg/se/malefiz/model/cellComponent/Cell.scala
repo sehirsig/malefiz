@@ -1,13 +1,9 @@
-/*
-Class: Cell.scala
-
-Beschreibung:
-Alle Zellen unseres Malefiz-Spiels, die es gibt.
-
- */
-
 package de.htwg.se.malefiz.model.cellComponent
 
+/** Alle Zellen unseres Malefiz-Spiels, die es gibt.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 trait Cell {
   val cellStatus:String
   def isWalkable: Boolean = cellStatus != "  " && cellStatus != "T "

@@ -1,13 +1,9 @@
-/*
-Class: gameboardBaseImpl/moveTypes.scala
-
-Beschreibung:
-Klasse um die Koordinaten schnell auf den der nächsten Zelle zu ändern.
-
- */
-
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
+/** Klasse um die Koordinaten schnell auf den der nächsten Zelle zu ändern.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 object moveTypes {
   def goDown(oldcord: (Int, Int)): (Int, Int) = {
     (oldcord._1 + 1, oldcord._2)

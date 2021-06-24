@@ -1,11 +1,3 @@
-/*
-Class: controllerStubImpl/Controller.scala
-
-Beschreibung:
-Eine Stub Implementation unseres Controllers.
-
- */
-
 package de.htwg.se.malefiz.controller.controllerComponent.controllerStubImpl
 
 import de.htwg.se.malefiz.controller.controllerComponent._
@@ -18,6 +10,10 @@ import de.htwg.se.malefiz.model.playerComponent._
 
 import scala.swing.Publisher //Mock -> Stub
 
+/** Eine Stub Implementation unseres Controllers.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 case class Controller(var gameboard: GameboardInterface) extends ControllerInterface with Publisher{
   override var gameStatus: GameStatus = IDLE
   override var playerStatus: PlayerState = PlayerState1

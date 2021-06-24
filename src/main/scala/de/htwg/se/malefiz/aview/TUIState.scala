@@ -1,19 +1,18 @@
-/*
-Class: TUIState.scala
-
-Beschreibung:
-State-Pattern für die TUI.scala (Text-User-Interface).
- */
-
 package de.htwg.se.malefiz.aview
 
 import de.htwg.se.malefiz.Malefiz.controller
 
-trait TUIState { //Haupt-Interface für unsere States.
+/** State-Pattern für die TUI.scala (Text-User-Interface).
+ *  Haupt-Interface für unsere States.
+ *
+ *  @author sehirsig & franzgajewski
+ */
+trait TUIState {
   def processing(input: String): TUIState
 }
 
-object IdleTUIState extends TUIState { //State während Anfang des Spiels, um Spieler hinzuzufügen, sowie das Spiel zu starten.
+/** State während Anfang des Spiels, um Spieler hinzuzufügen, sowie das Spiel zu starten. */
+object IdleTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
       case "p" => {
@@ -34,7 +33,8 @@ object IdleTUIState extends TUIState { //State während Anfang des Spiels, um Sp
           println("not enough players");IdleTUIState
         }
       }
-      case "pDEBUG" => { //Debug, der einen Spieler vor dem Ziel platziert.
+        /** Debug, der einen Spieler vor dem Ziel platziert. */
+      case "pDEBUG" => {
         if(controller.game.getPlayerNumber() < 4) {
           controller.addPlayerDEBUGWINTEST("debug")
           IdleTUIState
@@ -51,26 +51,33 @@ object IdleTUIState extends TUIState { //State während Anfang des Spiels, um Sp
   }
 }
 
-object PlayerNameState extends TUIState { //State für die Benennung des Spielers.
+/** State für die Benennung des Spielers. */
+object PlayerNameState extends TUIState {
   def processing(input: String): TUIState = {
     controller.addPlayerName(input)
     IdleTUIState
   }
 }
 
-object PlayingTUIState extends TUIState { //State fürs Spielen.
+/** State fürs Spielen. */
+object PlayingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
-      case "s" => controller.save;PlayingTUIState //In eine File den Spielstand speichern.
-      case "l" => controller.load;PlayingTUIState //Aus einer File den Spielstand laden.
-      case "r" => controller.rollDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState //Würfeln.
-      case "rDEBUG" => controller.debugDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState //Debug Würfeln.
+        /** In eine File den Spielstand speichern. */
+      case "s" => controller.save;PlayingTUIState
+        /** Aus einer File den Spielstand laden. */
+      case "l" => controller.load;PlayingTUIState
+        /** Würfeln. */
+      case "r" => controller.rollDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState
+        /** Debug Würfeln. (Immer 1) */
+      case "rDEBUG" => controller.debugDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState
       case _ => println("invalid input");PlayingTUIState
     }
   }
 }
 
-object ChooseGameFigTUIState extends TUIState { //State für die Spielfigur-Auswahl.
+/** State für die Spielfigur-Auswahl. */
+object ChooseGameFigTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
       case "1" | "2" | "3" | "4" | "5" => controller.selectFigure(input.toInt);MovingTUIState
@@ -79,7 +86,8 @@ object ChooseGameFigTUIState extends TUIState { //State für die Spielfigur-Ausw
   }
 }
 
-object WinnerTUIState extends TUIState { //State für den Spiel-Gewinn.
+/** State für den Spiel-Gewinn. */
+object WinnerTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
       case _ => println("Winner: " + controller.gameWon._2 + "\n");GameResetTUIState
@@ -87,7 +95,8 @@ object WinnerTUIState extends TUIState { //State für den Spiel-Gewinn.
   }
 }
 
-object GameResetTUIState extends TUIState { //State für den Spiel-Reset nach Gewinn.
+/** State für den Spiel-Reset nach Gewinn. */
+object GameResetTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
       case "reset" => controller.resetGame();IdleTUIState
@@ -96,7 +105,8 @@ object GameResetTUIState extends TUIState { //State für den Spiel-Reset nach Ge
   }
 }
 
-object MovingTUIState extends TUIState { //State für das bewegen der Spielfigur.
+/** State für das bewegen der Spielfigur. */
+object MovingTUIState extends TUIState {
   def processing(input: String): TUIState = {
 
     input match {
