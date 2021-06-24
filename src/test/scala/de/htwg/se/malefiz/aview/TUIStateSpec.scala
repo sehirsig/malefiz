@@ -11,14 +11,18 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     val gameboard = new Gameboard(set.xDim, set.yDim)
     val controller = Controller(gameboard)
     val tui = TUI(controller)
-    "Give a correct game full warning" in {
+    "Add one player" in {
       tui.currentState = IdleTUIState
       tui.currentState = tui.processing("pDEBUG")
+    }
+    "Do not start" in {
+      tui.processing("s")
+    }
+    "Add more Players" in {
       tui.currentState = tui.processing("pDEBUG")
       tui.currentState = tui.processing("pDEBUG")
       tui.currentState = tui.processing("pDEBUG")
       tui.currentState = tui.processing("pDEBUG")
-      tui.currentState should be (IdleTUIState)
     }
     "Not Reset the game" in {
       tui.currentState = GameResetTUIState
