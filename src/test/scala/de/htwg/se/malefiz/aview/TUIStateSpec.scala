@@ -13,16 +13,16 @@ class TUIStateSpec extends AnyWordSpec with Matchers {
     val tui = TUI(controller)
     "Add one player" in {
       tui.currentState = IdleTUIState
-      tui.currentState = tui.processing("pDEBUG")
+      tui.processing("pDEBUG")
     }
     "Do not start" in {
       tui.processing("s")
     }
     "Add more Players" in {
-      tui.currentState = tui.processing("pDEBUG")
-      tui.currentState = tui.processing("pDEBUG")
-      tui.currentState = tui.processing("pDEBUG")
-      tui.currentState = tui.processing("pDEBUG")
+      tui.processing("pDEBUG")
+      tui.processing("pDEBUG")
+      tui.processing("pDEBUG")
+      tui.processing("pDEBUG")
     }
     "Not Reset the game" in {
       tui.currentState = GameResetTUIState

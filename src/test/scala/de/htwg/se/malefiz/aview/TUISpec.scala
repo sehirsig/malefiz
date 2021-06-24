@@ -48,11 +48,11 @@ class TUISpec extends AnyWordSpec with Matchers {
     }
     "do nothing on input 'welcomeMessage'" in {
       tui.processing("welcomeMessage")
-      //tui.currentState should be(IdleTUIState)
+      tui.currentState should be(IdleTUIState)
     }
     "do not start if < 2 players" in {
       tui.processing("s")
-      //tui.currentState should be(IdleTUIState)
+      tui.currentState should be(IdleTUIState)
     }
     "add players on input 'p'" in {
       tui.processing("pDEBUG")
