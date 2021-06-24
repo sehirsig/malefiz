@@ -1,53 +1,51 @@
+/*
+Class: TUI.scala
+
+Beschreibung:
+Malefiz als "Text-User-Interface". Spielausgabe in der Konsole
+
+ */
+
+
 package de.htwg.se.malefiz.aview
-import de.htwg.se.malefiz.controller.{Controller, GameStatus}
-import de.htwg.se.malefiz.util.Observer
+import de.htwg.se.malefiz.controller.controllerComponent._
 
-import scala.io.StdIn.readLine
+import scala.swing.Reactor
 
-case class TUI(controller: Controller) extends Observer {
-  controller.add(this)
 
-//  def initiateGame(): Unit = { //State
-//    println(
-//      """Welcome to Malefiz!
-//        |Please Enter the number of Players (2-4):
-//        |""".stripMargin)
-//    val pnumber = readLine()
-//    controller.setPlayerNumber(pnumber.toInt)
-//    if (pnumber == "2" || pnumber == "3" || pnumber == "4") {
-//      for (i <- 1 to pnumber.toInt) {
-//        println("Please Enter Name for Player " + i)
-//        val playername = readLine() // TODO Readlines rauswerfen, alles in processing
-//        controller.createPlayer(playername, i)
-//      }
-//    } else {
-//      for (i <- 1 to 2) {
-//        println("Please Enter Name for Player " + i)
-//        val playername = readLine()
-//        controller.createPlayer(playername, i)
-//      }
-//    }
-//    println("Type >anything< to start the game!")
-//  }
+case class TUI(controller: ControllerInterface) extends Reactor {
+  listenTo(controller) //Auf den Controller hören, um auf Events zu reagieren.
+
+  var currentState:TUIState = IdleTUIState //Initialisierung des momentanen State.
 
   def processing(input: String): Unit = {
-    input match {
-      case "welcomeMessage" =>
-      case "p" => controller.addPlayer()
-      case "start" => controller.startGame()
-      case "r" => controller.rollDice()
-      case "w" => controller.move(input)
-      case "a" => controller.move(input)
-      case "s" => controller.move(input)
-      case "d" => controller.move(input)
-      case _ => println("invalid input")
-    }
+    currentState = currentState.processing(input: String)
   }
 
-  override def update: Boolean =  {
-    if (controller.gameStatus != GameStatus.IDLE && controller.gameStatus != GameStatus.READY) println(controller.boardToString)
-    println(GameStatus.gameMessage(controller.gameStatus))
-//    if (controller.gameStatus != GameStatus.IDLE && controller.gameStatus != GameStatus.READY) println(GameStatus.playerMessage(controller.playerStatus))
-  true
+  reactions += {
+    case event: RollDice => printTui; currentState = PlayingTUIState
+    case event: Moving => printTui;currentState = MovingTUIState
+    case event: ChooseFig => printStatus;currentState = ChooseGameFigTUIState
+    case event: SettingUp => printStatus
+    case event: StartUp => printStatus
+    case event: StartGame => printStatus; currentState = PlayingTUIState
+    case event: WonGame => printTui; currentState = WinnerTUIState; currentState.processing("")
+    case event: GameReset => printStatus; currentState = IdleTUIState
+    case event: GameSaved => printStatus;
+    case event: GameLoaded => printStatus
   }
+
+
+  def printTui: Unit = { //Printet das Spielfeld.
+    println(controller.boardToString())
+    println(GameStatus.gameMessage(controller.gameStatus))
+  }
+
+  /** Prints the Status.
+   *
+   */
+  def printStatus: Unit = { //Printet den Spielstatus.
+    println(GameStatus.gameMessage(controller.gameStatus))
+  }
+
 }

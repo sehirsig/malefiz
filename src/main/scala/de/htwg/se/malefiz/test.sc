@@ -1,5 +1,8 @@
-import de.htwg.se.malefiz.model.properties.Settings
-import de.htwg.se.malefiz.model.{Cell, Gamefigure, Gameboard, Player}
+import de.htwg.se.malefiz.model.cellComponent.Cell
+import de.htwg.se.malefiz.model.gameboardComponent.Settings
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
+import de.htwg.se.malefiz.model.gamefigureComponent.Gamefigure
+import de.htwg.se.malefiz.model.playerComponent.Player
 
 val student1 = Player("Your Name", 1)
 val student2 = Player("Your Name", 2)

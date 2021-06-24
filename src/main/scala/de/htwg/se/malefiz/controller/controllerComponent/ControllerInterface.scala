@@ -1,0 +1,65 @@
+/*
+Class: ControllerInterface.scala
+
+Beschreibung:
+Das Interface für unsere Controller Komponenten.
+Beschreibungen der Funktionen in der Base-Implementierung.
+
+ */
+
+package de.htwg.se.malefiz.controller.controllerComponent
+
+import de.htwg.se.malefiz.controller.controllerComponent.GameStatus.GameStatus
+import de.htwg.se.malefiz.model.cellComponent.Cell
+import de.htwg.se.malefiz.model.gameComponent.Game
+import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}
+import de.htwg.se.malefiz.model.playerComponent._
+
+import scala.swing.Publisher
+
+trait ControllerInterface extends Publisher {
+  var gameboard: GameboardInterface
+  var gameStatus: GameStatus
+  var playerStatus: PlayerState
+  var moveCounter: Int
+  val builder: PlayerBuilder
+  var game: Game
+  var gameWon: (Boolean, String)
+  var savedGame: lastSaveInterface
+  var selectedFigNum: Int
+  def getpureCell(name: String): Cell
+  def resetGame(): Unit
+  def selectFigure(x: Int): Unit
+  def addPlayer(): Unit
+  def addPlayerName(name: String): Unit
+  def startGame(): Unit
+  def setupGame(): Unit
+  def boardToString(): String
+  def rollDice(): Int
+  def checkWin(): Unit
+  def setBlockStrategy(blockStrategy: String): Unit
+  def move(input: String, figurenum: Int): Unit
+  def emptyMan: Unit
+  def undoAll: Unit
+  def undo: Unit
+  def redo: Unit
+  def save: Unit
+  def load: Unit
+  def addPlayerDEBUGWINTEST(name: String): Unit
+  def debugDice(): Unit
+}
+
+
+//Unsere Events, die beim Controller aufgeruft werden, um den Listenern bescheid zu geben.
+import scala.swing.event.Event
+
+class RollDice extends Event
+class ChooseFig extends Event
+class Moving extends Event
+class SettingUp extends Event
+class StartUp extends Event
+class StartGame extends Event
+class WonGame extends Event
+class GameReset extends Event
+class GameSaved extends Event
+class GameLoaded extends Event

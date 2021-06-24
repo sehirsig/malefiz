@@ -1,3 +1,11 @@
+/*
+Class: Observable.scala
+
+Beschreibung:
+Klasse für unseren Observer.
+
+ */
+
 package de.htwg.se.malefiz.util
 
 trait Observer {
