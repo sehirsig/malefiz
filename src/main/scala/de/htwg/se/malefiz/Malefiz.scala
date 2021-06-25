@@ -1,7 +1,6 @@
 package de.htwg.se.malefiz
 
 import com.google.inject.Guice
-import de.htwg.se.malefiz.aview.GUI.SwingGui
 import de.htwg.se.malefiz.aview.TUI
 import de.htwg.se.malefiz.controller.controllerComponent.ControllerInterface
 
@@ -15,7 +14,6 @@ object Malefiz {
   val injector = Guice.createInjector(new MalefizModule)
   val controller = injector.getInstance(classOf[ControllerInterface])
   val tui = new TUI(controller)
-  val gui = new SwingGui(controller)
   controller.setupGame()
 
   def main(args: Array[String]): Unit = {
