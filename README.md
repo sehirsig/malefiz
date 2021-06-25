@@ -45,4 +45,14 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
 # Coverage [Master]
 [![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=master&kill_cache=1)](https://travis-ci.org/franzgajewski/malefiz) [![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/franzgajewski/malefiz?branch=master&kill_cache=1)
 
-Written by [@sehirsig](https://github.com/sehirsig/) & [@franzgajewski](https://github.com/franzgajewski/)
+
+# Dockerhub
+## GUI Version
+
+> `docker pull sehirsig/malefiz:v1`
+
+## TUI Version
+> `docker pull sehirsig/malefiz:tui`
+
+
+*Written by [@sehirsig](https://github.com/sehirsig/) & [@franzgajewski](https://github.com/franzgajewski/)*
