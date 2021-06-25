@@ -19,6 +19,9 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   /** Sichtbarkeit des MainFrames auf an. */
   this.visible = true
 
+  /** Spiel beenden, wenn das Main Fenster geschlossen wurde */
+  peer.setDefaultCloseOperation(3)
+
   /** Titel unseres Spiels. */
   title = "HTWG Malefiz"
 
