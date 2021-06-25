@@ -17,7 +17,7 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
  5. Move the gamefigure!
  6. Next players turn!
 
-![enter image description here](https://i.imgur.com/Qu2U0oy.png)![enter image description here](https://i.imgur.com/wHv20JW.png)![enter image description here](https://i.imgur.com/tocdyU4.png)![enter image description here](https://i.imgur.com/cAJQrEF.png)![enter image description here](https://i.imgur.com/6HQrexU.png)![enter image description here](https://i.imgur.com/nHwTkKM.png)
+![StartGame](https://i.imgur.com/Qu2U0oy.png)![AddPlayers](https://i.imgur.com/wHv20JW.png)![RollDice](https://i.imgur.com/tocdyU4.png)![ChooseGameFig](https://i.imgur.com/cAJQrEF.png)![MoveGameFig](https://i.imgur.com/6HQrexU.png)![NextPlayer](https://i.imgur.com/nHwTkKM.png)
 
 # Procedure Of Making This Game
 
