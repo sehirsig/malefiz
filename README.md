@@ -25,10 +25,10 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
  2. Version Control Systems - Git
  3. ScalaTest
  4. Text-User-Interface (TUI)
- 5. MVC Architecture
+ 5. MVC Architecture (Model-View-Controller)
  6. Travis & Coveralls
- 7. Design Patterns
- 8. Scala Swing (GUI)
+ 7. Design Patterns | Observer Pattern
+ 8. Scala Swing (GUI) | Reactor
  9. Interfaces & Components
  10. Dependency Injection
  11. File IO (XML & JSON)
@@ -37,14 +37,16 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
 
 
 # Used Design Patterns
-* Builder-Pattern *[PlayerBuilder](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/model/playerComponent/PlayerBuilder.scala)*
-* State-Pattern [*TUI State*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/aview/TUIState.scala)  [*Player State*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/controller/controllerComponent/PlayerState.scala)
-* Try-Monade [*replaceCell()*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/model/gameboardComponent/gameboardBaseImpl/Gameboard.scala#L124)
-* Option-Monade [*Dice*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/model/gameboardComponent/gameboardBaseImpl/Dice.scala)
-* Strategy-Pattern [*Block-Strategy*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/util/BlockStrategy.scala)
+* Builder-Pattern *[PlayerBuilder](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/model/playerComponent/PlayerBuilder.scala)*
+* State-Pattern [*TUI State*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/aview/TUIState.scala)  [*Player State*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/controller/controllerComponent/PlayerState.scala)
+* Try-Monade [*replaceCell()*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/model/gameboardComponent/gameboardBaseImpl/Gameboard.scala#L123)
+* Option-Monade [*Dice*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/model/gameboardComponent/gameboardBaseImpl/Dice.scala)
+* Strategy-Pattern [*Block-Strategy*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/util/BlockStrategy.scala)
+* Reactor-Events [*Event/Listener/Reactor*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/controller/controllerComponent/ControllerInterface.scala#L131)
+* Command-Pattern [*Command*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/util/Command.scala)
+* Undo-Manager [*UndoManager*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/util/UndoManager.scala)
 # Coverage [Master]
-[![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=master&kill_cache=1)](https://travis-ci.org/franzgajewski/malefiz) [![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/franzgajewski/malefiz?branch=master&kill_cache=1)
-
+[![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=development&kill_cache=1)](https://travis-ci.org/franzgajewski/malefiz) [![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=development&kill_cache=1)](https://coveralls.io/github/franzgajewski/malefiz?branch=development&kill_cache=1)
 
 # Dockerhub
 ## GUI Version
