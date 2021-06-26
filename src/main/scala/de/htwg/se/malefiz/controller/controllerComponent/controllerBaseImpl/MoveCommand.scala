@@ -3,29 +3,29 @@ package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.util.Command
 
-/** Hier wird jeder einzelne Zug verwaltet, mit dem Command-Pattern können mit "undo" Züge zurückgenommen oder mit "redo" wiedergespielt werden.
+/** Manages each individual movement.
+ * Via the command pattern moves can be undone and redone.
  *
  *  @author sehirsig & franzgajewski
  */
 class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) extends Command {
-  /**Speicherung unserer Variablen für diesen Step.*/
 
-  /** Spielbrett wird gespeichert. */
+  /** Saves game board. */
   var savedG = controllerH.gameboard
 
-  /** Zähler der verbleibende Züge. */
+  /** Counts remaining turns. */
   var savedMC = controllerH.moveCounter
 
-  /** Spielstatus. */
+  /** Game state. */
   var savedSt = controllerH.gameStatus
 
-  /** Informationen des letzten Zuges. */
+  /** Information on the last move. */
   var savedSG = controllerH.savedGame
 
-  /** "Game" speichert die Spieler. */
+  /** "Game" saves the players. */
   var savedGM = controllerH.game
 
-  //Hier schliessbar, Speicherung der Spielfiguren.
+  //Saving game figures
   //<editor-fold desc="Gamefigure Saves">
 
   var savedF1 = controllerH.game.players(0).figures(0)
@@ -73,33 +73,33 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
   //</editor-fold>
 
   override def doStep: Unit = {
-    /** Boolean, ob der Move geklappt hat und rechtens war. */
+    /** Boolean indicates whether move was legal and successful. */
     var sucInp:Boolean = false
 
-    /** Bekomme jetzigen Spieler. */
+    /** Select current player. */
     val currentplayer = controllerH.game.players(controllerH.playerStatus.getCurrentPlayer - 1)
 
-    /** Wähle momentane Spielfigur aus. */
+    /** Select current game figure. */
     val currentfigure = currentplayer.figures(figurenum-1)
 
-    /** Koordinaten der momentanen Figur. */
+    /** Coordinates of the current game figure. */
     val fig_coord = (currentfigure.pos._1, currentfigure.pos._2)
 
-    /** Initialisierung der letzten Zelle (Wird im nächsten Schritt ersetzt) */
+    /** Initialization of the last cell (which will be replaced in the next step). */
     var lastCell:Cell = InvalidCell
 
-    /** Tupel für den Boolean und das neue Spielbrett */
+    /** Tupel the Boolean and the new game board. */
     var savetuple = (sucInp, controllerH.gameboard)
 
-    /** Neue Position der Spielfigur( Wird ersetzt) */
+    /** New position of the game figure. */
     var newpos = fig_coord
     direction match {
       case "w" =>  {
-        /** returns TRUE, if walking worked and Saves Gameboard */
+        /** Returns TRUE, if walking worked and saves game board. */
         savetuple = savedG.walkUp(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
-        /** Saves LastCell to Replace it afterwards */
+        /** Saves last cell to replace it afterwards. */
         lastCell = savedG.cell(savedG.goUp(fig_coord)._1, savedG.goUp(fig_coord)._2)
-        /** Saves newposition to look for Player Kick */
+        /** Saves newposition to look for player kick. */
         newpos = savedG.goUp(fig_coord)
       case "a" => {
         savetuple = savedG.walkLeft(controllerH.gameboard, currentplayer, fig_coord, figurenum-1, controllerH.moveCounter)}
@@ -116,10 +116,10 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
       case _ =>
     }
 
-    /** If 0, Kick Spieler */
+    /** If 0, kick player. */
     if ((controllerH.moveCounter - 1) == 0) {
       controllerH.game.players.map(b => b.figures.map(k => {
-        /** Position der Spielfigur des Gekickten auf seine Basis zurücksetzen. */
+        /** Reset position of the figure of the kicked player to starting position. */
         if (((k.pos._1, k.pos._2) == newpos) && (k.player != currentplayer)) {
           k.player.figures(k.getNumber) = k.player.figures(k.getNumber).updatePos(k.player.startingPos)
           controllerH.gameboard = controllerH.gameboard.movePlayer(k.player.startingPos, k.player.cell)
@@ -127,38 +127,38 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
       }))
     }
 
-    /** Boolean wird hier gesetzt, ob der Zug geklappt hat. */
+    /** Boolean indicates if move was successful. */
     sucInp = savetuple._1
 
-    /** Neues Spielbrett wird hier gesetzt. */
+    /** Newgame board. */
     controllerH.gameboard = savetuple._2
 
     if(sucInp) {
       controllerH.moveCounter -= 1
-      /** Sperre die andere Richtung, damit man nicht einfach links - rechts / oben - unten laufen kann */
+      /** Lock the reverse direction to avoid players shuffling between two cells. */
       direction match {
         case "w" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("s")
         case "s" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("w")
         case "a" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("d")
         case "d" => controllerH.savedGame = controllerH.savedGame.updateLastDirection("a")
       }
-      /** Wenn man über eine Person drüber läuft, , diese wieder hinschreiben. */
+      /** If traversing over another game figure, repaint that one. */
       if (controllerH.savedGame.lastCell.isInstanceOf[PlayerCell]) {
         controllerH.gameboard = controllerH.gameboard.movePlayer(fig_coord, controllerH.savedGame.lastCell)
       }
       controllerH.savedGame = controllerH.savedGame.updatelastCell(lastCell)
     } else {
-      /** Wenn Laufen nicht geklappt, hat (in Illeagle Richtung) Kompletter zug zurücksetzen. */
+      /** When illegal move, reset turn and start over. */
       controllerH.undoAll
       direction match {
         case "skip" => controllerH.moveCounter = 0
         case _ =>
       }
     }
-    /** Wenn dies der letzte Zug war, Zug des nächsten Spielers einleiten. */
+    /** When last move, initiate next player's turn. */
     if(controllerH.moveCounter < 1) {
         controllerH.playerStatus = controllerH.playerStatus.nextPlayer(controllerH.game.getPlayerNumber())
-      /** Empty the Undomanager to be able to completetly reset it when in falsche richtung geloffen */
+      /** Empty the undo manager to be able to completetly reset it when moved into wrong direction. */
         controllerH.emptyMan
         controllerH.savedGame = controllerH.savedGame.updateLastDirection("")
         controllerH.savedGame = controllerH.savedGame.updatelastCell(InvalidCell)
@@ -172,7 +172,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     val newsavedSG = controllerH.savedGame
     val newsavedGM = controllerH.game
 
-    //Hier schliessbar, Speicherung der Spielfiguren.
+    //Saving game figures
     //<editor-fold desc="Gamefigure Saves">
 
     var newsavedF1 = controllerH.game.players(0).figures(0)
@@ -226,7 +226,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     controllerH.savedGame = savedSG
     controllerH.game = savedGM
 
-    //Hier schliessbar, Ladungen der Spielfiguren.
+    //Loading game figures
     //<editor-fold desc="Gamefigure Loads">
 
     controllerH.game.players(0).figures(0) = savedF1
@@ -269,7 +269,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     savedSG = newsavedSG
     savedGM = newsavedGM
 
-    //Hier schliessbar, Speicherung der Spielfiguren.
+    //Saving game figures
     //<editor-fold desc="Gamefigure Saves">
 
     savedF1 = newsavedF1
@@ -315,7 +315,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     val newsavedSG = controllerH.savedGame
     val newsavedGM = controllerH.game
 
-    //Hier schliessbar, Speicherung der Spielfiguren.
+    //Saving game figures
     //<editor-fold desc="Gamefigure Saves">
 
     var newsavedF1 = controllerH.game.players(0).figures(0)
@@ -369,7 +369,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     controllerH.savedGame = savedSG
     controllerH.game = savedGM
 
-    //Hier schliessbar, Ladungen der Spielfiguren.
+    //Loading game figures
     //<editor-fold desc="Gamefigure Loads">
 
     controllerH.game.players(0).figures(0) = savedF1
@@ -412,7 +412,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
     savedSG = newsavedSG
     savedGM = newsavedGM
 
-    //Hier schliessbar, Speicherung der Spielfiguren.
+    //Saving game figures
     //<editor-fold desc="Gamefigure Saves">
 
     savedF1 = newsavedF1
