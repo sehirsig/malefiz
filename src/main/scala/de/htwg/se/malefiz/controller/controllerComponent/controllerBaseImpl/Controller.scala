@@ -7,7 +7,6 @@ import de.htwg.se.malefiz.controller.controllerComponent._
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.fileIoComponent.FileIOInterface
 import de.htwg.se.malefiz.model.gameComponent.Game
-import de.htwg.se.malefiz.model.gameboardComponent
 import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}
 import de.htwg.se.malefiz.model.playerComponent._
 import de.htwg.se.malefiz.util.UndoManager

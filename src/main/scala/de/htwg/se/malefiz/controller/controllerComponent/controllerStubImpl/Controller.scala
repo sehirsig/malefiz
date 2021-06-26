@@ -5,10 +5,10 @@ import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameComponent._
 import de.htwg.se.malefiz.model.gameboardComponent
-import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSave, lastSaveInterface}
+import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSaveInterface}
 import de.htwg.se.malefiz.model.playerComponent._
 
-import scala.swing.Publisher //Mock -> Stub
+import scala.swing.Publisher
 
 /** Eine Stub Implementation unseres Controllers.
  *

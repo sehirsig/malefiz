@@ -1,10 +1,14 @@
 package de.htwg.se.malefiz.util
 
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.checkCell._
-import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{BlockRemoveStrategy, BlockReplaceStrategy, Gameboard, Settings}
+import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+/** Test-Klasse für unsere Block-Strategy Klasse.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class BlockStrategySpec  extends AnyWordSpec with Matchers {
   "A BlockStrategy " should {
     val settings = new Settings

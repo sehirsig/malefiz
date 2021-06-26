@@ -3,6 +3,10 @@ package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+/** Test-Klasse für unsere Settings Klasse der Base-Implementierung.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class SettingsSpec extends AnyWordSpec with Matchers {
   "The Settings should" when {
     "have the right dimension" should {

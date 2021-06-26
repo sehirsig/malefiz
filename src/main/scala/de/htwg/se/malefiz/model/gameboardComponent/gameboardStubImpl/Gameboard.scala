@@ -3,7 +3,6 @@ package de.htwg.se.malefiz.model.gameboardComponent.gameboardStubImpl
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.model.playerComponent.Player
-
 import scala.util.{Failure, Success, Try}
 
 /** Stub-Implementierung des Spielbrettes.

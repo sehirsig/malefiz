@@ -6,8 +6,12 @@ import org.scalatest.wordspec.AnyWordSpec
 
 import scala.util.{Failure, Success}
 
+/** Test-Klasse für unsere Gameboard Klasse der Base-Implementierung.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class GameboardSpec extends AnyWordSpec with Matchers {
-  "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when { //
+  "A Gameboard is the playingfield of Malefiz. A Gamebeoard" when {
 
     val settings = new Settings
     val spielbrett = new Gameboard(settings.yDim, settings.xDim)
