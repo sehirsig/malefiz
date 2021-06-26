@@ -1,17 +1,17 @@
 package de.htwg.se.malefiz.util
 
-/** Interface unseres Command-Patterns.
+/** Command pattern interface.
  *
  *  @author sehirsig & franzgajewski
  */
 trait Command {
 
-  /** Einen Schritt gehen */
+  /** Do one step. */
   def doStep:Unit
 
-  /** Einen Schritt zurückgehen */
+  /** Undo one step. */
   def undoStep:Unit
 
-  /** Einen Schritt wiederherstellen */
+  /** Redo one step. */
   def redoStep:Unit
 }
