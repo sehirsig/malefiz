@@ -6,53 +6,53 @@ import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.moveTypes._
 import de.htwg.se.malefiz.model.playerComponent.Player
 import scala.util.{Failure, Success}
 
-/** Hauptlogik unseres Malefiz-Spiels. Hier werden Züge verwaltet, so wie nachfolgende Zellen angeschaut.
+/** Main logic of the Malefiz game. Here turns are managed and subsequent cells are evaluated.
  *
  *  @author sehirsig & franzgajewski
  */
 object checkCell {
 
-  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+  /** Check, if walking up is legal and do so if possible.
    *
-   * @param spielbrett das Alte Spielbrett
-   * @param player der momentane Spieler des Zuges
-   * @param currentCoord die momentanen Koordinaten der Spielfigur
-   * @param figurenum die nummer der Spielfigur
-   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *  @param spielbrett old game board
+   *  @param player current player
+   *  @param currentCoord coordinates of current figure
+   *  @param figurenum number of figure
+   *  @param walksLeft number of remaining movements
    *
-   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   *  @return tuple of boolean to indicate whether the move was successful and the new game board
    */
   def walkUp(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     /** Test if the Next Cell in this direction is even Walkable */
     isWalkable(spielbrett, goUp(currentCoord), walksLeft, player.Playerid) match {
       case true => {
-        /** Choose the current figure of the chosen Player */
+        /** Choose the current figure of the chosen player */
         val currentfigure = player.figures(figurenum)
-        /** Move the Players Gamefigure to the next position */
+        /** Move the player's game figure to the next position */
         val spielbrett2 = spielbrett.movePlayer(goUp(currentCoord), PlayerCell(player.Playerid))
-        /** Reset the Previous block to what it was (when Player walked over it) */
+        /** Reset the previous block to what it was (when player walked over it) */
         val spielbrett3 = spielbrett2.movePlayer(currentCoord, wasStartBlock(spielbrett, currentCoord))
-        /** Check the cell you're walking on for more options */
+        /** Check the cell you are walking on for more options */
         val spielbrett4 = getNextCell(spielbrett, spielbrett3, goUp(currentCoord), walksLeft)
         /** Update the internal coordinates of the game figure. */
         player.figures(figurenum) = currentfigure.updatePos(goUp(currentCoord)._1, goUp(currentCoord)._2)
-        /** Return true (It worked), and the new gameboard */
+        /** Return true (it worked), and the new game board */
         (true, spielbrett4)
       }
-        /** return false, (walking NOT possible), and the old gameboard */
+        /** return false, (walking NOT possible), and the old game board */
       case _ => (false, spielbrett)
     }
   }
 
-  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+  /** Check, if walking down is legal and do so if possible.
    *
-   * @param spielbrett das Alte Spielbrett
-   * @param player der momentane Spieler des Zuges
-   * @param currentCoord die momentanen Koordinaten der Spielfigur
-   * @param figurenum die nummer der Spielfigur
-   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *  @param spielbrett old game board
+   *  @param player current player
+   *  @param currentCoord coordinates of current figure
+   *  @param figurenum number of figure
+   *  @param walksLeft number of remaining movements
    *
-   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   *  @return tuple of boolean to indicate whether the move was successful and the new game board
    */
   def walkDown(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     isWalkable(spielbrett, goDown(currentCoord), walksLeft, player.Playerid) match {
@@ -68,15 +68,15 @@ object checkCell {
     }
   }
 
-  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+  /** Check, if walking left is legal and do so if possible.
    *
-   * @param spielbrett das Alte Spielbrett
-   * @param player der momentane Spieler des Zuges
-   * @param currentCoord die momentanen Koordinaten der Spielfigur
-   * @param figurenum die nummer der Spielfigur
-   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *  @param spielbrett old game board
+   *  @param player current player
+   *  @param currentCoord coordinates of current figure
+   *  @param figurenum number of figure
+   *  @param walksLeft number of remaining movements
    *
-   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   *  @return tuple of boolean to indicate whether the move was successful and the new game board
    */
   def walkLeft(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     isWalkable(spielbrett, goLeft(currentCoord), walksLeft, player.Playerid) match {
@@ -92,15 +92,15 @@ object checkCell {
     }
   }
 
-  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+  /** Check, if walking right is legal and do so if possible.
    *
-   * @param spielbrett das Alte Spielbrett
-   * @param player der momentane Spieler des Zuges
-   * @param currentCoord die momentanen Koordinaten der Spielfigur
-   * @param figurenum die nummer der Spielfigur
-   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *  @param spielbrett old game board
+   *  @param player current player
+   *  @param currentCoord coordinates of current figure
+   *  @param figurenum number of figure
+   *  @param walksLeft number of remaining movements
    *
-   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   *  @return tuple of boolean to indicate whether the move was successful and the new game board
    */
   def walkRight(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     isWalkable(spielbrett, goRight(currentCoord), walksLeft, player.Playerid) match {
@@ -116,7 +116,7 @@ object checkCell {
     }
   }
 
-  /** Anschauen, ob man auf die nächste Zelle laufen kann. */
+  /** Check if the targeted cell is walkable. */
   def isWalkable(x: GameboardInterface, currentCoord: (Int, Int), walksleft: Int, Playerid: Int): Boolean = {
     getCell(x, currentCoord) match {
       case FreeCell => true
@@ -136,12 +136,12 @@ object checkCell {
     }
   }
 
-  /** Erhalte die Zelle eines spezielles Spielbretts aus den Koordinaten. */
+  /** Get cell from game board coordinates. */
   def getCell(x: GameboardInterface, currentCoord: (Int, Int)): Cell = {
     x.cell(currentCoord._1, currentCoord._2)
   }
 
-  /** Die Nächste zelle bekommen, um zu schauen, ob man auf einer Blocked Cell landet. */
+  /** Get the next cell, to check whether it is blocked or not. */
   def getNextCell(old: GameboardInterface, next: GameboardInterface, currentCoord: (Int, Int), walksleft: Int): GameboardInterface = {
     getCell(old, currentCoord) match {
       case BlockedCell => {
@@ -155,7 +155,7 @@ object checkCell {
     }
   }
 
-  /** Die Startzelle mit einer neuen Startzelle ersetzen, wenn der Spieler aus der Base läuft. */
+  /** Replace the starting cell with a new cell, when a player leaves the base. */
   def wasStartBlock(x: GameboardInterface, currentCoord: (Int, Int)): Cell = {
     getCell(x, currentCoord) match {
       case Start1Cell => Start1Cell
@@ -166,7 +166,9 @@ object checkCell {
     }
   }
 
-  /** Alte Zelle mit SecureCells oder FreeCells ersetzen, je nachdem was in Settings angegeben wurde. Info: Auf SecureCells dürfen keine Blockaden platziert werden! */
+  /** Replace a cell with a FreeCell or SecureCell, depending on the settings class.
+   * Info: No Barricades can be placed on SecureCells. They are used for the two lowermost rows and otherwise indistinguishable form FreeCells.
+   */
   def secureORfreeCell(currentCoord: (Int, Int)): Cell = {
     Settings().secureCells.contains(currentCoord) match {
       case true => SecureCell
@@ -174,7 +176,9 @@ object checkCell {
     }
   }
 
-  /** Ersetzen des Gameboard, indem eine Zelle ersetzt wird, mit Sicherung. Falls ein Invalider Index gewählt wurde, kommt das alte Gameboard zurück. */
+  /** Replace the game board with a new game board with a new cell.
+   * In case the new cell cannot be placed, the old game board is returned.
+   */
   def replaceIt(x: Gameboard, intx:Int, inty:Int): GameboardInterface = {
     var newboard = x
     val returnedBoard = x.replaceCell(intx, inty, BlockedCell)
@@ -185,7 +189,7 @@ object checkCell {
     newboard
   }
 
-  /** Funktion für das BlockRemove/Replace Strategy Pattern */
+  /** Function for the barricade remove/replace strategy pattern */
   def replaceBlock(x: GameboardInterface): GameboardInterface = {
     x.replaceBlocks(x)
   }

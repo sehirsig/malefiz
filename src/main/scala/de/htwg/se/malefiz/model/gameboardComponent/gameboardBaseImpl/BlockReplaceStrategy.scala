@@ -5,8 +5,8 @@ import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.util.BlockStrategy
 import scala.util.Random
 
-/** Blocked Cell Replace Strategy unseres Strategy-Patterns.
- *  Verschiebe die Blocked Zellen in auf eine andere Position. (Nicht auf Secure-Cells, nur Free-Cells!)
+/** Blocked cell replace strategy of the strategy pattern.
+ *  Move barricade to a random legal location, when captured.
  *
  *  @author sehirsig & franzgajewski
  */
@@ -20,11 +20,11 @@ case class BlockReplaceStrategy() extends BlockStrategy {
   }
 
 
-  /** Sucht alle freien Plätze, wo die Blockade hingesetzt werden kann
+  /** Determines legal cells to place a barricade.
    *
-   * @param x zu Suchende Zelle (FreeCell)
-   * @param vec unsere Matrix
-   * @return
+   * @param x legal cell type (FreeCell)
+   * @param vec game board matrix
+   * @return coordinates of legal cells
    */
   private def searchVectors(x: Cell, vec: Vector[Vector[Cell]]): IndexedSeq[(Int,Int)] =
     for {
