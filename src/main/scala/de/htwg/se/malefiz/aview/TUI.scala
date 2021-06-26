@@ -3,7 +3,7 @@ package de.htwg.se.malefiz.aview
 import de.htwg.se.malefiz.controller.controllerComponent._
 import scala.swing.Reactor
 
-/** Malefiz as text-user-interface. Game gets displayed in the console.
+/** Malefiz as text-based user interface. Game gets displayed in the console.
  *
  *  @author sehirsig & franzgajewski
  */
