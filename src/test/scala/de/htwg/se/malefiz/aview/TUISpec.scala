@@ -103,7 +103,6 @@ class TUISpec extends AnyWordSpec with Matchers {
       }
       "move redo on input 'redo'" in {
         tui.processing("redo") //Redo, then move the rest to get the top left Blocked Cell, to walk down the next time
-
         tui.processing("a")
         tui.processing("w")
         tui.processing("w")

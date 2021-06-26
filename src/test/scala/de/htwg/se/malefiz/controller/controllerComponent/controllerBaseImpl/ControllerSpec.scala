@@ -5,7 +5,7 @@ import de.htwg.se.malefiz.MalefizModule
 import de.htwg.se.malefiz.aview.{GameResetTUIState, MovingTUIState, TUI}
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.controller.controllerComponent.{PlayerState1, PlayerState2, PlayerState3, PlayerState4}
-import de.htwg.se.malefiz.model.cellComponent.PlayerCell
+import de.htwg.se.malefiz.model.cellComponent.{BlockedCell, PlayerCell}
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface
 import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
@@ -26,6 +26,9 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
         controller.moveCounter should be(0)
+      }
+      "get the pure Cell" in {
+        controller.getpureCell("BlockedCell") should be (BlockedCell)
       }
       "change blockStrategy to replace" in {
         controller.setBlockStrategy("replace")
