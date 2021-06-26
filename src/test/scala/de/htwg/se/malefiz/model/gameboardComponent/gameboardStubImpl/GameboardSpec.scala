@@ -1,11 +1,14 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardStubImpl
 
-
 import de.htwg.se.malefiz.model.cellComponent.InvalidCell
 import de.htwg.se.malefiz.model.playerComponent.Player
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+/** Test-Klasse für unsere Gameboard Klasse der Stub-Implementierung.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class GameboardSpec extends AnyWordSpec with Matchers {
   "A Mock Gameboard is the playingfield of Malefiz. A Mock Gameboard" when { //
     val spielbrett = new Gameboard(2, 2)

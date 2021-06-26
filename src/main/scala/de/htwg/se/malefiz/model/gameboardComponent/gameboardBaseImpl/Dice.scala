@@ -1,6 +1,5 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
-
 import scala.util.Random
 
 /** Der Würfel für unsere Base-Implementation

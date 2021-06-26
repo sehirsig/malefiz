@@ -4,7 +4,6 @@ import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.moveTypes._
 import de.htwg.se.malefiz.model.playerComponent.Player
-
 import scala.util.{Failure, Success}
 
 /** Hauptlogik unseres Malefiz-Spiels. Hier werden Züge verwaltet, so wie nachfolgende Zellen angeschaut.
@@ -12,6 +11,17 @@ import scala.util.{Failure, Success}
  *  @author sehirsig & franzgajewski
  */
 object checkCell {
+
+  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+   *
+   * @param spielbrett das Alte Spielbrett
+   * @param player der momentane Spieler des Zuges
+   * @param currentCoord die momentanen Koordinaten der Spielfigur
+   * @param figurenum die nummer der Spielfigur
+   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *
+   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   */
   def walkUp(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     /** Test if the Next Cell in this direction is even Walkable */
     isWalkable(spielbrett, goUp(currentCoord), walksLeft, player.Playerid) match {
@@ -34,6 +44,16 @@ object checkCell {
     }
   }
 
+  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+   *
+   * @param spielbrett das Alte Spielbrett
+   * @param player der momentane Spieler des Zuges
+   * @param currentCoord die momentanen Koordinaten der Spielfigur
+   * @param figurenum die nummer der Spielfigur
+   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *
+   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   */
   def walkDown(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     isWalkable(spielbrett, goDown(currentCoord), walksLeft, player.Playerid) match {
       case true => {
@@ -48,6 +68,16 @@ object checkCell {
     }
   }
 
+  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+   *
+   * @param spielbrett das Alte Spielbrett
+   * @param player der momentane Spieler des Zuges
+   * @param currentCoord die momentanen Koordinaten der Spielfigur
+   * @param figurenum die nummer der Spielfigur
+   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *
+   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   */
   def walkLeft(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     isWalkable(spielbrett, goLeft(currentCoord), walksLeft, player.Playerid) match {
       case true => {
@@ -62,6 +92,16 @@ object checkCell {
     }
   }
 
+  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+   *
+   * @param spielbrett das Alte Spielbrett
+   * @param player der momentane Spieler des Zuges
+   * @param currentCoord die momentanen Koordinaten der Spielfigur
+   * @param figurenum die nummer der Spielfigur
+   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *
+   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   */
   def walkRight(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     isWalkable(spielbrett, goRight(currentCoord), walksLeft, player.Playerid) match {
       case true => {

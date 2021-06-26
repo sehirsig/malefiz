@@ -26,6 +26,7 @@ class MalefizModule extends AbstractModule with ScalaModule {
   override def configure():Unit = {
     bindConstant().annotatedWith(Names.named("DefaultSizeX")).to(defaultSizeX)
     bindConstant().annotatedWith(Names.named("DefaultSizeY")).to(defaultSizeY)
+
     bind[ControllerInterface].to[controllerBaseImpl.Controller]
     bind[GameboardInterface].toInstance(new Gameboard(defaultSizeX,defaultSizeY))
     bind[lastSaveInterface].toInstance(new lastSave(defaultLastDice, defaultLastWay, defaultCell))

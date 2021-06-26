@@ -1,17 +1,14 @@
 package de.htwg.se.malefiz.model.fileIoComponent.fileIoXmlImpl
 
 import com.google.inject.Guice
-import com.google.inject.name.Names
 import net.codingwell.scalaguice.InjectorExtensions._
 import de.htwg.se.malefiz.MalefizModule
-import de.htwg.se.malefiz.model.cellComponent.{Cell, PlayerCell}
+import de.htwg.se.malefiz.model.cellComponent.PlayerCell
 import de.htwg.se.malefiz.model.fileIoComponent.FileIOInterface
 import de.htwg.se.malefiz.model.gameComponent.Game
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
-import de.htwg.se.malefiz.model.playerComponent.Player
 
-import scala.io.Source
-import scala.xml.PrettyPrinter
+import scala.xml.{Elem, PrettyPrinter}
 
 /** Alle Zellen unseres Malefiz-Spiels, die es gibt.
  *  XML Implementierung unserer FileIO, um den momentanen Spielstand zu speichern und später wieder aufzurufen.
@@ -66,10 +63,9 @@ class FileIO extends FileIOInterface{
     pw.write(xml)
     pw.close
   }
-  def gameboardToXml(gameboard: GameboardInterface) = {
+  def gameboardToXml(gameboard: GameboardInterface): Elem = {
     <gameboard sizex={ gameboard.getStandardXYsize._1.toString }
                sizey={ gameboard.getStandardXYsize._2.toString }>
-
       {
       for {
         row <- 0 until gameboard.getStandardXYsize._1
@@ -79,7 +75,7 @@ class FileIO extends FileIOInterface{
     </gameboard>
   }
 
-  def cellToXml(gameboard: GameboardInterface, row: Int, col: Int) = {
+  def cellToXml(gameboard: GameboardInterface, row: Int, col: Int): Elem = {
     <cell row={ row.toString } col={ col.toString }>
       { gameboard.cellString(row, col) }
     </cell>

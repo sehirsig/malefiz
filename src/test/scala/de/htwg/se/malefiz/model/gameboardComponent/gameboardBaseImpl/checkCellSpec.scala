@@ -5,6 +5,10 @@ import de.htwg.se.malefiz.model.playerComponent.Player
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+/** Test-Klasse für unsere checkCell Klasse der Base-Implementierung.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class checkCellSpec extends AnyWordSpec with Matchers {
   "checkShell" when {
     var gb = new Gameboard(Settings().xDim, Settings().yDim)
@@ -60,21 +64,35 @@ class checkCellSpec extends AnyWordSpec with Matchers {
         checkCell.isWalkable(gb, (14,5), 1, 1) should be (true)
         checkCell.isWalkable(gb, (14,6), 1, 1) should be (true)
         checkCell.isWalkable(gb, (14,7), 1, 1) should be (true)
-        checkCell.isWalkable(gb, (2,9), 1, 1) should be (true) //auf Blocked Cell laufen (mit 1 Move Left)
-        checkCell.isWalkable(gb, (1,9), 1, 1) should be (true) //Ins Ziel laufen (mit 1 Move Left)
+
+        /** auf Blocked Cell laufen (mit 1 Move Left) */
+        checkCell.isWalkable(gb, (2,9), 1, 1) should be (true)
+
+        /** Ins Ziel laufen (mit 1 Move Left) */
+        checkCell.isWalkable(gb, (1,9), 1, 1) should be (true)
 
         gb = gb.moveCell((14,3), PlayerCell(2))
-        checkCell.isWalkable(gb, (14,3), 2, 1) should be (true) //Spieler 1 läuft über Spieler 2 seine Figur
-        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true) //Spieler 2 läuft über seine Figur
+
+        /** Spieler 1 läuft über Spieler 2 seine Figur */
+        checkCell.isWalkable(gb, (14,3), 2, 1) should be (true)
+
+        /** Spieler 2 läuft über seine Figur */
+        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true)
         gb = gb.moveCell((14,3), PlayerCell(3))
-        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true) //Spieler 3 läuft über seine Figur
+
+        /** Spieler 3 läuft über seine Figur */
+        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true)
         gb = gb.moveCell((14,3), PlayerCell(4))
-        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true) //Spieler 4 läuft über seine Figur
+
+        /** Spieler 4 läuft über seine Figur */
+        checkCell.isWalkable(gb, (14,3), 2, 2) should be (true)
       }
       "be false " in {
-        checkCell.isWalkable(gb, (15,3), 1, 1) should be (false) // In Basis reinlaufen
+        /** In Basis reinlaufen */
+        checkCell.isWalkable(gb, (15,3), 1, 1) should be (false)
 
-        gb = gb.moveCell((14,3), PlayerCell(1)) // Nurnoch 1 zug und du würdest auf deiner eigenen Figur landen
+        /** Nurnoch 1 zug und du würdest auf deiner eigenen Figur landen */
+        gb = gb.moveCell((14,3), PlayerCell(1))
         checkCell.isWalkable(gb, (14,3), 1, 1) should be (false)
       }
     }

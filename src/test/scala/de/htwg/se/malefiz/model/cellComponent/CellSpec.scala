@@ -3,6 +3,10 @@ package de.htwg.se.malefiz.model.cellComponent
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+/** Test-Klasse für unsere Cell-Klasse.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class CellSpec extends AnyWordSpec with Matchers {
   "A Cell" when {
     "Free" should {

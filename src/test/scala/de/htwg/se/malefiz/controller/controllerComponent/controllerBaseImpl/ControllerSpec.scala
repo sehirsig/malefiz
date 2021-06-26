@@ -2,28 +2,26 @@ package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
 import com.google.inject.Guice
 import de.htwg.se.malefiz.MalefizModule
+import de.htwg.se.malefiz.aview.{GameResetTUIState, MovingTUIState, TUI}
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
-import de.htwg.se.malefiz.controller.controllerComponent.PlayerState1
+import de.htwg.se.malefiz.controller.controllerComponent.{PlayerState1, PlayerState2, PlayerState3, PlayerState4}
 import de.htwg.se.malefiz.model.cellComponent.PlayerCell
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface
-import de.htwg.se.malefiz.util.Observer
 import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+/** Test-Klasse für unseren Controller mit der Base-Implementierung.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class ControllerSpec extends AnyWordSpec with Matchers {
   "A Controller" when {
     "observed by an Observer with 4 Players" should {
       val set = Settings()
       val gameboard = new Gameboard(set.xDim, set.yDim)
       val controller = Controller(gameboard)
-      val observer = new Observer {
-        var updated: Boolean = false
-        def isUpdated: Boolean = updated
-        override def update: Boolean = {updated = true; updated}
-      }
-      //controller.add(observer)
       "from the offset" in {
         controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
@@ -31,25 +29,27 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       "change blockStrategy to replace" in {
         controller.setBlockStrategy("replace")
+        controller.gameStatus should be(WELCOME)
       }
       "change blockStrategy to remove" in {
         controller.setBlockStrategy("remove")
+        controller.gameStatus should be(WELCOME)
       }
      "when adding player" in {
        controller.addPlayerName("Eins")
        controller.game.getPlayerNumber() should be(1)
-       //controller.gameStatus should be(IDLE)
+       controller.gameStatus should be(IDLE)
      }
      "when adding another player" in {
        controller.addPlayerName("Zwei")
        controller.game.getPlayerNumber() should be(2)
-       //controller.gameStatus should be(READY1)
+       controller.gameStatus should be(READY1)
      }
      "when adding 4 players" in {
        controller.addPlayerName("Drei")
        controller.addPlayerName("Vier")
        controller.game.getPlayerNumber() should be(4)
-       //controller.gameStatus should be(READY2)
+       controller.gameStatus should be(READY2)
      }
      "when adding more than 4 players" in {
        controller.addPlayer()
@@ -77,6 +77,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("a", 1)
         controller.move("w", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2" in {
         controller.rollDice()
@@ -91,6 +92,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("a", 1)
         controller.move("w", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState3)
       }
       "when as Player 3" in {
         controller.rollDice()
@@ -105,6 +107,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("a", 1)
         controller.move("w", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState4)
       }
       "when as Player 4" in {
         controller.rollDice()
@@ -119,6 +122,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("a", 1)
         controller.move("w", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState1)
       }
       "when as Player 1 2nd Move" in {
         controller.rollDice()
@@ -126,6 +130,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.moveCounter = 5
         controller.move("s", 1)
         controller.move("skip", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2 2nd Move" in {
         controller.rollDice()
@@ -133,6 +138,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.moveCounter = 5
         controller.move("s", 1)
         controller.move("skip", 1)
+        controller.playerStatus should be(PlayerState3)
       }
       "when as Player 3 2nd Move" in {
         controller.rollDice()
@@ -140,6 +146,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.moveCounter = 5
         controller.move("s", 1)
         controller.move("skip", 1)
+        controller.playerStatus should be(PlayerState4)
       }
       "when as Player 4 2nd Move" in {
         controller.rollDice()
@@ -147,36 +154,32 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.moveCounter = 5
         controller.move("s", 1)
         controller.move("skip", 1)
+        controller.playerStatus should be(PlayerState1)
       }
       "when as Player 1 3rd Move" in {
         controller.rollDice()
         controller.selectFigure(1)
         controller.moveCounter = 6
         controller.move("s", 1)
+        controller.move("s", 1)
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
-        controller.move("w", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2 3rd Move" in {
         controller.rollDice()
         controller.selectFigure(1)
-        controller.moveCounter = 6
-        controller.gameboard.movePlayer((2,9), PlayerCell(1))
-        controller.move("w", 1)
+        controller.moveCounter = 1
+        controller.move("s", 1)
+        controller.playerStatus should be(PlayerState3)
       }
     }
     "observed by an Observer with 3 Players" should {
       val set = Settings()
       val gameboard = new Gameboard(set.xDim, set.yDim)
       val controller = Controller(gameboard)
-      val observer = new Observer {
-        var updated: Boolean = false
-        def isUpdated: Boolean = updated
-        override def update: Boolean = {updated = true; updated}
-      }
-      //controller.add(observer)
       "from the offset" in {
         controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
@@ -184,24 +187,26 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       "change blockStrategy to replace" in {
         controller.setBlockStrategy("replace")
+        controller.gameStatus should be(WELCOME)
       }
       "change blockStrategy to remove" in {
         controller.setBlockStrategy("remove")
+        controller.gameStatus should be(WELCOME)
       }
       "when adding player" in {
         controller.addPlayerName("Eins")
         controller.game.getPlayerNumber() should be(1)
-        //controller.gameStatus should be(IDLE)
+        controller.gameStatus should be(IDLE)
       }
       "when adding another player" in {
         controller.addPlayerName("Zwei")
         controller.game.getPlayerNumber() should be(2)
-        //controller.gameStatus should be(READY1)
+        controller.gameStatus should be(READY1)
       }
       "when adding 3 players" in {
         controller.addPlayerName("Drei")
         controller.game.getPlayerNumber() should be(3)
-        //controller.gameStatus should be(READY2)
+        controller.gameStatus should be(READY1)
       }
       "when starting game" in {
         controller.startGame()
@@ -225,6 +230,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("a", 1)
         controller.move("w", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2" in {
         controller.rollDice()
@@ -239,6 +245,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("a", 1)
         controller.move("w", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState3)
       }
       "when as Player 3" in {
         controller.rollDice()
@@ -253,6 +260,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("a", 1)
         controller.move("w", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState1)
       }
       "when as Player 1 2nd Move" in {
         controller.rollDice()
@@ -260,6 +268,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.moveCounter = 5
         controller.move("s", 1)
         controller.move("skip", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2 2nd Move" in {
         controller.rollDice()
@@ -267,6 +276,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.moveCounter = 5
         controller.move("s", 1)
         controller.move("skip", 1)
+        controller.playerStatus should be(PlayerState3)
       }
       "when as Player 3 2nd Move" in {
         controller.rollDice()
@@ -274,36 +284,32 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.moveCounter = 5
         controller.move("s", 1)
         controller.move("skip", 1)
+        controller.playerStatus should be(PlayerState1)
       }
       "when as Player 1 3rd Move" in {
         controller.rollDice()
         controller.selectFigure(1)
         controller.moveCounter = 6
         controller.move("s", 1)
+        controller.move("s", 1)
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
-        controller.move("w", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2 3rd Move" in {
         controller.rollDice()
         controller.selectFigure(1)
-        controller.moveCounter = 6
-        controller.gameboard.movePlayer((2,9), PlayerCell(1))
-        controller.move("w", 1)
+        controller.moveCounter = 1
+        controller.move("s", 1)
+        controller.playerStatus should be(PlayerState3)
       }
     }
     "observed by an Observer with 2 Players" should {
       val set = Settings()
       val gameboard = new Gameboard(set.xDim, set.yDim)
       val controller = Controller(gameboard)
-      val observer = new Observer {
-        var updated: Boolean = false
-        def isUpdated: Boolean = updated
-        override def update: Boolean = {updated = true; updated}
-      }
-      //controller.add(observer)
       "from the offset" in {
         controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
@@ -311,19 +317,21 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       "change blockStrategy to replace" in {
         controller.setBlockStrategy("replace")
+        controller.gameStatus should be(WELCOME)
       }
       "change blockStrategy to remove" in {
         controller.setBlockStrategy("remove")
+        controller.gameStatus should be(WELCOME)
       }
       "when adding player" in {
         controller.addPlayerName("Eins")
         controller.game.getPlayerNumber() should be(1)
-        //controller.gameStatus should be(IDLE)
+        controller.gameStatus should be(IDLE)
       }
       "when adding another player" in {
         controller.addPlayerName("Zwei")
         controller.game.getPlayerNumber() should be(2)
-        //controller.gameStatus should be(READY1)
+        controller.gameStatus should be(READY1)
       }
       "when starting game" in {
         controller.startGame()
@@ -346,6 +354,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2" in {
         controller.rollDice()
@@ -360,12 +369,14 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("a", 1)
         controller.move("w", 1)
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState1)
       }
       "when as Player 1 2nd Move kick" in {
         controller.rollDice()
         controller.selectFigure(1)
         controller.moveCounter = 1
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2 2nd Move" in {
         controller.rollDice()
@@ -373,6 +384,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.moveCounter = 5
         controller.move("w", 1)
         controller.move("skip", 1)
+        controller.playerStatus should be(PlayerState1)
       }
       "when as Player 1 3rd Move" in {
         controller.rollDice()
@@ -384,13 +396,14 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.move("d", 1)
         controller.move("d", 1)
         controller.move("d", 1)
+        controller.playerStatus should be(PlayerState2)
       }
       "when as Player 2 3rd Move" in {
         controller.rollDice()
         controller.selectFigure(1)
-        controller.moveCounter = 6
-        controller.gameboard = controller.gameboard.movePlayer((2,9), PlayerCell(1))
+        controller.moveCounter = 1
         controller.move("w", 1)
+        controller.playerStatus should be(PlayerState1)
       }
       "when Player 2 Wins" in {
         controller.gameboard = controller.gameboard.movePlayer((1,9), PlayerCell(2))
@@ -406,7 +419,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.save
       }
       "load a gameboard" in {
-        controller.load //Travis Wirft Fehler
+        controller.load
       }
       "reset a game" in {
         val injector = Guice.createInjector(new MalefizModule)

@@ -3,8 +3,10 @@ package de.htwg.se.malefiz.util
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-
-
+/** Test-Klasse für unsere UndoManager Klasse.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class UndoManagerSpec  extends AnyWordSpec with Matchers {
   "A UndoManager " should {
     val undoManager = new UndoManager

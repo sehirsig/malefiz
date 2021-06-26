@@ -13,6 +13,10 @@ class testCommand extends Command {
   override def redoStep: Unit = doStep
 }
 
+/** Test-Klasse für unsere Command Klasse.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class CommandSpec  extends AnyWordSpec with Matchers {
   "A Command " should {
     "do a step in doStep" in {

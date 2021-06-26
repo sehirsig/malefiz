@@ -3,6 +3,10 @@ package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+/** Test-Klasse für unsere moveTypes Klasse der Base-Implementierung.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class moveTypesSpec extends AnyWordSpec with Matchers {
   "moveTypes Functions" when {
     "operate" should {
@@ -19,5 +23,5 @@ class moveTypesSpec extends AnyWordSpec with Matchers {
         moveTypes.goRight(1,1) should be (1,2)
       }
     }
-    }
+  }
 }

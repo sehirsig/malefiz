@@ -14,7 +14,7 @@ trait FileIOInterface {
    *  @param game Informationen und Positionen der Spieler/Spielfiguren
    *  @return ein Tupel aus dem neuen Spielbrett und den Spieldaten (Figur-Positionen)
    */
-  def load(game:Game): (GameboardInterface,Game) //Extra-Parameter, um die Spielfigurpositionen zu aktualisieren.
+  def load(game:Game): (GameboardInterface,Game)
 
   /** Speichert das Spielbrett
    *

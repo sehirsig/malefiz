@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.aview
-import de.htwg.se.malefiz.controller.controllerComponent._
 
+import de.htwg.se.malefiz.controller.controllerComponent._
 import scala.swing.Reactor
 
 /** Malefiz als "Text-User-Interface". Spielausgabe in der Konsole.
