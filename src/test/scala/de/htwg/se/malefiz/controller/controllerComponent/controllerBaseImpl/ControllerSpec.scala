@@ -406,11 +406,8 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.playerStatus should be(PlayerState1)
       }
       "when Player 2 Wins" in {
-        val tui = TUI(controller)
-        tui.currentState = MovingTUIState
         controller.gameboard = controller.gameboard.movePlayer((1,9), PlayerCell(2))
         controller.checkWin()
-        tui.processing("invalid")
         controller.gameWon should be (true,"Zwei")
       }
       "when Player 2 Fin but not Won" in {
