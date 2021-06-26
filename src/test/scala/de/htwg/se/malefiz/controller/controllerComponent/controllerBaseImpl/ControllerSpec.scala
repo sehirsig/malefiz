@@ -2,12 +2,12 @@ package de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 
 import com.google.inject.Guice
 import de.htwg.se.malefiz.MalefizModule
+import de.htwg.se.malefiz.aview.{GameResetTUIState, MovingTUIState, TUI}
 import de.htwg.se.malefiz.controller.controllerComponent.GameStatus._
 import de.htwg.se.malefiz.controller.controllerComponent.{PlayerState1, PlayerState2, PlayerState3, PlayerState4}
 import de.htwg.se.malefiz.model.cellComponent.PlayerCell
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 import de.htwg.se.malefiz.model.gameboardComponent.lastSaveInterface
-import de.htwg.se.malefiz.util.Observer
 import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -22,11 +22,6 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       val set = Settings()
       val gameboard = new Gameboard(set.xDim, set.yDim)
       val controller = Controller(gameboard)
-      val observer = new Observer {
-        var updated: Boolean = false
-        def isUpdated: Boolean = updated
-        override def update: Boolean = {updated = true; updated}
-      }
       "from the offset" in {
         controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
@@ -185,11 +180,6 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       val set = Settings()
       val gameboard = new Gameboard(set.xDim, set.yDim)
       val controller = Controller(gameboard)
-      val observer = new Observer {
-        var updated: Boolean = false
-        def isUpdated: Boolean = updated
-        override def update: Boolean = {updated = true; updated}
-      }
       "from the offset" in {
         controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
@@ -320,11 +310,6 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       val set = Settings()
       val gameboard = new Gameboard(set.xDim, set.yDim)
       val controller = Controller(gameboard)
-      val observer = new Observer {
-        var updated: Boolean = false
-        def isUpdated: Boolean = updated
-        override def update: Boolean = {updated = true; updated}
-      }
       "from the offset" in {
         controller.gameStatus should be(WELCOME)
         controller.playerStatus should be(PlayerState1)
@@ -421,8 +406,11 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.playerStatus should be(PlayerState1)
       }
       "when Player 2 Wins" in {
+        val tui = TUI(controller)
+        tui.currentState = MovingTUIState
         controller.gameboard = controller.gameboard.movePlayer((1,9), PlayerCell(2))
         controller.checkWin()
+        tui.processing("invalid")
         controller.gameWon should be (true,"Zwei")
       }
       "when Player 2 Fin but not Won" in {

@@ -108,7 +108,6 @@ object GameResetTUIState extends TUIState {
 /** State für das bewegen der Spielfigur. */
 object MovingTUIState extends TUIState {
   def processing(input: String): TUIState = {
-
     input match {
       case "w" => controller.move(input, controller.selectedFigNum); MovingTUIState
       case "a" => controller.move(input, controller.selectedFigNum); MovingTUIState
