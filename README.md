@@ -19,7 +19,11 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
 ## Choose The Gamefigure!
 ![ChooseGameFig](https://media4.giphy.com/media/jwDEbzvgWz9KhIOI2U/giphy.gif)
 ## Move The Gamefigure!
-https://user-images.githubusercontent.com/81407658/123525720-1ee99480-d6d3-11eb-96b1-ecf58c231d95.mp4
+![MoveFig](https://media1.giphy.com/media/OIl7bsl0qQZ3ohONdW/giphy.gif)
+## Kick A Gamefigure!
+![KickFig](https://media0.giphy.com/media/EtHxH94U4jjW3dsG9D/giphy.gif)
+## Move A Blockade!
+![BlockMove](https://media2.giphy.com/media/PBaipOQTlGIAIwcd6U/giphy.gif)
 
 # Extra Features
 ## Save The Game Progress
@@ -31,13 +35,13 @@ https://user-images.githubusercontent.com/81407658/123525720-1ee99480-d6d3-11eb-
 
  1. IntelliJ & Scala
  2. Version Control Systems - Git
- 3. ScalaTest
- 4. Text-User-Interface (TUI)
+ 3. Agile Development (ScalaTest)
+ 4. Continuous Deployment (TravisCI & Coveralls)
  5. MVC Architecture (Model-View-Controller)
- 6. Travis & Coveralls
- 7. Design Patterns | Observer Pattern
- 8. Scala Swing (GUI) | Reactor
- 9. Interfaces & Components
+ 6. TUI (Text-based User Interface)
+ 7. Design Patterns
+ 8. GUI (Graphical User Interface)
+ 9. Components
  10. Dependency Injection
  11. File IO (XML & JSON)
  12. Docker 
@@ -45,20 +49,20 @@ https://user-images.githubusercontent.com/81407658/123525720-1ee99480-d6d3-11eb-
 
 
 # Used Design Patterns
-* Builder-Pattern *[PlayerBuilder](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/model/playerComponent/PlayerBuilder.scala)*
-* State-Pattern [*TUI State*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/aview/TUIState.scala)  [*Player State*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/controller/controllerComponent/PlayerState.scala)
-* Try-Monade [*replaceCell()*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/model/gameboardComponent/gameboardBaseImpl/Gameboard.scala#L123)
-* Option-Monade [*Dice*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/model/gameboardComponent/gameboardBaseImpl/Dice.scala)
-* Strategy-Pattern [*Block-Strategy*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/util/BlockStrategy.scala)
-* Reactor-Events [*Event/Listener/Reactor*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/controller/controllerComponent/ControllerInterface.scala#L131)
-* Command-Pattern [*Command*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/util/Command.scala)
-* Undo-Manager [*UndoManager*](https://github.com/franzgajewski/malefiz/blob/development/src/main/scala/de/htwg/se/malefiz/util/UndoManager.scala)
+* Builder-Pattern *[PlayerBuilder](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/model/playerComponent/PlayerBuilder.scala)*
+* State-Pattern [*TUI State*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/aview/TUIState.scala)  [*Player State*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/controller/controllerComponent/PlayerState.scala)
+* Try-Monade [*replaceCell()*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/model/gameboardComponent/gameboardBaseImpl/Gameboard.scala#L123)
+* Option-Monade [*Dice*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/model/gameboardComponent/gameboardBaseImpl/Dice.scala)
+* Strategy-Pattern [*Block-Strategy*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/util/BlockStrategy.scala)
+* Reactor-Events [*Event/Listener/Reactor*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/controller/controllerComponent/ControllerInterface.scala#L131)
+* Command-Pattern [*Command*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/util/Command.scala)
+* Undo-Manager [*UndoManager*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/util/UndoManager.scala)
 # Coverage [Master]
-[![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=development&kill_cache=1)](https://travis-ci.org/franzgajewski/malefiz) [![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=development&kill_cache=1)](https://coveralls.io/github/franzgajewski/malefiz?branch=development&kill_cache=1)
+[![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=master&kill_cache=1)](https://travis-ci.org/franzgajewski/malefiz) [![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/franzgajewski/malefiz?branch=master&kill_cache=1)
 
 # Dockerhub
+[Docker Hub Link (sehirsig/malefiz)](https://hub.docker.com/r/sehirsig/malefiz)
 ## GUI Version
-
 > `docker pull sehirsig/malefiz:v1`
 
 ## TUI Version
