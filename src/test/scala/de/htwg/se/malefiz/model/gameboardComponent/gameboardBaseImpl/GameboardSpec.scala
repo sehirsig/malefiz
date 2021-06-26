@@ -198,7 +198,21 @@ class GameboardSpec extends AnyWordSpec with Matchers {
       "in getCell(P4)" in {
         spielbrett.getCell("PlayerCell4")  should be (PlayerCell(4))
       }
-
+      "in getCell(FreeCell)" in {
+        spielbrett.getCell("FreeCell")  should be (FreeCell)
+      }
+      "in getCell(BlockedCell)" in {
+        spielbrett.getCell("BlockedCell")  should be (BlockedCell)
+      }
+      "in getCell(SecureCell)" in {
+        spielbrett.getCell("SecureCell")  should be (SecureCell)
+      }
+      "in getCell(GoalCell)" in {
+        spielbrett.getCell("GoalCell")  should be (GoalCell)
+      }
+      "in getCell(InvalidCell)" in {
+        spielbrett.getCell("InvalidCell")  should be (InvalidCell)
+      }
     }
   }
 }
