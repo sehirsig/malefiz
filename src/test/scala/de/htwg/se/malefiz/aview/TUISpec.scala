@@ -91,33 +91,34 @@ class TUISpec extends AnyWordSpec with Matchers {
       "move up on input 'w'" in {
         tui.controller.moveCounter = 5
         tui.processing("w")
-        tui.currentState should be(MovingTUIState)
       }
       "move left on input 'a'" in {
         tui.processing("a")
-        tui.currentState should be(MovingTUIState)
       }
       "move undo on input 'undo'" in {
         tui.processing("undo")
-        tui.currentState should be(MovingTUIState)
       }
       "move redo on input 'redo'" in {
-        tui.processing("redo") //Redo, then move the rest to get the top left Blocked Cell, to walk down the next time
+        /** Redo, then move the rest to get the top left Blocked Cell, to walk down the next time */
+        tui.processing("redo")
         tui.processing("a")
         tui.processing("w")
         tui.processing("w")
-        tui.processing("rDEBUG") //Player 2 Rolls and chooses Gamefigure in Debug Mode
+        /** Player 2 Rolls and chooses Gamefigure in Debug Mode */
+        tui.processing("rDEBUG")
         tui.processing("1")
         tui.currentState should be(MovingTUIState)
       }
 
       "skip round on input 'skip'" in {
-        tui.processing("skip") //Player 2 Skips round
+        /** Player 2 Skips round */
+        tui.processing("skip")
         tui.currentState should be(PlayingTUIState)
       }
 
       "move down on input 's'" in {
-        tui.processing("r") //Player 1 rolls, chooses gamefig 1 to move down
+        /** Player 1 rolls, chooses gamefig 1 to move down */
+        tui.processing("r")
         tui.controller.moveCounter = 5
         tui.processing("1")
         tui.processing("s")
