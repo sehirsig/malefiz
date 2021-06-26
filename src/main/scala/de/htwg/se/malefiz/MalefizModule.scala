@@ -5,12 +5,11 @@ import com.google.inject.name.Names
 import net.codingwell.scalaguice.ScalaModule
 import de.htwg.se.malefiz.controller.controllerComponent._
 import de.htwg.se.malefiz.model.cellComponent.InvalidCell
-import de.htwg.se.malefiz.model.fileIoComponent.FileIOInterface
 import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSave, lastSaveInterface}
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.Gameboard
 import de.htwg.se.malefiz.model.fileIoComponent._
 
-/** Hier wird die Dependency Injection für unsere Components verwaltet.
+/** This manages the dependency injection for our components.
  *
  *  @author sehirsig & franzgajewski
  */
