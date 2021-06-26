@@ -3,15 +3,14 @@ package de.htwg.se.malefiz.aview
 import de.htwg.se.malefiz.controller.controllerComponent._
 import scala.swing.Reactor
 
-/** Malefiz als "Text-User-Interface". Spielausgabe in der Konsole.
+/** Malefiz as text-user-interface. Game gets displayed in the console.
  *
  *  @author sehirsig & franzgajewski
  */
 case class TUI(controller: ControllerInterface) extends Reactor {
-  /** Auf den Controller hören, um auf Events zu reagieren. */
   listenTo(controller)
 
-  /** Initialisierung des momentanen State. */
+  /** Initialising of the current state. */
   var currentState:TUIState = IdleTUIState
 
   def processing(input: String): Unit = {
@@ -31,13 +30,13 @@ case class TUI(controller: ControllerInterface) extends Reactor {
     case event: GameLoaded => printStatus
   }
 
-  /** Printet das Spielfeld. */
+  /** Prints the game board. */
   def printTui: Unit = {
     println(controller.boardToString())
     println(GameStatus.gameMessage(controller.gameStatus))
   }
 
-  /** Printet den Spielstatus. */
+  /** Prints the game state. */
   def printStatus: Unit = {
     println(GameStatus.gameMessage(controller.gameStatus))
   }

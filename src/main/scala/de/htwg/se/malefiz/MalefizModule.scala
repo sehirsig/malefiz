@@ -9,7 +9,7 @@ import de.htwg.se.malefiz.model.gameboardComponent.{GameboardInterface, lastSave
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.Gameboard
 import de.htwg.se.malefiz.model.fileIoComponent._
 
-/** This manages the dependency injection for our components.
+/** Dependency injection for our components.
  *
  *  @author sehirsig & franzgajewski
  */

@@ -6,7 +6,7 @@ import de.htwg.se.malefiz.aview.TUI
 import de.htwg.se.malefiz.controller.controllerComponent.ControllerInterface
 import scala.io.StdIn.readLine
 
-/** This is the Main file of the Malefiz game.
+/** Main file of the Malefiz game.
  *
  *  @author sehirsig & franzgajewski
  */
