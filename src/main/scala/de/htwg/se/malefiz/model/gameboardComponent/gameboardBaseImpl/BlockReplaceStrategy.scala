@@ -3,7 +3,6 @@ package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.util.BlockStrategy
-
 import scala.util.Random
 
 /** Blocked Cell Replace Strategy unseres Strategy-Patterns.
@@ -27,7 +26,7 @@ case class BlockReplaceStrategy() extends BlockStrategy {
    * @param vec unsere Matrix
    * @return
    */
-  private def searchVectors(x: Cell, vec: Vector[Vector[Cell]]) =
+  private def searchVectors(x: Cell, vec: Vector[Vector[Cell]]): IndexedSeq[(Int,Int)] =
     for {
       i <- 0 until vec.size
       j <- 0 until vec(i).size

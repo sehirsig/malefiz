@@ -5,6 +5,10 @@ import de.htwg.se.malefiz.model.gameboardComponent.gameboardStubImpl.Gameboard
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+/** Test-Klasse für unseren Controller mit der Stub-Implementierung.
+ *
+ *  @author sehirsig & franzgajewski
+ */
 class ControllerSpec extends AnyWordSpec with Matchers {
   "A Mock Controller" when {
     var con = new Controller(new Gameboard(2, 2))

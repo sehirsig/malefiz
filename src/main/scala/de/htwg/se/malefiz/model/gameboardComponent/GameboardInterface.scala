@@ -2,7 +2,6 @@ package de.htwg.se.malefiz.model.gameboardComponent
 
 import de.htwg.se.malefiz.model.cellComponent.Cell
 import de.htwg.se.malefiz.model.playerComponent.Player
-
 import scala.util.Try
 
 /** Interface für unsere Spielbrett Implementierungen.

@@ -5,8 +5,7 @@ import de.htwg.se.malefiz.model.cellComponent._
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import de.htwg.se.malefiz.model.playerComponent.Player
 import de.htwg.se.malefiz.util.BlockStrategy
-
-import scala.util.{Failure, Random, Success, Try}
+import scala.util.{Failure, Success, Try}
 
 /** Base Implementierung unseres Spielbretts.
  *
@@ -135,7 +134,7 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
    * @param cell Die zu ersetzende Zelle
    *   @return das neue Spielbrett
    */
-  override def movePlayer(coord: (Int, Int), cell: Cell): Gameboard = { //Einen Spieler auf dem Spielbrett bewegen.
+  override def movePlayer(coord: (Int, Int), cell: Cell): Gameboard = {
     copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))
   }
 
@@ -145,7 +144,7 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
    * @param cell
    * @return das neue Spielbrett
    */
-  def moveCell(coord: (Int, Int), cell: Cell): Gameboard = { //Eine Zelle auf dem Spielbrett bewegen.
+  def moveCell(coord: (Int, Int), cell: Cell): Gameboard = {
     copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))
   }
 

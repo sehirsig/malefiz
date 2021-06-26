@@ -46,7 +46,8 @@ object InvalidCell extends Cell {
   override val cellStatus = "  "
 }
 
-case class PlayerCell(num:Int) extends Cell { //Zelle für jeden einzelnen Spieler, indem der Parameter gesetzt wird.
+/** Zelle für jeden einzelnen Spieler, indem der Parameter gesetzt wird. */
+case class PlayerCell(num:Int) extends Cell {
   def getPlayer:Int = num
   override val cellStatus = num.toString + " "
 }

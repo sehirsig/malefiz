@@ -1,17 +1,14 @@
 package de.htwg.se.malefiz.model.fileIoComponent.fileIoJsonImpl
 
 import com.google.inject.Guice
-import com.google.inject.name.Names
 import net.codingwell.scalaguice.InjectorExtensions._
 import de.htwg.se.malefiz.MalefizModule
-import de.htwg.se.malefiz.model.cellComponent.{Cell, PlayerCell}
+import de.htwg.se.malefiz.model.cellComponent.PlayerCell
 import de.htwg.se.malefiz.model.fileIoComponent.FileIOInterface
 import de.htwg.se.malefiz.model.gameComponent.Game
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 import play.api.libs.json._
 import play.api.libs.json.Reads._
-import de.htwg.se.malefiz.model.playerComponent.Player
-
 import scala.io.Source
 
 /** Alle Zellen unseres Malefiz-Spiels, die es gibt.
@@ -24,12 +21,11 @@ import scala.io.Source
 class FileIO extends FileIOInterface {
 
   override def load(game:Game): (GameboardInterface,Game) = {
-    var gameboard: GameboardInterface = null
 
     val source: String = Source.fromFile("gameboard.json").getLines.mkString
     val json: JsValue = Json.parse(source)
     val injector = Guice.createInjector(new MalefizModule)
-    gameboard = injector.instance[GameboardInterface]
+    var gameboard = injector.instance[GameboardInterface]
     val sizex = (json \ "gameboard" \ "sizeX").get.toString.toInt
     val sizey = (json \ "gameboard" \ "sizeY").get.toString.toInt
 
@@ -73,7 +69,7 @@ class FileIO extends FileIOInterface {
     )
   }
 
-  def gameboardToJson(gameboard: GameboardInterface) = {
+  def gameboardToJson(gameboard: GameboardInterface): JsObject = {
     Json.obj(
       "gameboard" -> Json.obj(
         "sizeX" -> JsNumber(gameboard.getStandardXYsize._1),
