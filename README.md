@@ -9,15 +9,23 @@
 Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play with. Every figure starts in their base, at the bottom of the board. The beginning player rolls the dice. The thrown number has to be pulled completly. While walking with the figure, change of direction is not allowed. If a player lands on an enemys figure, the enemy has to put his figure back to his base. Figures are allowed to jump over other figures, but not over barricades. If a player lands on the barricade (with the exact number), he has to set the barricade anywhere on the game board, all black fields are allowed, except the lowest row. The player reaching the top of the gameboard first (with the exact number rolled with the dice) with one figure wins the game.
 
 # How This Game Works
+## Open The Game And Add Players (2-4)!
+![AddPlayers](https://media1.giphy.com/media/08wXVjeDiLUJRTpbmT/giphy.gif)
+## Start The Game!
 
- 1. Start the game!
- 2. Add some Players (2-4)!
- 3. Roll the dice!
- 4. Choose the gamefigure!
- 5. Move the gamefigure!
- 6. Next players turn!
+![StartGame](https://media0.giphy.com/media/TtQEBzPCN0VPwfuYsy/giphy.gif)
+## Roll The Dice!
+![RollDice](https://media1.giphy.com/media/sOmkUSZknIfG7oPllP/giphy.gif)
+## Choose The Gamefigure!
+![ChooseGameFig](https://media4.giphy.com/media/jwDEbzvgWz9KhIOI2U/giphy.gif)
+## Move The Gamefigure!
+https://user-images.githubusercontent.com/81407658/123525720-1ee99480-d6d3-11eb-96b1-ecf58c231d95.mp4
 
-![StartGame](https://i.imgur.com/Qu2U0oy.png)![AddPlayers](https://i.imgur.com/wHv20JW.png)![RollDice](https://i.imgur.com/tocdyU4.png)![ChooseGameFig](https://i.imgur.com/cAJQrEF.png)![MoveGameFig](https://i.imgur.com/6HQrexU.png)![NextPlayer](https://i.imgur.com/nHwTkKM.png)
+# Extra Features
+## Save The Game Progress
+![SaveGame](https://media3.giphy.com/media/idnf5TMhaVC5So1MSj/giphy.gif)
+## Load The Game Progress
+![LoadGame](https://media2.giphy.com/media/J7sybAKJ3JTQit5aQS/giphy.gif)
 
 # Procedure Of Making This Game
 
