@@ -8,126 +8,125 @@ import de.htwg.se.malefiz.model.playerComponent._
 
 import scala.swing.Publisher
 
-/** Eine Stub Implementation unseres Controllers.
- *  Beschreibungen der Funktionen in der Base-Implementierung.
+/** The interface for our controller.
  *
  *  @author sehirsig & franzgajewski
  */
 trait ControllerInterface extends Publisher {
 
-  /** Das Spielbrett */
+  /** Game board. */
   var gameboard: GameboardInterface
 
-  /** Der Spielstatus für die Ausgabe */
+  /** Game state for the output. */
   var gameStatus: GameStatus
 
-  /** Das Spieler "State Pattern" um den nächsten Spieler auszuwählen */
+  /** Player state pattern to determine the next player. */
   var playerStatus: PlayerState
 
-  /** Der Zugzähler, um die verbleibenden Züge zu zählen. */
+  /** Counter to count the remaining turns. */
   var moveCounter: Int
 
-  /** Der Spieler-Bauer mit dem "Builder-Pattern" */
+  /** Player builder with build pattern. */
   val builder: PlayerBuilder
 
-  /** Speicherung der Spieler, sowie Spielfiguren */
+  /** Saving the game including the figures. */
   var game: Game
 
-  /** Speicherung ob es einen Gewinner gibt und wen. */
+  /** Saving whether there is a winner and who won. */
   var gameWon: (Boolean, String)
 
-  /** Speicherung des letzten Spielzuges*/
+  /** Saving the last game move.*/
   var savedGame: lastSaveInterface
 
-  /** Nummer der ausgewählten Figur des momentanen Zuges */
+  /** Number of selected figure in the current move. */
   var selectedFigNum: Int
 
-  /** Gibt die Zelle aus einem spezifischem String wieder
+  /** Returns cell from specific string.
    *
-   *  @param name Echter Name der Zelle
-   *  @return die echte Zelle
+   *  @param name pure name of cell
+   *  @return pure cell
    */
   def getpureCell(name: String): Cell
 
-  /** Stellt das spiel von neu wieder her */
+  /** Resets the game. */
   def resetGame(): Unit
 
-  /** Wählt eine der 5 Spielfiguren aus
+  /** Chooses one of the 5 game figures.
    *
-   *  @param x Zahl von [1-5]
+   *  @param x number [1-5]
    */
   def selectFigure(x: Int): Unit
 
-  /** Fügt einen Spieler hinzu */
+  /** Adds a player. */
   def addPlayer(): Unit
 
-  /** Fügt einen Spieler mit Name hinzu */
+  /** Adds a name to a player. */
   def addPlayerName(name: String): Unit
 
-  /** Startet das Spiel */
+  /** Starts the game. */
   def startGame(): Unit
 
-  /** Initialisiert das Spiel */
+  /** Initializes the game. */
   def setupGame(): Unit
 
-  /** String Darstellung des Spielbrettes
+  /** Game board as string representation.
    *
-   * @return Spielbrett-Stringdarstellung
+   * @return game board
    */
   def boardToString(): String
 
-  /** Den Würfel werfen.
+  /** Die roll.
    *
-   * @return gewürfelte Zahl
+   * @return die roll [1-6]
    */
   def rollDice(): Int
 
-  /** Überprüfen ob es einen Gewinner gibt */
+  /** Checks whether there is a winner. */
   def checkWin(): Unit
 
-  /** Wählt die Strategie der Blockaden aus (Strategy-Pattern)
+  /** Chooses the block strategy (strategy pattern).
    *
-   *  @param blockStrategy "remove" oder "replace"
+   *  @param blockStrategy "remove" or "replace"
    */
   def setBlockStrategy(blockStrategy: String): Unit
 
-  /** Bewegt die Spielfigur auf dem Spielbrett
+  /** Move the game figures on the game board.
    *
-   *  @param input Bewegungsrichtung
-   *  @param figurenum Nummer der Spielfigur
+   *  @param input direction
+   *  @param figurenum number of game figure
    */
   def move(input: String, figurenum: Int): Unit
 
-  /** Löscht den kompletten Undo-Manager */
+  /** Deletes entire undo manager. */
   def emptyMan: Unit
 
-  /** Undo'd den kompletten Undo-Manager */
+  /** Undoes entire undo manager. */
   def undoAll: Unit
 
-  /** Ein undo im Undo-Manager */
+  /** Undoes one step of the undo manager. */
   def undo: Unit
 
-  /** Ein redo im Undo-Manager */
+  /** Redoes one step of the undo manager. */
   def redo: Unit
 
-  /** Speichere den momentanen Spielstand */
+  /** Saves current game state. */
   def save: Unit
 
-  /** Lade den momentanen Spielstand */
+  /** Loads current game state. */
   def load: Unit
 
-  /** Bewegt die Spielfigur auf dem Spielbrett
+  /** Adds a player for debug right in front of the goal.
    *
-   *  @param name Name des Debug Spielers
+   *  @param name name of debug player
    */
   def addPlayerDEBUGWINTEST(name: String): Unit
 
-  /** Würfel, der nur 1 würfelt */
+  /** Die that rolls only 1. */
   def debugDice(): Unit
 }
 
 
-/** Unsere Events, die beim Controller aufgeruft werden, um den Listenern bescheid zu geben. */
+/** Events, that get called by the Controller to notify listeners. */
 import scala.swing.event.Event
 
 class RollDice extends Event

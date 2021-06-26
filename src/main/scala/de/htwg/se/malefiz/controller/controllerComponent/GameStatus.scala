@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.controller.controllerComponent
 
-/** Die Status Ausgabe unseres Spiels.
+/** The status updates of the game.
  *
  *  @author sehirsig & franzgajewski
  */
