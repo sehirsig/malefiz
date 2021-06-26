@@ -8,34 +8,32 @@ import de.htwg.se.malefiz.controller.controllerComponent._
 import java.awt.{Color, Font}
 import javax.swing.ImageIcon
 
-/** Malefiz als "Graphic-User-Interface". Graphische Implentierung des Spiels.
+/** Malefiz game with graphical user interface.
  *
  *  @author sehirsig & franzgajewski
  */
 class SwingGui(controller: ControllerInterface) extends Frame {
-  /** Auf den Controller hören, um auf Events zu reagieren. */
   listenTo(controller)
 
-  /** Sichtbarkeit des MainFrames auf an. */
+  /** Set main frame to visible. */
   this.visible = true
 
-  /** Spiel beenden, wenn das Main Fenster geschlossen wurde */
+  /** End game, when main frame gets closed. */
   peer.setDefaultCloseOperation(3)
 
-  /** Titel unseres Spiels. */
   title = "HTWG Malefiz"
 
-  /** Größe unseres Main-Frames. */
+  /** Set size of main frame. */
   preferredSize = new Dimension(600, 800)
 
-  /** TextFeld für den Spielstatus */
+  /** Text field for game state. */
   val statusline = new TextField {
     text = GameStatus.gameMessage(controller.gameStatus)
     columns = 20
     editable = false
   }
 
-  /** Panel für das hinzufügen von Spielern. */
+  /** Panel for adding players. */
   val nameinputPanel = new FlowPanel {
     contents += new Button {
       text = "Start the Game!"
@@ -59,7 +57,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   }
 
 
-  /** Willkommensnachricht mit Buttons zum fortfahren. */
+  /** Welcome message with continue-button. */
   val welcomePanel = new BoxPanel(Orientation.Vertical) {
     contents += welcomeMessage
     contents += nameinputPanel
@@ -85,12 +83,12 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   }
 
 
-  /** Hauptcontents bei der Initialiersung des Spiels. */
+  /** Main contents when initialising the game. */
   contents = {
     welcomePanel
   }
 
-  /** Panel zum bewegen der Spielfigur */
+  /** Panel for moving game figures. */
   val movePanel = new FlowPanel() {
     contents += new Button{
       text = "Go Left"
@@ -129,7 +127,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     }
   }
 
-  /** Panel zum Speichern und Laden des Spielstandes, sowie Würfeln. */
+  /** Panel for saving and loading the game, as well as dice rolling. */
   val diceLoadSavePanel = new FlowPanel() {
     contents += new Button{
       text = "Roll the Dice!"
@@ -154,7 +152,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     }
   }
 
-  /** Panel zum auswählen der Spielfigur. */
+  /** Panel for selecting a game figure. */
   val choosePanel = new FlowPanel {
     contents += new Button{
       text = "Figure 1"
@@ -194,7 +192,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   }
 
 
-  /** Hier nehmen wir die Bilder bei Spielstart aus dem Resource-Ordner und setzen diese auf Variablen. */
+  /** At game start PNGs from the resource folder are loaded into variables. */
   val BC = controller.getpureCell("BlockedCell")
   val BCImage = new ImageIcon(this.getClass().getResource("/blocked.png"))
   val FC = controller.getpureCell("FreeCell")
@@ -222,10 +220,10 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   val IC = controller.getpureCell("InvalidCell")
   val ICImage = new ImageIcon()
 
-  /** Zähler um auf 342 (Alle Spielzellen) zu gelangen. */
+  /** Counter to get to 342 (total number of cells). */
   var count = 0
 
-  /** Funktion die unser Spielfeld Graphisch erstellt */
+  /** Graphical creation of the game board. */
   def gridPanel = new GridPanel(controller.gameboard.getStandardXYsize._1,controller.gameboard.getStandardXYsize._2) {
     border = LineBorder(Color.BLACK, 2)
     background = new Color(204,144,5)
@@ -255,7 +253,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     }
   }
 
-  /** Events auf die unsere GUI hört und entsprechend reagiert. */
+  /** Events the GUI listens and reacts to. */
   reactions += {
     case event: Moving => redrawPlay
     case event: RollDice => redrawRoll
@@ -270,15 +268,15 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   }
 
 
-  /** Dialog-Box, um den Spielernamen einzufügen. */
+  /** Dialog box to add player name. */
   def choosePlayer:Option[String] ={
     Dialog.showInput(contents.head, "Enter Player " + (controller.game.players.length + 1).toString + " Name!", "Malefiz - Player Configurator", Dialog.Message.Question, Swing.EmptyIcon, Nil, "Player " + (controller.game.players.length+1))
   }
 
-  /** Boolean, ob es schon 4 Spieler sind, um zu verhindern, dass man mehr Spieler hinzufügen kann. */
+  /** Boolean to prevent more than 4 players joining. */
   var enough = false
 
-  /** Auswählen, ob noch ein Spieler hinzugefügt werden soll und verhindern, wenn es zuviele Spieler schon sind. */
+  /** Add new players. Prevents new players, when game is full. */
   def playChoose: Unit = {
     if (controller.game.players.length < 4) {
       if (controller.game.players.length > 1) {
@@ -302,18 +300,18 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     }
   }
 
-  /** Spieler neu malen. */
+  /** Repaint players. */
   def rePlayers:Unit = {
     repaint
   }
 
-  /** Spielstatus neu malen. */
+  /** Repaint game state. */
   def reinfo:Unit = {
     statusline.text = GameStatus.gameMessage(controller.gameStatus)
     repaint
   }
 
-  /** Komplettes Frame im Spiel-Modus neu malen. */
+  /** Repaint entire frame, when in play mode. */
   def redrawPlay:Unit = {
     contents = {
       new BoxPanel(Orientation.Vertical) {
@@ -337,7 +335,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   }
 
 
-  /** Frame im WürfelModus neu malen. */
+  /** Repaint entire frame, when in die-roll mode. */
   def redrawRoll:Unit = {
     contents = {
       new BoxPanel(Orientation.Vertical) {
@@ -358,7 +356,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     repaint
   }
 
-  /** Frame in der Spielfigur-Auswahl neu malen. */
+  /** Repaint entire frame, when in game figure select. */
   def redrawChooseFig:Unit = {
     contents = {
       new BoxPanel(Orientation.Vertical) {
@@ -381,7 +379,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     repaint
   }
 
-  /** Frame für den Spielgewinn. */
+  /** Frame for when the game is won. */
   def reGameWon:Unit = {
     contents = {
       new BoxPanel(Orientation.Vertical) {
@@ -403,7 +401,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
       repaint
   }
 
-  /** Frame für die Neuerstellung eines Spiels nach Gewinn. */
+  /** Frame for restarting after the game was won. */
   def reGameNew:Unit = {
     contents = welcomePanel
     rePlayers
