@@ -3,22 +3,22 @@ package de.htwg.se.malefiz.model.fileIoComponent
 import de.htwg.se.malefiz.model.gameComponent.Game
 import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 
-/** Das Interface für unsere FileIO Implementierungen.
+/** Interface for the file IO implementation.
  *
  *  @author sehirsig & franzgajewski
  */
 trait FileIOInterface {
 
-  /** Ladet das Spielbrett
+  /** Loads game board.
    *
-   *  @param game Informationen und Positionen der Spieler/Spielfiguren
-   *  @return ein Tupel aus dem neuen Spielbrett und den Spieldaten (Figur-Positionen)
+   *  @param game information and positions of the players and figures
+   *  @return a tupel with the new game board and figure positions
    */
   def load(game:Game): (GameboardInterface,Game)
 
-  /** Speichert das Spielbrett
+  /** Saves game board.
    *
-   *  @param gameboard Das Spielbrett zum speichern.
+   *  @param gameboard the game board to be stored
    */
   def save(gameboard: GameboardInterface): Unit
 }

@@ -11,10 +11,9 @@ import play.api.libs.json._
 import play.api.libs.json.Reads._
 import scala.io.Source
 
-/** Alle Zellen unseres Malefiz-Spiels, die es gibt.
- *  JSON Implementierung unserer FileIO, um den momentanen Spielstand zu speichern und später wieder aufzurufen.
- *  Gespeichert wird die Dimension X und Y, sowie alle Positionen der Zellen und dessen Inhalt.
- *  Der Inhalt wird als String gespeichert und später wieder durch Gameboard Funktionen wiederhergestellt.
+/** JSON implementation of the file IO. Saves current game state for later use.
+ *  Saves x and y dimension and all cells as well as their content.
+ *  The content is stored as a string and later recovered by Gameboard functions.
  *
  *  @author sehirsig & franzgajewski
  */
@@ -29,7 +28,7 @@ class FileIO extends FileIOInterface {
     val sizex = (json \ "gameboard" \ "sizeX").get.toString.toInt
     val sizey = (json \ "gameboard" \ "sizeY").get.toString.toInt
 
-    /** Spielfiguren Counter */
+    /** Game figure counter. */
     var player1Fig = 0
     var player2Fig = 0
     var player3Fig = 0

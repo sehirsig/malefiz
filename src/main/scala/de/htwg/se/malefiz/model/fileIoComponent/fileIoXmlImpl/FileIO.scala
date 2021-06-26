@@ -10,10 +10,9 @@ import de.htwg.se.malefiz.model.gameboardComponent.GameboardInterface
 
 import scala.xml.{Elem, PrettyPrinter}
 
-/** Alle Zellen unseres Malefiz-Spiels, die es gibt.
- *  XML Implementierung unserer FileIO, um den momentanen Spielstand zu speichern und später wieder aufzurufen.
- *  Gespeichert wird die Dimension X und Y, sowie alle Positionen der Zellen und dessen Inhalt.
- *  Der Inhalt wird als String gespeichert und später wieder durch Gameboard Funktionen wiederhergestellt.
+/** XML implementation of the file IO. Saves current game state for later use.
+ *  Saves x and y dimension and all cells as well as their content.
+ *  The content is stored as a string and later recovered by Gameboard functions.
  *
  *  @author sehirsig & franzgajewski
  */
@@ -24,7 +23,7 @@ class FileIO extends FileIOInterface{
     val injector = Guice.createInjector(new MalefizModule)
     gameboard = injector.instance[GameboardInterface]
 
-    /** Spielfiguren Counter */
+    /** Game figure counter. */
     var player1Fig = 0
     var player2Fig = 0
     var player3Fig = 0

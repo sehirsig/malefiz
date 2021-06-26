@@ -2,7 +2,7 @@ package de.htwg.se.malefiz.model.gamefigureComponent
 
 import de.htwg.se.malefiz.model.playerComponent.Player
 
-/** Hier werden die Spielfiguren in unserem Spiel deklariert.
+/** Declaration of the game figures for the game.
  *
  *  @author sehirsig & franzgajewski
  */

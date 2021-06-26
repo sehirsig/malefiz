@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.model.cellComponent
 
-/** Alle Zellen unseres Malefiz-Spiels, die es gibt.
+/** All cells needed for the Malefiz game.
  *
  *  @author sehirsig & franzgajewski
  */
@@ -46,7 +46,7 @@ object InvalidCell extends Cell {
   override val cellStatus = "  "
 }
 
-/** Zelle für jeden einzelnen Spieler, indem der Parameter gesetzt wird. */
+/** Players get cells by setting individual parameters. */
 case class PlayerCell(num:Int) extends Cell {
   def getPlayer:Int = num
   override val cellStatus = num.toString + " "
