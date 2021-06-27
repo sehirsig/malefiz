@@ -408,7 +408,6 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     repaint
   }
 
-
   val gameWonButton = new Button{
     text = "Press to play again!"
     listenTo(mouse.clicks)
@@ -417,6 +416,3 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     }
   }
 }
-
-
-

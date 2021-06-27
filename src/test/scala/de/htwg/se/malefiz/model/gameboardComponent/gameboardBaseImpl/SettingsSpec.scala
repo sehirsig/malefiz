@@ -24,5 +24,3 @@ class SettingsSpec extends AnyWordSpec with Matchers {
     }
   }
 }
-
-

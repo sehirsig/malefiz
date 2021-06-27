@@ -216,4 +216,3 @@ class GameboardSpec extends AnyWordSpec with Matchers {
     }
   }
 }
-

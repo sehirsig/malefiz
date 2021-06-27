@@ -19,7 +19,6 @@ case class BlockReplaceStrategy() extends BlockStrategy {
     spielbrett.movePlayer(replace, BlockedCell)
   }
 
-
   /** Determines legal cells to place a barricade.
    *
    * @param x legal cell type (FreeCell)
