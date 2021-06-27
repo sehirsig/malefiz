@@ -5,7 +5,7 @@ import de.htwg.se.malefiz.model.playerComponent.Player
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere Gameboard Klasse der Stub-Implementierung.
+/** Test class for the stub implementation of the Gameboard class.
  *
  *  @author sehirsig & franzgajewski
  */

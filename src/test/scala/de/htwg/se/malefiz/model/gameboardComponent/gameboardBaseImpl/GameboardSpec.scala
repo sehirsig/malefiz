@@ -6,7 +6,7 @@ import org.scalatest.wordspec.AnyWordSpec
 
 import scala.util.{Failure, Success}
 
-/** Test-Klasse für unsere Gameboard Klasse der Base-Implementierung.
+/** Test class for the base implementation of the Gameboard class.
  *
  *  @author sehirsig & franzgajewski
  */

@@ -3,7 +3,7 @@ package de.htwg.se.malefiz.model.cellComponent
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere Cell-Klasse.
+/** Test class for the Cell class.
  *
  *  @author sehirsig & franzgajewski
  */

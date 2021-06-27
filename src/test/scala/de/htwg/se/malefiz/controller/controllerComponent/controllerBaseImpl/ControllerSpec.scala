@@ -12,7 +12,7 @@ import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unseren Controller mit der Base-Implementierung.
+/** Test class for the base implementation of the controller.
  *
  *  @author sehirsig & franzgajewski
  */

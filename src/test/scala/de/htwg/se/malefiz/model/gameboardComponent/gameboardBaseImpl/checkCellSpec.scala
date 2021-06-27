@@ -5,7 +5,7 @@ import de.htwg.se.malefiz.model.playerComponent.Player
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere checkCell Klasse der Base-Implementierung.
+/** Test class for base implementation of the checkCell class.
  *
  *  @author sehirsig & franzgajewski
  */
