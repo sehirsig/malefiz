@@ -3,7 +3,7 @@ package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere Settings Klasse der Base-Implementierung.
+/** Test class for the base implementation of the Settings class.
  *
  *  @author sehirsig & franzgajewski
  */

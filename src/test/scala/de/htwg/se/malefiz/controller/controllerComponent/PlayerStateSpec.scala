@@ -3,7 +3,7 @@ package de.htwg.se.malefiz.controller.controllerComponent
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere Player-State Klasse.
+/** Test class for the PlayerState class.
  *
  *  @author sehirsig & franzgajewski
  */

@@ -1,27 +1,27 @@
 package de.htwg.se.malefiz.util
 
-/** Klasse für unseren UndoManager.
+/** Undo manager class.
  *
  *  @author sehirsig & franzgajewski
  */
 class UndoManager {
 
-  /** Liste aller Steps die undoable sind */
+  /** List of all doable steps. */
   private var undoStack: List[Command]= Nil
 
-  /** Liste aller Steps die redoable sind */
+  /** List of all redoable steps. */
   private var redoStack: List[Command]= Nil
 
-  /** Einen schritt gehen
+  /** Do one step.
    *
-   *  @param command Befehl
+   *  @param command Command
    */
   def doStep(command: Command): Unit = {
     undoStack = command::undoStack
     command.doStep
   }
 
-  /** Einen schritt zurückgehen */
+  /** Undo one step. */
   def undoStep: Unit  = {
     undoStack match {
       case  Nil =>
@@ -33,7 +33,7 @@ class UndoManager {
     }
   }
 
-  /** Einen schritt wiederherstellen */
+  /** Redo one step. */
   def redoStep: Unit = {
     redoStack match {
       case Nil =>
@@ -45,13 +45,13 @@ class UndoManager {
     }
   }
 
-  /** Die Stacks komplett leeren*/
+  /** Empty steps entirely. */
   def emptyStacks: Unit = {
     undoStack = Nil
     redoStack = Nil
   }
 
-  /** Alle Undos auf einmal ausführen */
+  /** Execute all undos at once. */
   def undoAll: Unit = {
     while(undoStack != Nil) {
       undoStep

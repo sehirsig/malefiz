@@ -3,12 +3,12 @@ package de.htwg.se.malefiz.model.playerComponent
 import de.htwg.se.malefiz.model.cellComponent.PlayerCell
 import de.htwg.se.malefiz.model.gamefigureComponent.Gamefigure
 
-/** Die Klasse für die Spieler.
+/** Player class.
  *
  *  @author sehirsig & franzgajewski
  */
 case class Player(name: String, Playerid: Int, startingPos: (Int, Int)) {
-  /** PlayerCell des Spielers bestimmen. */
+  /** Define player's cell. */
   val cell = PlayerCell(Playerid)
   var figures = Array[Gamefigure]()
 

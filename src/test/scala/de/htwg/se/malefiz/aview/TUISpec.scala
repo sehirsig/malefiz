@@ -6,7 +6,7 @@ import de.htwg.se.malefiz.controller.controllerComponent._
 import de.htwg.se.malefiz.controller.controllerComponent.controllerBaseImpl
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard, Settings}
 
-/** Test-Klasse für unsere TUI.
+/** Test class for the TUI.
  *
  *  @author sehirsig & franzgajewski
  */

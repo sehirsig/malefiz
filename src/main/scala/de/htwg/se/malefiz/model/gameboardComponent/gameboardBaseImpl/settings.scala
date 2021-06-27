@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
-/** Settings Klasse Base Implementierung. Hier werden viele Default-Settings gespeichert.
+/** Settings class of the base implementation. Many default settings are stored here.
  *
  *  @author sehirsig & franzgajewski
  */

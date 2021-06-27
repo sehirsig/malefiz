@@ -7,13 +7,13 @@ import de.htwg.se.malefiz.model.playerComponent.Player
 import de.htwg.se.malefiz.util.BlockStrategy
 import scala.util.{Failure, Success, Try}
 
-/** Base Implementierung unseres Spielbretts.
+/** Base implementation of the game board.
  *
  *  @author sehirsig & franzgajewski
  */
 case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
 
-  /** Ersetzen aller Zellen, je nachdem was in Settings angegeben wurde. */
+  /** Replace all cells according the the settings class. */
   @Inject
   def this(sizex: Int, sizey: Int) = this(Vector.tabulate(sizex, sizey) {
     (row, col) => {
@@ -39,10 +39,13 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   })
 
-  /** Initialisierung der Block-Strategy. */
+  /** Initialization of the block strategy. */
   var blockStrategy: BlockStrategy = BlockReplaceStrategy()
 
-  /** Block-Strategy ändern. */
+  /** Change of the block strategy.
+   *
+   *  @param blockstrategy "remove" or "replace"
+   */
   override def setBlockStrategy(blockstrategy: String): Unit = {
     blockstrategy match {
       case "remove" => this.blockStrategy = BlockRemoveStrategy()
@@ -50,29 +53,36 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   }
 
-  /** Block-Strategy Funktion. */
+  /** Function for handling barricades according to the block strategy.
+   *
+   *  @param spielbrett old game board
+   *  @return new game board with changed blocking
+   */
   override def replaceBlocks(spielbrett: GameboardInterface): GameboardInterface = {
     blockStrategy.replaceBlock(spielbrett)
   }
 
-  /** Neues Spielbrett ausgeben, mit der Settings-Standard Größe */
+  /** New game board in the dimensions given in the settings class.
+   *
+   *  @return new game board
+   */
   override def newGBStandardSize: Gameboard = {
     new Gameboard(Settings().xDim, Settings().yDim)
   }
 
-  /** Standardgröße aus den Settings.
+  /** Retrieve default size from the settings class.
    *
-   *   @return Tupel der Standard X,Y Größe des Spielbrettes
+   *  @return tupel of the default x and y dimensions of the game board
    */
   override def getStandardXYsize: (Int,Int) = {
     (Settings().xDim, Settings().yDim)
   }
 
-  /** Bekomme den String-Namen der Zelle (z.B. für XML / JSON)
+  /** Get name of cell (e.g. for JSON/XMY storage).
+
+   *  @param cell
    *
-   * @param cell eine Zelle
-   *
-   *   @return String Namen der Zelle
+   *  @return string representation of cell
    */
   override def getStringOfCell(cell:Cell): String = {
     cell match {
@@ -93,32 +103,31 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   }
 
-  /** Bekomme eine Zelle aus X,Y Koordinaten von dem Spielbrett
+  /** Returns a cell as coordinates of the game board.
    *
-   * @param row X-Koordinate von der Matrix
-   * @param col Y-Koordinate von der Matrix
-   *   @return Die Zelle von der Koordinate
+   *  @param row x-coordinate of the matrix
+   *  @param col y-coordinate of the matric
+   *  @return cell at the given coordinates
    */
   override def cell(row: Int, col: Int): Cell = rows(row)(col)
 
 
-  /** Bekomme eine Zelle in der String-Variante aus X,Y Koordinaten von dem Spielbrett
+  /** Takes cell coordinates and returns corresponding string representation.
    *
-   * @param row X Koordinate der Zelle
-   * @param col Y Koordinate Zelle
+   *  @param row x coordinate
+   *  @param col y coordinate
    *
-   *   @return String Namen der Zelle
+   *  @return string representation of cell
    */
   override def cellString(row: Int, col: Int): String = getStringOfCell(rows(row)(col)) //Bekomme die Stringdarstellung aus den Koordinaten.
 
 
-  /** Ändere eine Zelle im Spielbrett. Gibt einen Fehler, wenn es ausserhalb des Indexes ist.
-   * "Try-Monade"
+  /** Change a cell on the game board.
    *
-   * @param row X-Koordinate von der Matrix
-   * @param col Y-Koordinate von der Matrix
-   * @param cell Die zu ersetzende Zelle
-   *   @return das neue Spielbrett
+   *  @param row x-coordinate of the matrix
+   *  @param col y-coordinate of the matric
+   *  @param cell cell to be replaced
+   *  @return new game board
    */
   override def replaceCell(row: Int, col: Int, cell: Cell): Try[Gameboard] = { //Eine Zelle ersetzen mit Fehlerbehandlung. Try-Monade. Für Falsche Indexierung.
     val tmp = Try(copy(rows.updated(row, rows(row).updated(col, cell))))
@@ -128,137 +137,137 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   }
 
-  /** Bewege einen Spieler.
+  /** Move a player.
    *
-   * @param coord Koordinate als Int-Tupel von der Matrix
-   * @param cell Die zu ersetzende Zelle
-   *   @return das neue Spielbrett
+   *  @param coord coordinate as an int-tupel of the matrix
+   *  @param cell cell to be replaced
+   *  @return new game board
    */
   override def movePlayer(coord: (Int, Int), cell: Cell): Gameboard = {
     copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))
   }
 
-  /** Bewege eine Zelle
+  /** Move a cell.
    *
-   * @param coord
-   * @param cell
-   * @return das neue Spielbrett
+   * @param coord x and y coordinates
+   * @param cell cell to be moved
+   * @return new game board
    */
   def moveCell(coord: (Int, Int), cell: Cell): Gameboard = {
     copy(rows.updated(coord._1, rows(coord._1).updated(coord._2, cell)))
   }
 
-  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+  /** Check, if walking up is legal and do so if possible.
    *
-   * @param spielbrett das Alte Spielbrett
-   * @param player der momentane Spieler des Zuges
-   * @param currentCoord die momentanen Koordinaten der Spielfigur
-   * @param figurenum die nummer der Spielfigur
-   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *  @param spielbrett old game board
+   *  @param player current player
+   *  @param currentCoord coordinates of current figure
+   *  @param figurenum number of figure
+   *  @param walksLeft number of remaining movements
    *
-   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   *  @return tuple of boolean to indicate whether the move was successful and the new game board
    */
   override def walkUp(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     checkCell.walkUp(spielbrett, player, currentCoord, figurenum, walksLeft)
   }
 
-  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+  /** Check, if walking down is legal and do so if possible.
    *
-   * @param spielbrett das Alte Spielbrett
-   * @param player der momentane Spieler des Zuges
-   * @param currentCoord die momentanen Koordinaten der Spielfigur
-   * @param figurenum die nummer der Spielfigur
-   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *  @param spielbrett old game board
+   *  @param player current player
+   *  @param currentCoord coordinates of current figure
+   *  @param figurenum number of figure
+   *  @param walksLeft number of remaining movements
    *
-   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   *  @return tuple of boolean to indicate whether the move was successful and the new game board
    */
   override def walkDown(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     checkCell.walkDown(spielbrett, player, currentCoord, figurenum, walksLeft)
   }
 
-  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+  /** Check, if walking left is legal and do so if possible.
    *
-   * @param spielbrett das Alte Spielbrett
-   * @param player der momentane Spieler des Zuges
-   * @param currentCoord die momentanen Koordinaten der Spielfigur
-   * @param figurenum die nummer der Spielfigur
-   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *  @param spielbrett old game board
+   *  @param player current player
+   *  @param currentCoord coordinates of current figure
+   *  @param figurenum number of figure
+   *  @param walksLeft number of remaining movements
    *
-   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   *  @return tuple of boolean to indicate whether the move was successful and the new game board
    */
   override def walkLeft(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     checkCell.walkLeft(spielbrett, player, currentCoord, figurenum, walksLeft)
   }
 
-  /** Überprüfen und laufen, falls man in diese Richtung laufen kann.
+  /** Check, if walking right is legal and do so if possible.
    *
-   * @param spielbrett das Alte Spielbrett
-   * @param player der momentane Spieler des Zuges
-   * @param currentCoord die momentanen Koordinaten der Spielfigur
-   * @param figurenum die nummer der Spielfigur
-   * @param walksLeft Anzahl Züge, die die Spielfigur noch nehmen darf
+   *  @param spielbrett old game board
+   *  @param player current player
+   *  @param currentCoord coordinates of current figure
+   *  @param figurenum number of figure
+   *  @param walksLeft number of remaining movements
    *
-   *   @return boolean, ob der Zug geklappt hat und das neue Spielbrett
+   *  @return tuple of boolean to indicate whether the move was successful and the new game board
    */
   override def walkRight(spielbrett: GameboardInterface, player: Player, currentCoord: (Int, Int), figurenum: Int, walksLeft: Int): (Boolean, GameboardInterface) = {
     checkCell.walkRight(spielbrett, player, currentCoord, figurenum, walksLeft)
   }
 
 
-  /** Den Würfel werfen
+  /** Die roll.
    *
-   *   @return Zahl die gewürfelt wurde
+   *  @return number from 1 to 6
    */
   override def diceRoll: Int = {
     Dice.diceRoll
   }
 
 
-  /** Koordinate Unten berechnen aus aktueller Position
+  /** Changes coordinates of a tupel as to go down one cell.
    *
-   * @param oldcord Tupel der X/Y Koordinaten
+   *  @param oldcord tupel of old x and y coordinates
    *
-   *   @return neues Tupel der X/Y Koordinaten
+   *  @return tupel of new x and y coordinates
    */
   override def goDown(oldcord: (Int, Int)): (Int, Int) = {
     moveTypes.goDown(oldcord)
   }
 
-  /** Koordinate Oben berechnen aus aktueller Position
+  /** Changes coordinates of a tupel as to go up one cell.
    *
-   * @param oldcord Tupel der X/Y Koordinaten
+   *  @param oldcord tupel of old x and y coordinates
    *
-   *   @return neues Tupel der X/Y Koordinaten
+   *  @return tupel of new x and y coordinates
    */
   override def goUp(oldcord: (Int, Int)): (Int, Int) = {
     moveTypes.goUp(oldcord)
   }
 
-  /** Koordinate Rechts berechnen aus aktueller Position
+  /** Changes coordinates of a tupel as to go right one cell.
    *
-   * @param oldcord Tupel der X/Y Koordinaten
+   *  @param oldcord tupel of old x and y coordinates
    *
-   *   @return neues Tupel der X/Y Koordinaten
+   *  @return tupel of new x and y coordinates
    */
   override def goRight(oldcord: (Int, Int)): (Int, Int) = {
     moveTypes.goRight(oldcord)
   }
 
-  /** Koordinate Links berechnen aus aktueller Position
+  /** Changes coordinates of a tupel as to go left one cell.
    *
-   * @param oldcord Tupel der X/Y Koordinaten
+   *  @param oldcord tupel of old x and y coordinates
    *
-   *   @return neues Tupel der X/Y Koordinaten
+   *  @return tupel of new x and y coordinates
    */
   override def goLeft(oldcord: (Int, Int)): (Int, Int) = {
     moveTypes.goLeft(oldcord)
   }
 
-  /** Bekomme die Zelle aus deren String-Variante (z.B. für XML / JSON)
+  /** Takes a string and returns the corresponding cell.
    *
-   * @param name Name der Zelle
+   *  @param name string representation of cell
    *
-   *   @return ausgewählte Zelle
+   *  @return cell
    */
   override def getCell(name: String): Cell = {
     name match {
@@ -278,58 +287,58 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
     }
   }
 
-  /** Überprüfen, ob ein Spieler im Ziel ist.
+  /** Checks if a player is on the goal.
    *
-   *   @return boolean, ob Spieler im Ziel ist oder nicht
+   *  @return boolean
    */
   def checkPlayerOnGoal: Boolean = {
     cell(Settings().goalCell._1, Settings().goalCell._2).isInstanceOf[PlayerCell]
   }
 
 
-  /** Koordinaten bekommen.
+  /** Get coordinates of the base of the 1. player.
    *
-   *   @return Int Tupel X/Y aus den Koordinaten der Base des 1. Spielers
+   *  @return tupel of x and y coordinates
    */
   override def getP1Base: (Int,Int) = {
     Settings().start1.head
   }
 
-  /** Koordinaten bekommen.
+  /** Get coordinates of the base of the 2. player.
    *
-   *   @return Int Tupel X/Y aus den Koordinaten der Base des 2. Spielers
+   *  @return tupel of x and y coordinates
    */
   override def getP2Base: (Int,Int) = {
     Settings().start2.head
   }
 
-  /** Koordinaten bekommen.
+  /** Get coordinates of the base of the 3. player.
    *
-   *   @return Int Tupel X/Y aus den Koordinaten der Base des 3. Spielers
+   *  @return tupel of x and y coordinates
    */
   override def getP3Base: (Int,Int) = {
     Settings().start3.head
   }
 
-  /** Koordinaten bekommen.
+  /** Get coordinates of the base of the 4. player.
    *
-   *   @return Int Tupel X/Y aus den Koordinaten der Base des 4. Spielers
+   *  @return tupel of x and y coordinates
    */
   override def getP4Base: (Int,Int) = {
     Settings().start4.head
   }
 
-  /** Koordinaten bekommen.
+  /** Get coordinates of the goal cell.
    *
-   *   @return Int Tupel X/Y aus den Koordinaten des Zieles
+   *  @return tupel of x and y coordinates
    */
   override def getGoalBase: (Int,Int) = {
     Settings().goalCell
   }
 
-  /** String-Variante des Spielbrettes
+  /** String representation of the game board.
    *
-   * @return Spielbrett als String
+   * @return game board string
    */
   override def toString: String = {
     val buf = new StringBuilder

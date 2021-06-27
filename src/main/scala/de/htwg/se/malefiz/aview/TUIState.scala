@@ -2,8 +2,8 @@ package de.htwg.se.malefiz.aview
 
 import de.htwg.se.malefiz.Malefiz.controller
 
-/** State-Pattern für die TUI.scala (Text-User-Interface).
- *  Haupt-Interface für unsere States.
+/** State pattern for TUI.scala.
+ *  Main interface for our states.
  *
  *  @author sehirsig & franzgajewski
  */
@@ -11,7 +11,7 @@ trait TUIState {
   def processing(input: String): TUIState
 }
 
-/** State während Anfang des Spiels, um Spieler hinzuzufügen, sowie das Spiel zu starten. */
+/** Initial state. Used to add players and start the game. */
 object IdleTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
@@ -33,7 +33,7 @@ object IdleTUIState extends TUIState {
           println("not enough players");IdleTUIState
         }
       }
-        /** Debug, der einen Spieler vor dem Ziel platziert. */
+        /** A debug-player that starts in front of the goal. */
       case "pDEBUG" => {
         if(controller.game.getPlayerNumber() < 4) {
           controller.addPlayerDEBUGWINTEST("debug")
@@ -51,7 +51,7 @@ object IdleTUIState extends TUIState {
   }
 }
 
-/** State für die Benennung des Spielers. */
+/** State for entering player names. */
 object PlayerNameState extends TUIState {
   def processing(input: String): TUIState = {
     controller.addPlayerName(input)
@@ -59,24 +59,24 @@ object PlayerNameState extends TUIState {
   }
 }
 
-/** State fürs Spielen. */
+/** State for running the game. */
 object PlayingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
-        /** In eine File den Spielstand speichern. */
+        /** Current state of the board gets saved to file. */
       case "s" => controller.save;PlayingTUIState
-        /** Aus einer File den Spielstand laden. */
+        /** State of the board gets loaded from file. */
       case "l" => controller.load;PlayingTUIState
-        /** Würfeln. */
+        /** Die roll. */
       case "r" => controller.rollDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState
-        /** Debug Würfeln. (Immer 1) */
+        /** Die roll for debug. Always rolls a 1. */
       case "rDEBUG" => controller.debugDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState
       case _ => println("invalid input");PlayingTUIState
     }
   }
 }
 
-/** State für die Spielfigur-Auswahl. */
+/** State for selecting a game figure. */
 object ChooseGameFigTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
@@ -86,7 +86,7 @@ object ChooseGameFigTUIState extends TUIState {
   }
 }
 
-/** State für den Spiel-Gewinn. */
+/** State for winning the game. */
 object WinnerTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
@@ -95,7 +95,7 @@ object WinnerTUIState extends TUIState {
   }
 }
 
-/** State für den Spiel-Reset nach Gewinn. */
+/** State for reset after the game was won. */
 object GameResetTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
@@ -105,7 +105,7 @@ object GameResetTUIState extends TUIState {
   }
 }
 
-/** State für das bewegen der Spielfigur. */
+/** State for moving of game figures. */
 object MovingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {

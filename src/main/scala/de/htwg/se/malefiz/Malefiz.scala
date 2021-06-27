@@ -4,10 +4,9 @@ import com.google.inject.Guice
 import de.htwg.se.malefiz.aview.GUI.SwingGui
 import de.htwg.se.malefiz.aview.TUI
 import de.htwg.se.malefiz.controller.controllerComponent.ControllerInterface
-
 import scala.io.StdIn.readLine
 
-/** Hauptfile des Malefiz Spiels.
+/** Main file of the Malefiz game.
  *
  *  @author sehirsig & franzgajewski
  */

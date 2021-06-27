@@ -2,7 +2,7 @@ package de.htwg.se.malefiz.model.gameComponent
 
 import de.htwg.se.malefiz.model.playerComponent.Player
 
-/** Spiel-Speicherung. Hier werden die Spieler gespeichert.
+/** Game class. Here the players are stored.
  *
  *  @author sehirsig & franzgajewski
  */

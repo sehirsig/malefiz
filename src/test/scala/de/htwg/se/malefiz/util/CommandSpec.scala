@@ -13,7 +13,7 @@ class testCommand extends Command {
   override def redoStep: Unit = doStep
 }
 
-/** Test-Klasse für unsere Command Klasse.
+/** Test class for the Command class.
  *
  *  @author sehirsig & franzgajewski
  */

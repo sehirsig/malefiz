@@ -3,7 +3,7 @@ package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere Dice Klasse der Base-Implementierung.
+/** Test class of the base implementation of the Dice class.
  *
  *  @author sehirsig & franzgajewski
  */

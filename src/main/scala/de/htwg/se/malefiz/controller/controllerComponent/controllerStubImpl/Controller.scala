@@ -10,7 +10,8 @@ import de.htwg.se.malefiz.model.playerComponent._
 
 import scala.swing.Publisher
 
-/** Eine Stub Implementation unseres Controllers.
+/** A stub implementation of our Controller.
+ *  Descriptions of the function in the base implementation.
  *
  *  @author sehirsig & franzgajewski
  */

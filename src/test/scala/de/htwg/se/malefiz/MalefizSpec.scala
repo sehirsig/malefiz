@@ -9,7 +9,7 @@ import org.scalatest.matchers.should.Matchers
 
 import java.io.ByteArrayInputStream
 
-/** Test-Klasse für unsere Malefiz-Main Klasse.
+/** Test class for the Malefiz main class.
  *
  *  @author sehirsig & franzgajewski
  */

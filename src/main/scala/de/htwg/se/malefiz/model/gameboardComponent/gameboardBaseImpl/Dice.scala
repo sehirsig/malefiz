@@ -2,9 +2,9 @@ package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
 import scala.util.Random
 
-/** Der Würfel für unsere Base-Implementation
- *  eine Zahl von 1 - 6. Falls es einen Fehler in der Funktion gab, wird ein Fehler geworfen und -1 zurückgegeben.
- *  Option-Monade.
+/** Die for the base implementation.
+ * Returns a number from 1 to 6. Returns -1 in case of an error.
+ *  Implemented as an option monad.
  *
  *  @author sehirsig & franzgajewski
  */

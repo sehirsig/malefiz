@@ -4,7 +4,7 @@ import de.htwg.se.malefiz.model.playerComponent.Player
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere Gamefigure Klasse.
+/** Test class for the Gamefigure class.
  *
  *  @author sehirsig & franzgajewski
  */

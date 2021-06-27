@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl
 
-/** Klasse um die Koordinaten schnell auf den der nächsten Zelle zu ändern.
+/** Class to overwrite coordinates of a cell quickly to those of the next cell.
  *
  *  @author sehirsig & franzgajewski
  */

@@ -1,6 +1,6 @@
 package de.htwg.se.malefiz.controller.controllerComponent
 
-/** State-Pattern für die Verwaltung des nächsten Spielers.
+/** State pattern for the management of which players turn is next.
  *
  *  @author sehirsig & franzgajewski
  */

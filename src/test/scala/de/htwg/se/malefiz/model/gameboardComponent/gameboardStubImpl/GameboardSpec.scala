@@ -5,12 +5,12 @@ import de.htwg.se.malefiz.model.playerComponent.Player
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere Gameboard Klasse der Stub-Implementierung.
+/** Test class for the stub implementation of the Gameboard class.
  *
  *  @author sehirsig & franzgajewski
  */
 class GameboardSpec extends AnyWordSpec with Matchers {
-  "A Mock Gameboard is the playingfield of Malefiz. A Mock Gameboard" when { //
+  "A Mock Gameboard is the playingfield of Malefiz. A Mock Gameboard" when {
     val spielbrett = new Gameboard(2, 2)
     val player = Player.apply("Te", 1, (0, 0))
     "all functions do nothing" should {

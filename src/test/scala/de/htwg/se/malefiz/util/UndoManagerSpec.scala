@@ -3,7 +3,7 @@ package de.htwg.se.malefiz.util
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere UndoManager Klasse.
+/** Test class for the UndoManager class.
  *
  *  @author sehirsig & franzgajewski
  */

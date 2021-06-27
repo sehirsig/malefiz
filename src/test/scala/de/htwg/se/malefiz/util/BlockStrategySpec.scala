@@ -5,7 +5,7 @@ import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard,
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-/** Test-Klasse für unsere Block-Strategy Klasse.
+/** Test class for BlockStrategy class.
  *
  *  @author sehirsig & franzgajewski
  */

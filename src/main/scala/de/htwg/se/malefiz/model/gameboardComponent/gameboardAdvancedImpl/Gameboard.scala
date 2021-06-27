@@ -4,8 +4,8 @@ import com.google.inject.Inject
 import com.google.inject.name.Named
 import de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.{Gameboard => BaseGameboard}
 
-/** Erweiterung unserer Base Implementierung des Gameboards.
- *  Hier werden sofort die Dimensionen in den Konstruktor geschrieben.
+/** Extension of the base implementation of the game board.
+ *  Here the dimensions are written in the constructor.
  *
  *  @author sehirsig & franzgajewski
  */
