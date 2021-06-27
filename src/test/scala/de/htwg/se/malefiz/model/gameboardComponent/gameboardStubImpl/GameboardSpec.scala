@@ -10,7 +10,7 @@ import org.scalatest.wordspec.AnyWordSpec
  *  @author sehirsig & franzgajewski
  */
 class GameboardSpec extends AnyWordSpec with Matchers {
-  "A Mock Gameboard is the playingfield of Malefiz. A Mock Gameboard" when { //
+  "A Mock Gameboard is the playingfield of Malefiz. A Mock Gameboard" when {
     val spielbrett = new Gameboard(2, 2)
     val player = Player.apply("Te", 1, (0, 0))
     "all functions do nothing" should {
