@@ -6,7 +6,7 @@ import scala.swing.event._
 import de.htwg.se.malefiz.controller.controllerComponent._
 
 import java.awt.{Color, Font}
-import javax.swing.ImageIcon
+import javax.swing.{ImageIcon, JOptionPane}
 
 /** Malefiz game with graphical user interface.
  *
@@ -70,18 +70,79 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     contents(2).preferredSize = new Dimension(600,30)
   }
 
+  /** Textfield for the current player. */
   val currentplayer = new TextField{
     text = "Turn of Player: " + controller.playerStatus.getCurrentPlayer.toString
     columns = 10
     editable = false
   }
 
+  /** Textfield for the rolled number. */
   val diceRolled = new TextField{
     text = ""
     columns = 10
     editable = false
   }
 
+  val helpString = "For more informations visit our ReadMe.md on our Github @ github.com/franzgajewski/malefiz !"
+
+  /** Dialog box to warn for too few player at load. */
+  def warnLoad:Unit ={
+    Dialog.showMessage(contents.head, "This game has " + controller.game.getPlayerNumber().toString + " Player/s. You need to add atleast 2 players to load a game!", "Malefiz - Load save game", Dialog.Message.Warning, Swing.EmptyIcon)
+  }
+
+
+  /** Dialog box to show the help. */
+  def helpBox:Unit ={
+    Dialog.showMessage(contents.head, helpString, "Malefiz - Load Savegame", Dialog.Message.Info, Swing.EmptyIcon)
+  }
+
+  /** MenuBar with the load game option. */
+  val loadmenuBar = new MenuBar{
+    contents += new Menu("Help") {
+      contents += new MenuItem(Action("ReadMe") { helpBox })
+    }
+    contents += new Menu("Settings") {
+      contents += new MenuItem(Action("Load Game") { if (controller.game.getPlayerNumber() > 1) {controller.load } else { warnLoad }})
+      contents += new MenuItem(Action("Reset Game") { controller.resetGame() })
+    }
+  }
+
+  /** MenuBar with the save game option. */
+  val closedmenuBar = new MenuBar{
+    contents += new Menu("Help") {
+      contents += new MenuItem(Action("ReadMe") { helpBox })
+    }
+    contents += new Menu("Settings") {
+      contents += new MenuItem(Action("Save Game") { controller.save })
+      contents += new MenuItem(Action("Reset Game") { controller.resetGame() })
+    }
+  }
+
+  /** MenuBar with save/load disabled for while not moving. */
+  val choosemenuBar = new MenuBar{
+    contents += new Menu("Help") {
+      contents += new MenuItem(Action("ReadMe") { helpBox })
+    }
+    contents += new Menu("Settings") {
+      contents += new MenuItem(Action("Reset Game") { controller.resetGame() })
+    }
+  }
+
+  /** MenuBar with save/load disabled but Undo / Redo for while moving.*/
+  val helpmovemenuBar = new MenuBar{
+    contents += new Menu("Help") {
+      contents += new MenuItem(Action("ReadMe") { helpBox })
+    }
+    contents += new Menu("Settings") {
+      contents += new MenuItem(Action("Reset Game") { controller.resetGame() })
+      contents += new MenuItem(Action("Undo Move") { controller.move("undo", controller.selectedFigNum) })
+      contents += new MenuItem(Action("Redo Move") { controller.move("redo", controller.selectedFigNum) })
+    }
+  }
+
+  /** Initialize menu bar. */
+  menuBar = loadmenuBar
 
   /** Main contents when initialising the game. */
   contents = {
@@ -128,26 +189,12 @@ class SwingGui(controller: ControllerInterface) extends Frame {
   }
 
   /** Panel for saving and loading the game, as well as dice rolling. */
-  val diceLoadSavePanel = new FlowPanel() {
+  val diceRollPanel = new FlowPanel() {
     contents += new Button{
       text = "Roll the Dice!"
       listenTo(mouse.clicks)
       reactions += {
         case _: MouseClicked => controller.rollDice()
-      }
-    }
-    contents += new Button{
-      text = "Load Game!"
-      listenTo(mouse.clicks)
-      reactions += {
-        case _: MouseClicked =>  controller.load
-      }
-    }
-    contents += new Button{
-      text = "Save Game!"
-      listenTo(mouse.clicks)
-      reactions += {
-        case _: MouseClicked =>  controller.save
       }
     }
   }
@@ -190,7 +237,6 @@ class SwingGui(controller: ControllerInterface) extends Frame {
       }
     }
   }
-
 
   /** At game start PNGs from the resource folder are loaded into variables. */
   val BC = controller.getpureCell("BlockedCell")
@@ -267,7 +313,6 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     case event: GameLoaded => redrawRoll
   }
 
-
   /** Dialog box to add player name. */
   def choosePlayer:Option[String] ={
     Dialog.showInput(contents.head, "Enter Player " + (controller.game.players.length + 1).toString + " Name!", "Malefiz - Player Configurator", Dialog.Message.Question, Swing.EmptyIcon, Nil, "Player " + (controller.game.players.length+1))
@@ -313,6 +358,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
 
   /** Repaint entire frame, when in play mode. */
   def redrawPlay:Unit = {
+    menuBar = helpmovemenuBar
     contents = {
       new BoxPanel(Orientation.Vertical) {
         contents += gridPanel
@@ -321,7 +367,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
         contents += diceRolled
         contents += statusline
         border = Swing.EmptyBorder(20,20,20,20)
-        contents(0).preferredSize = new Dimension(400,600)
+        contents(0).preferredSize = new Dimension(400,580)
         contents(2).preferredSize = new Dimension(400,50)
         contents(2).preferredSize = new Dimension(400,5)
         contents(3).preferredSize = new Dimension(400,5)
@@ -334,17 +380,17 @@ class SwingGui(controller: ControllerInterface) extends Frame {
     repaint
   }
 
-
   /** Repaint entire frame, when in die-roll mode. */
   def redrawRoll:Unit = {
+    menuBar = closedmenuBar
     contents = {
       new BoxPanel(Orientation.Vertical) {
         contents += gridPanel
-        contents += diceLoadSavePanel
+        contents += diceRollPanel
         contents += currentplayer
         contents += statusline
         border = Swing.EmptyBorder(20,20,20,20)
-        contents(0).preferredSize = new Dimension(400,600)
+        contents(0).preferredSize = new Dimension(400,580)
         contents(1).preferredSize = new Dimension(600,50)
         contents(2).preferredSize = new Dimension(600,5)
         contents(3).preferredSize = new Dimension(600,5)
@@ -358,6 +404,7 @@ class SwingGui(controller: ControllerInterface) extends Frame {
 
   /** Repaint entire frame, when in game figure select. */
   def redrawChooseFig:Unit = {
+    menuBar = choosemenuBar
     contents = {
       new BoxPanel(Orientation.Vertical) {
         contents += gridPanel
@@ -366,11 +413,11 @@ class SwingGui(controller: ControllerInterface) extends Frame {
         contents += currentplayer
         contents += statusline
         border = Swing.EmptyBorder(20,20,20,20)
-        contents(0).preferredSize = new Dimension(400,600)
+        contents(0).preferredSize = new Dimension(400,580)
         contents(1).preferredSize = new Dimension(780,50)
-        contents(2).preferredSize = new Dimension(780,5)
-        contents(3).preferredSize = new Dimension(780,5)
-        contents(4).preferredSize = new Dimension(780,5)
+        contents(2).preferredSize = new Dimension(780,10)
+        contents(3).preferredSize = new Dimension(780,10)
+        contents(4).preferredSize = new Dimension(780,10)
       }
     }
     statusline.text = GameStatus.gameMessage(controller.gameStatus)
@@ -381,13 +428,14 @@ class SwingGui(controller: ControllerInterface) extends Frame {
 
   /** Frame for when the game is won. */
   def reGameWon:Unit = {
+    menuBar = choosemenuBar
     contents = {
       new BoxPanel(Orientation.Vertical) {
         contents += gridPanel
-        contents += gameWonButton
+        contents += gameWonPanel
         contents += statusline
         border = Swing.EmptyBorder(20,20,20,20)
-        contents(0).preferredSize = new Dimension(400,600)
+        contents(0).preferredSize = new Dimension(400,580)
         contents(1).preferredSize = new Dimension(780,50)
         contents(2).preferredSize = new Dimension(780,5)
       }
@@ -403,16 +451,21 @@ class SwingGui(controller: ControllerInterface) extends Frame {
 
   /** Frame for restarting after the game was won. */
   def reGameNew:Unit = {
+    menuBar = loadmenuBar
     contents = welcomePanel
     rePlayers
     repaint
   }
 
   val gameWonButton = new Button{
-    text = "Press to play again!"
+    text = "Press to reset and play again!"
     listenTo(mouse.clicks)
     reactions += {
       case _: MouseClicked =>  controller.resetGame()
     }
+  }
+
+  val gameWonPanel = new FlowPanel() {
+    contents += gameWonButton
   }
 }
