@@ -1,6 +1,6 @@
 # HTWG Constance - AIN 3 - Software Engineering
 # Scala Project - Malefiz Game
-## Game Project for the lecture SE
+## Game Project For The Lecture SE
 
 ![gamepicture](https://user-images.githubusercontent.com/81407658/114448533-f96ce480-9bd3-11eb-93a7-74dc0941f6c1.jpg)
 
