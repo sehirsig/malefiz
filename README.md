@@ -25,6 +25,11 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
 ## Move A Blockade!
 ![BlockMove](https://media2.giphy.com/media/PBaipOQTlGIAIwcd6U/giphy.gif)
 
+## Informations
+> When the player does a faulty move, the gamefigure gets reset to the starting point of its move (ex. walk into a barrier with one or more moves left.).
+
+> If a player can't do a regular move, the player can press the 'skip' button to skip his move.
+
 # Extra Features
 ## Save The Game Progress
 ![SaveGame](https://media3.giphy.com/media/idnf5TMhaVC5So1MSj/giphy.gif)
