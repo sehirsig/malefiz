@@ -40,8 +40,8 @@ class FileIO extends FileIOInterface{
         endzelle.cellStatus match {
           case "1 " => game.players(0).figures(player1Fig) = game.players(0).figures(player1Fig).updatePos(row,col); player1Fig += 1;
           case "2 " => game.players(1).figures(player2Fig) = game.players(1).figures(player2Fig).updatePos(row,col); player2Fig += 1;
-          case "3 " => game.players(2).figures(player3Fig) = game.players(2).figures(player3Fig).updatePos(row,col); player3Fig += 1;
-          case "4 " => game.players(3).figures(player4Fig) = game.players(3).figures(player4Fig).updatePos(row,col); player4Fig += 1;
+          case "3 " => if (game.players.length > 2) { game.players(2).figures(player3Fig) = game.players(2).figures(player3Fig).updatePos(row,col); player3Fig += 1; }
+          case "4 " => if (game.players.length > 3) { game.players(3).figures(player4Fig) = game.players(3).figures(player4Fig).updatePos(row,col); player4Fig += 1; }
         }
       }
     }
