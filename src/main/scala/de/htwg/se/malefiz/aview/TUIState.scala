@@ -43,6 +43,15 @@ object IdleTUIState extends TUIState {
           println("game full");IdleTUIState
         }
       }
+      case "load" => {
+        if(controller.game.getPlayerNumber() > 1) {
+          controller.load
+          PlayingTUIState
+        }
+        else {
+          println("This game has " + controller.game.getPlayerNumber().toString + " Player/s. You need to add atleast 2 players to load a game!");IdleTUIState
+        }
+      }
       case "remove" => controller.setBlockStrategy(input);IdleTUIState
       case "replace" => controller.setBlockStrategy(input);IdleTUIState
       case "welcomeMessage" => println("Welcome to Malefiz");IdleTUIState
@@ -64,9 +73,7 @@ object PlayingTUIState extends TUIState {
   def processing(input: String): TUIState = {
     input match {
         /** Current state of the board gets saved to file. */
-      case "s" => controller.save;PlayingTUIState
-        /** State of the board gets loaded from file. */
-      case "l" => controller.load;PlayingTUIState
+      case "save" => controller.save;PlayingTUIState
         /** Die roll. */
       case "r" => controller.rollDice();println("You have rolled a: " + controller.moveCounter);ChooseGameFigTUIState
         /** Die roll for debug. Always rolls a 1. */

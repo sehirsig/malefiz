@@ -104,6 +104,7 @@ class TUISpec extends AnyWordSpec with Matchers {
         tui.processing("a")
         tui.processing("w")
         tui.processing("w")
+
         /** Player 2 Rolls and chooses Gamefigure in Debug Mode */
         tui.processing("rDEBUG")
         tui.processing("1")
@@ -147,11 +148,7 @@ class TUISpec extends AnyWordSpec with Matchers {
       }
       "save the game" in {
         tui.currentState = PlayingTUIState
-        tui.processing("s")
-        tui.currentState should be(PlayingTUIState)
-      }
-      "load the game" in {
-        tui.processing("l")
+        tui.processing("save")
         tui.currentState should be(PlayingTUIState)
       }
       "do nothing with the game" in {
@@ -176,6 +173,28 @@ class TUISpec extends AnyWordSpec with Matchers {
         tui.currentState = GameResetTUIState
         tui.processing("reset")
         tui.currentState should be(IdleTUIState)
+      }
+      "not load the game" in {
+        tui.currentState = IdleTUIState
+        tui.processing("pDEBUG")
+        tui.processing("load")
+        tui.currentState should be(IdleTUIState)
+      }
+      "load the game" in {
+        tui.processing("pDEBUG")
+        tui.processing("load")
+        tui.currentState should be(PlayingTUIState)
+      }
+      "win the Game" in {
+        tui.currentState = GameResetTUIState
+        tui.processing("reset")
+        tui.processing("pDEBUG")
+        tui.processing("pDEBUG")
+        tui.processing("s")
+        tui.processing("rDEBUG")
+        tui.processing("1")
+        tui.processing("w")
+        tui.currentState should be(GameResetTUIState)
       }
     }
   }
