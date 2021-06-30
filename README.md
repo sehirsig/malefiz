@@ -1,6 +1,6 @@
 # HTWG Constance - AIN 3 - Software Engineering
 # Scala Project - Malefiz Game
-## Game Project for the lecture SE
+## Game Project For The Lecture SE
 
 ![gamepicture](https://user-images.githubusercontent.com/81407658/114448533-f96ce480-9bd3-11eb-93a7-74dc0941f6c1.jpg)
 
@@ -24,6 +24,11 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
 ![KickFig](https://media0.giphy.com/media/EtHxH94U4jjW3dsG9D/giphy.gif)
 ## Move A Blockade!
 ![BlockMove](https://media2.giphy.com/media/PBaipOQTlGIAIwcd6U/giphy.gif)
+
+## Informations
+> When the player does a faulty move, the gamefigure gets reset to the starting point of its move (ex. walk into a barrier with one or more moves left.).
+
+> If a player can't do a regular move, the player can press the 'skip' button to skip his move.
 
 # Extra Features
 ## Save The Game Progress
@@ -58,7 +63,7 @@ Malefiz is a board game for 2 to 4 players. Each player has 5 figures to play wi
 * Command-Pattern [*Command*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/util/Command.scala)
 * Undo-Manager [*UndoManager*](https://github.com/franzgajewski/malefiz/blob/master/src/main/scala/de/htwg/se/malefiz/util/UndoManager.scala)
 # Coverage [Master]
-[![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=master&kill_cache=1)](https://travis-ci.org/franzgajewski/malefiz) [![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/franzgajewski/malefiz?branch=master&kill_cache=1)
+[![Build Status](https://travis-ci.org/franzgajewski/malefiz.svg?branch=development&kill_cache=1)](https://travis-ci.org/franzgajewski/malefiz) [![Coverage Status](https://coveralls.io/repos/github/franzgajewski/malefiz/badge.svg?branch=development&kill_cache=1)](https://coveralls.io/github/franzgajewski/malefiz?branch=development&kill_cache=1)
 
 # Dockerhub
 [Docker Hub Link (sehirsig/malefiz)](https://hub.docker.com/r/sehirsig/malefiz)
