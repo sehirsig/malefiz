@@ -3,7 +3,7 @@ package de.htwg.se.malefiz.model.gameboardComponent
 import com.google.inject.Inject
 import de.htwg.se.malefiz.model.cellComponent.Cell
 
-/** Hier werden informationen des letzten Zuges gespeichert.
+/** The Information of the last move from the same player get saved here.
  *
  *  @author sehirsig & franzgajewski
  */
