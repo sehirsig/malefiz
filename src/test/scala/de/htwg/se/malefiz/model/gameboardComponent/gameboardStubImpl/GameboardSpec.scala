@@ -86,6 +86,12 @@ class GameboardSpec extends AnyWordSpec with Matchers {
       "in getGoalBase" in {
         spielbrett.getGoalBase should be ((0,0))
       }
+      "in movePlayer" in {
+        spielbrett.movePlayer((0,0), InvalidCell) should be (spielbrett)
+      }
+      "in replaceBlocks" in {
+        spielbrett.replaceBlocks(spielbrett) should be (spielbrett)
+      }
     }
   }
 }
