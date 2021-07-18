@@ -147,5 +147,7 @@ The player is allowed to reset the game at any given time via GUI! This resets t
 ## TUI Version
 > `docker pull sehirsig/malefiz:tui`
 
+# Presentation Link
+[Google Presentation](https://docs.google.com/presentation/d/1VaysoLveyzi7koy2LEQ09oKNXk4Tw3s1spTmOXgerYY)
 
-*Written by [@sehirsig](https://github.com/sehirsig/) & [@franzgajewski](https://github.com/franzgajewski/)*
+*Project Malefiz written by [@sehirsig](https://github.com/sehirsig/) & [@franzgajewski](https://github.com/franzgajewski/)*
