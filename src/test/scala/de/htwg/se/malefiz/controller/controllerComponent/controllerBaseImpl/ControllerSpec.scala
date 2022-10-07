@@ -409,7 +409,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.playerStatus should be(PlayerState1)
       }
       "when Player 2 Wins" in {
-        controller.gameboard = controller.gameboard.movePlayer((1,9), PlayerCell(2))
+        controller.gameboard = controller.gameboard.movePlayer((1,9), PlayerCell(2,1))
         controller.checkWin()
         controller.gameWon should be (true,"Zwei")
       }

@@ -71,18 +71,18 @@ class checkCellSpec extends AnyWordSpec with Matchers {
         /** Ins Ziel laufen (mit 1 Move Left) */
         checkCell.isWalkable(gb, (1,9), 1, 1) should be (true)
 
-        gb = gb.moveCell((14,3), PlayerCell(2))
+        gb = gb.moveCell((14,3), PlayerCell(2,1))
 
         /** Spieler 1 läuft über Spieler 2 seine Figur */
         checkCell.isWalkable(gb, (14,3), 2, 1) should be (true)
 
         /** Spieler 2 läuft über seine Figur */
         checkCell.isWalkable(gb, (14,3), 2, 2) should be (true)
-        gb = gb.moveCell((14,3), PlayerCell(3))
+        gb = gb.moveCell((14,3), PlayerCell(3,1))
 
         /** Spieler 3 läuft über seine Figur */
         checkCell.isWalkable(gb, (14,3), 2, 2) should be (true)
-        gb = gb.moveCell((14,3), PlayerCell(4))
+        gb = gb.moveCell((14,3), PlayerCell(4,1))
 
         /** Spieler 4 läuft über seine Figur */
         checkCell.isWalkable(gb, (14,3), 2, 2) should be (true)
@@ -92,7 +92,7 @@ class checkCellSpec extends AnyWordSpec with Matchers {
         checkCell.isWalkable(gb, (15,3), 1, 1) should be (false)
 
         /** Nurnoch 1 zug und du würdest auf deiner eigenen Figur landen */
-        gb = gb.moveCell((14,3), PlayerCell(1))
+        gb = gb.moveCell((14,3), PlayerCell(1,1))
         checkCell.isWalkable(gb, (14,3), 1, 1) should be (false)
       }
     }

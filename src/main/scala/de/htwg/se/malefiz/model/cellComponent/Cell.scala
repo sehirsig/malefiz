@@ -7,6 +7,7 @@ package de.htwg.se.malefiz.model.cellComponent
 trait Cell {
   val cellStatus:String
   def isWalkable: Boolean = cellStatus != "  " && cellStatus != "T "
+  def getFigureNum:Int = 0
   override def toString(): String = { cellStatus }
 }
 
@@ -47,7 +48,8 @@ object InvalidCell extends Cell {
 }
 
 /** Players get cells by setting individual parameters. */
-case class PlayerCell(num:Int) extends Cell {
+case class PlayerCell(num:Int, fig: Int) extends Cell {
   def getPlayer:Int = num
+  override def getFigureNum:Int = fig
   override val cellStatus = num.toString + " "
 }

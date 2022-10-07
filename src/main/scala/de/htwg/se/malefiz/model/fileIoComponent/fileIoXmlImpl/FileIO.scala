@@ -23,12 +23,6 @@ class FileIO extends FileIOInterface{
     val injector = Guice.createInjector(new MalefizModule)
     gameboard = injector.instance[GameboardInterface]
 
-    /** Game figure counter. */
-    var player1Fig = 0
-    var player2Fig = 0
-    var player3Fig = 0
-    var player4Fig = 0
-
     val cellNodes = (file \\ "cell")
     for (cell <- cellNodes) {
       val row: Int = (cell \ "@row").text.toInt
@@ -37,11 +31,12 @@ class FileIO extends FileIOInterface{
       val endzelle = gameboard.getCell(value)
       gameboard = gameboard.movePlayer((row, col), endzelle)
       if (endzelle.isInstanceOf[PlayerCell]) {
+        val fignum = endzelle.getFigureNum
         endzelle.cellStatus match {
-          case "1 " => game.players(0).figures(player1Fig) = game.players(0).figures(player1Fig).updatePos(row,col); player1Fig += 1;
-          case "2 " => game.players(1).figures(player2Fig) = game.players(1).figures(player2Fig).updatePos(row,col); player2Fig += 1;
-          case "3 " => if (game.players.length > 2) { game.players(2).figures(player3Fig) = game.players(2).figures(player3Fig).updatePos(row,col); player3Fig += 1; }
-          case "4 " => if (game.players.length > 3) { game.players(3).figures(player4Fig) = game.players(3).figures(player4Fig).updatePos(row,col); player4Fig += 1; }
+          case "1 " => game.players(0).figures(fignum - 1) = game.players(0).figures(fignum - 1).updatePos(row, col);
+          case "2 " => game.players(1).figures(fignum - 1) = game.players(1).figures(fignum - 1).updatePos(row, col);
+          case "3 " => if (game.players.length > 2) { game.players(2).figures(fignum - 1) = game.players(2).figures(fignum - 1).updatePos(row, col); }
+          case "4 " => if (game.players.length > 3) { game.players(3).figures(fignum - 1) = game.players(3).figures(fignum - 1).updatePos(row, col); }
         }
       }
     }

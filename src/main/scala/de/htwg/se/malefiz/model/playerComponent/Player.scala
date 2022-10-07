@@ -9,7 +9,7 @@ import de.htwg.se.malefiz.model.gamefigureComponent.Gamefigure
  */
 case class Player(name: String, Playerid: Int, startingPos: (Int, Int)) {
   /** Define player's cell. */
-  val cell = PlayerCell(Playerid)
+  def cell(num:Int) = PlayerCell(Playerid, num)
   var figures = Array[Gamefigure]()
 
   def addFigure(id: Int): Unit = {

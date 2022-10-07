@@ -1,0 +1,2059 @@
+{
+  "gameboard" : {
+    "sizeX" : 18,
+    "sizeY" : 19,
+    "cells" : [ {
+      "row" : 0,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 7,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 9,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 11,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 0,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 7,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 9,
+      "cell" : {
+        "Type" : "GoalCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 11,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 1,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 1,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 2,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 3,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 4,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 5,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 6,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 7,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 8,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 9,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 10,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 11,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 12,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 13,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 14,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 15,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 16,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 17,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 2,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 1,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 7,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 9,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 11,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 17,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 3,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 1,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 2,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 3,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 4,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 5,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 6,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 7,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 8,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 9,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 10,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 11,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 12,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 13,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 14,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 15,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 16,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 17,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 4,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 7,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 9,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 11,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 5,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 7,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 8,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 9,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 10,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 11,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 6,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 7,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 9,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 11,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 7,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 5,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 6,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 7,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 8,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 9,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 10,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 11,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 12,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 13,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 8,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 5,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 7,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 9,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 11,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 13,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 9,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 3,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 4,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 5,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 6,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 7,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 8,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 9,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 10,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 11,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 12,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 13,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 14,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 15,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 10,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 3,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 7,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 9,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 11,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 15,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 11,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 1,
+      "cell" : {
+        "Type" : "PlayerCell15"
+      }
+    }, {
+      "row" : 12,
+      "col" : 2,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 3,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 4,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 5,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 6,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 7,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 8,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 9,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 10,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 11,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 12,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 13,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 14,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 15,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 16,
+      "cell" : {
+        "Type" : "FreeCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 17,
+      "cell" : {
+        "Type" : "BlockedCell"
+      }
+    }, {
+      "row" : 12,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 1,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 3,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 5,
+      "cell" : {
+        "Type" : "PlayerCell12"
+      }
+    }, {
+      "row" : 13,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 7,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 9,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 11,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 13,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 15,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 17,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 13,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 1,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 2,
+      "cell" : {
+        "Type" : "PlayerCell25"
+      }
+    }, {
+      "row" : 14,
+      "col" : 3,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 4,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 5,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 6,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 7,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 8,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 9,
+      "cell" : {
+        "Type" : "PlayerCell24"
+      }
+    }, {
+      "row" : 14,
+      "col" : 10,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 11,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 12,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 13,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 14,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 15,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 16,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 17,
+      "cell" : {
+        "Type" : "SecureCell"
+      }
+    }, {
+      "row" : 14,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 3,
+      "cell" : {
+        "Type" : "Start1Cell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 7,
+      "cell" : {
+        "Type" : "Start2Cell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 9,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 11,
+      "cell" : {
+        "Type" : "Start3Cell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 15,
+      "cell" : {
+        "Type" : "Start4Cell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 15,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 2,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 3,
+      "cell" : {
+        "Type" : "Start1Cell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 4,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 6,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 7,
+      "cell" : {
+        "Type" : "Start2Cell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 8,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 9,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 10,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 11,
+      "cell" : {
+        "Type" : "Start3Cell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 12,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 14,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 15,
+      "cell" : {
+        "Type" : "Start4Cell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 16,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 16,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 0,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 1,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 2,
+      "cell" : {
+        "Type" : "Start1Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 3,
+      "cell" : {
+        "Type" : "Start1Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 4,
+      "cell" : {
+        "Type" : "Start1Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 5,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 6,
+      "cell" : {
+        "Type" : "Start2Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 7,
+      "cell" : {
+        "Type" : "Start2Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 8,
+      "cell" : {
+        "Type" : "Start2Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 9,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 10,
+      "cell" : {
+        "Type" : "Start3Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 11,
+      "cell" : {
+        "Type" : "Start3Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 12,
+      "cell" : {
+        "Type" : "Start3Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 13,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 14,
+      "cell" : {
+        "Type" : "Start4Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 15,
+      "cell" : {
+        "Type" : "Start4Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 16,
+      "cell" : {
+        "Type" : "Start4Cell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 17,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    }, {
+      "row" : 17,
+      "col" : 18,
+      "cell" : {
+        "Type" : "InvalidCell"
+      }
+    } ]
+  }
+}

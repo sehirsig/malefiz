@@ -142,19 +142,19 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         spielbrett.getStringOfCell(InvalidCell) should be ("InvalidCell")
       }
       "return PlayerCell1" in {
-        spielbrett.getStringOfCell(PlayerCell(1)) should be ("PlayerCell1")
+        spielbrett.getStringOfCell(PlayerCell(1,1)) should be ("PlayerCell11")
       }
       "return PlayerCell2" in {
-        spielbrett.getStringOfCell(PlayerCell(2)) should be ("PlayerCell2")
+        spielbrett.getStringOfCell(PlayerCell(2,1)) should be ("PlayerCell21")
       }
       "return PlayerCell3" in {
-        spielbrett.getStringOfCell(PlayerCell(3)) should be ("PlayerCell3")
+        spielbrett.getStringOfCell(PlayerCell(3,1)) should be ("PlayerCell31")
       }
       "return PlayerCell4" in {
-        spielbrett.getStringOfCell(PlayerCell(4)) should be ("PlayerCell4")
+        spielbrett.getStringOfCell(PlayerCell(4,1)) should be ("PlayerCell41")
       }
       "return Broke InvalidCell" in {
-        spielbrett.getStringOfCell(PlayerCell(5)) should be ("InvalidCell")
+        spielbrett.getStringOfCell(PlayerCell(5,1)) should be ("InvalidCell")
       }
     }
 
@@ -187,16 +187,16 @@ class GameboardSpec extends AnyWordSpec with Matchers {
         spielbrett.getGoalBase should be (Settings().goalCell)
       }
       "in getCell(P1)" in {
-        spielbrett.getCell("PlayerCell1") should be (PlayerCell(1))
+        spielbrett.getCell("PlayerCell11") should be (PlayerCell(1,1))
       }
       "in getCell(P2)" in {
-        spielbrett.getCell("PlayerCell2")  should be (PlayerCell(2))
+        spielbrett.getCell("PlayerCell21")  should be (PlayerCell(2,1))
       }
       "in getCell(P3)" in {
-        spielbrett.getCell("PlayerCell3")  should be (PlayerCell(3))
+        spielbrett.getCell("PlayerCell31")  should be (PlayerCell(3,1))
       }
       "in getCell(P4)" in {
-        spielbrett.getCell("PlayerCell4")  should be (PlayerCell(4))
+        spielbrett.getCell("PlayerCell41")  should be (PlayerCell(4,1))
       }
       "in getCell(FreeCell)" in {
         spielbrett.getCell("FreeCell")  should be (FreeCell)

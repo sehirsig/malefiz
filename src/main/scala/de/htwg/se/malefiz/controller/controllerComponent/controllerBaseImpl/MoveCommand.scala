@@ -122,7 +122,7 @@ class MoveCommand(direction:String, figurenum:Int, controllerH: Controller) exte
         /** Reset position of the figure of the kicked player to starting position. */
         if (((k.pos._1, k.pos._2) == newpos) && (k.player != currentplayer)) {
           k.player.figures(k.getNumber) = k.player.figures(k.getNumber).updatePos(k.player.startingPos)
-          controllerH.gameboard = controllerH.gameboard.movePlayer(k.player.startingPos, k.player.cell)
+          controllerH.gameboard = controllerH.gameboard.movePlayer(k.player.startingPos, k.player.cell(k.getNumber))
         }
       }))
     }

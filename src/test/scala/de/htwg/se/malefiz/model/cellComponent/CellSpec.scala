@@ -45,10 +45,10 @@ class CellSpec extends AnyWordSpec with Matchers {
   }
     "the playercell" should {
       "be displayed as \"1 \"" in {
-        PlayerCell(1).toString should be("1 ")
+        PlayerCell(1,1).toString should be("1 ")
       }
       "return the Players Number" in {
-        PlayerCell(1).getPlayer should be (1)
+        PlayerCell(1,1).getPlayer should be (1)
       }
     }
   }

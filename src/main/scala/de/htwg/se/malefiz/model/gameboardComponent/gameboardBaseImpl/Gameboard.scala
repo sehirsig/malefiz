@@ -95,10 +95,26 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
       case SecureCell =>"SecureCell"
       case GoalCell =>"GoalCell"
       case InvalidCell =>"InvalidCell"
-      case PlayerCell(1) =>"PlayerCell1"
-      case PlayerCell(2) =>"PlayerCell2"
-      case PlayerCell(3) =>"PlayerCell3"
-      case PlayerCell(4) =>"PlayerCell4"
+      case PlayerCell(1, 1) =>"PlayerCell11"
+      case PlayerCell(1, 2) => "PlayerCell12"
+      case PlayerCell(1, 3) => "PlayerCell13"
+      case PlayerCell(1, 4) => "PlayerCell14"
+      case PlayerCell(1, 5) => "PlayerCell15"
+      case PlayerCell(2, 1) => "PlayerCell21"
+      case PlayerCell(2, 2) => "PlayerCell22"
+      case PlayerCell(2, 3) => "PlayerCell23"
+      case PlayerCell(2, 4) => "PlayerCell24"
+      case PlayerCell(2, 5) => "PlayerCell25"
+      case PlayerCell(3, 1) => "PlayerCell31"
+      case PlayerCell(3, 2) => "PlayerCell32"
+      case PlayerCell(3, 3) => "PlayerCell33"
+      case PlayerCell(3, 4) => "PlayerCell34"
+      case PlayerCell(3, 5) => "PlayerCell35"
+      case PlayerCell(4, 1) => "PlayerCell41"
+      case PlayerCell(4, 2) => "PlayerCell42"
+      case PlayerCell(4, 3) => "PlayerCell43"
+      case PlayerCell(4, 4) => "PlayerCell44"
+      case PlayerCell(4, 5) => "PlayerCell45"
       case _ => "InvalidCell"
     }
   }
@@ -280,10 +296,26 @@ case class Gameboard(rows: Vector[Vector[Cell]]) extends GameboardInterface {
       case "SecureCell" => SecureCell
       case "GoalCell" => GoalCell
       case "InvalidCell" => InvalidCell
-      case "PlayerCell1" => PlayerCell(1)
-      case "PlayerCell2" => PlayerCell(2)
-      case "PlayerCell3" => PlayerCell(3)
-      case "PlayerCell4" => PlayerCell(4)
+      case "PlayerCell11" => PlayerCell(1,1)
+      case "PlayerCell12" => PlayerCell(1,2)
+      case "PlayerCell13" => PlayerCell(1,3)
+      case "PlayerCell14" => PlayerCell(1,4)
+      case "PlayerCell15" => PlayerCell(1,5)
+      case "PlayerCell21" => PlayerCell(2,1)
+      case "PlayerCell22" => PlayerCell(2,2)
+      case "PlayerCell23" => PlayerCell(2,3)
+      case "PlayerCell24" => PlayerCell(2,4)
+      case "PlayerCell25" => PlayerCell(2,5)
+      case "PlayerCell31" => PlayerCell(3,1)
+      case "PlayerCell32" => PlayerCell(3,2)
+      case "PlayerCell33" => PlayerCell(3,3)
+      case "PlayerCell34" => PlayerCell(3,4)
+      case "PlayerCell35" => PlayerCell(3,5)
+      case "PlayerCell41" => PlayerCell(4,1)
+      case "PlayerCell42" => PlayerCell(4,2)
+      case "PlayerCell43" => PlayerCell(4,3)
+      case "PlayerCell44" => PlayerCell(4,4)
+      case "PlayerCell45" => PlayerCell(4,5)
     }
   }
 
